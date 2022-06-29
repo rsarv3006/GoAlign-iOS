@@ -7,12 +7,15 @@
 
 import Foundation
 import Combine
+import UIKit
 
 class HomeScreenVM {
     var subscriptions = Set<AnyCancellable>()
     
-    var taskTitleLabel: String = "My Tasks"
-    var teamTitleLabel: String = "My Groups"
+    var taskTitleLabel: NSAttributedString = NSAttributedString(string: "My Tasks",
+                                                     attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
+    var teamTitleLabel: NSAttributedString = NSAttributedString(string: "My Groups",
+                                                    attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
     
     var tasksSubject = PassthroughSubject<[GqlTasksByAssignedUserIdTaskObject], Never>()
     
@@ -21,7 +24,6 @@ class HomeScreenVM {
     func loadTasks(userId: String) {
         Network.shared.apollo.fetch(query: TasksByAssignedUserIdQuery(userId: userId)) { [weak self] result in
             guard let self = self else { return }
-            print("DEBUG: hi from shared apollo")
             switch result {
             case .success(let graphQLResult):
                 if let tasksData = graphQLResult.data?.getTasksByAssignedUserId {
@@ -36,7 +38,6 @@ class HomeScreenVM {
     func loadTeams(userId: String) {
         Network.shared.apollo.fetch(query: GetTeamsByUserIdQuery(userId: userId)) { [weak self] result in
             guard let self = self else { return }
-            print("DEBUG: hi from shared apollo")
             switch result {
             case .success(let graphQLResult):
                 if let teamsData = graphQLResult.data?.getTeamsByUserId {
@@ -46,5 +47,11 @@ class HomeScreenVM {
                 print(error)
             }
         }
+    }
+    
+    func onAddTaskPress(navigationController: UINavigationController?) {
+        let newVc = TaskAddEditScreen()
+        newVc.viewModel = TaskAddEditScreenVM()
+        navigationController?.pushViewController(newVc, animated: false)
     }
 }

@@ -27,9 +27,11 @@
 		78BBEE902862C34B0031976A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BBEE8F2862C34B0031976A /* Network.swift */; };
 		78DAADE52866B61400FEB0DA /* HomeScreenTaskCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DAADE42866B61400FEB0DA /* HomeScreenTaskCellVM.swift */; };
 		78DAADE72866B64500FEB0DA /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DAADE62866B64500FEB0DA /* Types.swift */; };
-		78DAADE928681EEF00FEB0DA /* GetTeamsByUserId.graphql in Sources */ = {isa = PBXBuildFile; fileRef = 78DAADE828681EEF00FEB0DA /* GetTeamsByUserId.graphql */; };
 		78DAADEB2868D36700FEB0DA /* HomeScreenTeamCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DAADEA2868D36700FEB0DA /* HomeScreenTeamCellVM.swift */; };
 		78DAADED2868D5CF00FEB0DA /* HomeScreenTeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DAADEC2868D5CF00FEB0DA /* HomeScreenTeamCell.swift */; };
+		78DAADF128695C1500FEB0DA /* GetTeamsByUserId.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 78DAADF028695C1500FEB0DA /* GetTeamsByUserId.graphql */; };
+		78DAADF32869617600FEB0DA /* TaskAddEditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DAADF22869617500FEB0DA /* TaskAddEditScreen.swift */; };
+		78DAADF52869663000FEB0DA /* TaskAddEditScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DAADF42869663000FEB0DA /* TaskAddEditScreenVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,9 +75,11 @@
 		78BBEE8F2862C34B0031976A /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		78DAADE42866B61400FEB0DA /* HomeScreenTaskCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenTaskCellVM.swift; sourceTree = "<group>"; };
 		78DAADE62866B64500FEB0DA /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
-		78DAADE828681EEF00FEB0DA /* GetTeamsByUserId.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetTeamsByUserId.graphql; sourceTree = "<group>"; };
 		78DAADEA2868D36700FEB0DA /* HomeScreenTeamCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenTeamCellVM.swift; sourceTree = "<group>"; };
 		78DAADEC2868D5CF00FEB0DA /* HomeScreenTeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenTeamCell.swift; sourceTree = "<group>"; };
+		78DAADF028695C1500FEB0DA /* GetTeamsByUserId.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetTeamsByUserId.graphql; sourceTree = "<group>"; };
+		78DAADF22869617500FEB0DA /* TaskAddEditScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAddEditScreen.swift; sourceTree = "<group>"; };
+		78DAADF42869663000FEB0DA /* TaskAddEditScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAddEditScreenVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,7 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				78BBB8F9286415AF006B3FDC /* API.swift */,
-				78DAADE828681EEF00FEB0DA /* GetTeamsByUserId.graphql */,
+				78DAADF028695C1500FEB0DA /* GetTeamsByUserId.graphql */,
 				78BBB8F62864131C006B3FDC /* GetTasksByAssignedUserId.graphql */,
 				78BBEE892862C1A10031976A /* schema.json */,
 				78BBEE8E2862C32E0031976A /* Network */,
@@ -170,6 +174,7 @@
 			children = (
 				78BBB8FD286422DF006B3FDC /* Cells */,
 				783DED02286180470062343E /* HomeScreen.swift */,
+				78DAADF22869617500FEB0DA /* TaskAddEditScreen.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 			children = (
 				78DAADE32866B60200FEB0DA /* CellVMs */,
 				783DED082861F5500062343E /* HomeScreenVM.swift */,
+				78DAADF42869663000FEB0DA /* TaskAddEditScreenVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -332,6 +338,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78DAADF128695C1500FEB0DA /* GetTeamsByUserId.graphql in Resources */,
 				783DECDE28617EED0062343E /* LaunchScreen.storyboard in Resources */,
 				783DECDB28617EED0062343E /* Assets.xcassets in Resources */,
 				783DECD928617EEB0062343E /* Main.storyboard in Resources */,
@@ -391,9 +398,10 @@
 				78DAADE52866B61400FEB0DA /* HomeScreenTaskCellVM.swift in Sources */,
 				783DECD228617EEB0062343E /* AppDelegate.swift in Sources */,
 				78BBB8FA286415AF006B3FDC /* API.swift in Sources */,
+				78DAADF52869663000FEB0DA /* TaskAddEditScreenVM.swift in Sources */,
 				78DAADE72866B64500FEB0DA /* Types.swift in Sources */,
+				78DAADF32869617600FEB0DA /* TaskAddEditScreen.swift in Sources */,
 				783DECD428617EEB0062343E /* SceneDelegate.swift in Sources */,
-				78DAADE928681EEF00FEB0DA /* GetTeamsByUserId.graphql in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

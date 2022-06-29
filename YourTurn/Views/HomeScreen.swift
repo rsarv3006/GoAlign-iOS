@@ -21,10 +21,8 @@ class HomeScreen: UIViewController {
     var viewModel: HomeScreenVM? {
         didSet {
             guard let viewModel = viewModel else { return }
-            
-            taskTitleLabel.text = viewModel.taskTitleLabel
-            teamTitleLabel.text = viewModel.teamTitleLabel
-
+            taskTitleLabel.attributedText = viewModel.taskTitleLabel
+            teamTitleLabel.attributedText = viewModel.teamTitleLabel
         }
     }
     
@@ -81,7 +79,7 @@ class HomeScreen: UIViewController {
     }
     
     // MARK: - Helpers
-    func configureView() {
+    private func configureView() {
         let topSafeAnchor = view.safeAreaLayoutGuide.topAnchor
         let leftSafeAnchor = view.safeAreaLayoutGuide.leftAnchor
         let rightSafeAnchor = view.safeAreaLayoutGuide.rightAnchor
@@ -104,11 +102,11 @@ class HomeScreen: UIViewController {
         
     }
     
-    func configureInteractables() {
+    private func configureInteractables() {
         addTaskButton.addTarget(self, action: #selector(onAddTaskPressed), for: .touchUpInside)
     }
     
-    func configureCombine() {
+    private func configureCombine() {
         viewModel?.tasksSubject.receive(on: DispatchQueue.main).sink(receiveValue: { [weak self] incomingTasks in
             guard let self = self else { return }
             
@@ -126,8 +124,7 @@ class HomeScreen: UIViewController {
     
     // MARK: - Actions
     @objc func onAddTaskPressed() {
-        print("DEBUG: onAddTaskPressed")
-        viewModel?.loadTasks(userId: "75d6010f-2574-4e27-ad81-4412d8fa75c0")
+        viewModel?.onAddTaskPress(navigationController: navigationController)
     }
 }
 
