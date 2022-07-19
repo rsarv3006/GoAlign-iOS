@@ -15,6 +15,7 @@ class FormTextCollectionViewCell: UICollectionViewCell {
     private var item: TextFormComponent?
     private var indexPath: IndexPath?
     private(set) var subject = PassthroughSubject<(String, IndexPath), Never>()
+    private(set) var reload = PassthroughSubject<String, Never>()
     
     private lazy var txtField: UITextField = {
         let txtField = UITextField()
@@ -36,7 +37,7 @@ class FormTextCollectionViewCell: UICollectionViewCell {
         let stackVw = UIStackView()
         stackVw.translatesAutoresizingMaskIntoConstraints = false
         stackVw.axis = .vertical
-        stackVw.spacing = 8
+        stackVw.spacing = 6
         return stackVw
     }()
     
@@ -61,7 +62,6 @@ private extension FormTextCollectionViewCell {
     
     func setup(item: TextFormComponent) {
         
-        // Combine setup
         NotificationCenter
             .default
             .publisher(for: UITextField.textDidChangeNotification, object: txtField)
@@ -72,6 +72,8 @@ private extension FormTextCollectionViewCell {
                 guard let self = self,
                       let indexPath = self.indexPath else { return }
                 
+                self.subject.send((val, indexPath))
+                
                 do {
                     
                     for validator in item.validations {
@@ -79,8 +81,11 @@ private extension FormTextCollectionViewCell {
                     }
                     
                     self.txtField.valid()
-                    self.errorLbl.text = " "
-                    self.subject.send((val, indexPath))
+                    if let errorLabelTextCount = self.errorLbl.text?.count, errorLabelTextCount > 0 {
+                        self.removeError()
+                    }
+                    self.errorLbl.text = ""
+                    
                     
                 } catch {
                     
@@ -88,6 +93,7 @@ private extension FormTextCollectionViewCell {
                     if let validationError = error as? ValidationError {
                         switch validationError {
                         case .custom(let message):
+                            self.addError()
                             self.errorLbl.text = message
                         }
                     }
@@ -109,16 +115,28 @@ private extension FormTextCollectionViewCell {
         contentView.addSubview(contentStackVw)
         
         contentStackVw.addArrangedSubview(txtField)
-        contentStackVw.addArrangedSubview(errorLbl)
         
         NSLayoutConstraint.activate([
             txtField.heightAnchor.constraint(equalToConstant: 44),
-            errorLbl.heightAnchor.constraint(equalToConstant: 22),
+                        errorLbl.heightAnchor.constraint(equalToConstant: 22),
             contentStackVw.topAnchor.constraint(equalTo: contentView.topAnchor),
             contentStackVw.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
             contentStackVw.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             contentStackVw.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
+        
+        
+    }
+    
+    func addError() {
+        contentStackVw.addArrangedSubview(errorLbl)
+        self.reload.send("YEET")
+    }
+    
+    func removeError() {
+        contentStackVw.removeArrangedSubview(errorLbl)
+
+        self.reload.send("YEET")
     }
 }
 

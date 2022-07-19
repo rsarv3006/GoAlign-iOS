@@ -106,6 +106,11 @@ private extension TaskAddEditScreen {
                         self?.formContentBuilder.update(val: val, at: indexPath)
                     }
                     .store(in: &self.subscriptions)
+                
+                cell.reload.sink { [weak self] _ in
+                    self?.updateDataSource()
+                }.store(in: &self.subscriptions)
+                
                 cell.bind(item, at: indexPath)
                 return cell
             case is DateFormComponent:
@@ -117,6 +122,10 @@ private extension TaskAddEditScreen {
                         self?.formContentBuilder.update(val: val, at: indexPath)
                     }
                     .store(in: &self.subscriptions)
+                
+                cell.reload.sink { [weak self] _ in
+                    self?.updateDataSource()
+                }.store(in: &self.subscriptions)
                 
                 cell.bind(item, at: indexPath)
                 return cell
@@ -159,7 +168,7 @@ extension TaskAddEditScreen {
     func formSubmissionSubscription() {
         formContentBuilder
             .formSubmission
-            .sink { [weak self] val in
+            .sink { val in
                 print(val)
             }
             .store(in: &subscriptions)

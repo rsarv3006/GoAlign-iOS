@@ -36,7 +36,7 @@ struct RegexValidationManagerImpl: ValidationManager {
     }
 }
 
-struct DateValidationManagerImpl: ValidationManager {
+struct DateAgeLimitValidationManagerImpl: ValidationManager {
     private let ageLimit: Int = 18
     
     func validate(_ val: Any) throws {
@@ -46,6 +46,18 @@ struct DateValidationManagerImpl: ValidationManager {
         
         if let calculatedYear = Calendar.current.dateComponents([.year], from: date, to: Date()).year, calculatedYear < ageLimit {
             throw ValidationError.custom(message: "User is below the age of 18")
+        }
+    }
+}
+
+struct DateInFutureValidationManagerImpl: ValidationManager {
+    func validate(_ val: Any) throws {
+        guard let date = val as? Date else {
+            throw ValidationError.custom(message: "Invald Value of \(val) passed")
+        }
+        
+        if Date() > date {
+            throw ValidationError.custom(message: "Date needs to be in the future.")
         }
     }
 }

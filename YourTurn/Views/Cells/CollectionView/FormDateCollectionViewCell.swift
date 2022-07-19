@@ -10,10 +10,15 @@ import Combine
 
 class FormDateCollectionViewCell: UICollectionViewCell {
     
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+    
     private lazy var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.translatesAutoresizingMaskIntoConstraints = false
-       
+        datePicker.date = Date().advanced(by: TimeInterval(24 * 60 * 60))
         return datePicker
     }()
     
@@ -25,6 +30,13 @@ class FormDateCollectionViewCell: UICollectionViewCell {
         return lbl
     }()
     
+    private lazy var titleDateStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        return stackView
+    }()
+    
     private lazy var contentStackVw: UIStackView = {
         let stackVw = UIStackView()
         stackVw.translatesAutoresizingMaskIntoConstraints = false
@@ -34,7 +46,8 @@ class FormDateCollectionViewCell: UICollectionViewCell {
     }()
     
     private(set) var subject = PassthroughSubject<(Date, IndexPath), Never>()
-
+    private(set) var reload = PassthroughSubject<String, Never>()
+    
     private var item: DateFormComponent?
     private var indexPath: IndexPath?
     
@@ -57,6 +70,7 @@ class FormDateCollectionViewCell: UICollectionViewCell {
 private extension FormDateCollectionViewCell {
     
     func setup(item: DateFormComponent) {
+        titleLabel.text = item.title
         
         datePicker.addTarget(self, action: #selector(datePickerChanged(picker:)), for: .valueChanged)
 
@@ -64,8 +78,11 @@ private extension FormDateCollectionViewCell {
         
         contentView.addSubview(contentStackVw)
         
-        contentStackVw.addArrangedSubview(datePicker)
-        contentStackVw.addArrangedSubview(errorLbl)
+        titleDateStackView.addArrangedSubview(titleLabel)
+        titleDateStackView.addArrangedSubview(datePicker)
+        
+        contentStackVw.addArrangedSubview(titleDateStackView)
+//        contentStackVw.addArrangedSubview(errorLbl)
 
         NSLayoutConstraint.activate([
             contentStackVw.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -73,6 +90,12 @@ private extension FormDateCollectionViewCell {
             contentStackVw.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             contentStackVw.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
+        
+        
+        if let indexPath = indexPath  {
+            self.subject.send((datePicker.date, indexPath))
+        }
+        
     }
     
     @objc func datePickerChanged(picker: UIDatePicker) {
@@ -80,19 +103,22 @@ private extension FormDateCollectionViewCell {
         guard let indexPath = indexPath,
               let item = item else { return }
 
+        let selectedDate = datePicker.date
+        self.subject.send((selectedDate, indexPath))
 
         do {
-
-            let selectedDate = datePicker.date
             for validator in item.validations {
                 try validator.validate(selectedDate)
             }
 
-            self.errorLbl.text = " "
-            self.subject.send((selectedDate, indexPath))
+            if let errorLabelTextCount = self.errorLbl.text?.count, errorLabelTextCount > 0 {
+                removeError()
+            }
+            self.errorLbl.text = ""
+            
 
         } catch {
-
+            self.addError()
             if let validationError = error as? ValidationError {
                 switch validationError {
                 case .custom(let message):
@@ -102,5 +128,19 @@ private extension FormDateCollectionViewCell {
             
             print(error)
         }
+    }
+}
+
+// MARK: Dynamic Reload
+extension FormDateCollectionViewCell {
+    func addError() {
+        contentStackVw.addArrangedSubview(errorLbl)
+        self.reload.send("YEET")
+    }
+    
+    func removeError() {
+        contentStackVw.removeArrangedSubview(errorLbl)
+
+        self.reload.send("YEET")
     }
 }

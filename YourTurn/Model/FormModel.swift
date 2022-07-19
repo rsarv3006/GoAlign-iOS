@@ -20,22 +20,17 @@ protocol FormSectionItem {
 }
 
 enum FormField: String, CaseIterable {
-    case firstName
-    case lastName
-    case email
-    case dob
+    case taskName
+    case notes
+    case startDate
     case submit
 }
 
-/**
- * Component for a form section the form
- */
-
 final class FormSectionComponent: FormSectionItem, Hashable {
-
+    
     let id: UUID = UUID()
     var items: [FormComponent]
-
+    
     required init(items: [FormComponent]) {
         self.items = items
     }
@@ -43,18 +38,14 @@ final class FormSectionComponent: FormSectionItem, Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
-  
+    
     static func == (lhs: FormSectionComponent, rhs: FormSectionComponent) -> Bool {
         lhs.id == rhs.id
     }
 }
 
-/**
- * Component for a form items the form
- */
-
 class FormComponent: FormItem, Hashable {
-
+    
     let id = UUID()
     let formId: FormField
     var validations: [ValidationManager]
@@ -69,53 +60,46 @@ class FormComponent: FormItem, Hashable {
     }
     
     init(_ id: FormField,
-        validations: [ValidationManager] = []) {
+         validations: [ValidationManager] = []) {
         self.formId = id
         self.validations = validations
     }
 }
 
-/**
- * Component for a text item in the form
- */
-
 final class TextFormComponent: FormComponent {
-   
+    
     let placeholder: String
     let keyboardType: UIKeyboardType
     
     init(id: FormField,
-        placeholder: String,
-        keyboardType: UIKeyboardType = .default,
-        validations: [ValidationManager] = []) {
+         placeholder: String,
+         keyboardType: UIKeyboardType = .default,
+         validations: [ValidationManager] = []) {
         self.placeholder = placeholder
         self.keyboardType = keyboardType
         super.init(id, validations: validations)
     }
 }
 
-/**
- * Component for a date item in the form
- */
-
 final class DateFormComponent: FormComponent {
-
+    
     let mode: UIDatePicker.Mode
+    
+    let title: String
     
     init(id: FormField,
          mode: UIDatePicker.Mode,
-         validations: [ValidationManager] = []) {
+         validations: [ValidationManager] = [],
+         title: String = ""
+    ) {
+        self.title = title
         self.mode = mode
         super.init(id, validations: validations)
     }
 }
 
-/**
- * Component for a button item in the form
- */
-
 final class ButtonFormComponent: FormComponent {
-
+    
     let title: String
     
     init(id: FormField,
