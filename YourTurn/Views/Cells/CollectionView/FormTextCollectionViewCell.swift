@@ -8,7 +8,6 @@
 import UIKit
 import Combine
 
-
 class FormTextCollectionViewCell: UICollectionViewCell {
     
     private var subscriptions = Set<AnyCancellable>()
@@ -82,7 +81,7 @@ private extension FormTextCollectionViewCell {
                     
                     self.txtField.valid()
                     if let errorLabelTextCount = self.errorLbl.text?.count, errorLabelTextCount > 0 {
-                        self.removeError()
+                        self.manipulateErrorLabel(.hide)
                     }
                     self.errorLbl.text = ""
                     
@@ -93,7 +92,7 @@ private extension FormTextCollectionViewCell {
                     if let validationError = error as? ValidationError {
                         switch validationError {
                         case .custom(let message):
-                            self.addError()
+                            self.manipulateErrorLabel(.show)
                             self.errorLbl.text = message
                         }
                     }
@@ -128,16 +127,15 @@ private extension FormTextCollectionViewCell {
         
     }
     
-    func addError() {
-        contentStackVw.addArrangedSubview(errorLbl)
-        self.reload.send("YEET")
+    func manipulateErrorLabel(_ showHideVariant: ShowHideLabelVariant) {
+        if showHideVariant == .hide {
+            contentStackVw.removeArrangedSubview(errorLbl)
+        } else {
+            contentStackVw.addArrangedSubview(errorLbl)
+        }
+        self.reload.send("")
     }
     
-    func removeError() {
-        contentStackVw.removeArrangedSubview(errorLbl)
-
-        self.reload.send("YEET")
-    }
 }
 
 extension FormTextCollectionViewCell: UITextFieldDelegate {

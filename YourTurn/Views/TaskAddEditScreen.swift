@@ -5,7 +5,6 @@
 //  Created by rjs on 6/26/22.
 //
 
-import Foundation
 import UIKit
 import Combine
 
@@ -20,13 +19,6 @@ import Combine
 //@Args('creatorUserId') creatorUserId: string,
 //@Args('notes') notes: string,
 
-private let TOP_PADDING: CGFloat = 12
-
-enum RequiredCompletionsAnchorPoint {
-    case endDateInput
-    case endDateLabelRow
-}
-
 class TaskAddEditScreen: UIViewController {
     // MARK: - Properties
     var viewModel: TaskAddEditScreenVM?
@@ -37,14 +29,7 @@ class TaskAddEditScreen: UIViewController {
     private lazy var dataSource = makeDataSource()
     
     private lazy var collectionView: UICollectionView = {
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: formCompLayout.layout)
-        cv.backgroundColor = .clear
-        cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.register(UICollectionViewCell.self, forCellWithReuseIdentifier: UICollectionViewCell.cellId)
-        cv.register(FormButtonCollectionViewCell.self, forCellWithReuseIdentifier: FormButtonCollectionViewCell.cellId)
-        cv.register(FormTextCollectionViewCell.self, forCellWithReuseIdentifier: FormTextCollectionViewCell.cellId)
-        cv.register(FormDateCollectionViewCell.self, forCellWithReuseIdentifier: FormDateCollectionViewCell.cellId)
-        return cv
+        return FormCollectionView(frame: .zero, collectionViewLayout: formCompLayout.layout)
     }()
     
     // MARK: - Lifecycle
@@ -58,21 +43,17 @@ class TaskAddEditScreen: UIViewController {
         super.viewDidLoad()
         self.title = viewModel?.screenTitleLabelString
     }
-    
-    // MARK: - Helpers
 }
 
 // MARK: - IntervalPickerDelegate
 extension TaskAddEditScreen: IntervalPickerDelegate {
     func onIntervalChange(intervalPicker: IntervalPicker, intervalObj: IntervalObject) {
-        
         print("Num: \(intervalObj.intervalNumber) - Type: \(intervalObj.intervalType)")
     }
 }
 
 private extension TaskAddEditScreen {
     func setup() {
-        
         formSubmissionSubscription()
         
         collectionView.dataSource = dataSource
@@ -96,61 +77,23 @@ private extension TaskAddEditScreen {
             
             switch item {
             case is TextFormComponent:
-                print("DEBUG: Hi From Text Cell")
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormTextCollectionViewCell.cellId, for: indexPath) as! FormTextCollectionViewCell
-                
-                cell
-                    .subject
-                    .sink { [weak self] val, indexPath in
-                        print("DEBUG: Hi From Text Cell passthroughsubject")
-                        self?.formContentBuilder.update(val: val, at: indexPath)
-                    }
-                    .store(in: &self.subscriptions)
-                
-                cell.reload.sink { [weak self] _ in
-                    self?.updateDataSource()
-                }.store(in: &self.subscriptions)
-                
-                cell.bind(item, at: indexPath)
-                return cell
+                return self.buildFormTextCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
             case is DateFormComponent:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormDateCollectionViewCell.cellId, for: indexPath) as! FormDateCollectionViewCell
-                
-                cell
-                    .subject
-                    .sink { [weak self] val, indexPath in
-                        self?.formContentBuilder.update(val: val, at: indexPath)
-                    }
-                    .store(in: &self.subscriptions)
-                
-                cell.reload.sink { [weak self] _ in
-                    self?.updateDataSource()
-                }.store(in: &self.subscriptions)
-                
-                cell.bind(item, at: indexPath)
-                return cell
+                return self.buildFormDateCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
             case is ButtonFormComponent:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormButtonCollectionViewCell.cellId, for: indexPath) as! FormButtonCollectionViewCell
-                
-                cell
-                    .subject
-                    .sink { [weak self] id in
-                        self?.formContentBuilder.validate()
-                    }.store(in: &self.subscriptions)
-                
-                cell.bind(item)
-                return cell
+                return self.buildFormButtonCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
+            case is SwitchControlledTextFormComponent:
+                return self.buildFormSwitchControlledTextCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
+            case is SwitchControlledDateFormComponent:
+                return self.buildFormSwitchControlledDateCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
             default:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewCell.cellId, for: indexPath)
-                return cell
+                return self.buildDefaultCollectionViewCell(collectionView: collectionView, indexPath: indexPath)
             }
         }
     }
     
     func updateDataSource(animated: Bool = false) {
-        
         DispatchQueue.main.async { [weak self] in
-            
             guard let self = self else { return }
             
             var snapshot = NSDiffableDataSourceSnapshot<FormSectionComponent, FormComponent>()
@@ -162,9 +105,7 @@ private extension TaskAddEditScreen {
             self.dataSource.apply(snapshot, animatingDifferences: animated)
         }
     }
-}
-
-extension TaskAddEditScreen {
+    
     func formSubmissionSubscription() {
         formContentBuilder
             .formSubmission
@@ -172,5 +113,99 @@ extension TaskAddEditScreen {
                 print(val)
             }
             .store(in: &subscriptions)
+    }
+}
+
+// MARK: - UICollectionViewCell builders
+private extension TaskAddEditScreen {
+    func buildDefaultCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewCell.cellId, for: indexPath)
+        return cell
+    }
+    
+    func buildFormTextCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, item: FormComponent) -> FormTextCollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormTextCollectionViewCell.cellId, for: indexPath) as! FormTextCollectionViewCell
+        
+        cell
+            .subject
+            .sink { [weak self] val, indexPath in
+                print("DEBUG: Hi From Text Cell passthroughsubject")
+                self?.formContentBuilder.update(val: val, at: indexPath)
+            }
+            .store(in: &self.subscriptions)
+        
+        cell.reload.sink { [weak self] _ in
+            self?.updateDataSource()
+        }.store(in: &self.subscriptions)
+        
+        cell.bind(item, at: indexPath)
+        return cell
+    }
+    
+    func buildFormDateCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, item: FormComponent) -> FormDateCollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormDateCollectionViewCell.cellId, for: indexPath) as! FormDateCollectionViewCell
+        
+        cell
+            .subject
+            .sink { [weak self] val, indexPath in
+                self?.formContentBuilder.update(val: val, at: indexPath)
+            }
+            .store(in: &self.subscriptions)
+        
+        cell.reload.sink { [weak self] _ in
+            self?.updateDataSource()
+        }.store(in: &self.subscriptions)
+        
+        cell.bind(item, at: indexPath)
+        return cell
+    }
+    
+    func buildFormButtonCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, item: FormComponent) -> FormButtonCollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormButtonCollectionViewCell.cellId, for: indexPath) as! FormButtonCollectionViewCell
+        
+        cell
+            .subject
+            .sink { [weak self] id in
+                self?.formContentBuilder.validate()
+            }.store(in: &self.subscriptions)
+        
+        cell.bind(item)
+        return cell
+    }
+    
+    func buildFormSwitchControlledTextCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, item: FormComponent) -> FormSwitchControlledTextCollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormSwitchControlledTextCollectionViewCell.cellId, for: indexPath) as! FormSwitchControlledTextCollectionViewCell
+        
+        cell
+            .subject
+            .sink { [weak self] val, indexPath in
+                self?.formContentBuilder.update(val: val, at: indexPath)
+            }
+            .store(in: &self.subscriptions)
+        
+        cell.reload.sink { [weak self] _ in
+            self?.updateDataSource()
+        }.store(in: &self.subscriptions)
+        
+        cell.bind(item, at: indexPath)
+        return cell
+    }
+    
+    func buildFormSwitchControlledDateCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, item: FormComponent) -> FormSwitchControlledDateCollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormSwitchControlledDateCollectionViewCell.cellId, for: indexPath) as! FormSwitchControlledDateCollectionViewCell
+        
+        cell
+            .subject
+            .sink { [weak self] val, indexPath in
+                self?.formContentBuilder.update(val: val as Any, at: indexPath)
+            }
+            .store(in: &self.subscriptions)
+        
+        cell.reload.sink { [weak self] _ in
+            self?.updateDataSource()
+        }.store(in: &self.subscriptions)
+        
+        cell.bind(item, at: indexPath)
+        return cell
     }
 }

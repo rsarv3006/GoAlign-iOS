@@ -23,7 +23,9 @@ enum FormField: String, CaseIterable {
     case taskName
     case notes
     case startDate
+    case endDate
     case submit
+    case numberofRequiredCompletions
 }
 
 final class FormSectionComponent: FormSectionItem, Hashable {
@@ -99,12 +101,49 @@ final class DateFormComponent: FormComponent {
 }
 
 final class ButtonFormComponent: FormComponent {
-    
     let title: String
     
     init(id: FormField,
          title: String) {
         self.title = title
         super.init(id)
+    }
+}
+
+final class SwitchControlledTextFormComponent: FormComponent {
+    let switchLabel: String
+    let placeholder: String
+    let keyboardType: UIKeyboardType
+    
+    init(id: FormField,
+         placeholder: String,
+         switchLabel: String,
+         keyboardType: UIKeyboardType = .default,
+         validations: [ValidationManager] = []) {
+        self.switchLabel = switchLabel
+        self.placeholder = placeholder
+        self.keyboardType = keyboardType
+        super.init(id, validations: validations)
+
+    }
+}
+
+final class SwitchControlledDateFormComponent: FormComponent {
+    let switchLabel: String
+    
+    let mode: UIDatePicker.Mode
+    
+    let title: String
+    
+    init(id: FormField,
+         mode: UIDatePicker.Mode,
+         switchLabel: String,
+         validations: [ValidationManager] = [],
+         title: String = ""
+    ) {
+        self.switchLabel = switchLabel
+        self.title = title
+        self.mode = mode
+        super.init(id, validations: validations)
     }
 }

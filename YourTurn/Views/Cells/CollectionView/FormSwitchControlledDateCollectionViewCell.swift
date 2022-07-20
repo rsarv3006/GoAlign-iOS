@@ -1,14 +1,24 @@
 //
-//  FormDateCollectionViewCell.swift
+//  FormSwitchControlledDateCollectionViewCell.swift
 //  YourTurn
 //
-//  Created by rjs on 7/7/22.
+//  Created by rjs on 7/19/22.
 //
 
 import UIKit
 import Combine
 
-class FormDateCollectionViewCell: UICollectionViewCell {
+class FormSwitchControlledDateCollectionViewCell: UICollectionViewCell {
+    
+    private lazy var dateControlLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+    
+    private lazy var dateControl: UISwitch = {
+        let sw = UISwitch()
+        return sw
+    }()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -45,15 +55,22 @@ class FormDateCollectionViewCell: UICollectionViewCell {
         return stackVw
     }()
     
-    private(set) var subject = PassthroughSubject<(Date, IndexPath), Never>()
+    private lazy var switchStackView: UIStackView = {
+        let stackVw = UIStackView()
+        stackVw.translatesAutoresizingMaskIntoConstraints = false
+        stackVw.axis = .horizontal
+        return stackVw
+    }()
+    
+    private(set) var subject = PassthroughSubject<(Date?, IndexPath), Never>()
     private(set) var reload = PassthroughSubject<String, Never>()
     
-    private var item: DateFormComponent?
+    private var item: SwitchControlledDateFormComponent?
     private var indexPath: IndexPath?
     
     func bind(_ item: FormComponent,
               at indexPath: IndexPath) {
-        guard let item = item as? DateFormComponent else { return }
+        guard let item = item as? SwitchControlledDateFormComponent else { return }
         self.item = item
         self.indexPath = indexPath
         setup(item: item)
@@ -67,13 +84,16 @@ class FormDateCollectionViewCell: UICollectionViewCell {
     }
 }
 
-private extension FormDateCollectionViewCell {
+private extension FormSwitchControlledDateCollectionViewCell {
     
-    func setup(item: DateFormComponent) {
+    func setup(item: SwitchControlledDateFormComponent) {
+        dateControlLabel.text = item.switchLabel
+        
+        dateControl.addTarget(self, action: #selector(onControlToggle(_:)), for: .valueChanged)
+        
         titleLabel.text = item.title
         
         datePicker.addTarget(self, action: #selector(datePickerChanged(picker:)), for: .valueChanged)
-
         datePicker.datePickerMode = item.mode
         
         contentView.addSubview(contentStackVw)
@@ -81,9 +101,15 @@ private extension FormDateCollectionViewCell {
         titleDateStackView.addArrangedSubview(titleLabel)
         titleDateStackView.addArrangedSubview(datePicker)
         
-        contentStackVw.addArrangedSubview(titleDateStackView)
+        contentStackVw.addArrangedSubview(switchStackView)
+        
+        switchStackView.addArrangedSubview(dateControlLabel)
+        switchStackView.addArrangedSubview(dateControl)
 
         NSLayoutConstraint.activate([
+            dateControlLabel.heightAnchor.constraint(equalToConstant: 44),
+            dateControl.heightAnchor.constraint(equalToConstant: 44),
+            
             contentStackVw.topAnchor.constraint(equalTo: contentView.topAnchor),
             contentStackVw.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
             contentStackVw.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -97,13 +123,38 @@ private extension FormDateCollectionViewCell {
         
     }
     
+    func manipulateDateFieldVisibility(_ showHideVariant: ShowHideLabelVariant) {
+        if showHideVariant == .hide {
+            titleDateStackView.isHidden = true
+            contentStackVw.removeArrangedSubview(titleDateStackView)
+        } else {
+            titleDateStackView.isHidden = false
+            contentStackVw.addArrangedSubview(titleDateStackView)
+        }
+        self.reload.send("")
+    }
+    
+    @objc func onControlToggle(_ sender: UISwitch) {
+        if sender.isOn {
+            manipulateDateFieldVisibility(.show)
+        } else {
+            manipulateDateFieldVisibility(.hide)
+        }
+        self.reload.send("")
+    }
+    
     @objc func datePickerChanged(picker: UIDatePicker) {
 
         guard let indexPath = indexPath,
               let item = item else { return }
 
         let selectedDate = datePicker.date
-        self.subject.send((selectedDate, indexPath))
+        if dateControl.isOn {
+            self.subject.send((selectedDate, indexPath))
+        } else {
+            self.subject.send((nil, indexPath))
+        }
+        
 
         do {
             for validator in item.validations {
@@ -131,7 +182,7 @@ private extension FormDateCollectionViewCell {
 }
 
 // MARK: Dynamic Reload
-extension FormDateCollectionViewCell {
+extension FormSwitchControlledDateCollectionViewCell {
     func manipulateErrorLabel(_ showHideVariant: ShowHideLabelVariant) {
         if showHideVariant == .hide {
             contentStackVw.removeArrangedSubview(errorLbl)

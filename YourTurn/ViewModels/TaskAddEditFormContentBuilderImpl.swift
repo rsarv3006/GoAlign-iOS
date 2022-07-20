@@ -30,6 +30,10 @@ final class TaskAddEditFormContentBuilderImpl {
                                 DateInFutureValidationManagerImpl()
                               ],
                               title: "Start Date:"),
+            SwitchControlledDateFormComponent(id: .endDate, mode: .date, switchLabel: "End Date", validations: [
+                DateInFutureValidationManagerImpl()
+            ], title: ""),
+            SwitchControlledTextFormComponent(id: .numberofRequiredCompletions, placeholder: "Number of Completions Needed To Close Task", switchLabel: "Completions Needed:", keyboardType: .numberPad, validations: []),
             TextFormComponent(id: .notes, placeholder: "Notes"),
             ButtonFormComponent(id: .submit,
                                 title: "Confirm")
