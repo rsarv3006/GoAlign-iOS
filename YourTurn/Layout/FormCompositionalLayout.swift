@@ -34,7 +34,7 @@ final class FormCompositionalLayout {
         layoutGroup.contentInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
         
         let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-        layoutSection.contentInsets = .init(top: 150, leading: 0, bottom: 0, trailing: 0)
+        layoutSection.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
        
         let compLayout = UICollectionViewCompositionalLayout(section: layoutSection)
         

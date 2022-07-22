@@ -162,7 +162,7 @@ extension UICollectionViewCell {
     }
 }
 
-extension UITextField {
+extension UITextField: FieldValidInvalidHandlers {
     func valid() {
         self.layer.borderColor = UIColor.systemGreen.cgColor
     }

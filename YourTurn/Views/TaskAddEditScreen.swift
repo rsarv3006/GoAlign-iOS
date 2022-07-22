@@ -14,10 +14,12 @@ import Combine
 //@Args('requiredCompletionsNeeded') requiredCompletionsNeeded: number,
 //@Args('intervalBetweenWindows') intervalBetweenWindows: number,
 //@Args('windowLength') windowLength: number,
+//@Args('notes') notes: string,
+
 //@Args('teamId') teamId: string,
 //@Args('assignedUserId') assignedUserId: string,
 //@Args('creatorUserId') creatorUserId: string,
-//@Args('notes') notes: string,
+
 
 class TaskAddEditScreen: UIViewController {
     // MARK: - Properties
@@ -45,13 +47,6 @@ class TaskAddEditScreen: UIViewController {
     }
 }
 
-// MARK: - IntervalPickerDelegate
-extension TaskAddEditScreen: IntervalPickerDelegate {
-    func onIntervalChange(intervalPicker: IntervalPicker, intervalObj: IntervalObject) {
-        print("Num: \(intervalObj.intervalNumber) - Type: \(intervalObj.intervalType)")
-    }
-}
-
 private extension TaskAddEditScreen {
     func setup() {
         formSubmissionSubscription()
@@ -60,12 +55,7 @@ private extension TaskAddEditScreen {
         
         view.addSubview(collectionView)
         
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        ])
+        collectionView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.safeAreaLayoutGuide.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.safeAreaLayoutGuide.rightAnchor)
     }
     
     func makeDataSource() -> UICollectionViewDiffableDataSource<FormSectionComponent, FormComponent> {
@@ -86,6 +76,8 @@ private extension TaskAddEditScreen {
                 return self.buildFormSwitchControlledTextCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
             case is SwitchControlledDateFormComponent:
                 return self.buildFormSwitchControlledDateCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
+            case is HideableIntervalPickerFormComponent:
+                return self.buildFormHideableIntervalPickerCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
             default:
                 return self.buildDefaultCollectionViewCell(collectionView: collectionView, indexPath: indexPath)
             }
@@ -129,7 +121,6 @@ private extension TaskAddEditScreen {
         cell
             .subject
             .sink { [weak self] val, indexPath in
-                print("DEBUG: Hi From Text Cell passthroughsubject")
                 self?.formContentBuilder.update(val: val, at: indexPath)
             }
             .store(in: &self.subscriptions)
@@ -193,6 +184,24 @@ private extension TaskAddEditScreen {
     
     func buildFormSwitchControlledDateCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, item: FormComponent) -> FormSwitchControlledDateCollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormSwitchControlledDateCollectionViewCell.cellId, for: indexPath) as! FormSwitchControlledDateCollectionViewCell
+        
+        cell
+            .subject
+            .sink { [weak self] val, indexPath in
+                self?.formContentBuilder.update(val: val as Any, at: indexPath)
+            }
+            .store(in: &self.subscriptions)
+        
+        cell.reload.sink { [weak self] _ in
+            self?.updateDataSource()
+        }.store(in: &self.subscriptions)
+        
+        cell.bind(item, at: indexPath)
+        return cell
+    }
+    
+    func buildFormHideableIntervalPickerCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, item: FormComponent) -> FormHideableIntervalPickerCollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormHideableIntervalPickerCollectionViewCell.cellId, for: indexPath) as! FormHideableIntervalPickerCollectionViewCell
         
         cell
             .subject

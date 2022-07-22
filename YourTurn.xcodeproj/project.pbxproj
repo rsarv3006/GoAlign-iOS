@@ -25,6 +25,16 @@
 		78A4E0BD2883B9550067DBCE /* RegexFormItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A4E0BC2883B9550067DBCE /* RegexFormItem.swift */; };
 		78A4E0C02883B98F0067DBCE /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A4E0BF2883B98F0067DBCE /* ValidationError.swift */; };
 		78A4E0C32883BDEA0067DBCE /* RegexPatterns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A4E0C22883BDEA0067DBCE /* RegexPatterns.swift */; };
+		78B687802887A5E5006B6CAB /* FormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6877F2887A5E5006B6CAB /* FormComponent.swift */; };
+		78B687822887A616006B6CAB /* TextFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B687812887A616006B6CAB /* TextFormComponent.swift */; };
+		78B687842887A64E006B6CAB /* DateFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B687832887A64E006B6CAB /* DateFormComponent.swift */; };
+		78B687862887A67B006B6CAB /* ButtonFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B687852887A67B006B6CAB /* ButtonFormComponent.swift */; };
+		78B687882887A6B2006B6CAB /* SwitchControlledTextFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B687872887A6B2006B6CAB /* SwitchControlledTextFormComponent.swift */; };
+		78B6878A2887A6D2006B6CAB /* SwitchControlledDateFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B687892887A6D2006B6CAB /* SwitchControlledDateFormComponent.swift */; };
+		78B6878C2887A9CE006B6CAB /* HideableIntervalPickerFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6878B2887A9CE006B6CAB /* HideableIntervalPickerFormComponent.swift */; };
+		78B6878E2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6878D2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift */; };
+		78B687902887AE29006B6CAB /* FieldVisibilityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6878F2887AE29006B6CAB /* FieldVisibilityProtocol.swift */; };
+		78B68792288829F0006B6CAB /* FieldValidInvalidProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B68791288829F0006B6CAB /* FieldValidInvalidProtocol.swift */; };
 		78BBB8FA286415AF006B3FDC /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BBB8F9286415AF006B3FDC /* API.swift */; };
 		78BBB8FC28642207006B3FDC /* HomeScreenTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BBB8FB28642207006B3FDC /* HomeScreenTaskCell.swift */; };
 		78BBEE802862BAB20031976A /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 78BBEE7F2862BAB20031976A /* Apollo */; };
@@ -87,6 +97,16 @@
 		78A4E0BC2883B9550067DBCE /* RegexFormItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexFormItem.swift; sourceTree = "<group>"; };
 		78A4E0BF2883B98F0067DBCE /* ValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
 		78A4E0C22883BDEA0067DBCE /* RegexPatterns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexPatterns.swift; sourceTree = "<group>"; };
+		78B6877F2887A5E5006B6CAB /* FormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormComponent.swift; sourceTree = "<group>"; };
+		78B687812887A616006B6CAB /* TextFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormComponent.swift; sourceTree = "<group>"; };
+		78B687832887A64E006B6CAB /* DateFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormComponent.swift; sourceTree = "<group>"; };
+		78B687852887A67B006B6CAB /* ButtonFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFormComponent.swift; sourceTree = "<group>"; };
+		78B687872887A6B2006B6CAB /* SwitchControlledTextFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchControlledTextFormComponent.swift; sourceTree = "<group>"; };
+		78B687892887A6D2006B6CAB /* SwitchControlledDateFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchControlledDateFormComponent.swift; sourceTree = "<group>"; };
+		78B6878B2887A9CE006B6CAB /* HideableIntervalPickerFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideableIntervalPickerFormComponent.swift; sourceTree = "<group>"; };
+		78B6878D2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormHideableIntervalPickerCollectionViewCell.swift; sourceTree = "<group>"; };
+		78B6878F2887AE29006B6CAB /* FieldVisibilityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldVisibilityProtocol.swift; sourceTree = "<group>"; };
+		78B68791288829F0006B6CAB /* FieldValidInvalidProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldValidInvalidProtocol.swift; sourceTree = "<group>"; };
 		78BBB8F62864131C006B3FDC /* GetTasksByAssignedUserId.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetTasksByAssignedUserId.graphql; sourceTree = "<group>"; };
 		78BBB8F9286415AF006B3FDC /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		78BBB8FB28642207006B3FDC /* HomeScreenTaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenTaskCell.swift; sourceTree = "<group>"; };
@@ -215,6 +235,8 @@
 			children = (
 				783DED052861F4C90062343E /* Extensions.swift */,
 				78DAADE62866B64500FEB0DA /* Types.swift */,
+				78B6878F2887AE29006B6CAB /* FieldVisibilityProtocol.swift */,
+				78B68791288829F0006B6CAB /* FieldValidInvalidProtocol.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -233,6 +255,7 @@
 		78477325287687D0009AFC92 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				78BFFAA52887A5B000A767AB /* Form Components */,
 				78477326287687DD009AFC92 /* FormModel.swift */,
 			);
 			path = Model;
@@ -246,6 +269,7 @@
 				78D7C3C12877690B001F48C5 /* FormDateCollectionViewCell.swift */,
 				78BFFA9D2887784600A767AB /* FormSwitchControlledTextCollectionViewCell.swift */,
 				78BFFAA328879A3F00A767AB /* FormSwitchControlledDateCollectionViewCell.swift */,
+				78B6878D2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -300,6 +324,20 @@
 				78BBEE8F2862C34B0031976A /* Network.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		78BFFAA52887A5B000A767AB /* Form Components */ = {
+			isa = PBXGroup;
+			children = (
+				78B6877F2887A5E5006B6CAB /* FormComponent.swift */,
+				78B687812887A616006B6CAB /* TextFormComponent.swift */,
+				78B687832887A64E006B6CAB /* DateFormComponent.swift */,
+				78B687852887A67B006B6CAB /* ButtonFormComponent.swift */,
+				78B687872887A6B2006B6CAB /* SwitchControlledTextFormComponent.swift */,
+				78B687892887A6D2006B6CAB /* SwitchControlledDateFormComponent.swift */,
+				78B6878B2887A9CE006B6CAB /* HideableIntervalPickerFormComponent.swift */,
+			);
+			path = "Form Components";
 			sourceTree = "<group>";
 		};
 		78C4D95B286EAFD7006550A9 /* Common */ = {
@@ -491,6 +529,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				78BFFAA428879A3F00A767AB /* FormSwitchControlledDateCollectionViewCell.swift in Sources */,
+				78B6878E2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift in Sources */,
+				78B6878A2887A6D2006B6CAB /* SwitchControlledDateFormComponent.swift in Sources */,
+				78B68792288829F0006B6CAB /* FieldValidInvalidProtocol.swift in Sources */,
 				78A4E0C32883BDEA0067DBCE /* RegexPatterns.swift in Sources */,
 				783DED062861F4C90062343E /* Extensions.swift in Sources */,
 				78D7C3C528776F80001F48C5 /* FormCompositionalLayout.swift in Sources */,
@@ -504,16 +545,23 @@
 				78DAADEB2868D36700FEB0DA /* HomeScreenTeamCellVM.swift in Sources */,
 				783DED03286180470062343E /* HomeScreen.swift in Sources */,
 				783DECD628617EEB0062343E /* ViewController.swift in Sources */,
+				78B687822887A616006B6CAB /* TextFormComponent.swift in Sources */,
 				78DAADED2868D5CF00FEB0DA /* HomeScreenTeamCell.swift in Sources */,
 				78DAADE52866B61400FEB0DA /* HomeScreenTaskCellVM.swift in Sources */,
+				78B6878C2887A9CE006B6CAB /* HideableIntervalPickerFormComponent.swift in Sources */,
 				783DECD228617EEB0062343E /* AppDelegate.swift in Sources */,
 				7847732A28768B69009AFC92 /* TaskAddEditFormContentBuilderImpl.swift in Sources */,
+				78B687882887A6B2006B6CAB /* SwitchControlledTextFormComponent.swift in Sources */,
 				78A4E0BD2883B9550067DBCE /* RegexFormItem.swift in Sources */,
+				78B687842887A64E006B6CAB /* DateFormComponent.swift in Sources */,
 				78BFFAA228878DEC00A767AB /* FormCollectionView.swift in Sources */,
 				78BBB8FA286415AF006B3FDC /* API.swift in Sources */,
+				78B687862887A67B006B6CAB /* ButtonFormComponent.swift in Sources */,
 				78477327287687DD009AFC92 /* FormModel.swift in Sources */,
+				78B687902887AE29006B6CAB /* FieldVisibilityProtocol.swift in Sources */,
 				78D7C3C028776499001F48C5 /* FormTextCollectionViewCell.swift in Sources */,
 				78DAADF52869663000FEB0DA /* TaskAddEditScreenVM.swift in Sources */,
+				78B687802887A5E5006B6CAB /* FormComponent.swift in Sources */,
 				78DAADE72866B64500FEB0DA /* Types.swift in Sources */,
 				78DAADF32869617600FEB0DA /* TaskAddEditScreen.swift in Sources */,
 				783DECD428617EEB0062343E /* SceneDelegate.swift in Sources */,

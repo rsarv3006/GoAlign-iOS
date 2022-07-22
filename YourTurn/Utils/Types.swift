@@ -10,8 +10,3 @@ import Foundation
 typealias GqlTasksByAssignedUserIdTaskObject = TasksByAssignedUserIdQuery.Data.GetTasksByAssignedUserId
 
 typealias GqlTeamsByUserIdTeamObject = GetTeamsByUserIdQuery.Data.GetTeamsByUserId
-
-enum ShowHideLabelVariant {
-    case show
-    case hide
-}
