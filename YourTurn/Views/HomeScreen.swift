@@ -129,9 +129,7 @@ class HomeScreen: UIViewController {
 }
 
 // MARK: - UITableViewDelegate
-extension HomeScreen: UITableViewDelegate {
-
-}
+extension HomeScreen: UITableViewDelegate {}
 
 // MARK: - UITableViewDataSource
 extension HomeScreen: UITableViewDataSource {
