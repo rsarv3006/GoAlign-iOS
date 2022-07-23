@@ -150,3 +150,24 @@ extension UITextView {
 extension UIColor {
     static let tomato = UIColor(red: 1.00, green: 0.39, blue: 0.28, alpha: 1.00)
 }
+
+
+extension UICollectionViewCell {
+    static var cellId: String {
+        String(describing: self)
+    }
+    
+    func removeViews() {
+        contentView.subviews.forEach { $0.removeFromSuperview() }
+    }
+}
+
+extension UITextField: FieldValidInvalidHandlers {
+    func valid() {
+        self.layer.borderColor = UIColor.systemGreen.cgColor
+    }
+    
+    func invalid() {
+        self.layer.borderColor = UIColor.systemRed.cgColor
+    }
+}
