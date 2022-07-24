@@ -19,8 +19,16 @@ public final class TasksByAssignedUserIdQuery: GraphQLQuery {
         endDate
         requiredCompletionsNeeded
         completionCount
-        intervalBetweenWindows
-        windowLength
+        intervalBetweenWindows {
+          __typename
+          count
+          type
+        }
+        windowLength {
+          __typename
+          count
+          type
+        }
         teamId
         assignedUser {
           __typename
@@ -39,6 +47,17 @@ public final class TasksByAssignedUserIdQuery: GraphQLQuery {
           isActive
         }
         status
+        taskHistoryItems {
+          __typename
+          id
+          createdAt
+          taskId
+          teamId
+          assignedUserId
+          dateCompleted
+          notes
+          pictureUrl
+        }
       }
     }
     """
@@ -95,14 +114,15 @@ public final class TasksByAssignedUserIdQuery: GraphQLQuery {
           GraphQLField("notes", type: .scalar(String.self)),
           GraphQLField("startDate", type: .nonNull(.scalar(String.self))),
           GraphQLField("endDate", type: .scalar(String.self)),
-          GraphQLField("requiredCompletionsNeeded", type: .nonNull(.scalar(Double.self))),
-          GraphQLField("completionCount", type: .nonNull(.scalar(Double.self))),
-          GraphQLField("intervalBetweenWindows", type: .nonNull(.scalar(Double.self))),
-          GraphQLField("windowLength", type: .nonNull(.scalar(Double.self))),
+          GraphQLField("requiredCompletionsNeeded", type: .nonNull(.scalar(Int.self))),
+          GraphQLField("completionCount", type: .nonNull(.scalar(Int.self))),
+          GraphQLField("intervalBetweenWindows", type: .nonNull(.object(IntervalBetweenWindow.selections))),
+          GraphQLField("windowLength", type: .nonNull(.object(WindowLength.selections))),
           GraphQLField("teamId", type: .nonNull(.scalar(String.self))),
           GraphQLField("assignedUser", type: .nonNull(.object(AssignedUser.selections))),
           GraphQLField("creator", type: .nonNull(.object(Creator.selections))),
           GraphQLField("status", type: .nonNull(.scalar(String.self))),
+          GraphQLField("taskHistoryItems", type: .list(.nonNull(.object(TaskHistoryItem.selections)))),
         ]
       }
 
@@ -112,8 +132,8 @@ public final class TasksByAssignedUserIdQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(taskId: String, createdAt: String, taskName: String, notes: String? = nil, startDate: String, endDate: String? = nil, requiredCompletionsNeeded: Double, completionCount: Double, intervalBetweenWindows: Double, windowLength: Double, teamId: String, assignedUser: AssignedUser, creator: Creator, status: String) {
-        self.init(unsafeResultMap: ["__typename": "TaskModel", "taskId": taskId, "createdAt": createdAt, "taskName": taskName, "notes": notes, "startDate": startDate, "endDate": endDate, "requiredCompletionsNeeded": requiredCompletionsNeeded, "completionCount": completionCount, "intervalBetweenWindows": intervalBetweenWindows, "windowLength": windowLength, "teamId": teamId, "assignedUser": assignedUser.resultMap, "creator": creator.resultMap, "status": status])
+      public init(taskId: String, createdAt: String, taskName: String, notes: String? = nil, startDate: String, endDate: String? = nil, requiredCompletionsNeeded: Int, completionCount: Int, intervalBetweenWindows: IntervalBetweenWindow, windowLength: WindowLength, teamId: String, assignedUser: AssignedUser, creator: Creator, status: String, taskHistoryItems: [TaskHistoryItem]? = nil) {
+        self.init(unsafeResultMap: ["__typename": "TaskModel", "taskId": taskId, "createdAt": createdAt, "taskName": taskName, "notes": notes, "startDate": startDate, "endDate": endDate, "requiredCompletionsNeeded": requiredCompletionsNeeded, "completionCount": completionCount, "intervalBetweenWindows": intervalBetweenWindows.resultMap, "windowLength": windowLength.resultMap, "teamId": teamId, "assignedUser": assignedUser.resultMap, "creator": creator.resultMap, "status": status, "taskHistoryItems": taskHistoryItems.flatMap { (value: [TaskHistoryItem]) -> [ResultMap] in value.map { (value: TaskHistoryItem) -> ResultMap in value.resultMap } }])
       }
 
       public var __typename: String {
@@ -179,39 +199,39 @@ public final class TasksByAssignedUserIdQuery: GraphQLQuery {
         }
       }
 
-      public var requiredCompletionsNeeded: Double {
+      public var requiredCompletionsNeeded: Int {
         get {
-          return resultMap["requiredCompletionsNeeded"]! as! Double
+          return resultMap["requiredCompletionsNeeded"]! as! Int
         }
         set {
           resultMap.updateValue(newValue, forKey: "requiredCompletionsNeeded")
         }
       }
 
-      public var completionCount: Double {
+      public var completionCount: Int {
         get {
-          return resultMap["completionCount"]! as! Double
+          return resultMap["completionCount"]! as! Int
         }
         set {
           resultMap.updateValue(newValue, forKey: "completionCount")
         }
       }
 
-      public var intervalBetweenWindows: Double {
+      public var intervalBetweenWindows: IntervalBetweenWindow {
         get {
-          return resultMap["intervalBetweenWindows"]! as! Double
+          return IntervalBetweenWindow(unsafeResultMap: resultMap["intervalBetweenWindows"]! as! ResultMap)
         }
         set {
-          resultMap.updateValue(newValue, forKey: "intervalBetweenWindows")
+          resultMap.updateValue(newValue.resultMap, forKey: "intervalBetweenWindows")
         }
       }
 
-      public var windowLength: Double {
+      public var windowLength: WindowLength {
         get {
-          return resultMap["windowLength"]! as! Double
+          return WindowLength(unsafeResultMap: resultMap["windowLength"]! as! ResultMap)
         }
         set {
-          resultMap.updateValue(newValue, forKey: "windowLength")
+          resultMap.updateValue(newValue.resultMap, forKey: "windowLength")
         }
       }
 
@@ -248,6 +268,113 @@ public final class TasksByAssignedUserIdQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "status")
+        }
+      }
+
+      public var taskHistoryItems: [TaskHistoryItem]? {
+        get {
+          return (resultMap["taskHistoryItems"] as? [ResultMap]).flatMap { (value: [ResultMap]) -> [TaskHistoryItem] in value.map { (value: ResultMap) -> TaskHistoryItem in TaskHistoryItem(unsafeResultMap: value) } }
+        }
+        set {
+          resultMap.updateValue(newValue.flatMap { (value: [TaskHistoryItem]) -> [ResultMap] in value.map { (value: TaskHistoryItem) -> ResultMap in value.resultMap } }, forKey: "taskHistoryItems")
+        }
+      }
+
+      public struct IntervalBetweenWindow: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["IntervalModel"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("count", type: .nonNull(.scalar(Int.self))),
+            GraphQLField("type", type: .nonNull(.scalar(String.self))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(count: Int, type: String) {
+          self.init(unsafeResultMap: ["__typename": "IntervalModel", "count": count, "type": type])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var count: Int {
+          get {
+            return resultMap["count"]! as! Int
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "count")
+          }
+        }
+
+        public var type: String {
+          get {
+            return resultMap["type"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "type")
+          }
+        }
+      }
+
+      public struct WindowLength: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["IntervalModel"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("count", type: .nonNull(.scalar(Int.self))),
+            GraphQLField("type", type: .nonNull(.scalar(String.self))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(count: Int, type: String) {
+          self.init(unsafeResultMap: ["__typename": "IntervalModel", "count": count, "type": type])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var count: Int {
+          get {
+            return resultMap["count"]! as! Int
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "count")
+          }
+        }
+
+        public var type: String {
+          get {
+            return resultMap["type"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "type")
+          }
         }
       }
 
@@ -408,6 +535,115 @@ public final class TasksByAssignedUserIdQuery: GraphQLQuery {
           }
         }
       }
+
+      public struct TaskHistoryItem: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["TaskHistoryModel"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("id", type: .nonNull(.scalar(String.self))),
+            GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
+            GraphQLField("taskId", type: .nonNull(.scalar(String.self))),
+            GraphQLField("teamId", type: .nonNull(.scalar(String.self))),
+            GraphQLField("assignedUserId", type: .nonNull(.scalar(String.self))),
+            GraphQLField("dateCompleted", type: .nonNull(.scalar(String.self))),
+            GraphQLField("notes", type: .nonNull(.scalar(String.self))),
+            GraphQLField("pictureUrl", type: .nonNull(.scalar(String.self))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(id: String, createdAt: String, taskId: String, teamId: String, assignedUserId: String, dateCompleted: String, notes: String, pictureUrl: String) {
+          self.init(unsafeResultMap: ["__typename": "TaskHistoryModel", "id": id, "createdAt": createdAt, "taskId": taskId, "teamId": teamId, "assignedUserId": assignedUserId, "dateCompleted": dateCompleted, "notes": notes, "pictureUrl": pictureUrl])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var id: String {
+          get {
+            return resultMap["id"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "id")
+          }
+        }
+
+        public var createdAt: String {
+          get {
+            return resultMap["createdAt"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "createdAt")
+          }
+        }
+
+        public var taskId: String {
+          get {
+            return resultMap["taskId"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "taskId")
+          }
+        }
+
+        public var teamId: String {
+          get {
+            return resultMap["teamId"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "teamId")
+          }
+        }
+
+        public var assignedUserId: String {
+          get {
+            return resultMap["assignedUserId"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "assignedUserId")
+          }
+        }
+
+        public var dateCompleted: String {
+          get {
+            return resultMap["dateCompleted"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "dateCompleted")
+          }
+        }
+
+        public var notes: String {
+          get {
+            return resultMap["notes"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "notes")
+          }
+        }
+
+        public var pictureUrl: String {
+          get {
+            return resultMap["pictureUrl"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "pictureUrl")
+          }
+        }
+      }
     }
   }
 }
@@ -432,8 +668,16 @@ public final class GetTeamsByUserIdQuery: GraphQLQuery {
           endDate
           requiredCompletionsNeeded
           completionCount
-          intervalBetweenWindows
-          windowLength
+          intervalBetweenWindows {
+            __typename
+            count
+            type
+          }
+          windowLength {
+            __typename
+            count
+            type
+          }
           teamId
           assignedUser {
             __typename
@@ -452,6 +696,17 @@ public final class GetTeamsByUserIdQuery: GraphQLQuery {
             isActive
           }
           status
+          taskHistoryItems {
+            __typename
+            id
+            createdAt
+            taskId
+            teamId
+            assignedUserId
+            dateCompleted
+            notes
+            pictureUrl
+          }
         }
         teamMembers {
           __typename
@@ -595,14 +850,15 @@ public final class GetTeamsByUserIdQuery: GraphQLQuery {
             GraphQLField("notes", type: .scalar(String.self)),
             GraphQLField("startDate", type: .nonNull(.scalar(String.self))),
             GraphQLField("endDate", type: .scalar(String.self)),
-            GraphQLField("requiredCompletionsNeeded", type: .nonNull(.scalar(Double.self))),
-            GraphQLField("completionCount", type: .nonNull(.scalar(Double.self))),
-            GraphQLField("intervalBetweenWindows", type: .nonNull(.scalar(Double.self))),
-            GraphQLField("windowLength", type: .nonNull(.scalar(Double.self))),
+            GraphQLField("requiredCompletionsNeeded", type: .nonNull(.scalar(Int.self))),
+            GraphQLField("completionCount", type: .nonNull(.scalar(Int.self))),
+            GraphQLField("intervalBetweenWindows", type: .nonNull(.object(IntervalBetweenWindow.selections))),
+            GraphQLField("windowLength", type: .nonNull(.object(WindowLength.selections))),
             GraphQLField("teamId", type: .nonNull(.scalar(String.self))),
             GraphQLField("assignedUser", type: .nonNull(.object(AssignedUser.selections))),
             GraphQLField("creator", type: .nonNull(.object(Creator.selections))),
             GraphQLField("status", type: .nonNull(.scalar(String.self))),
+            GraphQLField("taskHistoryItems", type: .list(.nonNull(.object(TaskHistoryItem.selections)))),
           ]
         }
 
@@ -612,8 +868,8 @@ public final class GetTeamsByUserIdQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(taskId: String, createdAt: String, taskName: String, notes: String? = nil, startDate: String, endDate: String? = nil, requiredCompletionsNeeded: Double, completionCount: Double, intervalBetweenWindows: Double, windowLength: Double, teamId: String, assignedUser: AssignedUser, creator: Creator, status: String) {
-          self.init(unsafeResultMap: ["__typename": "TaskModel", "taskId": taskId, "createdAt": createdAt, "taskName": taskName, "notes": notes, "startDate": startDate, "endDate": endDate, "requiredCompletionsNeeded": requiredCompletionsNeeded, "completionCount": completionCount, "intervalBetweenWindows": intervalBetweenWindows, "windowLength": windowLength, "teamId": teamId, "assignedUser": assignedUser.resultMap, "creator": creator.resultMap, "status": status])
+        public init(taskId: String, createdAt: String, taskName: String, notes: String? = nil, startDate: String, endDate: String? = nil, requiredCompletionsNeeded: Int, completionCount: Int, intervalBetweenWindows: IntervalBetweenWindow, windowLength: WindowLength, teamId: String, assignedUser: AssignedUser, creator: Creator, status: String, taskHistoryItems: [TaskHistoryItem]? = nil) {
+          self.init(unsafeResultMap: ["__typename": "TaskModel", "taskId": taskId, "createdAt": createdAt, "taskName": taskName, "notes": notes, "startDate": startDate, "endDate": endDate, "requiredCompletionsNeeded": requiredCompletionsNeeded, "completionCount": completionCount, "intervalBetweenWindows": intervalBetweenWindows.resultMap, "windowLength": windowLength.resultMap, "teamId": teamId, "assignedUser": assignedUser.resultMap, "creator": creator.resultMap, "status": status, "taskHistoryItems": taskHistoryItems.flatMap { (value: [TaskHistoryItem]) -> [ResultMap] in value.map { (value: TaskHistoryItem) -> ResultMap in value.resultMap } }])
         }
 
         public var __typename: String {
@@ -679,39 +935,39 @@ public final class GetTeamsByUserIdQuery: GraphQLQuery {
           }
         }
 
-        public var requiredCompletionsNeeded: Double {
+        public var requiredCompletionsNeeded: Int {
           get {
-            return resultMap["requiredCompletionsNeeded"]! as! Double
+            return resultMap["requiredCompletionsNeeded"]! as! Int
           }
           set {
             resultMap.updateValue(newValue, forKey: "requiredCompletionsNeeded")
           }
         }
 
-        public var completionCount: Double {
+        public var completionCount: Int {
           get {
-            return resultMap["completionCount"]! as! Double
+            return resultMap["completionCount"]! as! Int
           }
           set {
             resultMap.updateValue(newValue, forKey: "completionCount")
           }
         }
 
-        public var intervalBetweenWindows: Double {
+        public var intervalBetweenWindows: IntervalBetweenWindow {
           get {
-            return resultMap["intervalBetweenWindows"]! as! Double
+            return IntervalBetweenWindow(unsafeResultMap: resultMap["intervalBetweenWindows"]! as! ResultMap)
           }
           set {
-            resultMap.updateValue(newValue, forKey: "intervalBetweenWindows")
+            resultMap.updateValue(newValue.resultMap, forKey: "intervalBetweenWindows")
           }
         }
 
-        public var windowLength: Double {
+        public var windowLength: WindowLength {
           get {
-            return resultMap["windowLength"]! as! Double
+            return WindowLength(unsafeResultMap: resultMap["windowLength"]! as! ResultMap)
           }
           set {
-            resultMap.updateValue(newValue, forKey: "windowLength")
+            resultMap.updateValue(newValue.resultMap, forKey: "windowLength")
           }
         }
 
@@ -748,6 +1004,113 @@ public final class GetTeamsByUserIdQuery: GraphQLQuery {
           }
           set {
             resultMap.updateValue(newValue, forKey: "status")
+          }
+        }
+
+        public var taskHistoryItems: [TaskHistoryItem]? {
+          get {
+            return (resultMap["taskHistoryItems"] as? [ResultMap]).flatMap { (value: [ResultMap]) -> [TaskHistoryItem] in value.map { (value: ResultMap) -> TaskHistoryItem in TaskHistoryItem(unsafeResultMap: value) } }
+          }
+          set {
+            resultMap.updateValue(newValue.flatMap { (value: [TaskHistoryItem]) -> [ResultMap] in value.map { (value: TaskHistoryItem) -> ResultMap in value.resultMap } }, forKey: "taskHistoryItems")
+          }
+        }
+
+        public struct IntervalBetweenWindow: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["IntervalModel"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLField("count", type: .nonNull(.scalar(Int.self))),
+              GraphQLField("type", type: .nonNull(.scalar(String.self))),
+            ]
+          }
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(count: Int, type: String) {
+            self.init(unsafeResultMap: ["__typename": "IntervalModel", "count": count, "type": type])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var count: Int {
+            get {
+              return resultMap["count"]! as! Int
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "count")
+            }
+          }
+
+          public var type: String {
+            get {
+              return resultMap["type"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "type")
+            }
+          }
+        }
+
+        public struct WindowLength: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["IntervalModel"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLField("count", type: .nonNull(.scalar(Int.self))),
+              GraphQLField("type", type: .nonNull(.scalar(String.self))),
+            ]
+          }
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(count: Int, type: String) {
+            self.init(unsafeResultMap: ["__typename": "IntervalModel", "count": count, "type": type])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var count: Int {
+            get {
+              return resultMap["count"]! as! Int
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "count")
+            }
+          }
+
+          public var type: String {
+            get {
+              return resultMap["type"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "type")
+            }
           }
         }
 
@@ -905,6 +1268,115 @@ public final class GetTeamsByUserIdQuery: GraphQLQuery {
             }
             set {
               resultMap.updateValue(newValue, forKey: "isActive")
+            }
+          }
+        }
+
+        public struct TaskHistoryItem: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["TaskHistoryModel"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLField("id", type: .nonNull(.scalar(String.self))),
+              GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
+              GraphQLField("taskId", type: .nonNull(.scalar(String.self))),
+              GraphQLField("teamId", type: .nonNull(.scalar(String.self))),
+              GraphQLField("assignedUserId", type: .nonNull(.scalar(String.self))),
+              GraphQLField("dateCompleted", type: .nonNull(.scalar(String.self))),
+              GraphQLField("notes", type: .nonNull(.scalar(String.self))),
+              GraphQLField("pictureUrl", type: .nonNull(.scalar(String.self))),
+            ]
+          }
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(id: String, createdAt: String, taskId: String, teamId: String, assignedUserId: String, dateCompleted: String, notes: String, pictureUrl: String) {
+            self.init(unsafeResultMap: ["__typename": "TaskHistoryModel", "id": id, "createdAt": createdAt, "taskId": taskId, "teamId": teamId, "assignedUserId": assignedUserId, "dateCompleted": dateCompleted, "notes": notes, "pictureUrl": pictureUrl])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var id: String {
+            get {
+              return resultMap["id"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "id")
+            }
+          }
+
+          public var createdAt: String {
+            get {
+              return resultMap["createdAt"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "createdAt")
+            }
+          }
+
+          public var taskId: String {
+            get {
+              return resultMap["taskId"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "taskId")
+            }
+          }
+
+          public var teamId: String {
+            get {
+              return resultMap["teamId"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "teamId")
+            }
+          }
+
+          public var assignedUserId: String {
+            get {
+              return resultMap["assignedUserId"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "assignedUserId")
+            }
+          }
+
+          public var dateCompleted: String {
+            get {
+              return resultMap["dateCompleted"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "dateCompleted")
+            }
+          }
+
+          public var notes: String {
+            get {
+              return resultMap["notes"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "notes")
+            }
+          }
+
+          public var pictureUrl: String {
+            get {
+              return resultMap["pictureUrl"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "pictureUrl")
             }
           }
         }

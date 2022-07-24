@@ -7,6 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7802E176288A539200F7D501 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 7802E175288A539200F7D501 /* schema.json */; };
+		7802E17F288B9A1300F7D501 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7802E17E288B9A1300F7D501 /* FirebaseAnalytics */; };
+		7802E181288B9A1300F7D501 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7802E180288B9A1300F7D501 /* FirebaseAuth */; };
+		7802E183288B9A1300F7D501 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7802E182288B9A1300F7D501 /* FirebaseCrashlytics */; };
+		7802E185288B9E2500F7D501 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7802E184288B9E2500F7D501 /* GoogleService-Info.plist */; };
+		7802E186288B9E2500F7D501 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7802E184288B9E2500F7D501 /* GoogleService-Info.plist */; };
+		7802E187288B9E2500F7D501 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7802E184288B9E2500F7D501 /* GoogleService-Info.plist */; };
+		7802E189288B9EB000F7D501 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E188288B9EB000F7D501 /* SignIn.swift */; };
+		7802E18A288B9EB000F7D501 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E188288B9EB000F7D501 /* SignIn.swift */; };
+		7802E18B288B9EB000F7D501 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E188288B9EB000F7D501 /* SignIn.swift */; };
+		7802E18D288B9EB900F7D501 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E18C288B9EB900F7D501 /* SignUp.swift */; };
+		7802E18E288B9EB900F7D501 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E18C288B9EB900F7D501 /* SignUp.swift */; };
+		7802E18F288B9EB900F7D501 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E18C288B9EB900F7D501 /* SignUp.swift */; };
+		7802E195288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E194288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift */; };
+		7802E196288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E194288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift */; };
+		7802E197288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E194288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift */; };
+		7802E199288D9FEC00F7D501 /* PasswordFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E198288D9FEC00F7D501 /* PasswordFormComponent.swift */; };
+		7802E19A288D9FEC00F7D501 /* PasswordFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E198288D9FEC00F7D501 /* PasswordFormComponent.swift */; };
+		7802E19B288D9FEC00F7D501 /* PasswordFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E198288D9FEC00F7D501 /* PasswordFormComponent.swift */; };
+		7802E19D288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E19C288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift */; };
+		7802E19E288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E19C288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift */; };
+		7802E19F288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E19C288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift */; };
 		783DECD228617EEB0062343E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD128617EEB0062343E /* AppDelegate.swift */; };
 		783DECD428617EEB0062343E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD328617EEB0062343E /* SceneDelegate.swift */; };
 		783DECD628617EEB0062343E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD528617EEB0062343E /* ViewController.swift */; };
@@ -75,6 +97,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7802E175288A539200F7D501 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		7802E184288B9E2500F7D501 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7802E188288B9EB000F7D501 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
+		7802E18C288B9EB900F7D501 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
+		7802E194288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFormContentBuilderImpl.swift; sourceTree = "<group>"; };
+		7802E198288D9FEC00F7D501 /* PasswordFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFormComponent.swift; sourceTree = "<group>"; };
+		7802E19C288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormPasswordCollectionViewCell.swift; sourceTree = "<group>"; };
 		783DECCE28617EEB0062343E /* YourTurn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourTurn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		783DECD128617EEB0062343E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		783DECD328617EEB0062343E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,7 +139,6 @@
 		78BBB8F62864131C006B3FDC /* GetTasksByAssignedUserId.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetTasksByAssignedUserId.graphql; sourceTree = "<group>"; };
 		78BBB8F9286415AF006B3FDC /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		78BBB8FB28642207006B3FDC /* HomeScreenTaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenTaskCell.swift; sourceTree = "<group>"; };
-		78BBEE892862C1A10031976A /* schema.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		78BBEE8F2862C34B0031976A /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		78BFFA9D2887784600A767AB /* FormSwitchControlledTextCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSwitchControlledTextCollectionViewCell.swift; sourceTree = "<group>"; };
 		78BFFAA128878DEC00A767AB /* FormCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCollectionView.swift; sourceTree = "<group>"; };
@@ -134,7 +162,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				78BBEE802862BAB20031976A /* Apollo in Frameworks */,
+				7802E181288B9A1300F7D501 /* FirebaseAuth in Frameworks */,
 				78BBEE852862BCA20031976A /* ApolloWebSocket in Frameworks */,
+				7802E183288B9A1300F7D501 /* FirebaseCrashlytics in Frameworks */,
+				7802E17F288B9A1300F7D501 /* FirebaseAnalytics in Frameworks */,
 				78BBEE832862BCA20031976A /* Apollo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -179,13 +210,14 @@
 		783DECD028617EEB0062343E /* YourTurn */ = {
 			isa = PBXGroup;
 			children = (
+				7802E184288B9E2500F7D501 /* GoogleService-Info.plist */,
+				7802E175288A539200F7D501 /* schema.json */,
 				78A4E0BA2883B9420067DBCE /* Regex */,
 				78D7C3C328776F41001F48C5 /* Layout */,
 				78477325287687D0009AFC92 /* Model */,
 				78BBB8F9286415AF006B3FDC /* API.swift */,
 				78DAADF028695C1500FEB0DA /* GetTeamsByUserId.graphql */,
 				78BBB8F62864131C006B3FDC /* GetTasksByAssignedUserId.graphql */,
-				78BBEE892862C1A10031976A /* schema.json */,
 				78BBEE8E2862C32E0031976A /* Network */,
 				783DED072861F5400062343E /* ViewModels */,
 				783DED042861F4BD0062343E /* Utils */,
@@ -226,6 +258,8 @@
 				783DED02286180470062343E /* HomeScreen.swift */,
 				78DAADF22869617500FEB0DA /* TaskAddEditScreen.swift */,
 				78BFFAA128878DEC00A767AB /* FormCollectionView.swift */,
+				7802E188288B9EB000F7D501 /* SignIn.swift */,
+				7802E18C288B9EB900F7D501 /* SignUp.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -248,6 +282,7 @@
 				783DED082861F5500062343E /* HomeScreenVM.swift */,
 				78DAADF42869663000FEB0DA /* TaskAddEditScreenVM.swift */,
 				7847732928768B69009AFC92 /* TaskAddEditFormContentBuilderImpl.swift */,
+				7802E194288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -270,6 +305,7 @@
 				78BFFA9D2887784600A767AB /* FormSwitchControlledTextCollectionViewCell.swift */,
 				78BFFAA328879A3F00A767AB /* FormSwitchControlledDateCollectionViewCell.swift */,
 				78B6878D2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift */,
+				7802E19C288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -333,6 +369,7 @@
 				78B687812887A616006B6CAB /* TextFormComponent.swift */,
 				78B687832887A64E006B6CAB /* DateFormComponent.swift */,
 				78B687852887A67B006B6CAB /* ButtonFormComponent.swift */,
+				7802E198288D9FEC00F7D501 /* PasswordFormComponent.swift */,
 				78B687872887A6B2006B6CAB /* SwitchControlledTextFormComponent.swift */,
 				78B687892887A6D2006B6CAB /* SwitchControlledDateFormComponent.swift */,
 				78B6878B2887A9CE006B6CAB /* HideableIntervalPickerFormComponent.swift */,
@@ -386,6 +423,9 @@
 				78BBEE7F2862BAB20031976A /* Apollo */,
 				78BBEE822862BCA20031976A /* Apollo */,
 				78BBEE842862BCA20031976A /* ApolloWebSocket */,
+				7802E17E288B9A1300F7D501 /* FirebaseAnalytics */,
+				7802E180288B9A1300F7D501 /* FirebaseAuth */,
+				7802E182288B9A1300F7D501 /* FirebaseCrashlytics */,
 			);
 			productName = YourTurn;
 			productReference = 783DECCE28617EEB0062343E /* YourTurn.app */;
@@ -462,6 +502,7 @@
 			packageReferences = (
 				78BBEE7E2862BAB20031976A /* XCRemoteSwiftPackageReference "apollo-ios" */,
 				78BBEE812862BCA20031976A /* XCRemoteSwiftPackageReference "apollo-ios" */,
+				7802E17D288B9A1300F7D501 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 783DECCF28617EEB0062343E /* Products */;
 			projectDirPath = "";
@@ -480,9 +521,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				78DAADF128695C1500FEB0DA /* GetTeamsByUserId.graphql in Resources */,
+				7802E176288A539200F7D501 /* schema.json in Resources */,
 				783DECDE28617EED0062343E /* LaunchScreen.storyboard in Resources */,
 				783DECDB28617EED0062343E /* Assets.xcassets in Resources */,
 				783DECD928617EEB0062343E /* Main.storyboard in Resources */,
+				7802E185288B9E2500F7D501 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +533,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7802E186288B9E2500F7D501 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,6 +541,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7802E187288B9E2500F7D501 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,10 +574,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				78BFFAA428879A3F00A767AB /* FormSwitchControlledDateCollectionViewCell.swift in Sources */,
+				7802E189288B9EB000F7D501 /* SignIn.swift in Sources */,
 				78B6878E2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift in Sources */,
 				78B6878A2887A6D2006B6CAB /* SwitchControlledDateFormComponent.swift in Sources */,
+				7802E19D288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift in Sources */,
 				78B68792288829F0006B6CAB /* FieldValidInvalidProtocol.swift in Sources */,
 				78A4E0C32883BDEA0067DBCE /* RegexPatterns.swift in Sources */,
+				7802E195288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift in Sources */,
 				783DED062861F4C90062343E /* Extensions.swift in Sources */,
 				78D7C3C528776F80001F48C5 /* FormCompositionalLayout.swift in Sources */,
 				78D7C3C22877690B001F48C5 /* FormDateCollectionViewCell.swift in Sources */,
@@ -544,6 +592,7 @@
 				78BBEE902862C34B0031976A /* Network.swift in Sources */,
 				78DAADEB2868D36700FEB0DA /* HomeScreenTeamCellVM.swift in Sources */,
 				783DED03286180470062343E /* HomeScreen.swift in Sources */,
+				7802E199288D9FEC00F7D501 /* PasswordFormComponent.swift in Sources */,
 				783DECD628617EEB0062343E /* ViewController.swift in Sources */,
 				78B687822887A616006B6CAB /* TextFormComponent.swift in Sources */,
 				78DAADED2868D5CF00FEB0DA /* HomeScreenTeamCell.swift in Sources */,
@@ -556,6 +605,7 @@
 				78B687842887A64E006B6CAB /* DateFormComponent.swift in Sources */,
 				78BFFAA228878DEC00A767AB /* FormCollectionView.swift in Sources */,
 				78BBB8FA286415AF006B3FDC /* API.swift in Sources */,
+				7802E18D288B9EB900F7D501 /* SignUp.swift in Sources */,
 				78B687862887A67B006B6CAB /* ButtonFormComponent.swift in Sources */,
 				78477327287687DD009AFC92 /* FormModel.swift in Sources */,
 				78B687902887AE29006B6CAB /* FieldVisibilityProtocol.swift in Sources */,
@@ -574,6 +624,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				783DECE928617EED0062343E /* YourTurnTests.swift in Sources */,
+				7802E19A288D9FEC00F7D501 /* PasswordFormComponent.swift in Sources */,
+				7802E18E288B9EB900F7D501 /* SignUp.swift in Sources */,
+				7802E19E288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift in Sources */,
+				7802E18A288B9EB000F7D501 /* SignIn.swift in Sources */,
+				7802E196288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,8 +636,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7802E19B288D9FEC00F7D501 /* PasswordFormComponent.swift in Sources */,
+				7802E19F288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift in Sources */,
 				783DECF528617EED0062343E /* YourTurnUITestsLaunchTests.swift in Sources */,
+				7802E18F288B9EB900F7D501 /* SignUp.swift in Sources */,
+				7802E18B288B9EB000F7D501 /* SignIn.swift in Sources */,
 				783DECF328617EED0062343E /* YourTurnUITests.swift in Sources */,
+				7802E197288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -903,6 +963,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7802E17D288B9A1300F7D501 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 		78BBEE7E2862BAB20031976A /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
@@ -922,6 +990,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7802E17E288B9A1300F7D501 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7802E17D288B9A1300F7D501 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		7802E180288B9A1300F7D501 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7802E17D288B9A1300F7D501 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		7802E182288B9A1300F7D501 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7802E17D288B9A1300F7D501 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
 		78BBEE7F2862BAB20031976A /* Apollo */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 78BBEE7E2862BAB20031976A /* XCRemoteSwiftPackageReference "apollo-ios" */;

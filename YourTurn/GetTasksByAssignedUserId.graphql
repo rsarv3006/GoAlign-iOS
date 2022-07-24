@@ -8,8 +8,14 @@ query TasksByAssignedUserId($userId: String!) {
     endDate
     requiredCompletionsNeeded
     completionCount
-    intervalBetweenWindows
-    windowLength
+    intervalBetweenWindows {
+      count
+      type
+    }
+    windowLength {
+      count
+      type
+    }
     teamId
     assignedUser {
       userId
@@ -26,5 +32,15 @@ query TasksByAssignedUserId($userId: String!) {
       isActive
     }
     status
+    taskHistoryItems {
+      id
+      createdAt
+      taskId
+      teamId
+      assignedUserId
+      dateCompleted
+      notes
+      pictureUrl
+    }
   }
 }

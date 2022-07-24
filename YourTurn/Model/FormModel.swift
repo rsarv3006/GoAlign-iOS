@@ -24,10 +24,15 @@ enum FormField: String, CaseIterable {
     case notes
     case startDate
     case endDate
-    case submit
+    case taskCreationSubmit
     case numberofRequiredCompletions
     case windowLength
     case intervalBetweenWindows
+    
+    case signUpUserName
+    case signUpEmailAddress
+    case signUpPassword
+    case signUpSubmit
 }
 
 final class FormSectionComponent: FormSectionItem, Hashable {

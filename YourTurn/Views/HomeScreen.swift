@@ -118,8 +118,8 @@ class HomeScreen: UIViewController {
             self.teams = incomingTeams
         }).store(in: &subscriptions)
         
-        viewModel?.loadTasks(userId: "75d6010f-2574-4e27-ad81-4412d8fa75c0")
-        viewModel?.loadTeams(userId: "75d6010f-2574-4e27-ad81-4412d8fa75c0")
+        viewModel?.loadTasks(userId: "f12d5673-1443-44d6-af46-996030ff9c99")
+        viewModel?.loadTeams(userId: "f12d5673-1443-44d6-af46-996030ff9c99")
     }
     
     // MARK: - Actions
