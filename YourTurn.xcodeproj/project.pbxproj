@@ -29,6 +29,9 @@
 		7802E19D288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E19C288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift */; };
 		7802E19E288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E19C288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift */; };
 		7802E19F288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E19C288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift */; };
+		7802E1A1288E2FAE00F7D501 /* SignUpVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E1A0288E2FAE00F7D501 /* SignUpVM.swift */; };
+		7802E1A2288E2FAE00F7D501 /* SignUpVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E1A0288E2FAE00F7D501 /* SignUpVM.swift */; };
+		7802E1A3288E2FAE00F7D501 /* SignUpVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E1A0288E2FAE00F7D501 /* SignUpVM.swift */; };
 		783DECD228617EEB0062343E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD128617EEB0062343E /* AppDelegate.swift */; };
 		783DECD428617EEB0062343E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD328617EEB0062343E /* SceneDelegate.swift */; };
 		783DECD628617EEB0062343E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD528617EEB0062343E /* ViewController.swift */; };
@@ -104,6 +107,7 @@
 		7802E194288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFormContentBuilderImpl.swift; sourceTree = "<group>"; };
 		7802E198288D9FEC00F7D501 /* PasswordFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFormComponent.swift; sourceTree = "<group>"; };
 		7802E19C288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormPasswordCollectionViewCell.swift; sourceTree = "<group>"; };
+		7802E1A0288E2FAE00F7D501 /* SignUpVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVM.swift; sourceTree = "<group>"; };
 		783DECCE28617EEB0062343E /* YourTurn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourTurn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		783DECD128617EEB0062343E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		783DECD328617EEB0062343E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -283,6 +287,7 @@
 				78DAADF42869663000FEB0DA /* TaskAddEditScreenVM.swift */,
 				7847732928768B69009AFC92 /* TaskAddEditFormContentBuilderImpl.swift */,
 				7802E194288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift */,
+				7802E1A0288E2FAE00F7D501 /* SignUpVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -302,10 +307,10 @@
 				7847732C28768D14009AFC92 /* FormButtonCollectionViewCell.swift */,
 				78D7C3BF28776499001F48C5 /* FormTextCollectionViewCell.swift */,
 				78D7C3C12877690B001F48C5 /* FormDateCollectionViewCell.swift */,
+				7802E19C288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift */,
 				78BFFA9D2887784600A767AB /* FormSwitchControlledTextCollectionViewCell.swift */,
 				78BFFAA328879A3F00A767AB /* FormSwitchControlledDateCollectionViewCell.swift */,
 				78B6878D2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift */,
-				7802E19C288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -595,6 +600,7 @@
 				7802E199288D9FEC00F7D501 /* PasswordFormComponent.swift in Sources */,
 				783DECD628617EEB0062343E /* ViewController.swift in Sources */,
 				78B687822887A616006B6CAB /* TextFormComponent.swift in Sources */,
+				7802E1A1288E2FAE00F7D501 /* SignUpVM.swift in Sources */,
 				78DAADED2868D5CF00FEB0DA /* HomeScreenTeamCell.swift in Sources */,
 				78DAADE52866B61400FEB0DA /* HomeScreenTaskCellVM.swift in Sources */,
 				78B6878C2887A9CE006B6CAB /* HideableIntervalPickerFormComponent.swift in Sources */,
@@ -629,6 +635,7 @@
 				7802E19E288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift in Sources */,
 				7802E18A288B9EB000F7D501 /* SignIn.swift in Sources */,
 				7802E196288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift in Sources */,
+				7802E1A2288E2FAE00F7D501 /* SignUpVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,6 +645,7 @@
 			files = (
 				7802E19B288D9FEC00F7D501 /* PasswordFormComponent.swift in Sources */,
 				7802E19F288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift in Sources */,
+				7802E1A3288E2FAE00F7D501 /* SignUpVM.swift in Sources */,
 				783DECF528617EED0062343E /* YourTurnUITestsLaunchTests.swift in Sources */,
 				7802E18F288B9EB900F7D501 /* SignUp.swift in Sources */,
 				7802E18B288B9EB000F7D501 /* SignIn.swift in Sources */,

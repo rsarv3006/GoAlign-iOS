@@ -16,7 +16,7 @@ private let TEAM_TABLE_TAG = 1002
 
 class HomeScreen: UIViewController {
     // MARK: - Properties
-    var subscriptions = Set<AnyCancellable>()
+    private var subscriptions = Set<AnyCancellable>()
     
     var viewModel: HomeScreenVM? {
         didSet {

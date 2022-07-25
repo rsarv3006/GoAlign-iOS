@@ -117,7 +117,7 @@ private extension FormTextCollectionViewCell {
         
         NSLayoutConstraint.activate([
             txtField.heightAnchor.constraint(equalToConstant: 44),
-                        errorLbl.heightAnchor.constraint(equalToConstant: 22),
+            errorLbl.heightAnchor.constraint(equalToConstant: 22),
             contentStackVw.topAnchor.constraint(equalTo: contentView.topAnchor),
             contentStackVw.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
             contentStackVw.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),

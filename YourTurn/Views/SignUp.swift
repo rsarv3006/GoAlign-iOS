@@ -78,6 +78,8 @@ private extension SignUpScreen {
                 return self.buildFormTextCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
             case is ButtonFormComponent:
                 return self.buildFormButtonCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
+            case is PasswordFormComponent:
+                return self.buildFormPasswordCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
             default:
                 return self.buildDefaultCollectionViewCell(collectionView: collectionView, indexPath: indexPath)
             }
@@ -143,6 +145,19 @@ private extension SignUpScreen {
             }.store(in: &self.subscriptions)
         
         cell.bind(item)
+        return cell
+    }
+    
+    func buildFormPasswordCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, item: FormComponent) -> FormPasswordCollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormPasswordCollectionViewCell.cellId, for: indexPath) as! FormPasswordCollectionViewCell
+        
+        cell
+            .subject
+            .sink { [weak self] id in
+                self?.formContentBuilder.validate()
+            }.store(in: &self.subscriptions)
+        
+        cell.bind(item, at: indexPath)
         return cell
     }
 }
