@@ -34,7 +34,7 @@ final class TaskAddEditFormContentBuilderImpl {
             HideableIntervalPickerFormComponent(id: .windowLength, title: "Task Window:", validations: []),
             HideableIntervalPickerFormComponent(id: .intervalBetweenWindows, title: "Time Between Tasks:", validations: []),
             TextFormComponent(id: .notes, placeholder: "Notes"),
-            ButtonFormComponent(id: .submit, title: "Confirm")
+            ButtonFormComponent(id: .taskCreationSubmit, title: "Confirm")
         ])
     ]
     
@@ -46,7 +46,7 @@ final class TaskAddEditFormContentBuilderImpl {
         do {
             let formComponents = formContent
                 .flatMap { $0.items }
-                .filter { $0.formId != .submit }
+                .filter { $0.formId != .taskCreationSubmit }
             
             for component in formComponents {
                 for validator in component.validations {

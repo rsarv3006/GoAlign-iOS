@@ -16,7 +16,13 @@ private let TEAM_TABLE_TAG = 1002
 
 class HomeScreen: UIViewController {
     // MARK: - Properties
-    var subscriptions = Set<AnyCancellable>()
+    private var subscriptions = Set<AnyCancellable>()
+    
+    private lazy var token: String? = nil {
+        didSet {
+            print("WE HAVE THE TOKEN!!!!: \(String(describing: token))")
+        }
+    }
     
     var viewModel: HomeScreenVM? {
         didSet {
@@ -26,13 +32,13 @@ class HomeScreen: UIViewController {
         }
     }
     
-    private var tasks = [GqlTasksByAssignedUserIdTaskObject]() {
+    private var tasks = [TaskModel]() {
         didSet {
             taskTableView.reloadData()
         }
     }
     
-    private var teams = [GqlTeamsByUserIdTeamObject]() {
+    private var teams = [TeamModel]() {
         didSet {
             teamTableView.reloadData()
         }
@@ -71,11 +77,26 @@ class HomeScreen: UIViewController {
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
+        AuthenticationService.signOut()
         super.viewDidLoad()
+        viewModel?.checkIfUserIsLoggedIn(navigationController: navigationController)
         configureView()
         configureInteractables()
         configureTableViews()
         configureCombine()
+        
+        getToken()
+    }
+    
+    func getToken() {
+        Task {
+            do {
+                token = try await AuthenticationService.getToken()
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        
     }
     
     // MARK: - Helpers
@@ -90,7 +111,7 @@ class HomeScreen: UIViewController {
         
         view.addSubview(addTaskButton)
         addTaskButton.anchor(top: topSafeAnchor, right: rightSafeAnchor, paddingRight: 8)
-
+        
         view.addSubview(teamTitleLabel)
         teamTitleLabel.center(inView: view)
         
@@ -118,8 +139,12 @@ class HomeScreen: UIViewController {
             self.teams = incomingTeams
         }).store(in: &subscriptions)
         
-        viewModel?.loadTasks(userId: "75d6010f-2574-4e27-ad81-4412d8fa75c0")
-        viewModel?.loadTeams(userId: "75d6010f-2574-4e27-ad81-4412d8fa75c0")
+        viewModel?.authCompleteDismissView.receive(on: DispatchQueue.main).sink(receiveValue: { [weak self] _ in
+                self?.dismiss(animated: true)
+        }).store(in: &subscriptions)
+        
+        viewModel?.loadTasks()
+        viewModel?.loadTeams()
     }
     
     // MARK: - Actions
@@ -139,10 +164,10 @@ extension HomeScreen: UITableViewDataSource {
         } else if tableView.tag == TEAM_TABLE_TAG {
             return teams.count
         } else {
-           return 0
+            return 0
         }
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView.tag == TASK_TABLE_TAG {
             let cell = tableView.dequeueReusableCell(withIdentifier: TASK_REUSE_ID, for: indexPath) as! HomeScreenTaskCell
@@ -156,7 +181,7 @@ extension HomeScreen: UITableViewDataSource {
             return UITableViewCell(style: .default, reuseIdentifier: "crash baby")
         }
     }
-
+    
     func configureTableViews() {
         taskTableView.register(HomeScreenTaskCell.self, forCellReuseIdentifier: TASK_REUSE_ID)
         taskTableView.rowHeight = 60
@@ -168,5 +193,5 @@ extension HomeScreen: UITableViewDataSource {
         teamTableView.delegate = self
         teamTableView.dataSource = self
     }
-
+    
 }

@@ -10,42 +10,38 @@ import Combine
 import UIKit
 
 class HomeScreenVM {
-    var subscriptions = Set<AnyCancellable>()
+    private(set) var subscriptions = Set<AnyCancellable>()
     
-    var taskTitleLabel: NSAttributedString = NSAttributedString(string: "My Tasks",
+    let taskTitleLabel: NSAttributedString = NSAttributedString(string: "My Tasks",
                                                      attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
-    var teamTitleLabel: NSAttributedString = NSAttributedString(string: "My Groups",
+    let teamTitleLabel: NSAttributedString = NSAttributedString(string: "My Groups",
                                                     attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
     
-    var tasksSubject = PassthroughSubject<[GqlTasksByAssignedUserIdTaskObject], Never>()
+    var tasksSubject = PassthroughSubject<TaskModelArray, Never>()
+//    
+    var teamsSubject = PassthroughSubject<[TeamModel], Never>()
     
-    var teamsSubject = PassthroughSubject<[GqlTeamsByUserIdTeamObject], Never>()
+    var authCompleteDismissView = PassthroughSubject<Bool, Never>()
     
-    func loadTasks(userId: String) {
-        Network.shared.apollo.fetch(query: TasksByAssignedUserIdQuery(userId: userId)) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let graphQLResult):
-                if let tasksData = graphQLResult.data?.getTasksByAssignedUserId {
-                    self.tasksSubject.send(tasksData)
-                }
-            case .failure(let error):
-                print(error)
+    func loadTasks() {
+        TaskService.getTasksByAssignedUserId { [weak self] tasks, error in
+            guard let tasks = tasks else {
+                print(String(describing: error))
+                return
             }
+            self?.tasksSubject.send(tasks)
         }
     }
     
-    func loadTeams(userId: String) {
-        Network.shared.apollo.fetch(query: GetTeamsByUserIdQuery(userId: userId)) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let graphQLResult):
-                if let teamsData = graphQLResult.data?.getTeamsByUserId {
-                    self.teamsSubject.send(teamsData)
-                }
-            case .failure(let error):
-                print(error)
+    func loadTeams() {
+        TeamService.getTeamsbyCurrentUser { [weak self] teams, error in
+            guard let teams = teams else {
+                print(String(describing: error))
+                return
             }
+            
+            self?.teamsSubject.send(teams)
+
         }
     }
     
@@ -53,5 +49,28 @@ class HomeScreenVM {
         let newVc = TaskAddEditScreen()
         newVc.viewModel = TaskAddEditScreenVM()
         navigationController?.pushViewController(newVc, animated: false)
+    }
+    
+    func checkIfUserIsLoggedIn(navigationController: UINavigationController?) {
+        if !AuthenticationService.doesCurrentUserExist() {
+            DispatchQueue.main.async {
+                let controller = SignUpScreen()
+                let signUpVM = SignUpVM()
+                controller.viewModel = signUpVM
+                controller.delegate = self
+                let nav = UINavigationController(rootViewController: controller)
+                nav.modalPresentationStyle = .fullScreen
+                navigationController?.present(nav, animated: false, completion: nil)
+            }
+            
+        }
+
+    }
+}
+
+extension HomeScreenVM: SignUpScreenDelegate {
+    func authenticationDidComplete(viewController: UIViewController) {
+        authCompleteDismissView
+            .send(true)
     }
 }

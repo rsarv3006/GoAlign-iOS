@@ -1,0 +1,54 @@
+//
+//  User.swift
+//  YourTurn
+//
+//  Created by rjs on 7/28/22.
+//
+
+import Foundation
+
+enum UserError: Error {
+    case custom(message: String)
+}
+
+struct UserService {
+    static func createUser(with user: CreateUserDto, completionHandler: @escaping((UserModel?, Error?) -> Void)) {
+        let url = URL(string: "http://localhost:4001/user")
+        
+        guard let url = url else {
+            completionHandler(nil, UserError.custom(message: "Bad URL"))
+            return
+        }
+        print("DEBUG: - userId: \(user.userId)")
+        let userData = try? JSONEncoder().encode(user)
+        
+        
+
+        guard let userData = userData else {
+            completionHandler(nil, UserError.custom(message: "Serialization of Create User DTO failed"))
+            return
+        }
+
+        Networking.post(url: url, body: userData) { data, response, error in
+            guard error == nil else {
+                completionHandler(nil, error)
+                return
+            }
+            
+                
+            if let data = data, let response = response as? HTTPURLResponse {
+                do {
+                    if response.statusCode == 500 {
+                        throw UserError.custom(message: (String(data: data, encoding: String.Encoding.utf8) ?? "Something went wrong"))
+                    }
+                    
+                    let userModel = try JSONDecoder().decode(UserModel.self, from: data)
+                    completionHandler(userModel, nil)
+                } catch {
+                    print("DEBUG: FAILED in createUser: \(error)")
+                    completionHandler(nil, error)
+                }
+            }
+        }
+    }
+}

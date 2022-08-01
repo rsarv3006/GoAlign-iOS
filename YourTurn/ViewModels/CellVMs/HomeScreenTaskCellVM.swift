@@ -11,9 +11,9 @@ struct HomeScreenTaskCellVM {
     let taskNameLabelString: String
     let timeIntervalLabelString: String
     
-    init(withTask task: GqlTasksByAssignedUserIdTaskObject) {
+    init(withTask task: TaskModel) {
         taskNameLabelString = task.taskName
         // TODO: - Figure out what this label should say
-        timeIntervalLabelString = task.startDate
+        timeIntervalLabelString = String(describing: task.startDate)
     }
 }
