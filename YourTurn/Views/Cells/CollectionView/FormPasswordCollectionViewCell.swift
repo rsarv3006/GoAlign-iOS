@@ -1,23 +1,33 @@
 //
-//  FormTextCollectionViewCell.swift
+//  FormPasswordCollectionViewCell.swift
 //  YourTurn
 //
-//  Created by rjs on 7/7/22.
+//  Created by rjs on 7/24/22.
 //
 
 import UIKit
 import Combine
 
-class FormTextCollectionViewCell: UICollectionViewCell {
+class FormPasswordCollectionViewCell: UICollectionViewCell {
     
     private var subscriptions = Set<AnyCancellable>()
-    private var item: TextFormComponent?
+    private var item: PasswordFormComponent?
     private var indexPath: IndexPath?
     private(set) var subject = PassthroughSubject<(String, IndexPath), Never>()
     private(set) var reload = PassthroughSubject<String, Never>()
     
-    private lazy var txtField: UITextField = {
+    private lazy var passwordField: UITextField = {
         let txtField = UITextField()
+        txtField.isSecureTextEntry = true
+        txtField.translatesAutoresizingMaskIntoConstraints = false
+        txtField.borderStyle = .roundedRect
+        txtField.backgroundColor = .clear
+        return txtField
+    }()
+    
+    private lazy var confirmPasswordField: UITextField = {
+        let txtField = UITextField()
+        txtField.isSecureTextEntry = true
         txtField.translatesAutoresizingMaskIntoConstraints = false
         txtField.borderStyle = .roundedRect
         txtField.backgroundColor = .clear
@@ -42,7 +52,7 @@ class FormTextCollectionViewCell: UICollectionViewCell {
     
     func bind(_ item: FormComponent,
               at indexPath: IndexPath) {
-        guard let item = item as? TextFormComponent else { return }
+        guard let item = item as? PasswordFormComponent else { return }
         self.indexPath = indexPath
         self.item = item
         setup(item: item)
@@ -57,13 +67,13 @@ class FormTextCollectionViewCell: UICollectionViewCell {
     }
 }
 
-private extension FormTextCollectionViewCell {
+private extension FormPasswordCollectionViewCell {
     
-    func setup(item: TextFormComponent) {
+    func setup(item: PasswordFormComponent) {
         
         NotificationCenter
             .default
-            .publisher(for: UITextField.textDidChangeNotification, object: txtField)
+            .publisher(for: UITextField.textDidChangeNotification, object: passwordField)
             .compactMap { ($0.object as? UITextField)?.text }
             .map(String.init)
             .sink { [weak self] val in
@@ -74,12 +84,11 @@ private extension FormTextCollectionViewCell {
                 self.subject.send((val, indexPath))
                 
                 do {
-                    
                     for validator in item.validations {
                         try validator.validate(val)
                     }
                     
-                    self.txtField.valid()
+                    self.passwordField.valid()
                     if let errorLabelTextCount = self.errorLbl.text?.count, errorLabelTextCount > 0 {
                         self.manipulateErrorLabel(.hide)
                     }
@@ -88,7 +97,7 @@ private extension FormTextCollectionViewCell {
                     
                 } catch {
                     
-                    self.txtField.invalid()
+                    self.passwordField.invalid()
                     if let validationError = error as? ValidationError {
                         switch validationError {
                         case .custom(let message):
@@ -102,21 +111,27 @@ private extension FormTextCollectionViewCell {
             .store(in: &subscriptions)
         
         // Setup
-        txtField.delegate = self
-        txtField.placeholder = item.placeholder
-        txtField.keyboardType = item.keyboardType
-        txtField.layer.borderColor = UIColor.systemGray5.cgColor
-        txtField.layer.borderWidth = 1
-        txtField.layer.cornerRadius = 8
+        passwordField.delegate = self
+        passwordField.placeholder = item.placeholder
+        passwordField.layer.borderColor = UIColor.systemGray5.cgColor
+        passwordField.layer.borderWidth = 1
+        passwordField.layer.cornerRadius = 8
         
+        confirmPasswordField.delegate = self
+        confirmPasswordField.placeholder = item.confirmPlaceholder
+        confirmPasswordField.layer.borderColor = UIColor.systemGray5.cgColor
+        confirmPasswordField.layer.borderWidth = 1
+        confirmPasswordField.layer.cornerRadius = 8
         // Layout
         
         contentView.addSubview(contentStackVw)
         
-        contentStackVw.addArrangedSubview(txtField)
+        contentStackVw.addArrangedSubview(passwordField)
+        contentStackVw.addArrangedSubview(confirmPasswordField)
         
         NSLayoutConstraint.activate([
-            txtField.heightAnchor.constraint(equalToConstant: 44),
+            passwordField.heightAnchor.constraint(equalToConstant: 44),
+            confirmPasswordField.heightAnchor.constraint(equalToConstant: 44),
             errorLbl.heightAnchor.constraint(equalToConstant: 22),
             contentStackVw.topAnchor.constraint(equalTo: contentView.topAnchor),
             contentStackVw.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
@@ -138,7 +153,7 @@ private extension FormTextCollectionViewCell {
     
 }
 
-extension FormTextCollectionViewCell: UITextFieldDelegate {
+extension FormPasswordCollectionViewCell: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

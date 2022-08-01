@@ -12,7 +12,7 @@ struct HomeScreenTeamCellVM {
     
     let numberOfTeamTasksLabelString: String
     
-    init(withTeam team: GqlTeamsByUserIdTeamObject) {
+    init(withTeam team: TeamModel) {
         teamNameLabelString = team.teamName
         numberOfTeamTasksLabelString = "Tasks: \(team.tasks.count)"
     }
