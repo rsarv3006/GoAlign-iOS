@@ -9,12 +9,26 @@ import Foundation
 import UIKit
 import Combine
 
+protocol SignUpScreenDelegate: AnyObject {
+    func authenticationDidComplete(viewController: UIViewController)
+}
+
 class SignUpScreen: UIViewController {
+    
+    var viewModel: SignUpVM? {
+        didSet {
+            topLabel.text = viewModel?.welcomeLabelText
+            buttonToSignInScreen.setTitle(viewModel?.buttonTextGoToSignIn, for: .normal)
+        }
+    }
+    
     private var subscriptions = Set<AnyCancellable>()
     
     private lazy var formContentBuilder = SignUpFormContentBuilderImpl()
     private lazy var formCompLayout = FormCompositionalLayout()
     private lazy var dataSource = makeDataSource()
+    
+    weak var delegate: SignUpScreenDelegate?
     
     private lazy var collectionView: UICollectionView = {
         return FormCollectionView(frame: .zero, collectionViewLayout: formCompLayout.layout)
@@ -23,7 +37,6 @@ class SignUpScreen: UIViewController {
     private let topLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "American Typewriter", size: 32)
-        label.text = "Sign Up"
         return label
     }()
     
@@ -31,24 +44,22 @@ class SignUpScreen: UIViewController {
         let button = UIButton(type: .system)
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .center
-        button.setTitle("Already have an Account? \nClick here to Sign In!", for: .normal)
         return button
     }()
     
-    // MARK: - Lifecycle    
+    // MARK: - Lifecycle
     override func loadView() {
         super.loadView()
         setup()
         updateDataSource()
-        
-        print(UIFont.familyNames)
     }
-
+    
 }
 
 private extension SignUpScreen {
     func setup() {
         formSubmissionSubscription()
+        signUpCompletedSubscription()
         
         collectionView.dataSource = dataSource
         
@@ -103,10 +114,33 @@ private extension SignUpScreen {
     func formSubmissionSubscription() {
         formContentBuilder
             .formSubmission
-            .sink { val in
-                print(val)
+            .sink { [weak self] completedForm in
+                print(completedForm)
+                if let self = self {
+                    self.viewModel?.signUp(form: completedForm)
+                }
             }
             .store(in: &subscriptions)
+    }
+    
+    func signUpCompletedSubscription() {
+        viewModel?.signUpSubject.sink(receiveCompletion: { (error) in
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: "Uh Oh", message: "There was an issue signing up. \n Error: \(String(describing: error))", preferredStyle: .alert)
+                let alertAction = UIAlertAction(title: "Close", style: .default) { _ in
+                    alert.removeFromParent()
+                }
+                alert.addAction(alertAction)
+                
+                self.present(alert, animated: true)
+            }
+            
+        }, receiveValue: { user in
+            if user != nil {
+                self.delegate?.authenticationDidComplete(viewController: self)
+            }
+        })
+        .store(in: &subscriptions)
     }
 }
 
@@ -153,9 +187,10 @@ private extension SignUpScreen {
         
         cell
             .subject
-            .sink { [weak self] id in
-                self?.formContentBuilder.validate()
-            }.store(in: &self.subscriptions)
+            .sink { [weak self] val, indexPath in
+                self?.formContentBuilder.update(val: val, at: indexPath)
+            }
+            .store(in: &self.subscriptions)
         
         cell.bind(item, at: indexPath)
         return cell

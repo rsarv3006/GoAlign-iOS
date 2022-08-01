@@ -8,31 +8,6 @@
 import Foundation
 import UIKit
 
-enum IntervalVariant: String {
-    case minute = "minute(s)"
-    case hour = "hour(s)"
-    case day = "day(s)"
-    case week = "week(s)"
-    case month = "month(s)"
-    case year = "year(s)"
-}
-
-let INTERVALS_ARRAY = [IntervalVariant.minute, IntervalVariant.hour, IntervalVariant.day, IntervalVariant.week, IntervalVariant.month, IntervalVariant.year]
-
-struct IntervalObject {
-    var intervalNumber: Int = 1
-    var intervalType: IntervalVariant = .day
-    
-    init(_ intervalNumber: Int, _ intervalType: IntervalVariant){
-        self.intervalNumber = intervalNumber
-        self.intervalType = intervalType
-    }
-    
-    func toString() -> String {
-        return "\(intervalNumber) - \(intervalType)"
-    }
-}
-
 protocol IntervalPickerDelegate {
     func onIntervalChange(intervalPicker: IntervalPicker, intervalObj: IntervalObject)
 }

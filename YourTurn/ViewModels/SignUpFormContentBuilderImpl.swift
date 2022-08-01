@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 final class SignUpFormContentBuilderImpl {
-    private(set) var formSubmission = PassthroughSubject<[String: Any], Never>()
+    private(set) var formSubmission = PassthroughSubject<SignUpCompletedForm, Never>()
     
     private(set) var formContent = [
         FormSectionComponent(items: [
@@ -49,7 +49,7 @@ final class SignUpFormContentBuilderImpl {
             let validValues = formComponents.map { ($0.formId.rawValue, $0.value) }
             let validDict = Dictionary(uniqueKeysWithValues: validValues) as [String: Any]
             
-            formSubmission.send(validDict)
+            try formSubmission.send(SignUpCompletedForm(fromDict: validDict ))
             
         } catch {
             print("Something is wrong with form: \(error)")

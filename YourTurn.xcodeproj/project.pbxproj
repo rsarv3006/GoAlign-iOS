@@ -7,34 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7802E176288A539200F7D501 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 7802E175288A539200F7D501 /* schema.json */; };
 		7802E17F288B9A1300F7D501 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7802E17E288B9A1300F7D501 /* FirebaseAnalytics */; };
 		7802E181288B9A1300F7D501 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7802E180288B9A1300F7D501 /* FirebaseAuth */; };
 		7802E183288B9A1300F7D501 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7802E182288B9A1300F7D501 /* FirebaseCrashlytics */; };
-		7802E185288B9E2500F7D501 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7802E184288B9E2500F7D501 /* GoogleService-Info.plist */; };
-		7802E186288B9E2500F7D501 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7802E184288B9E2500F7D501 /* GoogleService-Info.plist */; };
-		7802E187288B9E2500F7D501 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7802E184288B9E2500F7D501 /* GoogleService-Info.plist */; };
 		7802E189288B9EB000F7D501 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E188288B9EB000F7D501 /* SignIn.swift */; };
-		7802E18A288B9EB000F7D501 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E188288B9EB000F7D501 /* SignIn.swift */; };
-		7802E18B288B9EB000F7D501 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E188288B9EB000F7D501 /* SignIn.swift */; };
 		7802E18D288B9EB900F7D501 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E18C288B9EB900F7D501 /* SignUp.swift */; };
-		7802E18E288B9EB900F7D501 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E18C288B9EB900F7D501 /* SignUp.swift */; };
-		7802E18F288B9EB900F7D501 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E18C288B9EB900F7D501 /* SignUp.swift */; };
 		7802E195288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E194288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift */; };
-		7802E196288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E194288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift */; };
-		7802E197288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E194288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift */; };
 		7802E199288D9FEC00F7D501 /* PasswordFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E198288D9FEC00F7D501 /* PasswordFormComponent.swift */; };
-		7802E19A288D9FEC00F7D501 /* PasswordFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E198288D9FEC00F7D501 /* PasswordFormComponent.swift */; };
-		7802E19B288D9FEC00F7D501 /* PasswordFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E198288D9FEC00F7D501 /* PasswordFormComponent.swift */; };
 		7802E19D288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E19C288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift */; };
-		7802E19E288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E19C288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift */; };
-		7802E19F288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E19C288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift */; };
 		7802E1A1288E2FAE00F7D501 /* SignUpVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E1A0288E2FAE00F7D501 /* SignUpVM.swift */; };
-		7802E1A2288E2FAE00F7D501 /* SignUpVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E1A0288E2FAE00F7D501 /* SignUpVM.swift */; };
-		7802E1A3288E2FAE00F7D501 /* SignUpVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E1A0288E2FAE00F7D501 /* SignUpVM.swift */; };
+		7802E1A6288E399500F7D501 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E1A5288E399500F7D501 /* Authentication.swift */; };
+		7802E1AA288E3D0900F7D501 /* SignUpCompletedForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E1A9288E3D0900F7D501 /* SignUpCompletedForm.swift */; };
 		783DECD228617EEB0062343E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD128617EEB0062343E /* AppDelegate.swift */; };
 		783DECD428617EEB0062343E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD328617EEB0062343E /* SceneDelegate.swift */; };
-		783DECD628617EEB0062343E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD528617EEB0062343E /* ViewController.swift */; };
+		783DECD628617EEB0062343E /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD528617EEB0062343E /* FormViewController.swift */; };
 		783DECD928617EEB0062343E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 783DECD728617EEB0062343E /* Main.storyboard */; };
 		783DECDB28617EED0062343E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 783DECDA28617EED0062343E /* Assets.xcassets */; };
 		783DECDE28617EED0062343E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 783DECDC28617EED0062343E /* LaunchScreen.storyboard */; };
@@ -47,6 +33,10 @@
 		78477327287687DD009AFC92 /* FormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78477326287687DD009AFC92 /* FormModel.swift */; };
 		7847732A28768B69009AFC92 /* TaskAddEditFormContentBuilderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7847732928768B69009AFC92 /* TaskAddEditFormContentBuilderImpl.swift */; };
 		7847732D28768D14009AFC92 /* FormButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7847732C28768D14009AFC92 /* FormButtonCollectionViewCell.swift */; };
+		7872D6FA28950AEF00E598D2 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872D6F928950AEF00E598D2 /* TeamModel.swift */; };
+		7872D6FC28950C5E00E598D2 /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872D6FB28950C5E00E598D2 /* TeamService.swift */; };
+		7872D6FE2896B03F00E598D2 /* ToJsonProtcol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872D6FD2896B03F00E598D2 /* ToJsonProtcol.swift */; };
+		7872D70028978C1700E598D2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7872D6FF28978C1700E598D2 /* .gitignore */; };
 		78A4E0BD2883B9550067DBCE /* RegexFormItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A4E0BC2883B9550067DBCE /* RegexFormItem.swift */; };
 		78A4E0C02883B98F0067DBCE /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A4E0BF2883B98F0067DBCE /* ValidationError.swift */; };
 		78A4E0C32883BDEA0067DBCE /* RegexPatterns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A4E0C22883BDEA0067DBCE /* RegexPatterns.swift */; };
@@ -60,12 +50,7 @@
 		78B6878E2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6878D2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift */; };
 		78B687902887AE29006B6CAB /* FieldVisibilityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6878F2887AE29006B6CAB /* FieldVisibilityProtocol.swift */; };
 		78B68792288829F0006B6CAB /* FieldValidInvalidProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B68791288829F0006B6CAB /* FieldValidInvalidProtocol.swift */; };
-		78BBB8FA286415AF006B3FDC /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BBB8F9286415AF006B3FDC /* API.swift */; };
 		78BBB8FC28642207006B3FDC /* HomeScreenTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BBB8FB28642207006B3FDC /* HomeScreenTaskCell.swift */; };
-		78BBEE802862BAB20031976A /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 78BBEE7F2862BAB20031976A /* Apollo */; };
-		78BBEE832862BCA20031976A /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 78BBEE822862BCA20031976A /* Apollo */; };
-		78BBEE852862BCA20031976A /* ApolloWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 78BBEE842862BCA20031976A /* ApolloWebSocket */; };
-		78BBEE902862C34B0031976A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BBEE8F2862C34B0031976A /* Network.swift */; };
 		78BFFA9E2887784600A767AB /* FormSwitchControlledTextCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BFFA9D2887784600A767AB /* FormSwitchControlledTextCollectionViewCell.swift */; };
 		78BFFAA228878DEC00A767AB /* FormCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BFFAA128878DEC00A767AB /* FormCollectionView.swift */; };
 		78BFFAA428879A3F00A767AB /* FormSwitchControlledDateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BFFAA328879A3F00A767AB /* FormSwitchControlledDateCollectionViewCell.swift */; };
@@ -74,12 +59,17 @@
 		78D7C3C22877690B001F48C5 /* FormDateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D7C3C12877690B001F48C5 /* FormDateCollectionViewCell.swift */; };
 		78D7C3C528776F80001F48C5 /* FormCompositionalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D7C3C428776F80001F48C5 /* FormCompositionalLayout.swift */; };
 		78DAADE52866B61400FEB0DA /* HomeScreenTaskCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DAADE42866B61400FEB0DA /* HomeScreenTaskCellVM.swift */; };
-		78DAADE72866B64500FEB0DA /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DAADE62866B64500FEB0DA /* Types.swift */; };
 		78DAADEB2868D36700FEB0DA /* HomeScreenTeamCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DAADEA2868D36700FEB0DA /* HomeScreenTeamCellVM.swift */; };
 		78DAADED2868D5CF00FEB0DA /* HomeScreenTeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DAADEC2868D5CF00FEB0DA /* HomeScreenTeamCell.swift */; };
-		78DAADF128695C1500FEB0DA /* GetTeamsByUserId.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 78DAADF028695C1500FEB0DA /* GetTeamsByUserId.graphql */; };
 		78DAADF32869617600FEB0DA /* TaskAddEditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DAADF22869617500FEB0DA /* TaskAddEditScreen.swift */; };
 		78DAADF52869663000FEB0DA /* TaskAddEditScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DAADF42869663000FEB0DA /* TaskAddEditScreenVM.swift */; };
+		78E4F88A289386CB0075F04F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F889289386CB0075F04F /* User.swift */; };
+		78E4F88C289386F50075F04F /* TaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F88B289386F50075F04F /* TaskService.swift */; };
+		78E4F88E2893881D0075F04F /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F88D2893881C0075F04F /* TaskModel.swift */; };
+		78E4F890289389B00075F04F /* IntervalObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F88F289389B00075F04F /* IntervalObject.swift */; };
+		78E4F89228938DE50075F04F /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F89128938DE50075F04F /* UserModel.swift */; };
+		78E4F8942893911B0075F04F /* TaskHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F8932893911B0075F04F /* TaskHistoryModel.swift */; };
+		78E4F896289393150075F04F /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F895289393150075F04F /* Networking.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,18 +90,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7802E175288A539200F7D501 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
-		7802E184288B9E2500F7D501 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7802E188288B9EB000F7D501 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
 		7802E18C288B9EB900F7D501 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		7802E194288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFormContentBuilderImpl.swift; sourceTree = "<group>"; };
 		7802E198288D9FEC00F7D501 /* PasswordFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFormComponent.swift; sourceTree = "<group>"; };
 		7802E19C288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormPasswordCollectionViewCell.swift; sourceTree = "<group>"; };
 		7802E1A0288E2FAE00F7D501 /* SignUpVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVM.swift; sourceTree = "<group>"; };
+		7802E1A5288E399500F7D501 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		7802E1A9288E3D0900F7D501 /* SignUpCompletedForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompletedForm.swift; sourceTree = "<group>"; };
 		783DECCE28617EEB0062343E /* YourTurn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourTurn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		783DECD128617EEB0062343E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		783DECD328617EEB0062343E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		783DECD528617EEB0062343E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		783DECD528617EEB0062343E /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
 		783DECD828617EEB0062343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		783DECDA28617EED0062343E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		783DECDD28617EED0062343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -127,6 +117,10 @@
 		78477326287687DD009AFC92 /* FormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormModel.swift; sourceTree = "<group>"; };
 		7847732928768B69009AFC92 /* TaskAddEditFormContentBuilderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAddEditFormContentBuilderImpl.swift; sourceTree = "<group>"; };
 		7847732C28768D14009AFC92 /* FormButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormButtonCollectionViewCell.swift; sourceTree = "<group>"; };
+		7872D6F928950AEF00E598D2 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
+		7872D6FB28950C5E00E598D2 /* TeamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamService.swift; sourceTree = "<group>"; };
+		7872D6FD2896B03F00E598D2 /* ToJsonProtcol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToJsonProtcol.swift; sourceTree = "<group>"; };
+		7872D6FF28978C1700E598D2 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		78A4E0BC2883B9550067DBCE /* RegexFormItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexFormItem.swift; sourceTree = "<group>"; };
 		78A4E0BF2883B98F0067DBCE /* ValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
 		78A4E0C22883BDEA0067DBCE /* RegexPatterns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexPatterns.swift; sourceTree = "<group>"; };
@@ -140,10 +134,7 @@
 		78B6878D2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormHideableIntervalPickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		78B6878F2887AE29006B6CAB /* FieldVisibilityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldVisibilityProtocol.swift; sourceTree = "<group>"; };
 		78B68791288829F0006B6CAB /* FieldValidInvalidProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldValidInvalidProtocol.swift; sourceTree = "<group>"; };
-		78BBB8F62864131C006B3FDC /* GetTasksByAssignedUserId.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetTasksByAssignedUserId.graphql; sourceTree = "<group>"; };
-		78BBB8F9286415AF006B3FDC /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		78BBB8FB28642207006B3FDC /* HomeScreenTaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenTaskCell.swift; sourceTree = "<group>"; };
-		78BBEE8F2862C34B0031976A /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		78BFFA9D2887784600A767AB /* FormSwitchControlledTextCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSwitchControlledTextCollectionViewCell.swift; sourceTree = "<group>"; };
 		78BFFAA128878DEC00A767AB /* FormCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCollectionView.swift; sourceTree = "<group>"; };
 		78BFFAA328879A3F00A767AB /* FormSwitchControlledDateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSwitchControlledDateCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -152,12 +143,17 @@
 		78D7C3C12877690B001F48C5 /* FormDateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDateCollectionViewCell.swift; sourceTree = "<group>"; };
 		78D7C3C428776F80001F48C5 /* FormCompositionalLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCompositionalLayout.swift; sourceTree = "<group>"; };
 		78DAADE42866B61400FEB0DA /* HomeScreenTaskCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenTaskCellVM.swift; sourceTree = "<group>"; };
-		78DAADE62866B64500FEB0DA /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		78DAADEA2868D36700FEB0DA /* HomeScreenTeamCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenTeamCellVM.swift; sourceTree = "<group>"; };
 		78DAADEC2868D5CF00FEB0DA /* HomeScreenTeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenTeamCell.swift; sourceTree = "<group>"; };
-		78DAADF028695C1500FEB0DA /* GetTeamsByUserId.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetTeamsByUserId.graphql; sourceTree = "<group>"; };
 		78DAADF22869617500FEB0DA /* TaskAddEditScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAddEditScreen.swift; sourceTree = "<group>"; };
 		78DAADF42869663000FEB0DA /* TaskAddEditScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAddEditScreenVM.swift; sourceTree = "<group>"; };
+		78E4F889289386CB0075F04F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		78E4F88B289386F50075F04F /* TaskService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskService.swift; sourceTree = "<group>"; };
+		78E4F88D2893881C0075F04F /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
+		78E4F88F289389B00075F04F /* IntervalObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalObject.swift; sourceTree = "<group>"; };
+		78E4F89128938DE50075F04F /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		78E4F8932893911B0075F04F /* TaskHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskHistoryModel.swift; sourceTree = "<group>"; };
+		78E4F895289393150075F04F /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,12 +161,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78BBEE802862BAB20031976A /* Apollo in Frameworks */,
 				7802E181288B9A1300F7D501 /* FirebaseAuth in Frameworks */,
-				78BBEE852862BCA20031976A /* ApolloWebSocket in Frameworks */,
 				7802E183288B9A1300F7D501 /* FirebaseCrashlytics in Frameworks */,
 				7802E17F288B9A1300F7D501 /* FirebaseAnalytics in Frameworks */,
-				78BBEE832862BCA20031976A /* Apollo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,9 +184,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7802E1A4288E398100F7D501 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7802E1A5288E399500F7D501 /* Authentication.swift */,
+				78E4F889289386CB0075F04F /* User.swift */,
+				78E4F88B289386F50075F04F /* TaskService.swift */,
+				78E4F895289393150075F04F /* Networking.swift */,
+				7872D6FB28950C5E00E598D2 /* TeamService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		783DECC528617EEB0062343E = {
 			isa = PBXGroup;
 			children = (
+				7872D6FF28978C1700E598D2 /* .gitignore */,
 				783DECD028617EEB0062343E /* YourTurn */,
 				783DECE728617EED0062343E /* YourTurnTests */,
 				783DECF128617EED0062343E /* YourTurnUITests */,
@@ -214,21 +220,16 @@
 		783DECD028617EEB0062343E /* YourTurn */ = {
 			isa = PBXGroup;
 			children = (
-				7802E184288B9E2500F7D501 /* GoogleService-Info.plist */,
-				7802E175288A539200F7D501 /* schema.json */,
+				7802E1A4288E398100F7D501 /* Services */,
 				78A4E0BA2883B9420067DBCE /* Regex */,
 				78D7C3C328776F41001F48C5 /* Layout */,
 				78477325287687D0009AFC92 /* Model */,
-				78BBB8F9286415AF006B3FDC /* API.swift */,
-				78DAADF028695C1500FEB0DA /* GetTeamsByUserId.graphql */,
-				78BBB8F62864131C006B3FDC /* GetTasksByAssignedUserId.graphql */,
-				78BBEE8E2862C32E0031976A /* Network */,
 				783DED072861F5400062343E /* ViewModels */,
 				783DED042861F4BD0062343E /* Utils */,
 				783DED0128617F0A0062343E /* Views */,
 				783DECD128617EEB0062343E /* AppDelegate.swift */,
 				783DECD328617EEB0062343E /* SceneDelegate.swift */,
-				783DECD528617EEB0062343E /* ViewController.swift */,
+				783DECD528617EEB0062343E /* FormViewController.swift */,
 				783DECD728617EEB0062343E /* Main.storyboard */,
 				783DECDA28617EED0062343E /* Assets.xcassets */,
 				783DECDC28617EED0062343E /* LaunchScreen.storyboard */,
@@ -272,9 +273,9 @@
 			isa = PBXGroup;
 			children = (
 				783DED052861F4C90062343E /* Extensions.swift */,
-				78DAADE62866B64500FEB0DA /* Types.swift */,
 				78B6878F2887AE29006B6CAB /* FieldVisibilityProtocol.swift */,
 				78B68791288829F0006B6CAB /* FieldValidInvalidProtocol.swift */,
+				7872D6FD2896B03F00E598D2 /* ToJsonProtcol.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -297,6 +298,12 @@
 			children = (
 				78BFFAA52887A5B000A767AB /* Form Components */,
 				78477326287687DD009AFC92 /* FormModel.swift */,
+				7802E1A9288E3D0900F7D501 /* SignUpCompletedForm.swift */,
+				78E4F88D2893881C0075F04F /* TaskModel.swift */,
+				78E4F88F289389B00075F04F /* IntervalObject.swift */,
+				78E4F89128938DE50075F04F /* UserModel.swift */,
+				78E4F8932893911B0075F04F /* TaskHistoryModel.swift */,
+				7872D6F928950AEF00E598D2 /* TeamModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -359,14 +366,6 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		78BBEE8E2862C32E0031976A /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				78BBEE8F2862C34B0031976A /* Network.swift */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
 		78BFFAA52887A5B000A767AB /* Form Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,7 +413,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 783DECF828617EED0062343E /* Build configuration list for PBXNativeTarget "YourTurn" */;
 			buildPhases = (
-				78BBEE882862BFE70031976A /* Apollo */,
 				783DECCA28617EEB0062343E /* Sources */,
 				783DECCB28617EEB0062343E /* Frameworks */,
 				783DECCC28617EEB0062343E /* Resources */,
@@ -425,9 +423,6 @@
 			);
 			name = YourTurn;
 			packageProductDependencies = (
-				78BBEE7F2862BAB20031976A /* Apollo */,
-				78BBEE822862BCA20031976A /* Apollo */,
-				78BBEE842862BCA20031976A /* ApolloWebSocket */,
 				7802E17E288B9A1300F7D501 /* FirebaseAnalytics */,
 				7802E180288B9A1300F7D501 /* FirebaseAuth */,
 				7802E182288B9A1300F7D501 /* FirebaseCrashlytics */,
@@ -505,8 +500,6 @@
 			);
 			mainGroup = 783DECC528617EEB0062343E;
 			packageReferences = (
-				78BBEE7E2862BAB20031976A /* XCRemoteSwiftPackageReference "apollo-ios" */,
-				78BBEE812862BCA20031976A /* XCRemoteSwiftPackageReference "apollo-ios" */,
 				7802E17D288B9A1300F7D501 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 783DECCF28617EEB0062343E /* Products */;
@@ -525,12 +518,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78DAADF128695C1500FEB0DA /* GetTeamsByUserId.graphql in Resources */,
-				7802E176288A539200F7D501 /* schema.json in Resources */,
+				7872D70028978C1700E598D2 /* .gitignore in Resources */,
 				783DECDE28617EED0062343E /* LaunchScreen.storyboard in Resources */,
 				783DECDB28617EED0062343E /* Assets.xcassets in Resources */,
 				783DECD928617EEB0062343E /* Main.storyboard in Resources */,
-				7802E185288B9E2500F7D501 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,7 +529,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7802E186288B9E2500F7D501 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,32 +536,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7802E187288B9E2500F7D501 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		78BBEE882862BFE70031976A /* Apollo */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = Apollo;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Don't run this during index builds\nif [ $ACTION = \"indexbuild\" ]; then exit 0; fi\n\n# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"http://localhost:3000/graphql\"\n\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API.swift\n\n\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		783DECCA28617EEB0062343E /* Sources */ = {
@@ -579,27 +547,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				78BFFAA428879A3F00A767AB /* FormSwitchControlledDateCollectionViewCell.swift in Sources */,
+				78E4F89228938DE50075F04F /* UserModel.swift in Sources */,
 				7802E189288B9EB000F7D501 /* SignIn.swift in Sources */,
 				78B6878E2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift in Sources */,
+				7802E1AA288E3D0900F7D501 /* SignUpCompletedForm.swift in Sources */,
+				78E4F88C289386F50075F04F /* TaskService.swift in Sources */,
 				78B6878A2887A6D2006B6CAB /* SwitchControlledDateFormComponent.swift in Sources */,
 				7802E19D288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift in Sources */,
 				78B68792288829F0006B6CAB /* FieldValidInvalidProtocol.swift in Sources */,
 				78A4E0C32883BDEA0067DBCE /* RegexPatterns.swift in Sources */,
 				7802E195288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift in Sources */,
+				7802E1A6288E399500F7D501 /* Authentication.swift in Sources */,
 				783DED062861F4C90062343E /* Extensions.swift in Sources */,
+				78E4F8942893911B0075F04F /* TaskHistoryModel.swift in Sources */,
 				78D7C3C528776F80001F48C5 /* FormCompositionalLayout.swift in Sources */,
 				78D7C3C22877690B001F48C5 /* FormDateCollectionViewCell.swift in Sources */,
+				7872D6FC28950C5E00E598D2 /* TeamService.swift in Sources */,
 				78BBB8FC28642207006B3FDC /* HomeScreenTaskCell.swift in Sources */,
 				78C4D95D286EAFFC006550A9 /* IntervalPicker.swift in Sources */,
 				78A4E0C02883B98F0067DBCE /* ValidationError.swift in Sources */,
 				78BFFA9E2887784600A767AB /* FormSwitchControlledTextCollectionViewCell.swift in Sources */,
 				783DED092861F5500062343E /* HomeScreenVM.swift in Sources */,
-				78BBEE902862C34B0031976A /* Network.swift in Sources */,
 				78DAADEB2868D36700FEB0DA /* HomeScreenTeamCellVM.swift in Sources */,
 				783DED03286180470062343E /* HomeScreen.swift in Sources */,
 				7802E199288D9FEC00F7D501 /* PasswordFormComponent.swift in Sources */,
-				783DECD628617EEB0062343E /* ViewController.swift in Sources */,
+				783DECD628617EEB0062343E /* FormViewController.swift in Sources */,
 				78B687822887A616006B6CAB /* TextFormComponent.swift in Sources */,
+				78E4F88A289386CB0075F04F /* User.swift in Sources */,
 				7802E1A1288E2FAE00F7D501 /* SignUpVM.swift in Sources */,
 				78DAADED2868D5CF00FEB0DA /* HomeScreenTeamCell.swift in Sources */,
 				78DAADE52866B61400FEB0DA /* HomeScreenTaskCellVM.swift in Sources */,
@@ -608,19 +582,22 @@
 				7847732A28768B69009AFC92 /* TaskAddEditFormContentBuilderImpl.swift in Sources */,
 				78B687882887A6B2006B6CAB /* SwitchControlledTextFormComponent.swift in Sources */,
 				78A4E0BD2883B9550067DBCE /* RegexFormItem.swift in Sources */,
+				7872D6FA28950AEF00E598D2 /* TeamModel.swift in Sources */,
 				78B687842887A64E006B6CAB /* DateFormComponent.swift in Sources */,
 				78BFFAA228878DEC00A767AB /* FormCollectionView.swift in Sources */,
-				78BBB8FA286415AF006B3FDC /* API.swift in Sources */,
 				7802E18D288B9EB900F7D501 /* SignUp.swift in Sources */,
 				78B687862887A67B006B6CAB /* ButtonFormComponent.swift in Sources */,
+				78E4F88E2893881D0075F04F /* TaskModel.swift in Sources */,
 				78477327287687DD009AFC92 /* FormModel.swift in Sources */,
 				78B687902887AE29006B6CAB /* FieldVisibilityProtocol.swift in Sources */,
 				78D7C3C028776499001F48C5 /* FormTextCollectionViewCell.swift in Sources */,
+				7872D6FE2896B03F00E598D2 /* ToJsonProtcol.swift in Sources */,
 				78DAADF52869663000FEB0DA /* TaskAddEditScreenVM.swift in Sources */,
 				78B687802887A5E5006B6CAB /* FormComponent.swift in Sources */,
-				78DAADE72866B64500FEB0DA /* Types.swift in Sources */,
+				78E4F890289389B00075F04F /* IntervalObject.swift in Sources */,
 				78DAADF32869617600FEB0DA /* TaskAddEditScreen.swift in Sources */,
 				783DECD428617EEB0062343E /* SceneDelegate.swift in Sources */,
+				78E4F896289393150075F04F /* Networking.swift in Sources */,
 				7847732D28768D14009AFC92 /* FormButtonCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -630,12 +607,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				783DECE928617EED0062343E /* YourTurnTests.swift in Sources */,
-				7802E19A288D9FEC00F7D501 /* PasswordFormComponent.swift in Sources */,
-				7802E18E288B9EB900F7D501 /* SignUp.swift in Sources */,
-				7802E19E288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift in Sources */,
-				7802E18A288B9EB000F7D501 /* SignIn.swift in Sources */,
-				7802E196288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift in Sources */,
-				7802E1A2288E2FAE00F7D501 /* SignUpVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -643,14 +614,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7802E19B288D9FEC00F7D501 /* PasswordFormComponent.swift in Sources */,
-				7802E19F288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift in Sources */,
-				7802E1A3288E2FAE00F7D501 /* SignUpVM.swift in Sources */,
 				783DECF528617EED0062343E /* YourTurnUITestsLaunchTests.swift in Sources */,
-				7802E18F288B9EB900F7D501 /* SignUp.swift in Sources */,
-				7802E18B288B9EB000F7D501 /* SignIn.swift in Sources */,
 				783DECF328617EED0062343E /* YourTurnUITests.swift in Sources */,
-				7802E197288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -979,22 +944,6 @@
 				minimumVersion = 9.0.0;
 			};
 		};
-		78BBEE7E2862BAB20031976A /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.9.5;
-			};
-		};
-		78BBEE812862BCA20031976A /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1012,21 +961,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7802E17D288B9A1300F7D501 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
-		};
-		78BBEE7F2862BAB20031976A /* Apollo */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 78BBEE7E2862BAB20031976A /* XCRemoteSwiftPackageReference "apollo-ios" */;
-			productName = Apollo;
-		};
-		78BBEE822862BCA20031976A /* Apollo */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 78BBEE812862BCA20031976A /* XCRemoteSwiftPackageReference "apollo-ios" */;
-			productName = Apollo;
-		};
-		78BBEE842862BCA20031976A /* ApolloWebSocket */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 78BBEE812862BCA20031976A /* XCRemoteSwiftPackageReference "apollo-ios" */;
-			productName = ApolloWebSocket;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

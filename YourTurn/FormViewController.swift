@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class ViewController: UIViewController {
+class FormViewController: UIViewController {
     
     private lazy var formContentBuilder = TaskAddEditFormContentBuilderImpl()
     private lazy var formCompositionalLayout = FormCompositionalLayout()
@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     }
 }
 
-private extension ViewController {
+private extension FormViewController {
     
     func updateDataSource(animated: Bool = false) {
         
@@ -98,7 +98,7 @@ private extension ViewController {
     }
 }
 
-private extension ViewController {
+private extension FormViewController {
     
     func setup() {
         
