@@ -18,6 +18,16 @@
 		7802E1A1288E2FAE00F7D501 /* SignUpVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E1A0288E2FAE00F7D501 /* SignUpVM.swift */; };
 		7802E1A6288E399500F7D501 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E1A5288E399500F7D501 /* Authentication.swift */; };
 		7802E1AA288E3D0900F7D501 /* SignUpCompletedForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E1A9288E3D0900F7D501 /* SignUpCompletedForm.swift */; };
+		780F196828A45EA300371B91 /* SignInVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F196728A45EA300371B91 /* SignInVM.swift */; };
+		780F196A28A45F2300371B91 /* AuthenticationCompletedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F196928A45F2300371B91 /* AuthenticationCompletedProtocol.swift */; };
+		780F196D28A4901000371B91 /* ValidationManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F196C28A4901000371B91 /* ValidationManagerProtocol.swift */; };
+		780F197028A4905100371B91 /* RegexValidationManagerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F196F28A4905100371B91 /* RegexValidationManagerImpl.swift */; };
+		780F197228A4907D00371B91 /* DateAgeLimitValidationManagerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F197128A4907D00371B91 /* DateAgeLimitValidationManagerImpl.swift */; };
+		780F197428A490C200371B91 /* DateInFutureValidationManagerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F197328A490C200371B91 /* DateInFutureValidationManagerImpl.swift */; };
+		780F197628A490DB00371B91 /* StringMaxLengthValidationManagerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F197528A490DB00371B91 /* StringMaxLengthValidationManagerImpl.swift */; };
+		780F197828A492E500371B91 /* SwitchAuthScreenProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F197728A492E500371B91 /* SwitchAuthScreenProtocol.swift */; };
+		780F197A28A493FE00371B91 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F197928A493FE00371B91 /* AuthViewController.swift */; };
+		780F197C28A4B0C700371B91 /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F197B28A4B0C700371B91 /* RootController.swift */; };
 		783DECD228617EEB0062343E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD128617EEB0062343E /* AppDelegate.swift */; };
 		783DECD428617EEB0062343E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD328617EEB0062343E /* SceneDelegate.swift */; };
 		783DECD628617EEB0062343E /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD528617EEB0062343E /* FormViewController.swift */; };
@@ -37,6 +47,7 @@
 		7872D6FC28950C5E00E598D2 /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872D6FB28950C5E00E598D2 /* TeamService.swift */; };
 		7872D6FE2896B03F00E598D2 /* ToJsonProtcol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872D6FD2896B03F00E598D2 /* ToJsonProtcol.swift */; };
 		7872D70028978C1700E598D2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7872D6FF28978C1700E598D2 /* .gitignore */; };
+		7872D70228978D3F00E598D2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7872D70128978D3F00E598D2 /* GoogleService-Info.plist */; };
 		78A4E0BD2883B9550067DBCE /* RegexFormItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A4E0BC2883B9550067DBCE /* RegexFormItem.swift */; };
 		78A4E0C02883B98F0067DBCE /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A4E0BF2883B98F0067DBCE /* ValidationError.swift */; };
 		78A4E0C32883BDEA0067DBCE /* RegexPatterns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A4E0C22883BDEA0067DBCE /* RegexPatterns.swift */; };
@@ -98,6 +109,16 @@
 		7802E1A0288E2FAE00F7D501 /* SignUpVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVM.swift; sourceTree = "<group>"; };
 		7802E1A5288E399500F7D501 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		7802E1A9288E3D0900F7D501 /* SignUpCompletedForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompletedForm.swift; sourceTree = "<group>"; };
+		780F196728A45EA300371B91 /* SignInVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVM.swift; sourceTree = "<group>"; };
+		780F196928A45F2300371B91 /* AuthenticationCompletedProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCompletedProtocol.swift; sourceTree = "<group>"; };
+		780F196C28A4901000371B91 /* ValidationManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManagerProtocol.swift; sourceTree = "<group>"; };
+		780F196F28A4905100371B91 /* RegexValidationManagerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexValidationManagerImpl.swift; sourceTree = "<group>"; };
+		780F197128A4907D00371B91 /* DateAgeLimitValidationManagerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAgeLimitValidationManagerImpl.swift; sourceTree = "<group>"; };
+		780F197328A490C200371B91 /* DateInFutureValidationManagerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateInFutureValidationManagerImpl.swift; sourceTree = "<group>"; };
+		780F197528A490DB00371B91 /* StringMaxLengthValidationManagerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringMaxLengthValidationManagerImpl.swift; sourceTree = "<group>"; };
+		780F197728A492E500371B91 /* SwitchAuthScreenProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchAuthScreenProtocol.swift; sourceTree = "<group>"; };
+		780F197928A493FE00371B91 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		780F197B28A4B0C700371B91 /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
 		783DECCE28617EEB0062343E /* YourTurn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourTurn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		783DECD128617EEB0062343E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		783DECD328617EEB0062343E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +142,7 @@
 		7872D6FB28950C5E00E598D2 /* TeamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamService.swift; sourceTree = "<group>"; };
 		7872D6FD2896B03F00E598D2 /* ToJsonProtcol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToJsonProtcol.swift; sourceTree = "<group>"; };
 		7872D6FF28978C1700E598D2 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		7872D70128978D3F00E598D2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		78A4E0BC2883B9550067DBCE /* RegexFormItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexFormItem.swift; sourceTree = "<group>"; };
 		78A4E0BF2883B98F0067DBCE /* ValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
 		78A4E0C22883BDEA0067DBCE /* RegexPatterns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexPatterns.swift; sourceTree = "<group>"; };
@@ -196,6 +218,30 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		780F196B28A4900200371B91 /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				780F196F28A4905100371B91 /* RegexValidationManagerImpl.swift */,
+				780F197128A4907D00371B91 /* DateAgeLimitValidationManagerImpl.swift */,
+				780F197328A490C200371B91 /* DateInFutureValidationManagerImpl.swift */,
+				780F197528A490DB00371B91 /* StringMaxLengthValidationManagerImpl.swift */,
+			);
+			path = Validators;
+			sourceTree = "<group>";
+		};
+		780F197D28A4B7EE00371B91 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				780F196C28A4901000371B91 /* ValidationManagerProtocol.swift */,
+				78B6878F2887AE29006B6CAB /* FieldVisibilityProtocol.swift */,
+				78B68791288829F0006B6CAB /* FieldValidInvalidProtocol.swift */,
+				7872D6FD2896B03F00E598D2 /* ToJsonProtcol.swift */,
+				780F196928A45F2300371B91 /* AuthenticationCompletedProtocol.swift */,
+				780F197728A492E500371B91 /* SwitchAuthScreenProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		783DECC528617EEB0062343E = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +266,7 @@
 		783DECD028617EEB0062343E /* YourTurn */ = {
 			isa = PBXGroup;
 			children = (
+				7872D70128978D3F00E598D2 /* GoogleService-Info.plist */,
 				7802E1A4288E398100F7D501 /* Services */,
 				78A4E0BA2883B9420067DBCE /* Regex */,
 				78D7C3C328776F41001F48C5 /* Layout */,
@@ -263,6 +310,7 @@
 				783DED02286180470062343E /* HomeScreen.swift */,
 				78DAADF22869617500FEB0DA /* TaskAddEditScreen.swift */,
 				78BFFAA128878DEC00A767AB /* FormCollectionView.swift */,
+				780F197B28A4B0C700371B91 /* RootController.swift */,
 				7802E188288B9EB000F7D501 /* SignIn.swift */,
 				7802E18C288B9EB900F7D501 /* SignUp.swift */,
 			);
@@ -272,10 +320,9 @@
 		783DED042861F4BD0062343E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				780F197D28A4B7EE00371B91 /* Protocols */,
 				783DED052861F4C90062343E /* Extensions.swift */,
-				78B6878F2887AE29006B6CAB /* FieldVisibilityProtocol.swift */,
-				78B68791288829F0006B6CAB /* FieldValidInvalidProtocol.swift */,
-				7872D6FD2896B03F00E598D2 /* ToJsonProtcol.swift */,
+				780F197928A493FE00371B91 /* AuthViewController.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -289,6 +336,7 @@
 				7847732928768B69009AFC92 /* TaskAddEditFormContentBuilderImpl.swift */,
 				7802E194288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift */,
 				7802E1A0288E2FAE00F7D501 /* SignUpVM.swift */,
+				780F196728A45EA300371B91 /* SignInVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -325,6 +373,7 @@
 		78A4E0BA2883B9420067DBCE /* Regex */ = {
 			isa = PBXGroup;
 			children = (
+				780F196B28A4900200371B91 /* Validators */,
 				78A4E0C12883BDDB0067DBCE /* Patterns */,
 				78A4E0BE2883B97C0067DBCE /* Error */,
 				78A4E0BB2883B9490067DBCE /* Model */,
@@ -520,6 +569,7 @@
 			files = (
 				7872D70028978C1700E598D2 /* .gitignore in Resources */,
 				783DECDE28617EED0062343E /* LaunchScreen.storyboard in Resources */,
+				7872D70228978D3F00E598D2 /* GoogleService-Info.plist in Resources */,
 				783DECDB28617EED0062343E /* Assets.xcassets in Resources */,
 				783DECD928617EEB0062343E /* Main.storyboard in Resources */,
 			);
@@ -546,16 +596,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				780F196A28A45F2300371B91 /* AuthenticationCompletedProtocol.swift in Sources */,
 				78BFFAA428879A3F00A767AB /* FormSwitchControlledDateCollectionViewCell.swift in Sources */,
 				78E4F89228938DE50075F04F /* UserModel.swift in Sources */,
+				780F196828A45EA300371B91 /* SignInVM.swift in Sources */,
+				780F197828A492E500371B91 /* SwitchAuthScreenProtocol.swift in Sources */,
 				7802E189288B9EB000F7D501 /* SignIn.swift in Sources */,
 				78B6878E2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift in Sources */,
 				7802E1AA288E3D0900F7D501 /* SignUpCompletedForm.swift in Sources */,
 				78E4F88C289386F50075F04F /* TaskService.swift in Sources */,
 				78B6878A2887A6D2006B6CAB /* SwitchControlledDateFormComponent.swift in Sources */,
 				7802E19D288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift in Sources */,
+				780F197428A490C200371B91 /* DateInFutureValidationManagerImpl.swift in Sources */,
 				78B68792288829F0006B6CAB /* FieldValidInvalidProtocol.swift in Sources */,
 				78A4E0C32883BDEA0067DBCE /* RegexPatterns.swift in Sources */,
+				780F197228A4907D00371B91 /* DateAgeLimitValidationManagerImpl.swift in Sources */,
 				7802E195288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift in Sources */,
 				7802E1A6288E399500F7D501 /* Authentication.swift in Sources */,
 				783DED062861F4C90062343E /* Extensions.swift in Sources */,
@@ -571,6 +626,7 @@
 				78DAADEB2868D36700FEB0DA /* HomeScreenTeamCellVM.swift in Sources */,
 				783DED03286180470062343E /* HomeScreen.swift in Sources */,
 				7802E199288D9FEC00F7D501 /* PasswordFormComponent.swift in Sources */,
+				780F197A28A493FE00371B91 /* AuthViewController.swift in Sources */,
 				783DECD628617EEB0062343E /* FormViewController.swift in Sources */,
 				78B687822887A616006B6CAB /* TextFormComponent.swift in Sources */,
 				78E4F88A289386CB0075F04F /* User.swift in Sources */,
@@ -578,13 +634,16 @@
 				78DAADED2868D5CF00FEB0DA /* HomeScreenTeamCell.swift in Sources */,
 				78DAADE52866B61400FEB0DA /* HomeScreenTaskCellVM.swift in Sources */,
 				78B6878C2887A9CE006B6CAB /* HideableIntervalPickerFormComponent.swift in Sources */,
+				780F197628A490DB00371B91 /* StringMaxLengthValidationManagerImpl.swift in Sources */,
 				783DECD228617EEB0062343E /* AppDelegate.swift in Sources */,
 				7847732A28768B69009AFC92 /* TaskAddEditFormContentBuilderImpl.swift in Sources */,
+				780F197028A4905100371B91 /* RegexValidationManagerImpl.swift in Sources */,
 				78B687882887A6B2006B6CAB /* SwitchControlledTextFormComponent.swift in Sources */,
 				78A4E0BD2883B9550067DBCE /* RegexFormItem.swift in Sources */,
 				7872D6FA28950AEF00E598D2 /* TeamModel.swift in Sources */,
 				78B687842887A64E006B6CAB /* DateFormComponent.swift in Sources */,
 				78BFFAA228878DEC00A767AB /* FormCollectionView.swift in Sources */,
+				780F197C28A4B0C700371B91 /* RootController.swift in Sources */,
 				7802E18D288B9EB900F7D501 /* SignUp.swift in Sources */,
 				78B687862887A67B006B6CAB /* ButtonFormComponent.swift in Sources */,
 				78E4F88E2893881D0075F04F /* TaskModel.swift in Sources */,
@@ -592,6 +651,7 @@
 				78B687902887AE29006B6CAB /* FieldVisibilityProtocol.swift in Sources */,
 				78D7C3C028776499001F48C5 /* FormTextCollectionViewCell.swift in Sources */,
 				7872D6FE2896B03F00E598D2 /* ToJsonProtcol.swift in Sources */,
+				780F196D28A4901000371B91 /* ValidationManagerProtocol.swift in Sources */,
 				78DAADF52869663000FEB0DA /* TaskAddEditScreenVM.swift in Sources */,
 				78B687802887A5E5006B6CAB /* FormComponent.swift in Sources */,
 				78E4F890289389B00075F04F /* IntervalObject.swift in Sources */,

@@ -18,11 +18,7 @@ class HomeScreen: UIViewController {
     // MARK: - Properties
     private var subscriptions = Set<AnyCancellable>()
     
-    private lazy var token: String? = nil {
-        didSet {
-            print("WE HAVE THE TOKEN!!!!: \(String(describing: token))")
-        }
-    }
+    var logoutEventSubject = PassthroughSubject<Bool, Never>()
     
     var viewModel: HomeScreenVM? {
         didSet {
@@ -63,6 +59,12 @@ class HomeScreen: UIViewController {
         return button
     }()
     
+    private let temporaryLogoutButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Logout", for: .normal)
+        return button
+    }()
+    
     private let taskTableView: UITableView = {
         let tv = UITableView()
         tv.tag = TASK_TABLE_TAG
@@ -77,26 +79,11 @@ class HomeScreen: UIViewController {
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
-        AuthenticationService.signOut()
         super.viewDidLoad()
-        viewModel?.checkIfUserIsLoggedIn(navigationController: navigationController)
         configureView()
         configureInteractables()
         configureTableViews()
         configureCombine()
-        
-        getToken()
-    }
-    
-    func getToken() {
-        Task {
-            do {
-                token = try await AuthenticationService.getToken()
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-        
     }
     
     // MARK: - Helpers
@@ -112,6 +99,9 @@ class HomeScreen: UIViewController {
         view.addSubview(addTaskButton)
         addTaskButton.anchor(top: topSafeAnchor, right: rightSafeAnchor, paddingRight: 8)
         
+        view.addSubview(temporaryLogoutButton)
+        temporaryLogoutButton.anchor(top: topSafeAnchor, left: leftSafeAnchor, paddingLeft: 8)
+        
         view.addSubview(teamTitleLabel)
         teamTitleLabel.center(inView: view)
         
@@ -125,6 +115,7 @@ class HomeScreen: UIViewController {
     
     private func configureInteractables() {
         addTaskButton.addTarget(self, action: #selector(onAddTaskPressed), for: .touchUpInside)
+        temporaryLogoutButton.addTarget(self, action: #selector(onTempLogoutPressed), for: .touchUpInside)
     }
     
     private func configureCombine() {
@@ -139,10 +130,6 @@ class HomeScreen: UIViewController {
             self.teams = incomingTeams
         }).store(in: &subscriptions)
         
-        viewModel?.authCompleteDismissView.receive(on: DispatchQueue.main).sink(receiveValue: { [weak self] _ in
-                self?.dismiss(animated: true)
-        }).store(in: &subscriptions)
-        
         viewModel?.loadTasks()
         viewModel?.loadTeams()
     }
@@ -150,6 +137,10 @@ class HomeScreen: UIViewController {
     // MARK: - Actions
     @objc func onAddTaskPressed() {
         viewModel?.onAddTaskPress(navigationController: navigationController)
+    }
+    
+    @objc func onTempLogoutPressed() {
+        logoutEventSubject.send(true)
     }
 }
 

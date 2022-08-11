@@ -18,10 +18,8 @@ class HomeScreenVM {
                                                     attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
     
     var tasksSubject = PassthroughSubject<TaskModelArray, Never>()
-//    
+
     var teamsSubject = PassthroughSubject<[TeamModel], Never>()
-    
-    var authCompleteDismissView = PassthroughSubject<Bool, Never>()
     
     func loadTasks() {
         TaskService.getTasksByAssignedUserId { [weak self] tasks, error in
@@ -51,26 +49,4 @@ class HomeScreenVM {
         navigationController?.pushViewController(newVc, animated: false)
     }
     
-    func checkIfUserIsLoggedIn(navigationController: UINavigationController?) {
-        if !AuthenticationService.doesCurrentUserExist() {
-            DispatchQueue.main.async {
-                let controller = SignUpScreen()
-                let signUpVM = SignUpVM()
-                controller.viewModel = signUpVM
-                controller.delegate = self
-                let nav = UINavigationController(rootViewController: controller)
-                nav.modalPresentationStyle = .fullScreen
-                navigationController?.present(nav, animated: false, completion: nil)
-            }
-            
-        }
-
-    }
-}
-
-extension HomeScreenVM: SignUpScreenDelegate {
-    func authenticationDidComplete(viewController: UIViewController) {
-        authCompleteDismissView
-            .send(true)
-    }
 }

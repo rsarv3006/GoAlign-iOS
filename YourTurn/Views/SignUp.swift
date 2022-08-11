@@ -9,11 +9,7 @@ import Foundation
 import UIKit
 import Combine
 
-protocol SignUpScreenDelegate: AnyObject {
-    func authenticationDidComplete(viewController: UIViewController)
-}
-
-class SignUpScreen: UIViewController {
+class SignUpScreen: AuthViewController {
     
     var viewModel: SignUpVM? {
         didSet {
@@ -28,7 +24,7 @@ class SignUpScreen: UIViewController {
     private lazy var formCompLayout = FormCompositionalLayout()
     private lazy var dataSource = makeDataSource()
     
-    weak var delegate: SignUpScreenDelegate?
+    weak var delegate: AuthScreenDelegate?
     
     private lazy var collectionView: UICollectionView = {
         return FormCollectionView(frame: .zero, collectionViewLayout: formCompLayout.layout)
@@ -44,6 +40,7 @@ class SignUpScreen: UIViewController {
         let button = UIButton(type: .system)
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .center
+        button.addTarget(self, action: #selector(onButtonToSignInScreenPressed), for: .touchUpInside)
         return button
     }()
     
@@ -52,6 +49,12 @@ class SignUpScreen: UIViewController {
         super.loadView()
         setup()
         updateDataSource()
+    }
+    
+    // Mark: - Helpers
+    @objc func onButtonToSignInScreenPressed() {
+        print("DEBUG 1")
+        delegate?.requestOtherAuthScreen(viewController: self)
     }
     
 }

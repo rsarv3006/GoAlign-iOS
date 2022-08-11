@@ -16,7 +16,8 @@ final class SignUpFormContentBuilderImpl {
             TextFormComponent(id: .signUpUserName, placeholder: "Username", validations: [
                 RegexValidationManagerImpl([
                     RegexFormItem(pattern: RegexPatterns.higherThanSixChars, error: .custom(message: "Username is too short")),
-                ])
+                ]),
+                StringMaxLengthValidationManagerImpl(maxLength: 18, errorMessage: "Username is too long")
             ]),
             TextFormComponent(id: .signUpEmailAddress, placeholder: "Email Address", validations: [
                 RegexValidationManagerImpl([
