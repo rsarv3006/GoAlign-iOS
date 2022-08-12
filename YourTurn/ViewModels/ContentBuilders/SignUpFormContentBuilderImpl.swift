@@ -39,7 +39,7 @@ final class SignUpFormContentBuilderImpl {
         do {
             let formComponents = formContent
                 .flatMap { $0.items }
-                .filter { $0.formId != .taskCreationSubmit }
+                .filter { $0.formId != .signUpSubmit }
             
             for component in formComponents {
                 for validator in component.validations {

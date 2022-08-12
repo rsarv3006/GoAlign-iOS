@@ -76,20 +76,19 @@ extension RootController {
 // MARK: - AuthScreenDelegate
 extension RootController: AuthScreenDelegate {
     func requestOtherAuthScreen(viewController: AuthViewController) {
-        print("DEBUG 2")
         self.dismiss(animated: true)
         if viewController.screenId == .SignUp {
-            print("DEBUG 3")
             goSignIn()
         } else if viewController.screenId == .SignIn {
-            print("DEBUG 4")
             goSignUp()
         }
         
     }
     
     func authenticationDidComplete(viewController: AuthViewController) {
-        self.dismiss(animated: true)
-        goHome()
+        DispatchQueue.main.async {
+            self.dismiss(animated: true)
+            self.goHome()
+        }
     }
 }

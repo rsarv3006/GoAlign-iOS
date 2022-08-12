@@ -43,6 +43,19 @@ struct AuthenticationService {
         }
     }
     
+    static func signInToAccount(form: SignInCompletedForm, completion: @escaping(((UserModel?, Error?) -> Void))) {
+        Auth.auth().signIn(withEmail: form.emailAddress, password: form.password) { authResult, error in
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            
+            UserService.getCurrentUser { user, error in
+                completion(user, error)
+            }
+        }
+    }
+    
     static func getToken() async throws -> String? {
         let token = try await self.getCurrentUser()?.getIDTokenResult(forcingRefresh: true)
         return token?.token

@@ -51,4 +51,34 @@ struct UserService {
             }
         }
     }
+    
+    static func getCurrentUser(completionHandler: @escaping((UserModel?, Error?) -> Void)) {
+        let url = URL(string: "http://localhost:4001/user/current")
+        
+        guard let url = url else {
+            completionHandler(nil, UserError.custom(message: "Bad URL"))
+            return
+        }
+        
+        Networking.get(url: url) { data, response, error in
+            guard error == nil else {
+                completionHandler(nil, error)
+                return
+            }
+            
+            if let data = data, let response = response as? HTTPURLResponse {
+                do {
+                    if response.statusCode == 500 {
+                        throw UserError.custom(message: (String(data: data, encoding: String.Encoding.utf8) ?? "Something went wrong"))
+                    }
+                    
+                    let userModel = try JSONDecoder().decode(UserModel.self, from: data)
+                    completionHandler(userModel, nil)
+                } catch {
+                    print("DEBUG: Failed to fetch current user: \(error)")
+                    completionHandler(nil, error)
+                }
+            }
+        }
+    }
 }

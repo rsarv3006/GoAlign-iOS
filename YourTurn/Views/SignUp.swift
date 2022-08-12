@@ -18,29 +18,13 @@ class SignUpScreen: AuthViewController {
         }
     }
     
-    private var subscriptions = Set<AnyCancellable>()
-    
     private lazy var formContentBuilder = SignUpFormContentBuilderImpl()
-    private lazy var formCompLayout = FormCompositionalLayout()
     private lazy var dataSource = makeDataSource()
-    
-    weak var delegate: AuthScreenDelegate?
-    
-    private lazy var collectionView: UICollectionView = {
-        return FormCollectionView(frame: .zero, collectionViewLayout: formCompLayout.layout)
-    }()
-    
-    private let topLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: "American Typewriter", size: 32)
-        return label
-    }()
     
     private let buttonToSignInScreen: UIButton = {
         let button = UIButton(type: .system)
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .center
-        button.addTarget(self, action: #selector(onButtonToSignInScreenPressed), for: .touchUpInside)
         return button
     }()
     
@@ -49,11 +33,11 @@ class SignUpScreen: AuthViewController {
         super.loadView()
         setup()
         updateDataSource()
+        configureInteractables()
     }
     
     // Mark: - Helpers
     @objc func onButtonToSignInScreenPressed() {
-        print("DEBUG 1")
         delegate?.requestOtherAuthScreen(viewController: self)
     }
     
@@ -61,23 +45,25 @@ class SignUpScreen: AuthViewController {
 
 private extension SignUpScreen {
     func setup() {
+        let topSafeAnchor = view.safeAreaLayoutGuide.topAnchor
+        let leftSafeAnchor = view.safeAreaLayoutGuide.leftAnchor
+        let rightSafeAnchor = view.safeAreaLayoutGuide.rightAnchor
+        let bottomSafeAnchor = view.safeAreaLayoutGuide.bottomAnchor
+        
         formSubmissionSubscription()
         signUpCompletedSubscription()
         
         collectionView.dataSource = dataSource
         
         view.addSubview(topLabel)
-        
-        topLabel.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor, paddingTop: 32)
+        topLabel.centerX(inView: view, topAnchor: topSafeAnchor, paddingTop: 32)
         
         view.addSubview(collectionView)
-        
-        collectionView.anchor(top: topLabel.bottomAnchor, left: view.safeAreaLayoutGuide.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.safeAreaLayoutGuide.rightAnchor, paddingTop: 24)
+        collectionView.anchor(top: topLabel.bottomAnchor, left: leftSafeAnchor, bottom: bottomSafeAnchor, right: rightSafeAnchor, paddingTop: 24)
         
         view.addSubview(buttonToSignInScreen)
-        
         buttonToSignInScreen.centerX(inView: view)
-        buttonToSignInScreen.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, paddingBottom: 32)
+        buttonToSignInScreen.anchor(bottom: bottomSafeAnchor, paddingBottom: 32)
     }
     
     func makeDataSource() -> UICollectionViewDiffableDataSource<FormSectionComponent, FormComponent> {
@@ -144,6 +130,10 @@ private extension SignUpScreen {
             }
         })
         .store(in: &subscriptions)
+    }
+    
+    func configureInteractables() {
+        buttonToSignInScreen.addTarget(self, action: #selector(onButtonToSignInScreenPressed), for: .touchUpInside)
     }
 }
 

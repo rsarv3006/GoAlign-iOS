@@ -14,7 +14,6 @@ enum HttpMethod: String {
 }
 
 struct Networking {
-    
     private static func apiCall(httpMethod: HttpMethod, url: URL, body: Data? = nil, completion: @escaping((Data?, URLResponse?, Error?) -> Void)) {
         AuthenticationService.getToken { token, error in
             guard let token = token else {

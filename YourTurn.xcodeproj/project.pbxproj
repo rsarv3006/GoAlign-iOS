@@ -81,6 +81,8 @@
 		78E4F89228938DE50075F04F /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F89128938DE50075F04F /* UserModel.swift */; };
 		78E4F8942893911B0075F04F /* TaskHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F8932893911B0075F04F /* TaskHistoryModel.swift */; };
 		78E4F896289393150075F04F /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F895289393150075F04F /* Networking.swift */; };
+		78E743C028A595460069E691 /* SignInFormContentBuilderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E743BF28A595460069E691 /* SignInFormContentBuilderImpl.swift */; };
+		78E743C428A599A00069E691 /* SignInCompletedForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E743C328A599A00069E691 /* SignInCompletedForm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,6 +178,8 @@
 		78E4F89128938DE50075F04F /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		78E4F8932893911B0075F04F /* TaskHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskHistoryModel.swift; sourceTree = "<group>"; };
 		78E4F895289393150075F04F /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		78E743BF28A595460069E691 /* SignInFormContentBuilderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFormContentBuilderImpl.swift; sourceTree = "<group>"; };
+		78E743C328A599A00069E691 /* SignInCompletedForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCompletedForm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,11 +334,10 @@
 		783DED072861F5400062343E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				78E743BE28A5923F0069E691 /* ContentBuilders */,
 				78DAADE32866B60200FEB0DA /* CellVMs */,
 				783DED082861F5500062343E /* HomeScreenVM.swift */,
 				78DAADF42869663000FEB0DA /* TaskAddEditScreenVM.swift */,
-				7847732928768B69009AFC92 /* TaskAddEditFormContentBuilderImpl.swift */,
-				7802E194288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift */,
 				7802E1A0288E2FAE00F7D501 /* SignUpVM.swift */,
 				780F196728A45EA300371B91 /* SignInVM.swift */,
 			);
@@ -347,6 +350,7 @@
 				78BFFAA52887A5B000A767AB /* Form Components */,
 				78477326287687DD009AFC92 /* FormModel.swift */,
 				7802E1A9288E3D0900F7D501 /* SignUpCompletedForm.swift */,
+				78E743C328A599A00069E691 /* SignInCompletedForm.swift */,
 				78E4F88D2893881C0075F04F /* TaskModel.swift */,
 				78E4F88F289389B00075F04F /* IntervalObject.swift */,
 				78E4F89128938DE50075F04F /* UserModel.swift */,
@@ -453,6 +457,16 @@
 				78DAADEA2868D36700FEB0DA /* HomeScreenTeamCellVM.swift */,
 			);
 			path = CellVMs;
+			sourceTree = "<group>";
+		};
+		78E743BE28A5923F0069E691 /* ContentBuilders */ = {
+			isa = PBXGroup;
+			children = (
+				7847732928768B69009AFC92 /* TaskAddEditFormContentBuilderImpl.swift */,
+				7802E194288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift */,
+				78E743BF28A595460069E691 /* SignInFormContentBuilderImpl.swift */,
+			);
+			path = ContentBuilders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -597,6 +611,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				780F196A28A45F2300371B91 /* AuthenticationCompletedProtocol.swift in Sources */,
+				78E743C028A595460069E691 /* SignInFormContentBuilderImpl.swift in Sources */,
 				78BFFAA428879A3F00A767AB /* FormSwitchControlledDateCollectionViewCell.swift in Sources */,
 				78E4F89228938DE50075F04F /* UserModel.swift in Sources */,
 				780F196828A45EA300371B91 /* SignInVM.swift in Sources */,
@@ -641,6 +656,7 @@
 				78B687882887A6B2006B6CAB /* SwitchControlledTextFormComponent.swift in Sources */,
 				78A4E0BD2883B9550067DBCE /* RegexFormItem.swift in Sources */,
 				7872D6FA28950AEF00E598D2 /* TeamModel.swift in Sources */,
+				78E743C428A599A00069E691 /* SignInCompletedForm.swift in Sources */,
 				78B687842887A64E006B6CAB /* DateFormComponent.swift in Sources */,
 				78BFFAA228878DEC00A767AB /* FormCollectionView.swift in Sources */,
 				780F197C28A4B0C700371B91 /* RootController.swift in Sources */,
