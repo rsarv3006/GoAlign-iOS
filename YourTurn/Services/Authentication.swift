@@ -13,12 +13,12 @@ enum AuthenticationError: Error {
 }
 
 struct AuthenticationService {
-    static func getCurrentUser() -> User? {
+    static func getCurrentFirebaseUser() -> User? {
         return Auth.auth().currentUser
     }
     
     static func doesCurrentUserExist() -> Bool {
-        return self.getCurrentUser() !== nil
+        return self.getCurrentFirebaseUser() !== nil
     }
     
     static func createAccount(form: SignUpCompletedForm, completion: @escaping(((UserModel?, Error?) -> Void))) {
@@ -28,7 +28,7 @@ struct AuthenticationService {
                 return
             }
 
-            let currentUser = self.getCurrentUser()
+            let currentUser = self.getCurrentFirebaseUser()
 
             if let userId = currentUser?.uid, let email = currentUser?.email {
                 let createUserDto = CreateUserDto(userId: userId, username: form.username, email: email)
@@ -57,12 +57,12 @@ struct AuthenticationService {
     }
     
     static func getToken() async throws -> String? {
-        let token = try await self.getCurrentUser()?.getIDTokenResult(forcingRefresh: true)
+        let token = try await self.getCurrentFirebaseUser()?.getIDTokenResult(forcingRefresh: true)
         return token?.token
     }
     
     static func getToken(completion: @escaping((String?, Error?) -> Void)) {
-        self.getCurrentUser()?.getIDTokenForcingRefresh(true, completion: completion)
+        self.getCurrentFirebaseUser()?.getIDTokenForcingRefresh(true, completion: completion)
     }
     
     static func signOut() {

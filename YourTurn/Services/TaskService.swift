@@ -38,5 +38,7 @@ struct TaskService {
             }
         }
     }
+    
+    static func createTask() {}
 }
 

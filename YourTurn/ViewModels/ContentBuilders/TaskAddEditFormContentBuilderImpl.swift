@@ -9,7 +9,7 @@ import Combine
 import Foundation
 
 final class TaskAddEditFormContentBuilderImpl {
-    private(set) var formSubmission = PassthroughSubject<[String: Any], Never>()
+    private(set) var formSubmission = PassthroughSubject<CreateTaskDto, Error>()
     
     private(set) var formContent = [
         FormSectionComponent(items: [
@@ -30,7 +30,7 @@ final class TaskAddEditFormContentBuilderImpl {
                               ],
                               title: "Start Date:"),
             SwitchControlledDateFormComponent(id: .endDate, mode: .date, switchLabel: "End Date", validations: [DateInFutureValidationManagerImpl()], title: ""),
-            SwitchControlledTextFormComponent(id: .numberofRequiredCompletions, placeholder: "Number of Completions Needed To Close Task", switchLabel: "Completions Needed:", keyboardType: .numberPad, validations: []),
+            SwitchControlledTextFormComponent(id: .requiredCompletionsNeeded, placeholder: "Number of Completions Needed To Close Task", switchLabel: "Completions Needed:", keyboardType: .numberPad, validations: []),
             HideableIntervalPickerFormComponent(id: .windowLength, title: "Task Window:", validations: []),
             HideableIntervalPickerFormComponent(id: .intervalBetweenWindows, title: "Time Between Tasks:", validations: []),
             TextFormComponent(id: .notes, placeholder: "Notes"),
@@ -57,7 +57,13 @@ final class TaskAddEditFormContentBuilderImpl {
             let validValues = formComponents.map { ($0.formId.rawValue, $0.value) }
             let validDict = Dictionary(uniqueKeysWithValues: validValues) as [String: Any]
             
-            formSubmission.send(validDict)
+            let uid = AuthenticationService.getCurrentFirebaseUser()?.uid
+            
+            do {
+                try formSubmission.send(CreateTaskDto(from: validDict, uid: uid))
+            } catch {
+                formSubmission.send(completion: .failure(error))
+            }
             
         } catch {
             print("Something is wrong with form: \(error)")

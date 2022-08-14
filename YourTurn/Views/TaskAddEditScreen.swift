@@ -101,10 +101,12 @@ private extension TaskAddEditScreen {
     func formSubmissionSubscription() {
         formContentBuilder
             .formSubmission
-            .sink { val in
+            .sink(receiveCompletion: { completion in
+                // TODO: Handle this error
+                print(completion)
+            }, receiveValue: { val in
                 print(val)
-            }
-            .store(in: &subscriptions)
+            }).store(in: &subscriptions)
     }
 }
 

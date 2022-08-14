@@ -25,7 +25,7 @@ enum FormField: String, CaseIterable {
     case startDate
     case endDate
     case taskCreationSubmit
-    case numberofRequiredCompletions
+    case requiredCompletionsNeeded
     case windowLength
     case intervalBetweenWindows
     
