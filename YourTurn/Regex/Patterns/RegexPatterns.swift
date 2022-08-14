@@ -11,4 +11,5 @@ enum RegexPatterns {
     static let emailChars = ".*[@].*"
     static let higherThanSixChars = "^.{6,}$"
     static let name = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"
+    static let higherThanSixteenChars = "^.{16,}$"
 }

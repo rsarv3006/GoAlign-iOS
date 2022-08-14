@@ -25,7 +25,12 @@ final class SignUpFormContentBuilderImpl {
                 ])
             ]),
             PasswordFormComponent(id: .signUpPassword, placeholder: "Password", confirmPlaceholder: "Confirm Password", validations: [
-                // Add validations
+                RegexValidationManagerImpl(
+                    [
+                        RegexFormItem(pattern: RegexPatterns.higherThanSixteenChars,
+                                      error: .custom(message: "Password must be 16 characters long."))
+                    ]
+                ),
             ]),
             ButtonFormComponent(id: .signUpSubmit, title: "Sign Up!")
         ])
