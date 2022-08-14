@@ -61,6 +61,8 @@ private extension FormTextCollectionViewCell {
     
     func setup(item: TextFormComponent) {
         
+        txtField.isSecureTextEntry = item.isSecureTextEntryEnabled
+        
         NotificationCenter
             .default
             .publisher(for: UITextField.textDidChangeNotification, object: txtField)

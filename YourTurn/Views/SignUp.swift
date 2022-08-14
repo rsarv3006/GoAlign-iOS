@@ -185,6 +185,10 @@ private extension SignUpScreen {
             }
             .store(in: &self.subscriptions)
         
+        cell.reload.sink { [weak self] _ in
+            self?.updateDataSource()
+        }.store(in: &self.subscriptions)
+        
         cell.bind(item, at: indexPath)
         return cell
     }

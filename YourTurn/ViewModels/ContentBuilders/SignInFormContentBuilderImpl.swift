@@ -18,7 +18,7 @@ final class SignInFormContentBuilderImpl {
                     RegexFormItem(pattern: RegexPatterns.emailChars, error: .custom(message: "Not a valid email"))
                 ])
             ]),
-            TextFormComponent(id: .signInPassword, placeholder: "Password", keyboardType: .default, validations: []),
+            TextFormComponent(id: .signInPassword, placeholder: "Password", keyboardType: .default, validations: [], isSecureTextEntryEnabled: true),
             ButtonFormComponent(id: .signInSubmit, title: "Sign In!")
         ])
     ]

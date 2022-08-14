@@ -70,45 +70,8 @@ class FormPasswordCollectionViewCell: UICollectionViewCell {
 private extension FormPasswordCollectionViewCell {
     
     func setup(item: PasswordFormComponent) {
-        
-        NotificationCenter
-            .default
-            .publisher(for: UITextField.textDidChangeNotification, object: passwordField)
-            .compactMap { ($0.object as? UITextField)?.text }
-            .map(String.init)
-            .sink { [weak self] val in
-                
-                guard let self = self,
-                      let indexPath = self.indexPath else { return }
-                
-                self.subject.send((val, indexPath))
-                
-                do {
-                    for validator in item.validations {
-                        try validator.validate(val)
-                    }
-                    
-                    self.passwordField.valid()
-                    if let errorLabelTextCount = self.errorLbl.text?.count, errorLabelTextCount > 0 {
-                        self.manipulateErrorLabel(.hide)
-                    }
-                    self.errorLbl.text = ""
-                    
-                    
-                } catch {
-                    
-                    self.passwordField.invalid()
-                    if let validationError = error as? ValidationError {
-                        switch validationError {
-                        case .custom(let message):
-                            self.manipulateErrorLabel(.show)
-                            self.errorLbl.text = message
-                        }
-                    }
-                    print(error)
-                }
-            }
-            .store(in: &subscriptions)
+        setUpListenerOnPasswordField(item: item)
+        setUpListenerOnConfirmPasswordField(item: item)
         
         // Setup
         passwordField.delegate = self
@@ -158,5 +121,97 @@ extension FormPasswordCollectionViewCell: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+}
+
+private extension FormPasswordCollectionViewCell {
+    func setUpListenerOnPasswordField(item: PasswordFormComponent) {
+        NotificationCenter
+            .default
+            .publisher(for: UITextField.textDidChangeNotification, object: passwordField)
+            .compactMap { ($0.object as? UITextField)?.text }
+            .map(String.init)
+            .sink { [weak self] val in
+                
+                guard let self = self,
+                      let indexPath = self.indexPath else { return }
+                
+                self.subject.send((val, indexPath))
+                
+                do {
+                    for validator in item.validations {
+                        try validator.validate(val)
+                    }
+                    
+                    if val != self.confirmPasswordField.text {
+                        throw ValidationError.custom(message: "Passwords do not match.")
+                    }
+                    
+                    self.passwordField.valid()
+                    if let errorLabelTextCount = self.errorLbl.text?.count, errorLabelTextCount > 0 {
+                        self.manipulateErrorLabel(.hide)
+                    }
+                    self.errorLbl.text = ""
+                    
+                    
+                } catch {
+                    
+                    self.passwordField.invalid()
+                    if let validationError = error as? ValidationError {
+                        switch validationError {
+                        case .custom(let message):
+                            self.manipulateErrorLabel(.show)
+                            self.errorLbl.text = message
+                        }
+                    }
+                    print(error)
+                }
+            }
+            .store(in: &subscriptions)
+    }
+    
+    func setUpListenerOnConfirmPasswordField(item: PasswordFormComponent) {
+        NotificationCenter
+            .default
+            .publisher(for: UITextField.textDidChangeNotification, object: confirmPasswordField)
+            .compactMap { ($0.object as? UITextField)?.text }
+            .map(String.init)
+            .sink { [weak self] val in
+                
+                guard let self = self,
+                      let indexPath = self.indexPath else { return }
+                
+                self.subject.send((val, indexPath))
+                
+                do {
+                    for validator in item.validations {
+                        try validator.validate(val)
+                    }
+                    
+                    if val != self.passwordField.text {
+                        throw ValidationError.custom(message: "Passwords do not match.")
+                    }
+                    
+                    self.passwordField.valid()
+                    if let errorLabelTextCount = self.errorLbl.text?.count, errorLabelTextCount > 0 {
+                        self.manipulateErrorLabel(.hide)
+                    }
+                    self.errorLbl.text = ""
+                    
+                    
+                } catch {
+                    
+                    self.passwordField.invalid()
+                    if let validationError = error as? ValidationError {
+                        switch validationError {
+                        case .custom(let message):
+                            self.manipulateErrorLabel(.show)
+                            self.errorLbl.text = message
+                        }
+                    }
+                    print(error)
+                }
+            }
+            .store(in: &subscriptions)
     }
 }

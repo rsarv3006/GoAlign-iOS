@@ -21,7 +21,8 @@ final class TaskAddEditFormContentBuilderImpl {
                                           RegexFormItem(pattern: RegexPatterns.name,
                                                         error: .custom(message: "Invalid task name entered"))
                                       ]
-                                  )
+                                  ),
+                                  StringMaxLengthValidationManagerImpl(maxLength: 32, errorMessage: "Task Name is too long")
                               ]),
             DateFormComponent(id: .startDate,
                               mode: .date,
