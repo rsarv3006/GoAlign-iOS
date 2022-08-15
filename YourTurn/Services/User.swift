@@ -13,7 +13,12 @@ enum UserError: Error {
 
 struct UserService {
     static func createUser(with user: CreateUserDto, completionHandler: @escaping((UserModel?, Error?) -> Void)) {
-        let url = URL(string: "http://localhost:4001/user")
+        guard let baseUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
+            completionHandler(nil, UserError.custom(message: "API_URL is malformed."))
+            return
+        }
+        
+        let url = URL(string: "\(baseUrl)user")
         
         guard let url = url else {
             completionHandler(nil, UserError.custom(message: "Bad URL"))
@@ -53,7 +58,12 @@ struct UserService {
     }
     
     static func getCurrentUser(completionHandler: @escaping((UserModel?, Error?) -> Void)) {
-        let url = URL(string: "http://localhost:4001/user/current")
+        guard let baseUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
+            completionHandler(nil, UserError.custom(message: "API_URL is malformed."))
+            return
+        }
+        
+        let url = URL(string: "\(baseUrl)user/current")
         
         guard let url = url else {
             completionHandler(nil, UserError.custom(message: "Bad URL"))

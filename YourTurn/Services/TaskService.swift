@@ -14,7 +14,12 @@ enum TaskError: Error {
 
 struct TaskService {
     static func getTasksByAssignedUserId(completionHandler: @escaping((TaskModelArray?, Error?) -> Void)) {
-        let url = URL(string: "http://localhost:4001/task/assignedToCurrentUser")
+        guard let baseUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
+            completionHandler(nil, TaskError.custom(message: "API_URL is malformed."))
+            return
+        }
+        
+        let url = URL(string: "\(baseUrl)task/assignedToCurrentUser")
     
         guard let url = url else {
             completionHandler(nil, TaskError.custom(message: "Bad URL"))

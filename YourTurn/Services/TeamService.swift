@@ -13,7 +13,12 @@ enum TeamError: Error {
 
 struct TeamService {
     static func getTeamsbyCurrentUser(completionHandler: @escaping(([TeamModel]?, Error?) -> Void)) {
-        let url = URL(string: "http://localhost:4001/team/byCurrentUser")
+        guard let baseUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
+            completionHandler(nil, TeamError.custom(message: "API_URL is malformed."))
+            return
+        }
+        
+        let url = URL(string: "\(baseUrl)team/byCurrentUser")
         
         guard let url = url else {
             completionHandler(nil, TeamError.custom(message: ""))
