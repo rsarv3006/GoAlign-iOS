@@ -61,6 +61,10 @@
 		78B687902887AE29006B6CAB /* FieldVisibilityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6878F2887AE29006B6CAB /* FieldVisibilityProtocol.swift */; };
 		78B68792288829F0006B6CAB /* FieldValidInvalidProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B68791288829F0006B6CAB /* FieldValidInvalidProtocol.swift */; };
 		78BBB8FC28642207006B3FDC /* HomeScreenTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BBB8FB28642207006B3FDC /* HomeScreenTaskCell.swift */; };
+		78BF0D6528A97F57005C6098 /* DrawerMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BF0D6428A97F57005C6098 /* DrawerMenuViewController.swift */; };
+		78BF0D6828A98052005C6098 /* DrawerTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BF0D6728A98052005C6098 /* DrawerTransitionManager.swift */; };
+		78BF0D6A28A98103005C6098 /* DrawerPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BF0D6928A98103005C6098 /* DrawerPresentationController.swift */; };
+		78BF0D6C28A98220005C6098 /* DrawerSlideAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BF0D6B28A98220005C6098 /* DrawerSlideAnimation.swift */; };
 		78BFFA9E2887784600A767AB /* FormSwitchControlledTextCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BFFA9D2887784600A767AB /* FormSwitchControlledTextCollectionViewCell.swift */; };
 		78BFFAA228878DEC00A767AB /* FormCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BFFAA128878DEC00A767AB /* FormCollectionView.swift */; };
 		78BFFAA428879A3F00A767AB /* FormSwitchControlledDateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BFFAA328879A3F00A767AB /* FormSwitchControlledDateCollectionViewCell.swift */; };
@@ -82,6 +86,7 @@
 		78E4F896289393150075F04F /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F895289393150075F04F /* Networking.swift */; };
 		78E743C028A595460069E691 /* SignInFormContentBuilderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E743BF28A595460069E691 /* SignInFormContentBuilderImpl.swift */; };
 		78E743C428A599A00069E691 /* SignInCompletedForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E743C328A599A00069E691 /* SignInCompletedForm.swift */; };
+		78FAB71628AAF9D6009B8D50 /* DrawerMenuVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAB71528AAF9D6009B8D50 /* DrawerMenuVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +162,10 @@
 		78B6878F2887AE29006B6CAB /* FieldVisibilityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldVisibilityProtocol.swift; sourceTree = "<group>"; };
 		78B68791288829F0006B6CAB /* FieldValidInvalidProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldValidInvalidProtocol.swift; sourceTree = "<group>"; };
 		78BBB8FB28642207006B3FDC /* HomeScreenTaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenTaskCell.swift; sourceTree = "<group>"; };
+		78BF0D6428A97F57005C6098 /* DrawerMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerMenuViewController.swift; sourceTree = "<group>"; };
+		78BF0D6728A98052005C6098 /* DrawerTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerTransitionManager.swift; sourceTree = "<group>"; };
+		78BF0D6928A98103005C6098 /* DrawerPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerPresentationController.swift; sourceTree = "<group>"; };
+		78BF0D6B28A98220005C6098 /* DrawerSlideAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerSlideAnimation.swift; sourceTree = "<group>"; };
 		78BFFA9D2887784600A767AB /* FormSwitchControlledTextCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSwitchControlledTextCollectionViewCell.swift; sourceTree = "<group>"; };
 		78BFFAA128878DEC00A767AB /* FormCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCollectionView.swift; sourceTree = "<group>"; };
 		78BFFAA328879A3F00A767AB /* FormSwitchControlledDateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSwitchControlledDateCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -178,6 +187,7 @@
 		78E4F895289393150075F04F /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		78E743BF28A595460069E691 /* SignInFormContentBuilderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFormContentBuilderImpl.swift; sourceTree = "<group>"; };
 		78E743C328A599A00069E691 /* SignInCompletedForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCompletedForm.swift; sourceTree = "<group>"; };
+		78FAB71528AAF9D6009B8D50 /* DrawerMenuVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerMenuVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,6 +316,7 @@
 		783DED0128617F0A0062343E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				78BF0D6128A97AA6005C6098 /* DrawerMenu */,
 				78C4D95B286EAFD7006550A9 /* Common */,
 				78BBB8FD286422DF006B3FDC /* Cells */,
 				783DED02286180470062343E /* HomeScreen.swift */,
@@ -414,6 +425,26 @@
 				78DAADEC2868D5CF00FEB0DA /* HomeScreenTeamCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		78BF0D6128A97AA6005C6098 /* DrawerMenu */ = {
+			isa = PBXGroup;
+			children = (
+				78BF0D6628A98039005C6098 /* DrawerTransitionManager */,
+				78BF0D6428A97F57005C6098 /* DrawerMenuViewController.swift */,
+				78FAB71528AAF9D6009B8D50 /* DrawerMenuVM.swift */,
+			);
+			path = DrawerMenu;
+			sourceTree = "<group>";
+		};
+		78BF0D6628A98039005C6098 /* DrawerTransitionManager */ = {
+			isa = PBXGroup;
+			children = (
+				78BF0D6728A98052005C6098 /* DrawerTransitionManager.swift */,
+				78BF0D6928A98103005C6098 /* DrawerPresentationController.swift */,
+				78BF0D6B28A98220005C6098 /* DrawerSlideAnimation.swift */,
+			);
+			path = DrawerTransitionManager;
 			sourceTree = "<group>";
 		};
 		78BFFAA52887A5B000A767AB /* Form Components */ = {
@@ -627,10 +658,12 @@
 				7802E1A6288E399500F7D501 /* Authentication.swift in Sources */,
 				783DED062861F4C90062343E /* Extensions.swift in Sources */,
 				78E4F8942893911B0075F04F /* TaskHistoryModel.swift in Sources */,
+				78BF0D6528A97F57005C6098 /* DrawerMenuViewController.swift in Sources */,
 				78D7C3C528776F80001F48C5 /* FormCompositionalLayout.swift in Sources */,
 				78D7C3C22877690B001F48C5 /* FormDateCollectionViewCell.swift in Sources */,
 				7872D6FC28950C5E00E598D2 /* TeamService.swift in Sources */,
 				78BBB8FC28642207006B3FDC /* HomeScreenTaskCell.swift in Sources */,
+				78FAB71628AAF9D6009B8D50 /* DrawerMenuVM.swift in Sources */,
 				78C4D95D286EAFFC006550A9 /* IntervalPicker.swift in Sources */,
 				78A4E0C02883B98F0067DBCE /* ValidationError.swift in Sources */,
 				78BFFA9E2887784600A767AB /* FormSwitchControlledTextCollectionViewCell.swift in Sources */,
@@ -645,6 +678,8 @@
 				78DAADED2868D5CF00FEB0DA /* HomeScreenTeamCell.swift in Sources */,
 				78DAADE52866B61400FEB0DA /* HomeScreenTaskCellVM.swift in Sources */,
 				78B6878C2887A9CE006B6CAB /* HideableIntervalPickerFormComponent.swift in Sources */,
+				78BF0D6C28A98220005C6098 /* DrawerSlideAnimation.swift in Sources */,
+				78BF0D6828A98052005C6098 /* DrawerTransitionManager.swift in Sources */,
 				780F197628A490DB00371B91 /* StringMaxLengthValidationManagerImpl.swift in Sources */,
 				783DECD228617EEB0062343E /* AppDelegate.swift in Sources */,
 				7847732A28768B69009AFC92 /* TaskAddEditFormContentBuilderImpl.swift in Sources */,
@@ -662,6 +697,7 @@
 				78477327287687DD009AFC92 /* FormModel.swift in Sources */,
 				78B687902887AE29006B6CAB /* FieldVisibilityProtocol.swift in Sources */,
 				78D7C3C028776499001F48C5 /* FormTextCollectionViewCell.swift in Sources */,
+				78BF0D6A28A98103005C6098 /* DrawerPresentationController.swift in Sources */,
 				7872D6FE2896B03F00E598D2 /* ToJsonProtcol.swift in Sources */,
 				780F196D28A4901000371B91 /* ValidationManagerProtocol.swift in Sources */,
 				78DAADF52869663000FEB0DA /* TaskAddEditScreenVM.swift in Sources */,

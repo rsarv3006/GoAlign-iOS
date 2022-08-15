@@ -54,14 +54,17 @@ class HomeScreen: UIViewController {
     
     private let addTaskButton: UIButton = {
         let button = UIButton()
-        let addImage = UIImage(systemName: "note.text.badge.plus")
+        let configuration = UIImage.SymbolConfiguration(textStyle: .title2)
+        let addImage = UIImage(systemName: "note.text.badge.plus", withConfiguration: configuration)
         button.setImage(addImage, for: .normal)
         return button
     }()
     
-    private let temporaryLogoutButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Logout", for: .normal)
+    private let drawerButton: UIButton = {
+        let button = UIButton()
+        let configuration = UIImage.SymbolConfiguration(textStyle: .title2)
+        let drawerImage = UIImage(systemName: "line.3.horizontal", withConfiguration: configuration)
+        button.setImage(drawerImage, for: .normal)
         return button
     }()
     
@@ -99,8 +102,8 @@ class HomeScreen: UIViewController {
         view.addSubview(addTaskButton)
         addTaskButton.anchor(top: topSafeAnchor, right: rightSafeAnchor, paddingRight: 8)
         
-        view.addSubview(temporaryLogoutButton)
-        temporaryLogoutButton.anchor(top: topSafeAnchor, left: leftSafeAnchor, paddingLeft: 8)
+        view.addSubview(drawerButton)
+        drawerButton.anchor(top: topSafeAnchor, left: leftSafeAnchor, paddingLeft: 8)
         
         view.addSubview(teamTitleLabel)
         teamTitleLabel.center(inView: view)
@@ -115,7 +118,7 @@ class HomeScreen: UIViewController {
     
     private func configureInteractables() {
         addTaskButton.addTarget(self, action: #selector(onAddTaskPressed), for: .touchUpInside)
-        temporaryLogoutButton.addTarget(self, action: #selector(onTempLogoutPressed), for: .touchUpInside)
+        drawerButton.addTarget(self, action: #selector(onDrawerButtonPress), for: .touchUpInside)
     }
     
     private func configureCombine() {
@@ -139,8 +142,10 @@ class HomeScreen: UIViewController {
         viewModel?.onAddTaskPress(navigationController: navigationController)
     }
     
-    @objc func onTempLogoutPressed() {
-        logoutEventSubject.send(true)
+    @objc func onDrawerButtonPress() {
+        let drawerController = DrawerMenuViewController()
+        drawerController.delegate = self
+        present(drawerController, animated: true)
     }
 }
 
@@ -185,4 +190,11 @@ extension HomeScreen: UITableViewDataSource {
         teamTableView.dataSource = self
     }
     
+}
+
+// MARK: - DrawerMenuViewControllerDelegate
+extension HomeScreen: DrawerMenuViewControllerDelegate {
+    func onLogOutPressed(viewController: UIViewController) {
+        logoutEventSubject.send(true)
+    }
 }
