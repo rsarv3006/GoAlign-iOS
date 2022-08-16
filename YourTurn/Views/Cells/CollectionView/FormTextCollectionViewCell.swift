@@ -21,6 +21,7 @@ class FormTextCollectionViewCell: UICollectionViewCell {
         txtField.translatesAutoresizingMaskIntoConstraints = false
         txtField.borderStyle = .roundedRect
         txtField.backgroundColor = .clear
+        
         return txtField
     }()
     
