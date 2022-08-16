@@ -69,7 +69,7 @@ struct AuthenticationService {
         do {
             try Auth.auth().signOut()
         } catch {
-            print(error)
+            Logger.log(logLevel: .Prod, message: "\(error)")
         }
         
     }

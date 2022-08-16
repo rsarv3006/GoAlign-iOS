@@ -176,7 +176,7 @@ private extension FormSwitchControlledDateCollectionViewCell {
                 }
             }
             
-            print(error)
+            Logger.log(logLevel: .Prod, message: "\(error)")
         }
     }
 }
