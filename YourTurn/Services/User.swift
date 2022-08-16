@@ -24,10 +24,8 @@ struct UserService {
             completionHandler(nil, UserError.custom(message: "Bad URL"))
             return
         }
-        print("DEBUG: - userId: \(user.userId)")
+        
         let userData = try? JSONEncoder().encode(user)
-        
-        
 
         guard let userData = userData else {
             completionHandler(nil, UserError.custom(message: "Serialization of Create User DTO failed"))
@@ -50,7 +48,7 @@ struct UserService {
                     let userModel = try JSONDecoder().decode(UserModel.self, from: data)
                     completionHandler(userModel, nil)
                 } catch {
-                    print("DEBUG: FAILED in createUser: \(error)")
+                    Logger.log(logLevel: .Verbose, message: "FAILED to createUser: \(error)")
                     completionHandler(nil, error)
                 }
             }
@@ -85,7 +83,7 @@ struct UserService {
                     let userModel = try JSONDecoder().decode(UserModel.self, from: data)
                     completionHandler(userModel, nil)
                 } catch {
-                    print("DEBUG: Failed to fetch current user: \(error)")
+                    Logger.log(logLevel: .Verbose, message: "Failed to fetch current user: \(error)")
                     completionHandler(nil, error)
                 }
             }

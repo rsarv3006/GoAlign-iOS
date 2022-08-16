@@ -104,7 +104,6 @@ private extension SignUpScreen {
         formContentBuilder
             .formSubmission
             .sink { [weak self] completedForm in
-                print(completedForm)
                 if let self = self {
                     self.viewModel?.signUp(form: completedForm)
                 }

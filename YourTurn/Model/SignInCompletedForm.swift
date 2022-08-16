@@ -12,7 +12,6 @@ struct SignInCompletedForm {
     let password: String
     
     init(fromDict dict: [String : Any]) throws {
-        print(dict)
         guard let emailAddress = dict[FormField.signInEmailAddress.rawValue] as? String,
               let password = dict[FormField.signInPassword.rawValue] as? String
         else {

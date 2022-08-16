@@ -58,7 +58,7 @@ final class SignUpFormContentBuilderImpl {
             try formSubmission.send(SignUpCompletedForm(fromDict: validDict ))
             
         } catch {
-            print("Something is wrong with form: \(error)")
+            Logger.log(logLevel: .Prod, message: "Something is wrong with SignUp form: \(error)")
         }
     }
 }

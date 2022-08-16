@@ -67,7 +67,7 @@ final class TaskAddEditFormContentBuilderImpl {
             }
             
         } catch {
-            print("Something is wrong with form: \(error)")
+            Logger.log(logLevel: .Prod, message: "Something is wrong with TaskAddEdit form: \(error)")
         }
     }
 }
