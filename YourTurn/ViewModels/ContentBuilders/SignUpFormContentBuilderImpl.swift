@@ -13,13 +13,13 @@ final class SignUpFormContentBuilderImpl {
     
     private(set) var formContent = [
         FormSectionComponent(items: [
-            TextFormComponent(id: .signUpUserName, placeholder: "Username", validations: [
+            TextFormComponent(id: .signUpUserName, placeholder: "Username", autoCorrectionType: .no, validations: [
                 RegexValidationManagerImpl([
                     RegexFormItem(pattern: RegexPatterns.higherThanSixChars, error: .custom(message: "Username is too short")),
                 ]),
                 StringMaxLengthValidationManagerImpl(maxLength: 18, errorMessage: "Username is too long")
             ]),
-            TextFormComponent(id: .signUpEmailAddress, placeholder: "Email Address", validations: [
+            TextFormComponent(id: .signUpEmailAddress, placeholder: "Email Address", autoCorrectionType: .no, validations: [
                 RegexValidationManagerImpl([
                     RegexFormItem(pattern: RegexPatterns.emailChars, error: .custom(message: "Not a valid email"))
                 ])

@@ -13,12 +13,12 @@ final class SignInFormContentBuilderImpl {
     
     private(set) var formContent = [
         FormSectionComponent(items: [
-            TextFormComponent(id: .signInEmailAddress, placeholder: "Email Address", keyboardType: .emailAddress, validations: [
+            TextFormComponent(id: .signInEmailAddress, placeholder: "Email Address", keyboardType: .emailAddress, autoCorrectionType: .no, validations: [
                 RegexValidationManagerImpl([
                     RegexFormItem(pattern: RegexPatterns.emailChars, error: .custom(message: "Not a valid email"))
                 ])
             ]),
-            TextFormComponent(id: .signInPassword, placeholder: "Password", keyboardType: .default, validations: [], isSecureTextEntryEnabled: true),
+            TextFormComponent(id: .signInPassword, placeholder: "Password", keyboardType: .default, isSecureTextEntryEnabled: true, autoCorrectionType: .no, validations: []),
             ButtonFormComponent(id: .signInSubmit, title: "Sign In!")
         ])
     ]
