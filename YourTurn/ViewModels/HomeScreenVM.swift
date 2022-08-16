@@ -24,7 +24,7 @@ class HomeScreenVM {
     func loadTasks() {
         TaskService.getTasksByAssignedUserId { [weak self] tasks, error in
             guard let tasks = tasks else {
-                print(String(describing: error))
+                Logger.log(logLevel: .Prod, message: "\(String(describing: error))")
                 return
             }
             self?.tasksSubject.send(tasks)
@@ -34,7 +34,7 @@ class HomeScreenVM {
     func loadTeams() {
         TeamService.getTeamsbyCurrentUser { [weak self] teams, error in
             guard let teams = teams else {
-                print(String(describing: error))
+                Logger.log(logLevel: .Prod, message: "\(String(describing: error))")
                 return
             }
             

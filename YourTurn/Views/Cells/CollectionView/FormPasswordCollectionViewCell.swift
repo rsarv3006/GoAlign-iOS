@@ -164,7 +164,7 @@ private extension FormPasswordCollectionViewCell {
                             self.errorLbl.text = message
                         }
                     }
-                    print(error)
+                    Logger.log(logLevel: .Prod, message: "\(error)")
                 }
             }
             .store(in: &subscriptions)
@@ -209,7 +209,7 @@ private extension FormPasswordCollectionViewCell {
                             self.errorLbl.text = message
                         }
                     }
-                    print(error)
+                    Logger.log(logLevel: .Prod, message: "\(error)")
                 }
             }
             .store(in: &subscriptions)

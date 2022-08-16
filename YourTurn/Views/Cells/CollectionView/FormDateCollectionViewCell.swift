@@ -125,7 +125,7 @@ private extension FormDateCollectionViewCell {
                 }
             }
             
-            print(error)
+            Logger.log(logLevel: .Prod, message: "\(error)")
         }
     }
 }
