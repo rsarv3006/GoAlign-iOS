@@ -22,8 +22,8 @@ class FormHideableIntervalPickerCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var controlButton: UIButton = {
-        let button = UIButton(type: .custom)
+    private lazy var controlButton: StandardButton = {
+        let button = StandardButton(type: .custom)
         button.setTitle("  1 - day(s)  ", for: .normal)
         button.layer.cornerRadius = 8
         button.backgroundColor = .systemGray6

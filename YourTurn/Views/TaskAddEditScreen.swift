@@ -78,6 +78,8 @@ private extension TaskAddEditScreen {
                 return self.buildFormSwitchControlledDateCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
             case is HideableIntervalPickerFormComponent:
                 return self.buildFormHideableIntervalPickerCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
+            case is ModalFormComponent:
+                return self.buildFormModalCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
             default:
                 return self.buildDefaultCollectionViewCell(collectionView: collectionView, indexPath: indexPath)
             }
@@ -215,6 +217,34 @@ private extension TaskAddEditScreen {
         cell.reload.sink { [weak self] _ in
             self?.updateDataSource()
         }.store(in: &self.subscriptions)
+        
+        cell.bind(item, at: indexPath)
+        return cell
+    }
+    
+    func buildFormModalCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, item: FormComponent) -> FormModalCollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormModalCollectionViewCell.cellId, for: indexPath) as! FormModalCollectionViewCell
+        
+        cell
+            .subject
+            .sink { [weak self] val, indexPath in
+                self?.formContentBuilder.update(val: val, at: indexPath)
+            }
+            .store(in: &subscriptions)
+        
+        cell.reload.sink { [weak self] _ in
+            self?.updateDataSource()
+        }.store(in: &self.subscriptions)
+        
+        cell.openModal
+            .sink { modalView in
+                DispatchQueue.main.async {
+
+                    modalView.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+                    self.present(modalView, animated: true)
+                }
+            }
+            .store(in: &subscriptions)
         
         cell.bind(item, at: indexPath)
         return cell

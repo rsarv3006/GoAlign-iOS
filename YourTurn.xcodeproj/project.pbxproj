@@ -39,6 +39,8 @@
 		783DED03286180470062343E /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DED02286180470062343E /* HomeScreen.swift */; };
 		783DED062861F4C90062343E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DED052861F4C90062343E /* Extensions.swift */; };
 		783DED092861F5500062343E /* HomeScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DED082861F5500062343E /* HomeScreenVM.swift */; };
+		78439FD728AC75430070D48D /* StandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78439FD628AC75430070D48D /* StandardButton.swift */; };
+		78439FD928AC8EC80070D48D /* TeamSelectModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78439FD828AC8EC80070D48D /* TeamSelectModal.swift */; };
 		78477327287687DD009AFC92 /* FormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78477326287687DD009AFC92 /* FormModel.swift */; };
 		7847732A28768B69009AFC92 /* TaskAddEditFormContentBuilderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7847732928768B69009AFC92 /* TaskAddEditFormContentBuilderImpl.swift */; };
 		7847732D28768D14009AFC92 /* FormButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7847732C28768D14009AFC92 /* FormButtonCollectionViewCell.swift */; };
@@ -90,6 +92,8 @@
 		78FAB71B28AB16A2009B8D50 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 78FAB71A28AB16A2009B8D50 /* FirebaseAnalytics */; };
 		78FAB71D28AB16A2009B8D50 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 78FAB71C28AB16A2009B8D50 /* FirebaseCrashlytics */; };
 		78FAB71F28AB170B009B8D50 /* LoggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAB71E28AB170B009B8D50 /* LoggerService.swift */; };
+		78FAB72228AB58AD009B8D50 /* ModalFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAB72128AB58AC009B8D50 /* ModalFormComponent.swift */; };
+		78FAB72428AB5973009B8D50 /* FormModalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAB72328AB5973009B8D50 /* FormModalCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +147,8 @@
 		783DED02286180470062343E /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		783DED052861F4C90062343E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		783DED082861F5500062343E /* HomeScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenVM.swift; sourceTree = "<group>"; };
+		78439FD628AC75430070D48D /* StandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardButton.swift; sourceTree = "<group>"; };
+		78439FD828AC8EC80070D48D /* TeamSelectModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSelectModal.swift; sourceTree = "<group>"; };
 		78477326287687DD009AFC92 /* FormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormModel.swift; sourceTree = "<group>"; };
 		7847732928768B69009AFC92 /* TaskAddEditFormContentBuilderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAddEditFormContentBuilderImpl.swift; sourceTree = "<group>"; };
 		7847732C28768D14009AFC92 /* FormButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormButtonCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -192,6 +198,8 @@
 		78E743C328A599A00069E691 /* SignInCompletedForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCompletedForm.swift; sourceTree = "<group>"; };
 		78FAB71528AAF9D6009B8D50 /* DrawerMenuVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerMenuVM.swift; sourceTree = "<group>"; };
 		78FAB71E28AB170B009B8D50 /* LoggerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerService.swift; sourceTree = "<group>"; };
+		78FAB72128AB58AC009B8D50 /* ModalFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalFormComponent.swift; sourceTree = "<group>"; };
+		78FAB72328AB5973009B8D50 /* FormModalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormModalCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,6 +340,7 @@
 				780F197B28A4B0C700371B91 /* RootController.swift */,
 				7802E188288B9EB000F7D501 /* SignIn.swift */,
 				7802E18C288B9EB900F7D501 /* SignUp.swift */,
+				78439FD828AC8EC80070D48D /* TeamSelectModal.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -385,6 +394,7 @@
 				78BFFA9D2887784600A767AB /* FormSwitchControlledTextCollectionViewCell.swift */,
 				78BFFAA328879A3F00A767AB /* FormSwitchControlledDateCollectionViewCell.swift */,
 				78B6878D2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift */,
+				78FAB72328AB5973009B8D50 /* FormModalCollectionViewCell.swift */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -465,6 +475,7 @@
 				78B687872887A6B2006B6CAB /* SwitchControlledTextFormComponent.swift */,
 				78B687892887A6D2006B6CAB /* SwitchControlledDateFormComponent.swift */,
 				78B6878B2887A9CE006B6CAB /* HideableIntervalPickerFormComponent.swift */,
+				78FAB72128AB58AC009B8D50 /* ModalFormComponent.swift */,
 			);
 			path = "Form Components";
 			sourceTree = "<group>";
@@ -473,6 +484,7 @@
 			isa = PBXGroup;
 			children = (
 				78C4D95C286EAFFC006550A9 /* IntervalPicker.swift */,
+				78439FD628AC75430070D48D /* StandardButton.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -704,6 +716,7 @@
 				783DED092861F5500062343E /* HomeScreenVM.swift in Sources */,
 				78DAADEB2868D36700FEB0DA /* HomeScreenTeamCellVM.swift in Sources */,
 				783DED03286180470062343E /* HomeScreen.swift in Sources */,
+				78439FD928AC8EC80070D48D /* TeamSelectModal.swift in Sources */,
 				7802E199288D9FEC00F7D501 /* PasswordFormComponent.swift in Sources */,
 				780F197A28A493FE00371B91 /* AuthViewController.swift in Sources */,
 				78B687822887A616006B6CAB /* TextFormComponent.swift in Sources */,
@@ -726,13 +739,16 @@
 				78BFFAA228878DEC00A767AB /* FormCollectionView.swift in Sources */,
 				780F197C28A4B0C700371B91 /* RootController.swift in Sources */,
 				7802E18D288B9EB900F7D501 /* SignUp.swift in Sources */,
+				78FAB72228AB58AD009B8D50 /* ModalFormComponent.swift in Sources */,
 				78B687862887A67B006B6CAB /* ButtonFormComponent.swift in Sources */,
 				78FAB71F28AB170B009B8D50 /* LoggerService.swift in Sources */,
 				78E4F88E2893881D0075F04F /* TaskModel.swift in Sources */,
 				78477327287687DD009AFC92 /* FormModel.swift in Sources */,
 				78B687902887AE29006B6CAB /* FieldVisibilityProtocol.swift in Sources */,
 				78D7C3C028776499001F48C5 /* FormTextCollectionViewCell.swift in Sources */,
+				78439FD728AC75430070D48D /* StandardButton.swift in Sources */,
 				78BF0D6A28A98103005C6098 /* DrawerPresentationController.swift in Sources */,
+				78FAB72428AB5973009B8D50 /* FormModalCollectionViewCell.swift in Sources */,
 				7872D6FE2896B03F00E598D2 /* ToJsonProtcol.swift in Sources */,
 				780F196D28A4901000371B91 /* ValidationManagerProtocol.swift in Sources */,
 				78DAADF52869663000FEB0DA /* TaskAddEditScreenVM.swift in Sources */,

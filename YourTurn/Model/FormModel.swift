@@ -28,6 +28,7 @@ enum FormField: String, CaseIterable {
     case requiredCompletionsNeeded
     case windowLength
     case intervalBetweenWindows
+    case taskTeamPicker
     
     case signUpUserName
     case signUpEmailAddress

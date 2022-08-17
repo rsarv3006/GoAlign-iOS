@@ -87,6 +87,10 @@ class HomeScreen: UIViewController {
         configureInteractables()
         configureTableViews()
         configureCombine()
+        
+        AuthenticationService.getToken { token, error in
+            print(String(describing: token))
+        }
     }
     
     // MARK: - Helpers

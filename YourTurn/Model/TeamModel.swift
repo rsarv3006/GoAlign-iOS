@@ -9,7 +9,7 @@ import Foundation
 
 class TeamModel: Codable {
     let teamId: String
-    let createdAt: Date
+    let createdAt: String
     let teamName: String
     let tasks: TaskModelArray
     let teamMembers: [UserModel]

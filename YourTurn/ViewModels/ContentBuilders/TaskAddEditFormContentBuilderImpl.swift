@@ -6,7 +6,7 @@
 //
 
 import Combine
-import Foundation
+import UIKit
 
 final class TaskAddEditFormContentBuilderImpl {
     private(set) var formSubmission = PassthroughSubject<CreateTaskDto, Error>()
@@ -34,6 +34,7 @@ final class TaskAddEditFormContentBuilderImpl {
             SwitchControlledTextFormComponent(id: .requiredCompletionsNeeded, placeholder: "Number of Completions Needed To Close Task", switchLabel: "Completions Needed:", keyboardType: .numberPad, validations: []),
             HideableIntervalPickerFormComponent(id: .windowLength, title: "Task Window:", validations: []),
             HideableIntervalPickerFormComponent(id: .intervalBetweenWindows, title: "Time Between Tasks:", validations: []),
+            ModalFormComponent(id: .taskTeamPicker, buttonTitle: "Select Team", viewControllerToOpen: TeamSelectModal()),
             TextFormComponent(id: .notes, placeholder: "Notes"),
             ButtonFormComponent(id: .taskCreationSubmit, title: "Confirm")
         ])
