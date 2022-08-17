@@ -294,14 +294,14 @@
 			isa = PBXGroup;
 			children = (
 				7872D70128978D3F00E598D2 /* GoogleService-Info.plist */,
+				78439FDF28AD2CE00070D48D /* Common */,
 				7802E1A4288E398100F7D501 /* Services */,
-				78A4E0BA2883B9420067DBCE /* Regex */,
-				78D7C3C328776F41001F48C5 /* Layout */,
-				78477325287687D0009AFC92 /* Model */,
-				783DED072861F5400062343E /* ViewModels */,
-				783DED042861F4BD0062343E /* Utils */,
-				783DED0128617F0A0062343E /* Views */,
+				78BF0D6128A97AA6005C6098 /* DrawerMenu */,
+				78439FDB28AD2B540070D48D /* TaskAddEditScreen */,
+				78439FDC28AD2C1A0070D48D /* AuthFlow */,
+				78439FDE28AD2C710070D48D /* HomeScreen */,
 				783DECD128617EEB0062343E /* AppDelegate.swift */,
+				780F197B28A4B0C700371B91 /* RootController.swift */,
 				783DECD328617EEB0062343E /* SceneDelegate.swift */,
 				783DECD728617EEB0062343E /* Main.storyboard */,
 				783DECDA28617EED0062343E /* Assets.xcassets */,
@@ -328,51 +328,85 @@
 			path = YourTurnUITests;
 			sourceTree = "<group>";
 		};
-		783DED0128617F0A0062343E /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				78BF0D6128A97AA6005C6098 /* DrawerMenu */,
-				78C4D95B286EAFD7006550A9 /* Common */,
-				78BBB8FD286422DF006B3FDC /* Cells */,
-				783DED02286180470062343E /* HomeScreen.swift */,
-				78DAADF22869617500FEB0DA /* TaskAddEditScreen.swift */,
-				78BFFAA128878DEC00A767AB /* FormCollectionView.swift */,
-				780F197B28A4B0C700371B91 /* RootController.swift */,
-				7802E188288B9EB000F7D501 /* SignIn.swift */,
-				7802E18C288B9EB900F7D501 /* SignUp.swift */,
-				78439FD828AC8EC80070D48D /* TeamSelectModal.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		783DED042861F4BD0062343E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				780F197D28A4B7EE00371B91 /* Protocols */,
 				783DED052861F4C90062343E /* Extensions.swift */,
 				780F197928A493FE00371B91 /* AuthViewController.swift */,
+				78C4D95C286EAFFC006550A9 /* IntervalPicker.swift */,
+				78439FD628AC75430070D48D /* StandardButton.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		783DED072861F5400062343E /* ViewModels */ = {
+		78439FDA28AD2B150070D48D /* FormBuilder */ = {
 			isa = PBXGroup;
 			children = (
-				78E743BE28A5923F0069E691 /* ContentBuilders */,
-				78DAADE32866B60200FEB0DA /* CellVMs */,
-				783DED082861F5500062343E /* HomeScreenVM.swift */,
+				78A4E0BA2883B9420067DBCE /* Regex */,
+				78BFFAA128878DEC00A767AB /* FormCollectionView.swift */,
+				7847732B28768CE9009AFC92 /* Cells */,
+				78477326287687DD009AFC92 /* FormModel.swift */,
+				78BFFAA52887A5B000A767AB /* Form Components */,
+				78D7C3C328776F41001F48C5 /* Layout */,
+			);
+			path = FormBuilder;
+			sourceTree = "<group>";
+		};
+		78439FDB28AD2B540070D48D /* TaskAddEditScreen */ = {
+			isa = PBXGroup;
+			children = (
+				78DAADF22869617500FEB0DA /* TaskAddEditScreen.swift */,
 				78DAADF42869663000FEB0DA /* TaskAddEditScreenVM.swift */,
+				7847732928768B69009AFC92 /* TaskAddEditFormContentBuilderImpl.swift */,
+				78439FD828AC8EC80070D48D /* TeamSelectModal.swift */,
+			);
+			path = TaskAddEditScreen;
+			sourceTree = "<group>";
+		};
+		78439FDC28AD2C1A0070D48D /* AuthFlow */ = {
+			isa = PBXGroup;
+			children = (
+				7802E188288B9EB000F7D501 /* SignIn.swift */,
+				7802E18C288B9EB900F7D501 /* SignUp.swift */,
+				78439FDD28AD2C390070D48D /* ViewModels */,
+				78E743BE28A5923F0069E691 /* Forms */,
+			);
+			path = AuthFlow;
+			sourceTree = "<group>";
+		};
+		78439FDD28AD2C390070D48D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
 				7802E1A0288E2FAE00F7D501 /* SignUpVM.swift */,
 				780F196728A45EA300371B91 /* SignInVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		78477325287687D0009AFC92 /* Model */ = {
+		78439FDE28AD2C710070D48D /* HomeScreen */ = {
 			isa = PBXGroup;
 			children = (
-				78BFFAA52887A5B000A767AB /* Form Components */,
-				78477326287687DD009AFC92 /* FormModel.swift */,
+				78DAADE32866B60200FEB0DA /* ViewModels */,
+				783DED02286180470062343E /* HomeScreen.swift */,
+				78BBB8FD286422DF006B3FDC /* Cells */,
+			);
+			path = HomeScreen;
+			sourceTree = "<group>";
+		};
+		78439FDF28AD2CE00070D48D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				78477325287687D0009AFC92 /* Models */,
+				783DED042861F4BD0062343E /* Utils */,
+				78439FDA28AD2B150070D48D /* FormBuilder */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		78477325287687D0009AFC92 /* Models */ = {
+			isa = PBXGroup;
+			children = (
 				7802E1A9288E3D0900F7D501 /* SignUpCompletedForm.swift */,
 				78E743C328A599A00069E691 /* SignInCompletedForm.swift */,
 				78E4F88D2893881C0075F04F /* TaskModel.swift */,
@@ -381,10 +415,10 @@
 				78E4F8932893911B0075F04F /* TaskHistoryModel.swift */,
 				7872D6F928950AEF00E598D2 /* TeamModel.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		7847732B28768CE9009AFC92 /* CollectionView */ = {
+		7847732B28768CE9009AFC92 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				7847732C28768D14009AFC92 /* FormButtonCollectionViewCell.swift */,
@@ -396,7 +430,7 @@
 				78B6878D2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift */,
 				78FAB72328AB5973009B8D50 /* FormModalCollectionViewCell.swift */,
 			);
-			path = CollectionView;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		78A4E0BA2883B9420067DBCE /* Regex */ = {
@@ -437,7 +471,6 @@
 		78BBB8FD286422DF006B3FDC /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				7847732B28768CE9009AFC92 /* CollectionView */,
 				78BBB8FB28642207006B3FDC /* HomeScreenTaskCell.swift */,
 				78DAADEC2868D5CF00FEB0DA /* HomeScreenTeamCell.swift */,
 			);
@@ -480,15 +513,6 @@
 			path = "Form Components";
 			sourceTree = "<group>";
 		};
-		78C4D95B286EAFD7006550A9 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				78C4D95C286EAFFC006550A9 /* IntervalPicker.swift */,
-				78439FD628AC75430070D48D /* StandardButton.swift */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		78D7C3C328776F41001F48C5 /* Layout */ = {
 			isa = PBXGroup;
 			children = (
@@ -497,23 +521,23 @@
 			path = Layout;
 			sourceTree = "<group>";
 		};
-		78DAADE32866B60200FEB0DA /* CellVMs */ = {
+		78DAADE32866B60200FEB0DA /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				783DED082861F5500062343E /* HomeScreenVM.swift */,
 				78DAADE42866B61400FEB0DA /* HomeScreenTaskCellVM.swift */,
 				78DAADEA2868D36700FEB0DA /* HomeScreenTeamCellVM.swift */,
 			);
-			path = CellVMs;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		78E743BE28A5923F0069E691 /* ContentBuilders */ = {
+		78E743BE28A5923F0069E691 /* Forms */ = {
 			isa = PBXGroup;
 			children = (
-				7847732928768B69009AFC92 /* TaskAddEditFormContentBuilderImpl.swift */,
 				7802E194288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift */,
 				78E743BF28A595460069E691 /* SignInFormContentBuilderImpl.swift */,
 			);
-			path = ContentBuilders;
+			path = Forms;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
