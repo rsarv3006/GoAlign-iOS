@@ -356,10 +356,10 @@
 		78439FDB28AD2B540070D48D /* TaskAddEditScreen */ = {
 			isa = PBXGroup;
 			children = (
+				78E7A88128AD849A007B5358 /* TeamSelectModal */,
 				78DAADF22869617500FEB0DA /* TaskAddEditScreen.swift */,
 				78DAADF42869663000FEB0DA /* TaskAddEditScreenVM.swift */,
 				7847732928768B69009AFC92 /* TaskAddEditFormContentBuilderImpl.swift */,
-				78439FD828AC8EC80070D48D /* TeamSelectModal.swift */,
 			);
 			path = TaskAddEditScreen;
 			sourceTree = "<group>";
@@ -538,6 +538,14 @@
 				78E743BF28A595460069E691 /* SignInFormContentBuilderImpl.swift */,
 			);
 			path = Forms;
+			sourceTree = "<group>";
+		};
+		78E7A88128AD849A007B5358 /* TeamSelectModal */ = {
+			isa = PBXGroup;
+			children = (
+				78439FD828AC8EC80070D48D /* TeamSelectModal.swift */,
+			);
+			path = TeamSelectModal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
