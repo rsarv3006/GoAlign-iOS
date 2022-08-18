@@ -17,17 +17,11 @@ class TeamSelectModal: UIViewController {
     
     private var teams = [TeamModel]() {
         didSet {
-            print(teams)
+            print(teams.forEach({ team in
+                print(team.teamName)
+            }))
             DispatchQueue.main.async {
                 self.teamSelectTableView.reloadData()
-            }
-            
-        }
-    }
-    
-    private var teamMembers = [UserModel]() {
-        didSet {
-            DispatchQueue.main.async {
                 self.teamMemberSelectTableView.reloadData()
             }
             
@@ -48,6 +42,18 @@ class TeamSelectModal: UIViewController {
         subView.backgroundColor = .gray
         subView.layer.cornerRadius = 10
         return subView
+    }()
+    
+    private lazy var teamTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Select the Team"
+        return label
+    }()
+    
+    private lazy var teamMemberTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Select the Team Member"
+        return label
     }()
     
     private let teamSelectTableView: UITableView = {
@@ -86,14 +92,30 @@ class TeamSelectModal: UIViewController {
         
         closeButton.addTarget(self, action: #selector(onClosePressed), for: .touchUpInside)
         
-        teamSelectTableView.register(UITableViewCell.self, forCellReuseIdentifier: "thing")
-        teamMemberSelectTableView.register(UITableViewCell.self, forCellReuseIdentifier: "otherThing")
+        subView.addSubview(teamTitleLabel)
+        teamTitleLabel.centerX(inView: subView)
+        teamTitleLabel.anchor(top: subView.topAnchor, left: subView.leftAnchor, right: subView.rightAnchor, height: 44)
+        
+        teamSelectTableView.register(TeamSelectModalCellView.self, forCellReuseIdentifier: "thing")
+        teamMemberSelectTableView.register(TeamSelectModalCellView.self, forCellReuseIdentifier: "otherThing")
         
         subView.addSubview(teamSelectTableView)
-        teamSelectTableView.anchor(top: subView.topAnchor, left: subView.leftAnchor, right: subView.rightAnchor, height: 120)
+        teamSelectTableView.anchor(top: teamTitleLabel.bottomAnchor, left: subView.leftAnchor, right: subView.rightAnchor, height: 120)
 
+        subView.addSubview(teamMemberTitleLabel)
+        teamMemberTitleLabel.centerX(inView: subView)
+        teamMemberTitleLabel.anchor(top: teamSelectTableView.bottomAnchor, left: subView.leftAnchor, right: subView.rightAnchor, height: 44)
+        
         subView.addSubview(teamMemberSelectTableView)
-        teamMemberSelectTableView.anchor(top: teamSelectTableView.topAnchor, left: subView.leftAnchor, right: subView.rightAnchor, height: 66)
+        teamMemberSelectTableView.anchor(top: teamMemberTitleLabel.bottomAnchor, left: subView.leftAnchor, right: subView.rightAnchor, height: 120)
+        
+        teamSelectTableView.delegate = self
+        teamSelectTableView.dataSource = self
+        teamSelectTableView.rowHeight = 60
+        
+        teamMemberSelectTableView.delegate = self
+        teamMemberSelectTableView.dataSource = self
+        teamMemberSelectTableView.rowHeight = 60
     }
     
     @objc func onClosePressed() {
@@ -120,22 +142,25 @@ extension TeamSelectModal: UITableViewDataSource {
         if tableView.tag == TEAM_SELECT {
             return teams.count
         } else if tableView.tag == TEAM_MEMBER_SELECT {
-            return teams[selectedTeamIndex].teamMembers.count
+            if teams.count > 1 {
+                return teams[selectedTeamIndex].teamMembers.count
+            } else {
+                return 0
+            }
+             
         } else {
             return 0
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("HOWDY Begin")
         if tableView.tag == TEAM_SELECT {
-            print("HOWDY")
-            let cell = UITableViewCell()
-            cell.textLabel?.text = teams[indexPath.row].teamName
+            let cell = tableView.dequeueReusableCell(withIdentifier: "thing", for: indexPath) as! TeamSelectModalCellView
+            cell.nameLabelString = teams[indexPath.row].teamName
             return cell
         } else if tableView.tag == TEAM_MEMBER_SELECT {
-            let cell = UITableViewCell()
-            cell.textLabel?.text = teams[selectedTeamIndex].teamMembers[indexPath.row].username
+            let cell = tableView.dequeueReusableCell(withIdentifier: "otherThing", for: indexPath) as! TeamSelectModalCellView
+            cell.nameLabelString = teams[selectedTeamIndex].teamMembers[indexPath.row].username
             return cell
         } else {
             return UITableViewCell(style: .default, reuseIdentifier: "crash baby")

@@ -88,6 +88,7 @@
 		78E4F896289393150075F04F /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F895289393150075F04F /* Networking.swift */; };
 		78E743C028A595460069E691 /* SignInFormContentBuilderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E743BF28A595460069E691 /* SignInFormContentBuilderImpl.swift */; };
 		78E743C428A599A00069E691 /* SignInCompletedForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E743C328A599A00069E691 /* SignInCompletedForm.swift */; };
+		78E7FAEA28ADE8060041D335 /* TeamSelectModalCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E7FAE928ADE8060041D335 /* TeamSelectModalCellView.swift */; };
 		78FAB71628AAF9D6009B8D50 /* DrawerMenuVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAB71528AAF9D6009B8D50 /* DrawerMenuVM.swift */; };
 		78FAB71B28AB16A2009B8D50 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 78FAB71A28AB16A2009B8D50 /* FirebaseAnalytics */; };
 		78FAB71D28AB16A2009B8D50 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 78FAB71C28AB16A2009B8D50 /* FirebaseCrashlytics */; };
@@ -196,6 +197,7 @@
 		78E4F895289393150075F04F /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		78E743BF28A595460069E691 /* SignInFormContentBuilderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFormContentBuilderImpl.swift; sourceTree = "<group>"; };
 		78E743C328A599A00069E691 /* SignInCompletedForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCompletedForm.swift; sourceTree = "<group>"; };
+		78E7FAE928ADE8060041D335 /* TeamSelectModalCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSelectModalCellView.swift; sourceTree = "<group>"; };
 		78FAB71528AAF9D6009B8D50 /* DrawerMenuVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerMenuVM.swift; sourceTree = "<group>"; };
 		78FAB71E28AB170B009B8D50 /* LoggerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerService.swift; sourceTree = "<group>"; };
 		78FAB72128AB58AC009B8D50 /* ModalFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalFormComponent.swift; sourceTree = "<group>"; };
@@ -544,6 +546,7 @@
 			isa = PBXGroup;
 			children = (
 				78439FD828AC8EC80070D48D /* TeamSelectModal.swift */,
+				78E7FAE928ADE8060041D335 /* TeamSelectModalCellView.swift */,
 			);
 			path = TeamSelectModal;
 			sourceTree = "<group>";
@@ -755,6 +758,7 @@
 				78E4F88A289386CB0075F04F /* User.swift in Sources */,
 				7802E1A1288E2FAE00F7D501 /* SignUpVM.swift in Sources */,
 				78DAADED2868D5CF00FEB0DA /* HomeScreenTeamCell.swift in Sources */,
+				78E7FAEA28ADE8060041D335 /* TeamSelectModalCellView.swift in Sources */,
 				78DAADE52866B61400FEB0DA /* HomeScreenTaskCellVM.swift in Sources */,
 				78B6878C2887A9CE006B6CAB /* HideableIntervalPickerFormComponent.swift in Sources */,
 				78BF0D6C28A98220005C6098 /* DrawerSlideAnimation.swift in Sources */,
