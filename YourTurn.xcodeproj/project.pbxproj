@@ -28,6 +28,7 @@
 		780F197828A492E500371B91 /* SwitchAuthScreenProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F197728A492E500371B91 /* SwitchAuthScreenProtocol.swift */; };
 		780F197A28A493FE00371B91 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F197928A493FE00371B91 /* AuthViewController.swift */; };
 		780F197C28A4B0C700371B91 /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F197B28A4B0C700371B91 /* RootController.swift */; };
+		78288CD428B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78288CD328B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift */; };
 		783DECD228617EEB0062343E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD128617EEB0062343E /* AppDelegate.swift */; };
 		783DECD428617EEB0062343E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD328617EEB0062343E /* SceneDelegate.swift */; };
 		783DECD928617EEB0062343E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 783DECD728617EEB0062343E /* Main.storyboard */; };
@@ -136,6 +137,7 @@
 		780F197728A492E500371B91 /* SwitchAuthScreenProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchAuthScreenProtocol.swift; sourceTree = "<group>"; };
 		780F197928A493FE00371B91 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		780F197B28A4B0C700371B91 /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
+		78288CD328B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO8601CustomDateDecodingStrategy.swift; sourceTree = "<group>"; };
 		783DECCE28617EEB0062343E /* YourTurn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourTurn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		783DECD128617EEB0062343E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		783DECD328617EEB0062343E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				78C4D95C286EAFFC006550A9 /* IntervalPicker.swift */,
 				78439FD628AC75430070D48D /* StandardButton.swift */,
 				78EC914F28AFB9640046DF28 /* ModalViewController.swift */,
+				78288CD328B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -797,6 +800,7 @@
 				78BF0D6A28A98103005C6098 /* DrawerPresentationController.swift in Sources */,
 				78FAB72428AB5973009B8D50 /* FormModalCollectionViewCell.swift in Sources */,
 				7872D6FE2896B03F00E598D2 /* ToJsonProtcol.swift in Sources */,
+				78288CD428B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift in Sources */,
 				780F196D28A4901000371B91 /* ValidationManagerProtocol.swift in Sources */,
 				78DAADF52869663000FEB0DA /* TaskAddEditScreenVM.swift in Sources */,
 				78B687802887A5E5006B6CAB /* FormComponent.swift in Sources */,

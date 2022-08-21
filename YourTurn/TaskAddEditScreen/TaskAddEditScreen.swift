@@ -8,19 +8,6 @@
 import UIKit
 import Combine
 
-//@Args('taskName') taskName: string,
-//@Args('startDate') startDate: Date,
-//@Args('endDate') endDate?: Date,
-//@Args('requiredCompletionsNeeded') requiredCompletionsNeeded: number,
-//@Args('intervalBetweenWindows') intervalBetweenWindows: number,
-//@Args('windowLength') windowLength: number,
-//@Args('notes') notes: string,
-
-//@Args('teamId') teamId: string,
-//@Args('assignedUserId') assignedUserId: string,
-//@Args('creatorUserId') creatorUserId: string,
-
-
 class TaskAddEditScreen: UIViewController {
     // MARK: - Properties
     var viewModel: TaskAddEditScreenVM?
@@ -114,7 +101,10 @@ private extension TaskAddEditScreen {
                         return
                     }
                     
-                    self.dismiss(animated: true)
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                    
                 }
             }).store(in: &subscriptions)
     }

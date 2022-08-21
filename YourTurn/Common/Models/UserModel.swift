@@ -9,7 +9,7 @@ import Foundation
 
 class UserModel: Codable {
       let userId: String
-      let createdAt: String
+      let createdAt: Date
       let username: String
       let email: String
       let isActive: Bool

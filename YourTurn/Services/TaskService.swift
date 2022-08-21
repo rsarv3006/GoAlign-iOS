@@ -34,7 +34,10 @@ struct TaskService {
             
             if let data = data {
                 do {
-                    let taskItems = try JSONDecoder().decode(TaskModelArray.self, from: data)
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+                    
+                    let taskItems = try decoder.decode(TaskModelArray.self, from: data)
                     completionHandler(taskItems, nil)
                 } catch {
                     completionHandler(nil, error)
@@ -57,12 +60,11 @@ struct TaskService {
             return
         }
         
-        let taskData = try? JSONEncoder().encode(taskDto)
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+
+        let taskData = try? encoder.encode(taskDto)
         
-        print(taskDto)
-        
-        print("Garbled nonsense from eons past")
-        print(taskData)
         guard let taskData = taskData else {
             completionHandler(nil, UserError.custom(message: "Serialization of Create Task DTO failed"))
             return
@@ -80,9 +82,11 @@ struct TaskService {
                     if response.statusCode == 500 {
                         throw TaskError.custom(message: (String(data: data, encoding: String.Encoding.utf8) ?? "Something went wrong"))
                     }
-                    print("HI")
-                    print(data)
-                    let taskModel = try JSONDecoder().decode(TaskModel.self, from: data)
+                    
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+                    
+                    let taskModel = try decoder.decode(TaskModel.self, from: data)
                     completionHandler(taskModel, nil)
                 } catch {
                     Logger.log(logLevel: .Verbose, message: "FAILED to create task: \(error)")

@@ -33,9 +33,14 @@ struct TeamService {
             
             if let data = data {
                 do {
-                    let teams = try JSONDecoder().decode([TeamModel].self, from: data)
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+                    
+                    let teams = try decoder.decode([TeamModel].self, from: data)
+                    print(teams[0].teamMembers[0].username)
                     completionHandler(teams, nil)
                 } catch {
+                    Logger.log(logLevel: .Verbose, message: "Error pulling teams by current user: \(error)")
                     completionHandler(nil, error)
                     return
                 }

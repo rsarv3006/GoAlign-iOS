@@ -44,8 +44,10 @@ struct UserService {
                     if response.statusCode == 500 {
                         throw UserError.custom(message: (String(data: data, encoding: String.Encoding.utf8) ?? "Something went wrong"))
                     }
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
                     
-                    let userModel = try JSONDecoder().decode(UserModel.self, from: data)
+                    let userModel = try decoder.decode(UserModel.self, from: data)
                     completionHandler(userModel, nil)
                 } catch {
                     Logger.log(logLevel: .Verbose, message: "FAILED to createUser: \(error)")
@@ -79,8 +81,10 @@ struct UserService {
                     if response.statusCode == 500 {
                         throw UserError.custom(message: (String(data: data, encoding: String.Encoding.utf8) ?? "Something went wrong"))
                     }
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
                     
-                    let userModel = try JSONDecoder().decode(UserModel.self, from: data)
+                    let userModel = try decoder.decode(UserModel.self, from: data)
                     completionHandler(userModel, nil)
                 } catch {
                     Logger.log(logLevel: .Verbose, message: "Failed to fetch current user: \(error)")

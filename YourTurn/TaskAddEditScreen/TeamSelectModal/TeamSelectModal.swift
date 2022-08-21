@@ -113,7 +113,7 @@ extension TeamSelectModal: UITableViewDataSource {
         if tableView.tag == TEAM_SELECT {
             return teams.count
         } else if tableView.tag == TEAM_MEMBER_SELECT {
-            if teams.count > 1 {
+            if teams.count > 0 {
                 return teams[selectedTeamIndex].teamMembers.count
             } else {
                 return 0
