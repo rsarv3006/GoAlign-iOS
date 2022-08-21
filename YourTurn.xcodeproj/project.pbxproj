@@ -89,6 +89,9 @@
 		78E743C028A595460069E691 /* SignInFormContentBuilderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E743BF28A595460069E691 /* SignInFormContentBuilderImpl.swift */; };
 		78E743C428A599A00069E691 /* SignInCompletedForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E743C328A599A00069E691 /* SignInCompletedForm.swift */; };
 		78E7FAEA28ADE8060041D335 /* TeamSelectModalCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E7FAE928ADE8060041D335 /* TeamSelectModalCellView.swift */; };
+		78EC914C28AF2C920046DF28 /* ModalDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EC914B28AF2C920046DF28 /* ModalDelegateProtocol.swift */; };
+		78EC914E28AF2D220046DF28 /* TeamSelectModalReturnModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EC914D28AF2D220046DF28 /* TeamSelectModalReturnModel.swift */; };
+		78EC915028AFB9640046DF28 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EC914F28AFB9640046DF28 /* ModalViewController.swift */; };
 		78FAB71628AAF9D6009B8D50 /* DrawerMenuVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAB71528AAF9D6009B8D50 /* DrawerMenuVM.swift */; };
 		78FAB71B28AB16A2009B8D50 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 78FAB71A28AB16A2009B8D50 /* FirebaseAnalytics */; };
 		78FAB71D28AB16A2009B8D50 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 78FAB71C28AB16A2009B8D50 /* FirebaseCrashlytics */; };
@@ -198,6 +201,9 @@
 		78E743BF28A595460069E691 /* SignInFormContentBuilderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFormContentBuilderImpl.swift; sourceTree = "<group>"; };
 		78E743C328A599A00069E691 /* SignInCompletedForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCompletedForm.swift; sourceTree = "<group>"; };
 		78E7FAE928ADE8060041D335 /* TeamSelectModalCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSelectModalCellView.swift; sourceTree = "<group>"; };
+		78EC914B28AF2C920046DF28 /* ModalDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalDelegateProtocol.swift; sourceTree = "<group>"; };
+		78EC914D28AF2D220046DF28 /* TeamSelectModalReturnModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSelectModalReturnModel.swift; sourceTree = "<group>"; };
+		78EC914F28AFB9640046DF28 /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		78FAB71528AAF9D6009B8D50 /* DrawerMenuVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerMenuVM.swift; sourceTree = "<group>"; };
 		78FAB71E28AB170B009B8D50 /* LoggerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerService.swift; sourceTree = "<group>"; };
 		78FAB72128AB58AC009B8D50 /* ModalFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalFormComponent.swift; sourceTree = "<group>"; };
@@ -267,6 +273,7 @@
 				7872D6FD2896B03F00E598D2 /* ToJsonProtcol.swift */,
 				780F196928A45F2300371B91 /* AuthenticationCompletedProtocol.swift */,
 				780F197728A492E500371B91 /* SwitchAuthScreenProtocol.swift */,
+				78EC914B28AF2C920046DF28 /* ModalDelegateProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -338,6 +345,7 @@
 				780F197928A493FE00371B91 /* AuthViewController.swift */,
 				78C4D95C286EAFFC006550A9 /* IntervalPicker.swift */,
 				78439FD628AC75430070D48D /* StandardButton.swift */,
+				78EC914F28AFB9640046DF28 /* ModalViewController.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -416,6 +424,7 @@
 				78E4F89128938DE50075F04F /* UserModel.swift */,
 				78E4F8932893911B0075F04F /* TaskHistoryModel.swift */,
 				7872D6F928950AEF00E598D2 /* TeamModel.swift */,
+				78EC914D28AF2D220046DF28 /* TeamSelectModalReturnModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -741,6 +750,7 @@
 				78E4F8942893911B0075F04F /* TaskHistoryModel.swift in Sources */,
 				78BF0D6528A97F57005C6098 /* DrawerMenuViewController.swift in Sources */,
 				78D7C3C528776F80001F48C5 /* FormCompositionalLayout.swift in Sources */,
+				78EC915028AFB9640046DF28 /* ModalViewController.swift in Sources */,
 				78D7C3C22877690B001F48C5 /* FormDateCollectionViewCell.swift in Sources */,
 				7872D6FC28950C5E00E598D2 /* TeamService.swift in Sources */,
 				78BBB8FC28642207006B3FDC /* HomeScreenTaskCell.swift in Sources */,
@@ -776,6 +786,7 @@
 				780F197C28A4B0C700371B91 /* RootController.swift in Sources */,
 				7802E18D288B9EB900F7D501 /* SignUp.swift in Sources */,
 				78FAB72228AB58AD009B8D50 /* ModalFormComponent.swift in Sources */,
+				78EC914E28AF2D220046DF28 /* TeamSelectModalReturnModel.swift in Sources */,
 				78B687862887A67B006B6CAB /* ButtonFormComponent.swift in Sources */,
 				78FAB71F28AB170B009B8D50 /* LoggerService.swift in Sources */,
 				78E4F88E2893881D0075F04F /* TaskModel.swift in Sources */,
@@ -791,6 +802,7 @@
 				78B687802887A5E5006B6CAB /* FormComponent.swift in Sources */,
 				78E4F890289389B00075F04F /* IntervalObject.swift in Sources */,
 				78DAADF32869617600FEB0DA /* TaskAddEditScreen.swift in Sources */,
+				78EC914C28AF2C920046DF28 /* ModalDelegateProtocol.swift in Sources */,
 				783DECD428617EEB0062343E /* SceneDelegate.swift in Sources */,
 				78E4F896289393150075F04F /* Networking.swift in Sources */,
 				7847732D28768D14009AFC92 /* FormButtonCollectionViewCell.swift in Sources */,

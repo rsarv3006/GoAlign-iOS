@@ -6,20 +6,14 @@
 //
 
 import UIKit
-import Combine
 
 private let TEAM_SELECT = 1020
 private let TEAM_MEMBER_SELECT = 1030
 
-class TeamSelectModal: UIViewController {
-    
-    private var subscriptions = Set<AnyCancellable>()
+class TeamSelectModal: ModalViewController {
     
     private var teams = [TeamModel]() {
         didSet {
-            print(teams.forEach({ team in
-                print(team.teamName)
-            }))
             DispatchQueue.main.async {
                 self.teamSelectTableView.reloadData()
                 self.teamMemberSelectTableView.reloadData()
@@ -28,7 +22,13 @@ class TeamSelectModal: UIViewController {
         }
     }
     
-    private var selectedTeamIndex: Int = 0
+    private var selectedTeamIndex: Int = 0 {
+        didSet {
+            DispatchQueue.main.async {
+                self.teamMemberSelectTableView.reloadData()
+            }
+        }
+    }
     
     // MARK: - UI Elements
     private lazy var closeButton: StandardButton = {
@@ -46,12 +46,14 @@ class TeamSelectModal: UIViewController {
     
     private lazy var teamTitleLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .center
         label.text = "Select the Team"
         return label
     }()
     
     private lazy var teamMemberTitleLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .center
         label.text = "Select the Team Member"
         return label
     }()
@@ -70,52 +72,10 @@ class TeamSelectModal: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureModal()
+        setupTables()
         configureView()
         loadTeamsAndMembers()
-    }
-    
-    func configureView() {
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        
-        view.addSubview(subView)
-        subView.center(inView: view)
-        
-        let screenHeight = UIScreen.main.bounds.size.height
-        let screenWidth = UIScreen.main.bounds.size.width
-        
-        subView.setWidth(screenWidth * 0.75)
-        subView.setHeight(screenHeight * 0.6)
-        
-        subView.addSubview(closeButton)
-        closeButton.centerX(inView: subView)
-        closeButton.anchor(left: subView.leftAnchor, bottom: subView.bottomAnchor, right: subView.rightAnchor, paddingLeft: 12, paddingBottom: 12, paddingRight: 12)
-        
-        closeButton.addTarget(self, action: #selector(onClosePressed), for: .touchUpInside)
-        
-        subView.addSubview(teamTitleLabel)
-        teamTitleLabel.centerX(inView: subView)
-        teamTitleLabel.anchor(top: subView.topAnchor, left: subView.leftAnchor, right: subView.rightAnchor, height: 44)
-        
-        teamSelectTableView.register(TeamSelectModalCellView.self, forCellReuseIdentifier: "thing")
-        teamMemberSelectTableView.register(TeamSelectModalCellView.self, forCellReuseIdentifier: "otherThing")
-        
-        subView.addSubview(teamSelectTableView)
-        teamSelectTableView.anchor(top: teamTitleLabel.bottomAnchor, left: subView.leftAnchor, right: subView.rightAnchor, height: 120)
-
-        subView.addSubview(teamMemberTitleLabel)
-        teamMemberTitleLabel.centerX(inView: subView)
-        teamMemberTitleLabel.anchor(top: teamSelectTableView.bottomAnchor, left: subView.leftAnchor, right: subView.rightAnchor, height: 44)
-        
-        subView.addSubview(teamMemberSelectTableView)
-        teamMemberSelectTableView.anchor(top: teamMemberTitleLabel.bottomAnchor, left: subView.leftAnchor, right: subView.rightAnchor, height: 120)
-        
-        teamSelectTableView.delegate = self
-        teamSelectTableView.dataSource = self
-        teamSelectTableView.rowHeight = 60
-        
-        teamMemberSelectTableView.delegate = self
-        teamMemberSelectTableView.dataSource = self
-        teamMemberSelectTableView.rowHeight = 60
     }
     
     @objc func onClosePressed() {
@@ -133,10 +93,21 @@ class TeamSelectModal: UIViewController {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension TeamSelectModal: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.tag == TEAM_SELECT {
+            let returnValue = TeamSelectModalReturnModel(team: teams[indexPath.row], teamMember: teams[indexPath.row].teamMembers[0])
+            delegate?.modalSentValue(viewController: self, value: returnValue)
+            selectedTeamIndex = indexPath.row
+        } else if tableView.tag == TEAM_MEMBER_SELECT {
+            let returnValue = TeamSelectModalReturnModel(team: teams[selectedTeamIndex], teamMember: teams[selectedTeamIndex].teamMembers[indexPath.row])
+            delegate?.modalSentValue(viewController: self, value: returnValue)
+        }
+    }
 }
 
+// MARK: - UITableViewDataSource
 extension TeamSelectModal: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView.tag == TEAM_SELECT {
@@ -166,6 +137,54 @@ extension TeamSelectModal: UITableViewDataSource {
             return UITableViewCell(style: .default, reuseIdentifier: "crash baby")
         }
     }
+}
+
+extension TeamSelectModal {
+    func configureView() {
+        subView.addSubview(closeButton)
+        closeButton.centerX(inView: subView)
+        closeButton.anchor(left: subView.leftAnchor, bottom: subView.bottomAnchor, right: subView.rightAnchor, paddingLeft: 12, paddingBottom: 12, paddingRight: 12)
+        
+        closeButton.addTarget(self, action: #selector(onClosePressed), for: .touchUpInside)
+        
+        subView.addSubview(teamTitleLabel)
+        teamTitleLabel.centerX(inView: subView)
+        teamTitleLabel.anchor(top: subView.topAnchor, left: subView.leftAnchor, right: subView.rightAnchor, height: 44)
+        
+        teamSelectTableView.register(TeamSelectModalCellView.self, forCellReuseIdentifier: "thing")
+        teamMemberSelectTableView.register(TeamSelectModalCellView.self, forCellReuseIdentifier: "otherThing")
+        
+        subView.addSubview(teamSelectTableView)
+        teamSelectTableView.anchor(top: teamTitleLabel.bottomAnchor, left: subView.leftAnchor, right: subView.rightAnchor, height: 120)
+
+        subView.addSubview(teamMemberTitleLabel)
+        teamMemberTitleLabel.centerX(inView: subView)
+        teamMemberTitleLabel.anchor(top: teamSelectTableView.bottomAnchor, left: subView.leftAnchor, right: subView.rightAnchor, height: 44)
+        
+        subView.addSubview(teamMemberSelectTableView)
+        teamMemberSelectTableView.anchor(top: teamMemberTitleLabel.bottomAnchor, left: subView.leftAnchor, right: subView.rightAnchor, height: 120)
+    }
     
+    func setupTables() {
+        teamSelectTableView.delegate = self
+        teamSelectTableView.dataSource = self
+        teamSelectTableView.rowHeight = 40
+        
+        teamMemberSelectTableView.delegate = self
+        teamMemberSelectTableView.dataSource = self
+        teamMemberSelectTableView.rowHeight = 40
+    }
     
+    func configureModal() {
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        
+        view.addSubview(subView)
+        subView.center(inView: view)
+        
+        let screenHeight = UIScreen.main.bounds.size.height
+        let screenWidth = UIScreen.main.bounds.size.width
+        
+        subView.setWidth(screenWidth * 0.75)
+        subView.setHeight(screenHeight * 0.6)
+    }
 }

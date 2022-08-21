@@ -18,7 +18,7 @@ class TeamSelectModalCellView: UITableViewCell {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 24)
+        label.font = .systemFont(ofSize: 20)
         return label
     }()
     

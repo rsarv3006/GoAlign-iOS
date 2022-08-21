@@ -13,7 +13,7 @@ class FormModalCollectionViewCell: UICollectionViewCell {
     private var indexPath: IndexPath?
     
     private var subscriptions = Set<AnyCancellable>()
-    private(set) var subject = PassthroughSubject<(String, IndexPath), Never>()
+    private(set) var subject = PassthroughSubject<(Any, IndexPath), Never>()
     private(set) var reload = PassthroughSubject<String, Never>()
     private(set) var openModal = PassthroughSubject<UIViewController, Never>()
     
@@ -79,6 +79,7 @@ private extension FormModalCollectionViewCell {
     
     @objc func onOpenModalPressed() {
         guard let modal = item?.viewControllerToOpen else { return }
+        modal.delegate = self
         openModal.send(modal)
     }
 }
@@ -87,4 +88,11 @@ private extension FormModalCollectionViewCell {
 extension FormModalCollectionViewCell {
     func configureCombineEvents() {}
     
+}
+
+extension FormModalCollectionViewCell: ModalDelegate {
+    func modalSentValue(viewController: ModalViewController, value: Any) {
+        guard let indexPath = indexPath else { return }
+        subject.send((value, indexPath))
+    }
 }

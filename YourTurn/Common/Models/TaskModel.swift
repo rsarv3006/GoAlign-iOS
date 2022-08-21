@@ -5,6 +5,8 @@
 //  Created by rjs on 7/28/22.
 //
 
+// TODO: CONVERT DATES TO ISO BEFORE SENDING TO THE SERVER
+
 import Foundation
 
 typealias TaskModelArray = [TaskModel]
@@ -87,17 +89,14 @@ class CreateTaskDto: Codable {
             throw TaskModelError.custom(message: "Create TaskModel: invalid value given for Window Length")
         }
         
-        if let teamId = formDict[CreateTaskDictKeys.TEAM_ID] as? String {
-            self.teamId = teamId
-        }  else {
-            throw TaskModelError.custom(message: "Create TaskModel: invalid value given for Team Id")
+        if let teamSelectValues = formDict[FormField.taskTeamPicker.rawValue] as? TeamSelectModalReturnModel {
+            self.teamId = teamSelectValues.team.teamId
+            self.assignedUserId = teamSelectValues.teamMember.userId
+        } else {
+            throw TaskModelError.custom(message: "Create TaskModel: invalid value given for Team and Member")
         }
         
-        if let assignedUserId = formDict[CreateTaskDictKeys.ASSIGNED_USER_ID] as? String {
-            self.assignedUserId = assignedUserId
-        } else {
-            throw TaskModelError.custom(message: "Create TaskModel: invalid value given for Assigned User Id")
-        }
+
         
         if let uid = uid {
             self.creatorUserId = uid
@@ -122,4 +121,3 @@ struct CreateTaskDictKeys {
     static let ASSIGNED_USER_ID = "assignedUserId"
     
 }
-// ["numberofRequiredCompletions": Optional("56"), "taskName": Optional("Asdffff"), "windowLength": Optional(YourTurn.IntervalObject), "notes": nil, "endDate": Optional(Optional(2022-08-26 20:03:00 +0000)), "intervalBetweenWindows": Optional(YourTurn.IntervalObject), "startDate": Optional(2022-08-18 20:03:00 +0000)]

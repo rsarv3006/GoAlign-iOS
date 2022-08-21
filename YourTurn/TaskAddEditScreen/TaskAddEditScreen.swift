@@ -107,7 +107,15 @@ private extension TaskAddEditScreen {
                 // TODO: Handle this error
                 print(completion)
             }, receiveValue: { val in
-                print(val)
+                TaskService.createTask(taskToCreate: val) { createdTask, error in
+                    guard error == nil else {
+                        Logger.log(logLevel: .Prod, message: String(describing: error))
+                        // TODO: Handle Error
+                        return
+                    }
+                    
+                    self.dismiss(animated: true)
+                }
             }).store(in: &subscriptions)
     }
 }

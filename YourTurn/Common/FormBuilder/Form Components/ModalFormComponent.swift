@@ -10,11 +10,11 @@ import UIKit
 
 final class ModalFormComponent: FormComponent {
     let buttonTitle: String
-    let viewControllerToOpen: UIViewController
+    let viewControllerToOpen: ModalViewController
     
     init(id: FormField,
          buttonTitle: String,
-         viewControllerToOpen: UIViewController,
+         viewControllerToOpen: ModalViewController,
          validations: [ValidationManager] = []
     ) {
         self.buttonTitle = buttonTitle
