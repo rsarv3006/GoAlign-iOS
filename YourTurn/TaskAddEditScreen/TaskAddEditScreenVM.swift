@@ -15,8 +15,4 @@ struct TaskAddEditScreenVM {
         static let INTERVAL_BETWEEN_WINDOWS = "INTERVAL_BETWEEN_WINDOWS"
         static let WINDOW_LENGTH = "WINDOW_LENGTH"
     }
-    
-    func addNewTask(form: [String: Any]) {
-        
-    }
 }

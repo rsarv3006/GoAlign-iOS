@@ -22,7 +22,7 @@ class FormButtonCollectionViewCell: UICollectionViewCell {
     
     private var item: ButtonFormComponent?
     private(set) var subject = PassthroughSubject<FormField, Never>()
-
+    
     func bind(_ item: FormComponent) {
         guard let item = item as? ButtonFormComponent else { return }
         self.item = item
@@ -56,7 +56,6 @@ private extension FormButtonCollectionViewCell {
     
     @objc
     func actionDidTap() {
-        
         guard let item = item else { return }
         subject.send(item.formId)
     }

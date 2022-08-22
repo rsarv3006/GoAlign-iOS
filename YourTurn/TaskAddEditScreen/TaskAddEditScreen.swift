@@ -8,8 +8,14 @@
 import UIKit
 import Combine
 
+protocol TaskAddEditScreenDelegate {
+    func onTaskScreenComplet(viewController: UIViewController)
+}
+
 class TaskAddEditScreen: UIViewController {
     // MARK: - Properties
+    var delegate: TaskAddEditScreenDelegate?
+    
     var viewModel: TaskAddEditScreenVM?
     private var subscriptions = Set<AnyCancellable>()
     
@@ -90,6 +96,7 @@ private extension TaskAddEditScreen {
     func formSubmissionSubscription() {
         formContentBuilder
             .formSubmission
+            .debounce(for: .seconds(0.5), scheduler: RunLoop.current)
             .sink(receiveCompletion: { completion in
                 // TODO: Handle this error
                 print(completion)
@@ -100,6 +107,8 @@ private extension TaskAddEditScreen {
                         // TODO: Handle Error
                         return
                     }
+                    
+                    self.delegate?.onTaskScreenComplet(viewController: self)
                     
                     DispatchQueue.main.async {
                         self.navigationController?.popViewController(animated: true)

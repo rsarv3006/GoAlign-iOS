@@ -46,7 +46,14 @@ class HomeScreenVM {
     func onAddTaskPress(navigationController: UINavigationController?) {
         let newVc = TaskAddEditScreen()
         newVc.viewModel = TaskAddEditScreenVM()
+        newVc.delegate = self
         navigationController?.pushViewController(newVc, animated: false)
     }
     
+}
+
+extension HomeScreenVM: TaskAddEditScreenDelegate {
+    func onTaskScreenComplet(viewController: UIViewController) {
+        loadTasks()
+    }
 }
