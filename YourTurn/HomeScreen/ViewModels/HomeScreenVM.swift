@@ -55,5 +55,6 @@ class HomeScreenVM {
 extension HomeScreenVM: TaskAddEditScreenDelegate {
     func onTaskScreenComplet(viewController: UIViewController) {
         loadTasks()
+        loadTeams()
     }
 }
