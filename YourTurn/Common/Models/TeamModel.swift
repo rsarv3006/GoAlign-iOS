@@ -14,3 +14,11 @@ class TeamModel: Codable {
     let tasks: TaskModelArray
     let teamMembers: [UserModel]
 }
+
+class CreateTeamDto: Codable {
+    let teamName: String
+    
+    init(teamName: String) {
+        self.teamName = teamName
+    }
+}

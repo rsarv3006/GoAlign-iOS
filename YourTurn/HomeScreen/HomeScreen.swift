@@ -40,22 +40,30 @@ class HomeScreen: UIViewController {
         }
     }
     
-    private let taskTitleLabel: UILabel = {
+    private lazy var taskTitleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 24)
         return label
     }()
     
-    private let teamTitleLabel: UILabel = {
+    private lazy var teamTitleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 24)
         return label
     }()
     
-    private let addTaskButton: UIButton = {
+    private lazy var addTaskButton: UIButton = {
         let button = UIButton()
         let configuration = UIImage.SymbolConfiguration(textStyle: .title2)
         let addImage = UIImage(systemName: "note.text.badge.plus", withConfiguration: configuration)
+        button.setImage(addImage, for: .normal)
+        return button
+    }()
+    
+    private lazy var addTeamButton: UIButton = {
+        let button = UIButton()
+        let configuration = UIImage.SymbolConfiguration(textStyle: .title2)
+        let addImage = UIImage(systemName: "plus.square.on.square", withConfiguration: configuration)
         button.setImage(addImage, for: .normal)
         return button
     }()
@@ -112,6 +120,10 @@ class HomeScreen: UIViewController {
         view.addSubview(teamTitleLabel)
         teamTitleLabel.center(inView: view)
         
+        view.addSubview(addTeamButton)
+        addTeamButton.centerY(inView: view)
+        addTeamButton.anchor(right: rightSafeAnchor, paddingRight: 12)
+        
         view.addSubview(taskTableView)
         taskTableView.anchor(top: taskTitleLabel.bottomAnchor, left: leftSafeAnchor, bottom: teamTitleLabel.topAnchor, right: rightSafeAnchor)
         
@@ -123,6 +135,7 @@ class HomeScreen: UIViewController {
     private func configureInteractables() {
         addTaskButton.addTarget(self, action: #selector(onAddTaskPressed), for: .touchUpInside)
         drawerButton.addTarget(self, action: #selector(onDrawerButtonPress), for: .touchUpInside)
+        addTeamButton.addTarget(self, action: #selector(onAddTeamPressed), for: .touchUpInside)
     }
     
     private func configureCombine() {
@@ -144,6 +157,10 @@ class HomeScreen: UIViewController {
     // MARK: - Actions
     @objc func onAddTaskPressed() {
         viewModel?.onAddTaskPress(navigationController: navigationController)
+    }
+    
+    @objc func onAddTeamPressed() {
+        viewModel?.onAddTeamPress(navigationController: navigationController)
     }
     
     @objc func onDrawerButtonPress() {
