@@ -14,6 +14,6 @@ struct HomeScreenTaskCellVM {
     init(withTask task: TaskModel) {
         taskNameLabelString = task.taskName
         // TODO: - Figure out what this label should say
-        timeIntervalLabelString = String(describing: task.startDate)
+        timeIntervalLabelString = String(describing: task.startDate.formatted())
     }
 }

@@ -13,12 +13,12 @@ class HomeScreenVM {
     private(set) var subscriptions = Set<AnyCancellable>()
     
     let taskTitleLabel: NSAttributedString = NSAttributedString(string: "My Tasks",
-                                                     attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
+                                                                attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
     let teamTitleLabel: NSAttributedString = NSAttributedString(string: "My Groups",
-                                                    attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
+                                                                attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
     
     var tasksSubject = PassthroughSubject<TaskModelArray, Never>()
-
+    
     var teamsSubject = PassthroughSubject<[TeamModel], Never>()
     
     func loadTasks() {
@@ -39,7 +39,7 @@ class HomeScreenVM {
             }
             
             self?.teamsSubject.send(teams)
-
+            
         }
     }
     
@@ -50,10 +50,25 @@ class HomeScreenVM {
         navigationController?.pushViewController(newVc, animated: false)
     }
     
+    func onAddTeamPress(navigationController: UINavigationController?) {
+        let newVc = TeamAddModal()
+        newVc.viewModel = TeamAddModalVM()
+        newVc.delegate = self
+        newVc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        navigationController?.present(newVc, animated: true)
+    }
+    
 }
 
 extension HomeScreenVM: TaskAddEditScreenDelegate {
     func onTaskScreenComplet(viewController: UIViewController) {
+        loadTasks()
+        loadTeams()
+    }
+}
+
+extension HomeScreenVM: TeamAddModalDelegate {
+    func onTeamAddScreenComplete(viewController: UIViewController) {
         loadTasks()
         loadTeams()
     }
