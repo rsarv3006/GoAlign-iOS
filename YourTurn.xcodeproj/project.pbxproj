@@ -80,6 +80,8 @@
 		78DAADED2868D5CF00FEB0DA /* HomeScreenTeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DAADEC2868D5CF00FEB0DA /* HomeScreenTeamCell.swift */; };
 		78DAADF32869617600FEB0DA /* TaskAddEditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DAADF22869617500FEB0DA /* TaskAddEditScreen.swift */; };
 		78DAADF52869663000FEB0DA /* TaskAddEditScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DAADF42869663000FEB0DA /* TaskAddEditScreenVM.swift */; };
+		78E4F47728B4024400DE8E0C /* TeamAddModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F47628B4024400DE8E0C /* TeamAddModal.swift */; };
+		78E4F47928B5054C00DE8E0C /* TeamAddModalVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F47828B5054C00DE8E0C /* TeamAddModalVM.swift */; };
 		78E4F88A289386CB0075F04F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F889289386CB0075F04F /* User.swift */; };
 		78E4F88C289386F50075F04F /* TaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F88B289386F50075F04F /* TaskService.swift */; };
 		78E4F88E2893881D0075F04F /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F88D2893881C0075F04F /* TaskModel.swift */; };
@@ -193,6 +195,8 @@
 		78DAADEC2868D5CF00FEB0DA /* HomeScreenTeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenTeamCell.swift; sourceTree = "<group>"; };
 		78DAADF22869617500FEB0DA /* TaskAddEditScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAddEditScreen.swift; sourceTree = "<group>"; };
 		78DAADF42869663000FEB0DA /* TaskAddEditScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAddEditScreenVM.swift; sourceTree = "<group>"; };
+		78E4F47628B4024400DE8E0C /* TeamAddModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamAddModal.swift; sourceTree = "<group>"; };
+		78E4F47828B5054C00DE8E0C /* TeamAddModalVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamAddModalVM.swift; sourceTree = "<group>"; };
 		78E4F889289386CB0075F04F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		78E4F88B289386F50075F04F /* TaskService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskService.swift; sourceTree = "<group>"; };
 		78E4F88D2893881C0075F04F /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
@@ -309,6 +313,7 @@
 				7802E1A4288E398100F7D501 /* Services */,
 				78BF0D6128A97AA6005C6098 /* DrawerMenu */,
 				78439FDB28AD2B540070D48D /* TaskAddEditScreen */,
+				78E4F47528B3FED200DE8E0C /* TeamAddScreen */,
 				78439FDC28AD2C1A0070D48D /* AuthFlow */,
 				78439FDE28AD2C710070D48D /* HomeScreen */,
 				783DECD128617EEB0062343E /* AppDelegate.swift */,
@@ -543,6 +548,15 @@
 				78DAADEA2868D36700FEB0DA /* HomeScreenTeamCellVM.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		78E4F47528B3FED200DE8E0C /* TeamAddScreen */ = {
+			isa = PBXGroup;
+			children = (
+				78E4F47628B4024400DE8E0C /* TeamAddModal.swift */,
+				78E4F47828B5054C00DE8E0C /* TeamAddModalVM.swift */,
+			);
+			path = TeamAddScreen;
 			sourceTree = "<group>";
 		};
 		78E743BE28A5923F0069E691 /* Forms */ = {
@@ -793,6 +807,7 @@
 				78B687862887A67B006B6CAB /* ButtonFormComponent.swift in Sources */,
 				78FAB71F28AB170B009B8D50 /* LoggerService.swift in Sources */,
 				78E4F88E2893881D0075F04F /* TaskModel.swift in Sources */,
+				78E4F47928B5054C00DE8E0C /* TeamAddModalVM.swift in Sources */,
 				78477327287687DD009AFC92 /* FormModel.swift in Sources */,
 				78B687902887AE29006B6CAB /* FieldVisibilityProtocol.swift in Sources */,
 				78D7C3C028776499001F48C5 /* FormTextCollectionViewCell.swift in Sources */,
@@ -805,6 +820,7 @@
 				78DAADF52869663000FEB0DA /* TaskAddEditScreenVM.swift in Sources */,
 				78B687802887A5E5006B6CAB /* FormComponent.swift in Sources */,
 				78E4F890289389B00075F04F /* IntervalObject.swift in Sources */,
+				78E4F47728B4024400DE8E0C /* TeamAddModal.swift in Sources */,
 				78DAADF32869617600FEB0DA /* TaskAddEditScreen.swift in Sources */,
 				78EC914C28AF2C920046DF28 /* ModalDelegateProtocol.swift in Sources */,
 				783DECD428617EEB0062343E /* SceneDelegate.swift in Sources */,
