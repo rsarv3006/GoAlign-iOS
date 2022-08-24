@@ -164,6 +164,9 @@ class TeamAddModal: UIViewController {
 }
 
 extension TeamAddModal: UITextFieldDelegate {
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        teamNameField.resignFirstResponder()
+        return false
+    }
 }
 
