@@ -80,8 +80,12 @@
 		78DAADED2868D5CF00FEB0DA /* HomeScreenTeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DAADEC2868D5CF00FEB0DA /* HomeScreenTeamCell.swift */; };
 		78DAADF32869617600FEB0DA /* TaskAddEditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DAADF22869617500FEB0DA /* TaskAddEditScreen.swift */; };
 		78DAADF52869663000FEB0DA /* TaskAddEditScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DAADF42869663000FEB0DA /* TaskAddEditScreenVM.swift */; };
+		78DF5AEE28B88C1300C182CF /* credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = 78E4F47D28B747D500DE8E0C /* credentials.json */; };
+		78DF5AEF28B88C1400C182CF /* credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = 78E4F47D28B747D500DE8E0C /* credentials.json */; };
 		78E4F47728B4024400DE8E0C /* TeamAddModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F47628B4024400DE8E0C /* TeamAddModal.swift */; };
 		78E4F47928B5054C00DE8E0C /* TeamAddModalVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F47828B5054C00DE8E0C /* TeamAddModalVM.swift */; };
+		78E4F47E28B747D500DE8E0C /* credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = 78E4F47D28B747D500DE8E0C /* credentials.json */; };
+		78E4F48028B7489300DE8E0C /* CredsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F47B28B7474E00DE8E0C /* CredsModel.swift */; };
 		78E4F88A289386CB0075F04F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F889289386CB0075F04F /* User.swift */; };
 		78E4F88C289386F50075F04F /* TaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F88B289386F50075F04F /* TaskService.swift */; };
 		78E4F88E2893881D0075F04F /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F88D2893881C0075F04F /* TaskModel.swift */; };
@@ -197,6 +201,8 @@
 		78DAADF42869663000FEB0DA /* TaskAddEditScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAddEditScreenVM.swift; sourceTree = "<group>"; };
 		78E4F47628B4024400DE8E0C /* TeamAddModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamAddModal.swift; sourceTree = "<group>"; };
 		78E4F47828B5054C00DE8E0C /* TeamAddModalVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamAddModalVM.swift; sourceTree = "<group>"; };
+		78E4F47B28B7474E00DE8E0C /* CredsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredsModel.swift; sourceTree = "<group>"; };
+		78E4F47D28B747D500DE8E0C /* credentials.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = credentials.json; sourceTree = "<group>"; };
 		78E4F889289386CB0075F04F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		78E4F88B289386F50075F04F /* TaskService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskService.swift; sourceTree = "<group>"; };
 		78E4F88D2893881C0075F04F /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
@@ -338,6 +344,7 @@
 		783DECF128617EED0062343E /* YourTurnUITests */ = {
 			isa = PBXGroup;
 			children = (
+				78E4F47A28B7473B00DE8E0C /* TestDependencies */,
 				783DECF228617EED0062343E /* YourTurnUITests.swift */,
 				783DECF428617EED0062343E /* YourTurnUITestsLaunchTests.swift */,
 			);
@@ -559,6 +566,15 @@
 			path = TeamAddScreen;
 			sourceTree = "<group>";
 		};
+		78E4F47A28B7473B00DE8E0C /* TestDependencies */ = {
+			isa = PBXGroup;
+			children = (
+				78E4F47D28B747D500DE8E0C /* credentials.json */,
+				78E4F47B28B7474E00DE8E0C /* CredsModel.swift */,
+			);
+			path = TestDependencies;
+			sourceTree = "<group>";
+		};
 		78E743BE28A5923F0069E691 /* Forms */ = {
 			isa = PBXGroup;
 			children = (
@@ -693,6 +709,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78DF5AEE28B88C1300C182CF /* credentials.json in Resources */,
 				7872D70028978C1700E598D2 /* .gitignore in Resources */,
 				783DECDE28617EED0062343E /* LaunchScreen.storyboard in Resources */,
 				7872D70228978D3F00E598D2 /* GoogleService-Info.plist in Resources */,
@@ -705,6 +722,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78DF5AEF28B88C1400C182CF /* credentials.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -712,6 +730,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78E4F47E28B747D500DE8E0C /* credentials.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -842,6 +861,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				783DECF528617EED0062343E /* YourTurnUITestsLaunchTests.swift in Sources */,
+				78E4F48028B7489300DE8E0C /* CredsModel.swift in Sources */,
 				783DECF328617EED0062343E /* YourTurnUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
