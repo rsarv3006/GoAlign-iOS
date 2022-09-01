@@ -9,7 +9,4 @@ import Foundation
 
 struct DrawerMenuVM {
     
-    func onLogOutPress() {
-        
-    }
 }

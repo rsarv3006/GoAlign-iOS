@@ -218,4 +218,13 @@ extension HomeScreen: DrawerMenuViewControllerDelegate {
     func onLogOutPressed(viewController: UIViewController) {
         logoutEventSubject.send(true)
     }
+    
+    func onViewTeamInvitesPressed(viewController: UIViewController) {
+        print("HOWDY THERE")
+        DispatchQueue.main.async {
+            let newVc = TeamInvitesViewController()
+            newVc.viewModel = TeamInvitesVM()
+            self.navigationController?.pushViewController(newVc, animated: true)
+        }
+    }
 }

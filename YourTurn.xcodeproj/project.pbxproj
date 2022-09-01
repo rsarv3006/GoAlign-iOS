@@ -82,6 +82,13 @@
 		78DAADF52869663000FEB0DA /* TaskAddEditScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DAADF42869663000FEB0DA /* TaskAddEditScreenVM.swift */; };
 		78DF5AEE28B88C1300C182CF /* credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = 78E4F47D28B747D500DE8E0C /* credentials.json */; };
 		78DF5AEF28B88C1400C182CF /* credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = 78E4F47D28B747D500DE8E0C /* credentials.json */; };
+		78DF5AF228BC413000C182CF /* TeamInvitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF5AF128BC412F00C182CF /* TeamInvitesViewController.swift */; };
+		78DF5AF428BC51C400C182CF /* TeamInvite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF5AF328BC51C400C182CF /* TeamInvite.swift */; };
+		78DF5AF628BC63CA00C182CF /* TeamInviteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF5AF528BC63CA00C182CF /* TeamInviteModel.swift */; };
+		78DF5AF828BD9FFB00C182CF /* TeamInvitesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF5AF728BD9FFB00C182CF /* TeamInvitesVM.swift */; };
+		78DF5AFA28BDA5CD00C182CF /* TeamInviteCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF5AF928BDA5CD00C182CF /* TeamInviteCellView.swift */; };
+		78DF5AFD28BDA87900C182CF /* TeamInviteCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF5AFC28BDA87900C182CF /* TeamInviteCellVM.swift */; };
+		78DF5AFF28C02FA300C182CF /* TeamInviteSubCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF5AFE28C02FA300C182CF /* TeamInviteSubCellView.swift */; };
 		78E4F47728B4024400DE8E0C /* TeamAddModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F47628B4024400DE8E0C /* TeamAddModal.swift */; };
 		78E4F47928B5054C00DE8E0C /* TeamAddModalVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F47828B5054C00DE8E0C /* TeamAddModalVM.swift */; };
 		78E4F47E28B747D500DE8E0C /* credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = 78E4F47D28B747D500DE8E0C /* credentials.json */; };
@@ -199,6 +206,13 @@
 		78DAADEC2868D5CF00FEB0DA /* HomeScreenTeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenTeamCell.swift; sourceTree = "<group>"; };
 		78DAADF22869617500FEB0DA /* TaskAddEditScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAddEditScreen.swift; sourceTree = "<group>"; };
 		78DAADF42869663000FEB0DA /* TaskAddEditScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAddEditScreenVM.swift; sourceTree = "<group>"; };
+		78DF5AF128BC412F00C182CF /* TeamInvitesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInvitesViewController.swift; sourceTree = "<group>"; };
+		78DF5AF328BC51C400C182CF /* TeamInvite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInvite.swift; sourceTree = "<group>"; };
+		78DF5AF528BC63CA00C182CF /* TeamInviteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInviteModel.swift; sourceTree = "<group>"; };
+		78DF5AF728BD9FFB00C182CF /* TeamInvitesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInvitesVM.swift; sourceTree = "<group>"; };
+		78DF5AF928BDA5CD00C182CF /* TeamInviteCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInviteCellView.swift; sourceTree = "<group>"; };
+		78DF5AFC28BDA87900C182CF /* TeamInviteCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInviteCellVM.swift; sourceTree = "<group>"; };
+		78DF5AFE28C02FA300C182CF /* TeamInviteSubCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInviteSubCellView.swift; sourceTree = "<group>"; };
 		78E4F47628B4024400DE8E0C /* TeamAddModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamAddModal.swift; sourceTree = "<group>"; };
 		78E4F47828B5054C00DE8E0C /* TeamAddModalVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamAddModalVM.swift; sourceTree = "<group>"; };
 		78E4F47B28B7474E00DE8E0C /* CredsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredsModel.swift; sourceTree = "<group>"; };
@@ -261,6 +275,7 @@
 				78E4F895289393150075F04F /* Networking.swift */,
 				7872D6FB28950C5E00E598D2 /* TeamService.swift */,
 				78FAB71E28AB170B009B8D50 /* LoggerService.swift */,
+				78DF5AF328BC51C400C182CF /* TeamInvite.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -320,6 +335,7 @@
 				78BF0D6128A97AA6005C6098 /* DrawerMenu */,
 				78439FDB28AD2B540070D48D /* TaskAddEditScreen */,
 				78E4F47528B3FED200DE8E0C /* TeamAddScreen */,
+				78DF5AF028BC412000C182CF /* TeamInvites */,
 				78439FDC28AD2C1A0070D48D /* AuthFlow */,
 				78439FDE28AD2C710070D48D /* HomeScreen */,
 				783DECD128617EEB0062343E /* AppDelegate.swift */,
@@ -440,6 +456,7 @@
 				78E4F8932893911B0075F04F /* TaskHistoryModel.swift */,
 				7872D6F928950AEF00E598D2 /* TeamModel.swift */,
 				78EC914D28AF2D220046DF28 /* TeamSelectModalReturnModel.swift */,
+				78DF5AF528BC63CA00C182CF /* TeamInviteModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -555,6 +572,26 @@
 				78DAADEA2868D36700FEB0DA /* HomeScreenTeamCellVM.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		78DF5AF028BC412000C182CF /* TeamInvites */ = {
+			isa = PBXGroup;
+			children = (
+				78DF5AFB28BDA86A00C182CF /* Cell */,
+				78DF5AF128BC412F00C182CF /* TeamInvitesViewController.swift */,
+				78DF5AF728BD9FFB00C182CF /* TeamInvitesVM.swift */,
+			);
+			path = TeamInvites;
+			sourceTree = "<group>";
+		};
+		78DF5AFB28BDA86A00C182CF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				78DF5AF928BDA5CD00C182CF /* TeamInviteCellView.swift */,
+				78DF5AFC28BDA87900C182CF /* TeamInviteCellVM.swift */,
+				78DF5AFE28C02FA300C182CF /* TeamInviteSubCellView.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		78E4F47528B3FED200DE8E0C /* TeamAddScreen */ = {
@@ -775,6 +812,7 @@
 				7802E1AA288E3D0900F7D501 /* SignUpCompletedForm.swift in Sources */,
 				78E4F88C289386F50075F04F /* TaskService.swift in Sources */,
 				78B6878A2887A6D2006B6CAB /* SwitchControlledDateFormComponent.swift in Sources */,
+				78DF5AFD28BDA87900C182CF /* TeamInviteCellVM.swift in Sources */,
 				7802E19D288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift in Sources */,
 				780F197428A490C200371B91 /* DateInFutureValidationManagerImpl.swift in Sources */,
 				78B68792288829F0006B6CAB /* FieldValidInvalidProtocol.swift in Sources */,
@@ -788,6 +826,7 @@
 				78D7C3C528776F80001F48C5 /* FormCompositionalLayout.swift in Sources */,
 				78EC915028AFB9640046DF28 /* ModalViewController.swift in Sources */,
 				78D7C3C22877690B001F48C5 /* FormDateCollectionViewCell.swift in Sources */,
+				78DF5AFA28BDA5CD00C182CF /* TeamInviteCellView.swift in Sources */,
 				7872D6FC28950C5E00E598D2 /* TeamService.swift in Sources */,
 				78BBB8FC28642207006B3FDC /* HomeScreenTaskCell.swift in Sources */,
 				78FAB71628AAF9D6009B8D50 /* DrawerMenuVM.swift in Sources */,
@@ -803,6 +842,7 @@
 				78B687822887A616006B6CAB /* TextFormComponent.swift in Sources */,
 				78E4F88A289386CB0075F04F /* User.swift in Sources */,
 				7802E1A1288E2FAE00F7D501 /* SignUpVM.swift in Sources */,
+				78DF5AFF28C02FA300C182CF /* TeamInviteSubCellView.swift in Sources */,
 				78DAADED2868D5CF00FEB0DA /* HomeScreenTeamCell.swift in Sources */,
 				78E7FAEA28ADE8060041D335 /* TeamSelectModalCellView.swift in Sources */,
 				78DAADE52866B61400FEB0DA /* HomeScreenTaskCellVM.swift in Sources */,
@@ -824,6 +864,7 @@
 				78FAB72228AB58AD009B8D50 /* ModalFormComponent.swift in Sources */,
 				78EC914E28AF2D220046DF28 /* TeamSelectModalReturnModel.swift in Sources */,
 				78B687862887A67B006B6CAB /* ButtonFormComponent.swift in Sources */,
+				78DF5AF228BC413000C182CF /* TeamInvitesViewController.swift in Sources */,
 				78FAB71F28AB170B009B8D50 /* LoggerService.swift in Sources */,
 				78E4F88E2893881D0075F04F /* TaskModel.swift in Sources */,
 				78E4F47928B5054C00DE8E0C /* TeamAddModalVM.swift in Sources */,
@@ -836,7 +877,10 @@
 				7872D6FE2896B03F00E598D2 /* ToJsonProtcol.swift in Sources */,
 				78288CD428B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift in Sources */,
 				780F196D28A4901000371B91 /* ValidationManagerProtocol.swift in Sources */,
+				78DF5AF828BD9FFB00C182CF /* TeamInvitesVM.swift in Sources */,
 				78DAADF52869663000FEB0DA /* TaskAddEditScreenVM.swift in Sources */,
+				78DF5AF428BC51C400C182CF /* TeamInvite.swift in Sources */,
+				78DF5AF628BC63CA00C182CF /* TeamInviteModel.swift in Sources */,
 				78B687802887A5E5006B6CAB /* FormComponent.swift in Sources */,
 				78E4F890289389B00075F04F /* IntervalObject.swift in Sources */,
 				78E4F47728B4024400DE8E0C /* TeamAddModal.swift in Sources */,
