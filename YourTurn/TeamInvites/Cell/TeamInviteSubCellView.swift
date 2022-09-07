@@ -10,16 +10,26 @@ import UIKit
 
 class TeamInviteSubCellView: UITableViewCell {
 
+    var viewModel: TeamInviteSubCellVM? {
+        didSet {
+            guard let viewModel = viewModel else { return }
+            declineInviteButton.setTitle(viewModel.declineButtonLabel, for: .normal)
+            acceptInviteButton.setTitle(viewModel.acceptButtonLabel, for: .normal)
+        }
+    }
+    
     // MARK: - UI Elements
     private lazy var declineInviteButton: StandardButton = {
         let button = StandardButton()
         button.setTitle("Decline", for: .normal)
+        button.addTarget(self, action: #selector(onDeclinePress), for: .touchUpInside)
         return button
     }()
 
     private lazy var acceptInviteButton: StandardButton = {
         let button = StandardButton()
         button.setTitle("Accept", for: .normal)
+        button.addTarget(self, action: #selector(onAcceptPress), for: .touchUpInside)
         return button
     }()
 
@@ -46,6 +56,14 @@ class TeamInviteSubCellView: UITableViewCell {
         buttonsStack.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 16, paddingRight: 16)
         acceptInviteButton.setWidth(120)
         declineInviteButton.setWidth(120)
+    }
+    
+    @objc func onAcceptPress() {
+        viewModel?.acceptInvite()
+    }
+    
+    @objc func onDeclinePress() {
+        viewModel?.declineInvite()
     }
 }
 

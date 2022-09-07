@@ -211,6 +211,8 @@ extension HomeScreen: UITableViewDataSource {
         teamTableView.dataSource = self
     }
     
+
+    
 }
 
 // MARK: - DrawerMenuViewControllerDelegate
@@ -220,10 +222,13 @@ extension HomeScreen: DrawerMenuViewControllerDelegate {
     }
     
     func onViewTeamInvitesPressed(viewController: UIViewController) {
-        print("HOWDY THERE")
         DispatchQueue.main.async {
             let newVc = TeamInvitesViewController()
             newVc.viewModel = TeamInvitesVM()
+            newVc.requestHomeReload.sink { _ in
+                self.viewModel?.loadTeams()
+                self.viewModel?.loadTasks()
+            }.store(in: &self.subscriptions)
             self.navigationController?.pushViewController(newVc, animated: true)
         }
     }

@@ -14,6 +14,8 @@ class TeamInviteModel: Codable {
     let inviteStatus: String
     let userId: String?
     let team: TeamModel
+    let creatorUserId: String
+    let creator: UserModel
 }
 
 class TeamInviteDisplayModel {

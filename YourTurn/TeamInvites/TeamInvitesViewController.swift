@@ -11,10 +11,10 @@ import Combine
 private let TEAM_INVITE_CELL_REUSE_ID = "teamInviteCell"
 private let TEAM_INVITE_SUB_CELL_REUSE_ID = "teamInviteSubCell"
 
-
-
 class TeamInvitesViewController: UITableViewController {
     var subscriptions = Set<AnyCancellable>()
+    
+    private(set) var requestHomeReload = PassthroughSubject<Bool, Never>()
     
     var viewModel: TeamInvitesVM? {
         didSet {
@@ -28,7 +28,6 @@ class TeamInvitesViewController: UITableViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-            
         }
     }
     
@@ -69,10 +68,25 @@ extension TeamInvitesViewController {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: TEAM_INVITE_CELL_REUSE_ID, for: indexPath) as! TeamInviteCellView
             let invite = teamInvites[indexPath.section].inviteModel
-            cell.viewModel = TeamInviteCellVM(teamName: invite.team.teamName, inviterName: "FIX THIS")
+            cell.viewModel = TeamInviteCellVM(teamName: invite.team.teamName, inviterName: invite.creator.username)
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: TEAM_INVITE_SUB_CELL_REUSE_ID, for: indexPath) as! TeamInviteSubCellView
+            let inviteId = teamInvites[indexPath.section].inviteModel.inviteId
+            
+            cell.viewModel = TeamInviteSubCellVM(inviteId: inviteId)
+            
+            cell.viewModel?.requestDisplayUIAlert.sink(receiveValue: { uiAlert in
+                DispatchQueue.main.async {
+                    self.present(uiAlert, animated: true)
+                }
+            }).store(in: &subscriptions)
+            
+            cell.viewModel?.requestReloadSubject.sink(receiveValue: { _ in
+                self.viewModel?.fetchCurrentInvites()
+                self.requestHomeReload.send(true)
+            }).store(in: &subscriptions)
+            
             return cell
         }
     }

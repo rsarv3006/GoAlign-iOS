@@ -11,6 +11,11 @@ enum TeamInviteError: Error {
     case custom(message: String)
 }
 
+enum TeamInviteStatus {
+    case success
+    case failure
+}
+
 struct TeamInviteService {
     static func getTeamInvitesByCurrentUser(completionHandler: @escaping(([TeamInviteModel]?, Error?) -> Void)) {
         guard let baseUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
@@ -45,5 +50,67 @@ struct TeamInviteService {
                 }
             }
         }
+    }
+    
+    static func acceptInvite(inviteId: String, completionHandler: @escaping((TeamInviteStatus, Error?) -> Void)) {
+        guard let baseUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
+            completionHandler(.failure, TeamInviteError.custom(message: "API_URL is malformed."))
+            return
+        }
+        
+        let url = URL(string: "\(baseUrl)teamInvite/\(inviteId)/accept")
+        
+        guard let url = url else {
+            completionHandler(.failure, TeamInviteError.custom(message: "Invalid URL"))
+            return
+        }
+        
+        Networking.post(url: url) { data, response, error in
+            guard error == nil else {
+                completionHandler(.failure, error)
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    completionHandler(.success, nil)
+                } else {
+                    completionHandler(.failure, TeamInviteError.custom(message: "Unknown Error Accepting Invite"))
+                }
+            }
+        }
+        
+        
+    }
+    
+    static func declineInvite(inviteId: String, completionHandler: @escaping((TeamInviteStatus, Error?) -> Void)) {
+        guard let baseUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
+            completionHandler(.failure, TeamInviteError.custom(message: "API_URL is malformed."))
+            return
+        }
+        
+        let url = URL(string: "\(baseUrl)teamInvite/\(inviteId)/decline")
+        
+        guard let url = url else {
+            completionHandler(.failure, TeamInviteError.custom(message: "Invalid URL"))
+            return
+        }
+        
+        Networking.post(url: url) { data, response, error in
+            guard error == nil else {
+                completionHandler(.failure, error)
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    completionHandler(.success, nil)
+                } else {
+                    completionHandler(.failure, TeamInviteError.custom(message: "Unknown Error declining Invite"))
+                }
+            }
+        }
+        
+        
     }
 }

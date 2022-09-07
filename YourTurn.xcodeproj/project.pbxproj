@@ -89,6 +89,7 @@
 		78DF5AFA28BDA5CD00C182CF /* TeamInviteCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF5AF928BDA5CD00C182CF /* TeamInviteCellView.swift */; };
 		78DF5AFD28BDA87900C182CF /* TeamInviteCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF5AFC28BDA87900C182CF /* TeamInviteCellVM.swift */; };
 		78DF5AFF28C02FA300C182CF /* TeamInviteSubCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF5AFE28C02FA300C182CF /* TeamInviteSubCellView.swift */; };
+		78DF5B0128C68D8A00C182CF /* TeamInviteSubCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF5B0028C68D8A00C182CF /* TeamInviteSubCellVM.swift */; };
 		78E4F47728B4024400DE8E0C /* TeamAddModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F47628B4024400DE8E0C /* TeamAddModal.swift */; };
 		78E4F47928B5054C00DE8E0C /* TeamAddModalVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F47828B5054C00DE8E0C /* TeamAddModalVM.swift */; };
 		78E4F47E28B747D500DE8E0C /* credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = 78E4F47D28B747D500DE8E0C /* credentials.json */; };
@@ -213,6 +214,7 @@
 		78DF5AF928BDA5CD00C182CF /* TeamInviteCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInviteCellView.swift; sourceTree = "<group>"; };
 		78DF5AFC28BDA87900C182CF /* TeamInviteCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInviteCellVM.swift; sourceTree = "<group>"; };
 		78DF5AFE28C02FA300C182CF /* TeamInviteSubCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInviteSubCellView.swift; sourceTree = "<group>"; };
+		78DF5B0028C68D8A00C182CF /* TeamInviteSubCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInviteSubCellVM.swift; sourceTree = "<group>"; };
 		78E4F47628B4024400DE8E0C /* TeamAddModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamAddModal.swift; sourceTree = "<group>"; };
 		78E4F47828B5054C00DE8E0C /* TeamAddModalVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamAddModalVM.swift; sourceTree = "<group>"; };
 		78E4F47B28B7474E00DE8E0C /* CredsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredsModel.swift; sourceTree = "<group>"; };
@@ -590,6 +592,7 @@
 				78DF5AF928BDA5CD00C182CF /* TeamInviteCellView.swift */,
 				78DF5AFC28BDA87900C182CF /* TeamInviteCellVM.swift */,
 				78DF5AFE28C02FA300C182CF /* TeamInviteSubCellView.swift */,
+				78DF5B0028C68D8A00C182CF /* TeamInviteSubCellVM.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -831,6 +834,7 @@
 				78BBB8FC28642207006B3FDC /* HomeScreenTaskCell.swift in Sources */,
 				78FAB71628AAF9D6009B8D50 /* DrawerMenuVM.swift in Sources */,
 				78C4D95D286EAFFC006550A9 /* IntervalPicker.swift in Sources */,
+				78DF5B0128C68D8A00C182CF /* TeamInviteSubCellVM.swift in Sources */,
 				78A4E0C02883B98F0067DBCE /* ValidationError.swift in Sources */,
 				78BFFA9E2887784600A767AB /* FormSwitchControlledTextCollectionViewCell.swift in Sources */,
 				783DED092861F5500062343E /* HomeScreenVM.swift in Sources */,
