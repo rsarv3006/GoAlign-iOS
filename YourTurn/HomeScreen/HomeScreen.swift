@@ -211,7 +211,31 @@ extension HomeScreen: UITableViewDataSource {
         teamTableView.dataSource = self
     }
     
-
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        if tableView.tag == TASK_TABLE_TAG {
+            let task = tasks[indexPath.row]
+            return UIContextMenuConfiguration(identifier: task.taskId as NSString, previewProvider: nil) { _ in
+                let completeTask = UIAction(
+                  title: "Complete Task",
+                  image: UIImage(systemName: "checkmark.circle")) { _ in
+                    // share the task
+                }
+                return UIMenu(title: "", children: [completeTask])
+            }
+        } else if tableView.tag == TEAM_TABLE_TAG {
+            let team = teams[indexPath.row]
+            return UIContextMenuConfiguration(identifier: team.teamId as NSString, previewProvider: nil) { _ in
+                let completeTask = UIAction(
+                  title: "Team Thing",
+                  image: UIImage(systemName: "checkmark.circle")) { _ in
+                    // share the task
+                }
+                return UIMenu(title: "", children: [completeTask])
+            }
+        }
+        
+        return nil
+    }
     
 }
 
