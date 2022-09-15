@@ -26,3 +26,13 @@ class TeamInviteDisplayModel {
         self.inviteModel = inviteModel
     }
 }
+
+class CreateInviteDtoModel: Codable {
+    let teamId: String
+    let emailAddressToInvite: String
+    
+    init(teamId: String, emailAddressToInvite: String) {
+        self.teamId = teamId
+        self.emailAddressToInvite = emailAddressToInvite
+    }
+}

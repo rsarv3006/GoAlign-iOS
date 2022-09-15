@@ -152,7 +152,7 @@ extension FormSwitchControlledTextCollectionViewCell {
             .default
             .publisher(for: UITextField.textDidChangeNotification, object: txtField)
             .compactMap { ($0.object as? UITextField)?.text }
-            .map(String.init)
+//            .map(String.init)
             .sink { [weak self] val in
                 
                 guard let self = self,

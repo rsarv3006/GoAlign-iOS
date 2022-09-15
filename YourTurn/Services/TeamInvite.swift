@@ -110,7 +110,41 @@ struct TeamInviteService {
                 }
             }
         }
+    }
+    
+    static func createInvite(createInviteDto: CreateInviteDtoModel, completionHandler: @escaping((TeamInviteStatus, Error?) -> Void)) {
+        guard let baseUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
+            completionHandler(TeamInviteStatus.failure, TeamInviteError.custom(message: "API_URL is malformed"))
+            return
+        }
         
+        let url = URL(string: "\(baseUrl)teamInvite")
         
+        guard let url = url else {
+            completionHandler(.failure, TeamInviteError.custom(message: "Invaid URL"))
+            return
+        }
+        
+        let createInviteData = try? JSONEncoder().encode(createInviteDto)
+
+        guard let createInviteData = createInviteData else {
+            completionHandler(.failure, TeamInviteError.custom(message: "Serialization of Create Invite DTO failed"))
+            return
+        }
+        
+        Networking.post(url: url, body: createInviteData) { data, response, error in
+            guard error == nil else {
+                completionHandler(.failure, error)
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 201 {
+                    completionHandler(.success, nil)
+                } else {
+                    completionHandler(.failure, TeamInviteError.custom(message: "Unknown Error declining Invite"))
+                }
+            }
+        }
     }
 }

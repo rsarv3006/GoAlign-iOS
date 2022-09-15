@@ -10,6 +10,7 @@ import Combine
 
 protocol TeamAddModalDelegate {
     func onTeamAddScreenComplete(viewController: UIViewController)
+    func onTeamAddGoToInvite(viewController: UIViewController, teamId: String)
 }
 
 class TeamAddModal: UIViewController {
@@ -22,6 +23,7 @@ class TeamAddModal: UIViewController {
             createButton.setTitle(viewModel.closeButtonTitleText, for: .normal)
             modalTitle.text = viewModel.modalTitleText
             teamNameField.placeholder = viewModel.teamNameFieldPlacholderText
+            createAndInviteButton.setTitle(viewModel.createTeamAndInviteButtonText, for: .normal)
         }
     }
     
@@ -32,6 +34,11 @@ class TeamAddModal: UIViewController {
     }()
     
     private lazy var createButton: StandardButton = {
+        let button = StandardButton()
+        return button
+    }()
+    
+    private lazy var createAndInviteButton: StandardButton = {
         let button = StandardButton()
         return button
     }()
@@ -95,6 +102,9 @@ class TeamAddModal: UIViewController {
         errorLbl.centerX(inView: subView)
         errorLbl.anchor(top: teamNameField.bottomAnchor, left: subView.leftAnchor, right: subView.rightAnchor, paddingTop: 12, paddingLeft: 12, paddingRight: 12)
         
+        subView.addSubview(createAndInviteButton)
+        createAndInviteButton.anchor(left: subView.leftAnchor, bottom: createButton.topAnchor, right: subView.rightAnchor, paddingLeft: 12, paddingBottom: 12, paddingRight: 12)
+        
         subView.addSubview(closeButton)
         closeButton.anchor(top: subView.topAnchor, left: subView.leftAnchor, paddingTop: 6, paddingLeft: 6)
     }
@@ -115,6 +125,7 @@ class TeamAddModal: UIViewController {
     func configureActions() {
         createButton.addTarget(self, action: #selector(onCreatePressed), for: .touchUpInside)
         closeButton.addTarget(self, action: #selector(onClosePressed), for: .touchUpInside)
+        createAndInviteButton.addTarget(self, action: #selector(onCreateAndInvitePressed), for: .touchUpInside)
     }
     
     // MARK: - Actions
@@ -125,10 +136,22 @@ class TeamAddModal: UIViewController {
             } else if teamName.count >= 16 {
                 errorLbl.text = "Team Name is too long"
             } else {
-                createTeamCallToViewModel(teamName: teamName)
+                createTeam(teamName: teamName)
             }
         }
 
+    }
+    
+    @objc func onCreateAndInvitePressed() {
+        if let teamName = teamNameField.text {
+            if teamName.count < 6 {
+                errorLbl.text = "Team Name is too short"
+            } else if teamName.count >= 16 {
+                errorLbl.text = "Team Name is too long"
+            } else {
+                createTeamAndGoToInvite(teamName: teamName)
+            }
+        }
     }
     
     @objc func onClosePressed() {
@@ -141,7 +164,7 @@ class TeamAddModal: UIViewController {
         }
     }
     
-    func createTeamCallToViewModel(teamName: String) {
+    func createTeam(teamName: String) {
         viewModel?.createTeam(name: teamName, completion: { team, error in
             if let error = error {
                 print(error)
@@ -153,10 +176,27 @@ class TeamAddModal: UIViewController {
         })
     }
     
+    func createTeamAndGoToInvite(teamName: String) {
+        viewModel?.createTeam(name: teamName, completion: { team, error in
+            if let error = error {
+                print(error)
+                Logger.log(logLevel: .Prod, message: String(describing: error))
+            }
+            
+            guard let teamId = team?.teamId else {
+                Logger.log(logLevel: .Prod, message: "Unable to identify teamID after team creation")
+                return
+            }
+
+            self.closeModal()
+            self.delegate?.onTeamAddGoToInvite(viewController: self, teamId: teamId)
+        })
+    }
+    
     func setUpTextFieldListener() {
         NotificationCenter.default.publisher(for: UITextField.textDidChangeNotification, object: teamNameField)
             .compactMap { ($0.object as?UITextField)?.text }
-            .map(String.init)
+//            .map(String.init)
             .sink { [weak self] val in
                 self?.errorLbl.text = ""
             }.store(in: &subscriptions)

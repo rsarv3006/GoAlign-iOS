@@ -8,7 +8,8 @@
 import Foundation
 
 struct TeamAddModalVM {
-    let closeButtonTitleText = "Create"
+    let closeButtonTitleText = "Create Team"
+    let createTeamAndInviteButtonText = "Create Team & Invite Users"
     let modalTitleText = "Create a Team"
     let teamNameFieldPlacholderText = "Team Name"
     

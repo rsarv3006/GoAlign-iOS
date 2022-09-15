@@ -25,6 +25,10 @@ class HomeScreen: UIViewController {
             guard let viewModel = viewModel else { return }
             taskTitleLabel.attributedText = viewModel.taskTitleLabel
             teamTitleLabel.attributedText = viewModel.teamTitleLabel
+            
+            viewModel.loadViewControllerSubject.sink { viewController in
+                self.navigationController?.present(viewController, animated: true)
+            }.store(in: &subscriptions)
         }
     }
     

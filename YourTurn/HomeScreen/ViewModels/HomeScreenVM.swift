@@ -12,6 +12,8 @@ import UIKit
 class HomeScreenVM {
     private(set) var subscriptions = Set<AnyCancellable>()
     
+    var loadViewControllerSubject = PassthroughSubject<UIViewController, Never>()
+    
     let taskTitleLabel: NSAttributedString = NSAttributedString(string: "My Tasks",
                                                                 attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
     let teamTitleLabel: NSAttributedString = NSAttributedString(string: "My Groups",
@@ -71,5 +73,17 @@ extension HomeScreenVM: TeamAddModalDelegate {
     func onTeamAddScreenComplete(viewController: UIViewController) {
         loadTasks()
         loadTeams()
+    }
+    
+    func onTeamAddGoToInvite(viewController: UIViewController, teamId: String) {
+        loadTasks()
+        loadTeams()
+        
+        DispatchQueue.main.async {
+            let newVC = TeamInviteUserModal()
+            newVC.viewModel = TeamInviteUserModalVM(teamId: teamId)
+            self.loadViewControllerSubject.send(newVC)
+        }
+        
     }
 }
