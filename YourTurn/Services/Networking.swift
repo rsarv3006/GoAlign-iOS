@@ -11,6 +11,7 @@ import Combine
 enum HttpMethod: String {
     case get = "GET"
     case post = "POST"
+    case delete = "DELETE"
 }
 
 struct Networking {
@@ -47,6 +48,12 @@ struct Networking {
     
     static func post(url: URL, body: Data? = nil, completion: @escaping((Data?, URLResponse?, Error?) -> Void)) {
         self.apiCall(httpMethod: .post, url: url, body: body) { data, response, error in
+            completion(data, response, error)
+        }
+    }
+    
+    static func delete(url: URL, body: Data? = nil, completion: @escaping((Data?, URLResponse?, Error?) -> Void)) {
+        self.apiCall(httpMethod: .delete, url: url) { data, response, error in
             completion(data, response, error)
         }
     }

@@ -36,8 +36,11 @@ extension RootController {
             
             homeScreenController.logoutEventSubject.sink { _ in
                 AuthenticationService.signOut()
-                self.dismiss(animated: true)
-                self.goSignUp()
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true)
+                    self.goSignUp()
+                }
+
             }.store(in: &self.subscriptions)
             
             self.dismiss(animated: true)

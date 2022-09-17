@@ -34,3 +34,23 @@ class StandardButton: UIButton {
     }
 
 }
+
+class AlertButton: StandardButton {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = .systemRed
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func onNormal() {
+        backgroundColor = .systemRed
+    }
+    
+    override func onHighLight() {
+        backgroundColor = .systemGray
+    }
+}

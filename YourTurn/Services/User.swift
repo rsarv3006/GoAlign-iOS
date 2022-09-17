@@ -11,8 +11,8 @@ enum UserError: Error {
     case custom(message: String)
 }
 
-struct UserService {
-    static func createUser(with user: CreateUserDto, completionHandler: @escaping((UserModel?, Error?) -> Void)) {
+enum UserService {
+    static func createUser(with user: CreateUserDto, completionHandler: @escaping ((UserModel?, Error?) -> Void)) {
         guard let baseUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
             completionHandler(nil, UserError.custom(message: "API_URL is malformed."))
             return
@@ -38,11 +38,10 @@ struct UserService {
                 return
             }
             
-                
             if let data = data, let response = response as? HTTPURLResponse {
                 do {
                     if response.statusCode == 500 {
-                        throw UserError.custom(message: (String(data: data, encoding: String.Encoding.utf8) ?? "Something went wrong"))
+                        throw UserError.custom(message: String(data: data, encoding: String.Encoding.utf8) ?? "Something went wrong")
                     }
                     let decoder = JSONDecoder()
                     decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
@@ -57,7 +56,7 @@ struct UserService {
         }
     }
     
-    static func getCurrentUser(completionHandler: @escaping((UserModel?, Error?) -> Void)) {
+    static func getCurrentUser(completionHandler: @escaping ((UserModel?, Error?) -> Void)) {
         guard let baseUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
             completionHandler(nil, UserError.custom(message: "API_URL is malformed."))
             return
@@ -79,7 +78,7 @@ struct UserService {
             if let data = data, let response = response as? HTTPURLResponse {
                 do {
                     if response.statusCode == 500 {
-                        throw UserError.custom(message: (String(data: data, encoding: String.Encoding.utf8) ?? "Something went wrong"))
+                        throw UserError.custom(message: String(data: data, encoding: String.Encoding.utf8) ?? "Something went wrong")
                     }
                     let decoder = JSONDecoder()
                     decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
@@ -89,6 +88,31 @@ struct UserService {
                 } catch {
                     Logger.log(logLevel: .Verbose, message: "Failed to fetch current user: \(error)")
                     completionHandler(nil, error)
+                }
+            }
+        }
+    }
+    
+    static func deleteCurrentUser(completionHandler: @escaping ((Bool, Error?) -> Void)) {
+        guard let baseUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
+            completionHandler(false, UserError.custom(message: "API_URL is malformed."))
+            return
+        }
+        
+        let url = URL(string: "\(baseUrl)user")
+        
+        guard let url = url else {
+            completionHandler(false, UserError.custom(message: "Bad URL"))
+            return
+        }
+        
+        Networking.delete(url: url) { _, response, error in
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    completionHandler(true, nil)
+                    return
+                } else {
+                    completionHandler(false, error)
                 }
             }
         }

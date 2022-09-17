@@ -245,6 +245,19 @@ extension HomeScreen: UITableViewDataSource {
 
 // MARK: - DrawerMenuViewControllerDelegate
 extension HomeScreen: DrawerMenuViewControllerDelegate {
+    func onViewSettingsPressed(viewController: UIViewController) {
+        DispatchQueue.main.async {
+            let newVc = SettingsScreenView()
+            newVc.viewModel = SettingsScreenVM()
+            
+            newVc.deleteAccountReturnToSignIn.sink { val in
+                self.logoutEventSubject.send(val)
+            }.store(in: &self.subscriptions)
+            
+            self.navigationController?.pushViewController(newVc, animated: true)
+        }
+    }
+    
     func onLogOutPressed(viewController: UIViewController) {
         logoutEventSubject.send(true)
     }

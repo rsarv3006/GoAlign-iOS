@@ -50,6 +50,9 @@
 		7872D6FE2896B03F00E598D2 /* ToJsonProtcol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872D6FD2896B03F00E598D2 /* ToJsonProtcol.swift */; };
 		7872D70028978C1700E598D2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7872D6FF28978C1700E598D2 /* .gitignore */; };
 		7872D70228978D3F00E598D2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7872D70128978D3F00E598D2 /* GoogleService-Info.plist */; };
+		78904AEB28D2D00100F6EF1F /* SettingsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78904AEA28D2D00100F6EF1F /* SettingsScreenView.swift */; };
+		78904AED28D2D01400F6EF1F /* SettingsScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78904AEC28D2D01400F6EF1F /* SettingsScreenVM.swift */; };
+		78904AF028D3FA8B00F6EF1F /* DeleteUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78904AEF28D3FA8B00F6EF1F /* DeleteUserCell.swift */; };
 		78A4E0BD2883B9550067DBCE /* RegexFormItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A4E0BC2883B9550067DBCE /* RegexFormItem.swift */; };
 		78A4E0C02883B98F0067DBCE /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A4E0BF2883B98F0067DBCE /* ValidationError.swift */; };
 		78A4E0C32883BDEA0067DBCE /* RegexPatterns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A4E0C22883BDEA0067DBCE /* RegexPatterns.swift */; };
@@ -179,6 +182,9 @@
 		7872D6FD2896B03F00E598D2 /* ToJsonProtcol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToJsonProtcol.swift; sourceTree = "<group>"; };
 		7872D6FF28978C1700E598D2 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		7872D70128978D3F00E598D2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		78904AEA28D2D00100F6EF1F /* SettingsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenView.swift; sourceTree = "<group>"; };
+		78904AEC28D2D01400F6EF1F /* SettingsScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenVM.swift; sourceTree = "<group>"; };
+		78904AEF28D3FA8B00F6EF1F /* DeleteUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserCell.swift; sourceTree = "<group>"; };
 		78A4E0BC2883B9550067DBCE /* RegexFormItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexFormItem.swift; sourceTree = "<group>"; };
 		78A4E0BF2883B98F0067DBCE /* ValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
 		78A4E0C22883BDEA0067DBCE /* RegexPatterns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexPatterns.swift; sourceTree = "<group>"; };
@@ -339,6 +345,7 @@
 				78439FDF28AD2CE00070D48D /* Common */,
 				7802E1A4288E398100F7D501 /* Services */,
 				78BF0D6128A97AA6005C6098 /* DrawerMenu */,
+				78904AE928D2CF8700F6EF1F /* SettingsScreen */,
 				78439FDB28AD2B540070D48D /* TaskAddEditScreen */,
 				78E4F47528B3FED200DE8E0C /* TeamAddScreen */,
 				78DF5AF028BC412000C182CF /* TeamInvites */,
@@ -478,6 +485,24 @@
 				78BFFAA328879A3F00A767AB /* FormSwitchControlledDateCollectionViewCell.swift */,
 				78B6878D2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift */,
 				78FAB72328AB5973009B8D50 /* FormModalCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		78904AE928D2CF8700F6EF1F /* SettingsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				78904AEE28D3FA7300F6EF1F /* Cells */,
+				78904AEA28D2D00100F6EF1F /* SettingsScreenView.swift */,
+				78904AEC28D2D01400F6EF1F /* SettingsScreenVM.swift */,
+			);
+			path = SettingsScreen;
+			sourceTree = "<group>";
+		};
+		78904AEE28D3FA7300F6EF1F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				78904AEF28D3FA8B00F6EF1F /* DeleteUserCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -873,6 +898,7 @@
 				780F197C28A4B0C700371B91 /* RootController.swift in Sources */,
 				7802E18D288B9EB900F7D501 /* SignUp.swift in Sources */,
 				78FAB72228AB58AD009B8D50 /* ModalFormComponent.swift in Sources */,
+				78904AEB28D2D00100F6EF1F /* SettingsScreenView.swift in Sources */,
 				78EC914E28AF2D220046DF28 /* TeamSelectModalReturnModel.swift in Sources */,
 				78B687862887A67B006B6CAB /* ButtonFormComponent.swift in Sources */,
 				78DF5AF228BC413000C182CF /* TeamInvitesViewController.swift in Sources */,
@@ -880,6 +906,7 @@
 				78E4F88E2893881D0075F04F /* TaskModel.swift in Sources */,
 				78E4F47928B5054C00DE8E0C /* TeamAddModalVM.swift in Sources */,
 				78477327287687DD009AFC92 /* FormModel.swift in Sources */,
+				78904AED28D2D01400F6EF1F /* SettingsScreenVM.swift in Sources */,
 				78B687902887AE29006B6CAB /* FieldVisibilityProtocol.swift in Sources */,
 				78D7C3C028776499001F48C5 /* FormTextCollectionViewCell.swift in Sources */,
 				78439FD728AC75430070D48D /* StandardButton.swift in Sources */,
@@ -891,6 +918,7 @@
 				78DF5AF828BD9FFB00C182CF /* TeamInvitesVM.swift in Sources */,
 				78DAADF52869663000FEB0DA /* TaskAddEditScreenVM.swift in Sources */,
 				78DF5AF428BC51C400C182CF /* TeamInvite.swift in Sources */,
+				78904AF028D3FA8B00F6EF1F /* DeleteUserCell.swift in Sources */,
 				78DF5AF628BC63CA00C182CF /* TeamInviteModel.swift in Sources */,
 				78B687802887A5E5006B6CAB /* FormComponent.swift in Sources */,
 				78E4F890289389B00075F04F /* IntervalObject.swift in Sources */,
