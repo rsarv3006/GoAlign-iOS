@@ -13,6 +13,7 @@ class TeamModel: Codable {
     let teamName: String
     let tasks: TaskModelArray
     let teamMembers: [UserModel]
+    let teamManager: String
 }
 
 class CreateTeamDto: Codable {
