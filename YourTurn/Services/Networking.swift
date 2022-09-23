@@ -57,4 +57,14 @@ struct Networking {
             completion(data, response, error)
         }
     }
+    
+    static func createUrl(endPoint: String) -> URL? {
+        guard let baseUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else { return nil }
+        
+        let url = URL(string: "\(baseUrl)\(endPoint)")
+    
+        guard let url = url else { return nil }
+        
+        return url
+    }
 }
