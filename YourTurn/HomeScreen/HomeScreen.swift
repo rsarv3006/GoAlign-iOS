@@ -222,7 +222,7 @@ extension HomeScreen: UITableViewDataSource {
                 let completeTask = UIAction(
                   title: "Complete Task",
                   image: UIImage(systemName: "checkmark.circle")) { _ in
-                    // share the task
+                      self.viewModel?.onMarkTaskComplete(taskId: task.taskId)
                 }
                 return UIMenu(title: "", children: [completeTask])
             }

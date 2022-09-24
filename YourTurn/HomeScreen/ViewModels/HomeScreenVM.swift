@@ -60,6 +60,14 @@ class HomeScreenVM {
         navigationController?.present(newVc, animated: true)
     }
     
+    func onMarkTaskComplete(taskId: String) {
+        TaskService.markTaskComplete(taskId: taskId) { newTask, error in
+            // Handle Error
+            if error == nil {
+                self.loadTasks()
+            }
+        }
+    }
 }
 
 extension HomeScreenVM: TaskAddEditScreenDelegate {
