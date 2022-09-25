@@ -8,12 +8,12 @@
 import Foundation
 
 class TaskHistoryItem: Codable {
-    let id: String
+    let taskHistoryId: String
     let createdAt: Date
     let taskId: String
     let teamId: String
     let assignedUserId: String
     let dateCompleted: Date
-    let notes: String
-    let pictureUrl: String
+    let notes: String?
+    let pictureUrl: String?
 }

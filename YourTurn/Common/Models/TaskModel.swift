@@ -30,7 +30,7 @@ class TaskModel: Codable {
     let assignedUser: UserModel?
     let creator: UserModel
     let status: String
-    let taskHistoryItems: TaskHistoryItem?
+    let taskHistoryItems: [TaskHistoryItem]?
 }
 
 class CreateTaskDto: Codable {
