@@ -13,15 +13,8 @@ enum TeamError: Error {
 
 struct TeamService {
     static func getTeamsbyCurrentUser(completionHandler: @escaping(([TeamModel]?, Error?) -> Void)) {
-        guard let baseUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
-            completionHandler(nil, TeamError.custom(message: "API_URL is malformed."))
-            return
-        }
-        
-        let url = URL(string: "\(baseUrl)team/byCurrentUser")
-        
-        guard let url = url else {
-            completionHandler(nil, TeamError.custom(message: "Invalid URL"))
+        guard let url = Networking.createUrl(endPoint: "team/byCurrentUser") else {
+            completionHandler(nil, TeamError.custom(message: "Bad URL"))
             return
         }
         
@@ -48,15 +41,8 @@ struct TeamService {
     }
     
     static func createTeam(teamData: CreateTeamDto, completionHandler: @escaping(((TeamModel?, Error?) -> Void))) {
-        guard let baseUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
-            completionHandler(nil, TeamError.custom(message: "API_URL is malformed."))
-            return
-        }
-        
-        let url = URL(string: "\(baseUrl)team")
-        
-        guard let url = url else {
-            completionHandler(nil, TeamError.custom(message: "Invalid URL"))
+        guard let url = Networking.createUrl(endPoint: "team") else {
+            completionHandler(nil, TeamError.custom(message: "Bad URL"))
             return
         }
         

@@ -13,14 +13,7 @@ enum UserError: Error {
 
 enum UserService {
     static func createUser(with user: CreateUserDto, completionHandler: @escaping ((UserModel?, Error?) -> Void)) {
-        guard let baseUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
-            completionHandler(nil, UserError.custom(message: "API_URL is malformed."))
-            return
-        }
-        
-        let url = URL(string: "\(baseUrl)user")
-        
-        guard let url = url else {
+        guard let url = Networking.createUrl(endPoint: "user") else {
             completionHandler(nil, UserError.custom(message: "Bad URL"))
             return
         }
@@ -57,14 +50,7 @@ enum UserService {
     }
     
     static func getCurrentUser(completionHandler: @escaping ((UserModel?, Error?) -> Void)) {
-        guard let baseUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
-            completionHandler(nil, UserError.custom(message: "API_URL is malformed."))
-            return
-        }
-        
-        let url = URL(string: "\(baseUrl)user/current")
-        
-        guard let url = url else {
+        guard let url = Networking.createUrl(endPoint: "user/current") else {
             completionHandler(nil, UserError.custom(message: "Bad URL"))
             return
         }
@@ -94,14 +80,7 @@ enum UserService {
     }
     
     static func deleteCurrentUser(completionHandler: @escaping ((Bool, Error?) -> Void)) {
-        guard let baseUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
-            completionHandler(false, UserError.custom(message: "API_URL is malformed."))
-            return
-        }
-        
-        let url = URL(string: "\(baseUrl)user")
-        
-        guard let url = url else {
+        guard let url = Networking.createUrl(endPoint: "user") else {
             completionHandler(false, UserError.custom(message: "Bad URL"))
             return
         }

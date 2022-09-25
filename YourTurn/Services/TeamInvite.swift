@@ -18,15 +18,8 @@ enum TeamInviteStatus {
 
 struct TeamInviteService {
     static func getTeamInvitesByCurrentUser(completionHandler: @escaping(([TeamInviteModel]?, Error?) -> Void)) {
-        guard let baseUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
-            completionHandler(nil, TeamInviteError.custom(message: "API_URL is malformed."))
-            return
-        }
-        
-        let url = URL(string: "\(baseUrl)teamInvite/byCurrentUser")
-        
-        guard let url = url else {
-            completionHandler(nil, TeamInviteError.custom(message: "Invalid URL"))
+        guard let url = Networking.createUrl(endPoint: "teamInvite/byCurrentUser") else {
+            completionHandler(nil, TeamInviteError.custom(message: "Bad URL"))
             return
         }
         
@@ -53,15 +46,8 @@ struct TeamInviteService {
     }
     
     static func acceptInvite(inviteId: String, completionHandler: @escaping((TeamInviteStatus, Error?) -> Void)) {
-        guard let baseUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
-            completionHandler(.failure, TeamInviteError.custom(message: "API_URL is malformed."))
-            return
-        }
-        
-        let url = URL(string: "\(baseUrl)teamInvite/\(inviteId)/accept")
-        
-        guard let url = url else {
-            completionHandler(.failure, TeamInviteError.custom(message: "Invalid URL"))
+        guard let url = Networking.createUrl(endPoint: "teamInvite/\(inviteId)/accept") else {
+            completionHandler(.failure, TeamInviteError.custom(message: "Bad URL"))
             return
         }
         
@@ -84,15 +70,8 @@ struct TeamInviteService {
     }
     
     static func declineInvite(inviteId: String, completionHandler: @escaping((TeamInviteStatus, Error?) -> Void)) {
-        guard let baseUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
-            completionHandler(.failure, TeamInviteError.custom(message: "API_URL is malformed."))
-            return
-        }
-        
-        let url = URL(string: "\(baseUrl)teamInvite/\(inviteId)/decline")
-        
-        guard let url = url else {
-            completionHandler(.failure, TeamInviteError.custom(message: "Invalid URL"))
+        guard let url = Networking.createUrl(endPoint: "teamInvite/\(inviteId)/decline") else {
+            completionHandler(.failure, TeamInviteError.custom(message: "Bad URL"))
             return
         }
         
@@ -113,15 +92,8 @@ struct TeamInviteService {
     }
     
     static func createInvite(createInviteDto: CreateInviteDtoModel, completionHandler: @escaping((TeamInviteStatus, Error?) -> Void)) {
-        guard let baseUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
-            completionHandler(TeamInviteStatus.failure, TeamInviteError.custom(message: "API_URL is malformed"))
-            return
-        }
-        
-        let url = URL(string: "\(baseUrl)teamInvite")
-        
-        guard let url = url else {
-            completionHandler(.failure, TeamInviteError.custom(message: "Invaid URL"))
+        guard let url = Networking.createUrl(endPoint: "teamInvite") else {
+            completionHandler(.failure, TeamInviteError.custom(message: "Bad URL"))
             return
         }
         
