@@ -133,9 +133,10 @@ class TeamAddModal: UIViewController {
         if let teamName = teamNameField.text {
             if teamName.count < 6 {
                 errorLbl.text = "Team Name is too short"
-            } else if teamName.count >= 16 {
+            } else if teamName.count >= 24 {
                 errorLbl.text = "Team Name is too long"
             } else {
+                createButton.isEnabled = false
                 createTeam(teamName: teamName)
             }
         }
@@ -146,9 +147,10 @@ class TeamAddModal: UIViewController {
         if let teamName = teamNameField.text {
             if teamName.count < 6 {
                 errorLbl.text = "Team Name is too short"
-            } else if teamName.count >= 16 {
+            } else if teamName.count >= 24 {
                 errorLbl.text = "Team Name is too long"
             } else {
+                createAndInviteButton.isEnabled = false
                 createTeamAndGoToInvite(teamName: teamName)
             }
         }
@@ -171,6 +173,10 @@ class TeamAddModal: UIViewController {
                 Logger.log(logLevel: .Prod, message: String(describing: error))
             }
             
+            DispatchQueue.main.async {
+                self.createButton.isEnabled = true
+            }
+            
             self.closeModal()
             self.delegate?.onTeamAddScreenComplete(viewController: self)
         })
@@ -181,6 +187,10 @@ class TeamAddModal: UIViewController {
             if let error = error {
                 print(error)
                 Logger.log(logLevel: .Prod, message: String(describing: error))
+            }
+            
+            DispatchQueue.main.async {
+                self.createAndInviteButton.isEnabled = true
             }
             
             guard let teamId = team?.teamId else {
