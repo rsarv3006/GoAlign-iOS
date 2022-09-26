@@ -96,7 +96,7 @@ private extension TaskAddEditScreen {
     func formSubmissionSubscription() {
         formContentBuilder
             .formSubmission
-            .debounce(for: .seconds(0.5), scheduler: RunLoop.current)
+            .throttle(for: .seconds(2.0), scheduler: RunLoop.current, latest: false)
             .sink(receiveCompletion: { completion in
                 // TODO: Handle this error
                 print(completion)

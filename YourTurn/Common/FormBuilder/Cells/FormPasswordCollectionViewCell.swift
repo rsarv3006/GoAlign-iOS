@@ -130,7 +130,6 @@ private extension FormPasswordCollectionViewCell {
             .default
             .publisher(for: UITextField.textDidChangeNotification, object: passwordField)
             .compactMap { ($0.object as? UITextField)?.text }
-//            .map(String.init)
             .sink { [weak self] val in
                 
                 guard let self = self,
@@ -175,7 +174,6 @@ private extension FormPasswordCollectionViewCell {
             .default
             .publisher(for: UITextField.textDidChangeNotification, object: confirmPasswordField)
             .compactMap { ($0.object as? UITextField)?.text }
-//            .map(String.init)
             .sink { [weak self] val in
                 
                 guard let self = self,

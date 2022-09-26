@@ -10,11 +10,10 @@ import Combine
 
 class FormButtonCollectionViewCell: UICollectionViewCell {
 
-    private lazy var actionBtn: UIButton = {
-        let btn = UIButton()
+    private lazy var actionBtn: BlueButton = {
+        let btn = BlueButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitleColor(.white, for: .normal)
-        btn.backgroundColor = .systemBlue
         btn.layer.cornerRadius = 8
         btn.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
         return btn

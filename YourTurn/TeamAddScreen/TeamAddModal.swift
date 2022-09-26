@@ -206,7 +206,6 @@ class TeamAddModal: UIViewController {
     func setUpTextFieldListener() {
         NotificationCenter.default.publisher(for: UITextField.textDidChangeNotification, object: teamNameField)
             .compactMap { ($0.object as?UITextField)?.text }
-//            .map(String.init)
             .sink { [weak self] val in
                 self?.errorLbl.text = ""
             }.store(in: &subscriptions)

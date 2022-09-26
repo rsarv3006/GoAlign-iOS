@@ -103,6 +103,7 @@ private extension SignUpScreen {
     func formSubmissionSubscription() {
         formContentBuilder
             .formSubmission
+            .throttle(for: .seconds(2.0), scheduler: RunLoop.current, latest: false)
             .sink { [weak self] completedForm in
                 if let self = self {
                     self.viewModel?.signUp(form: completedForm)
