@@ -25,6 +25,7 @@ struct AuthenticationService {
         Auth.auth().createUser(withEmail: form.emailAddress, password: form.password) { dataResult, error in
             guard error == nil else {
                 completion(nil, error)
+                self.signOut()
                 return
             }
 
@@ -37,6 +38,7 @@ struct AuthenticationService {
                     completion(user, error)
                 }
             } else {
+                self.signOut()
                 completion(nil, AuthenticationError.custom(message: "Issue with authentication, please try again"))
                 return
             }
@@ -47,10 +49,12 @@ struct AuthenticationService {
         Auth.auth().signIn(withEmail: form.emailAddress, password: form.password) { authResult, error in
             guard error == nil else {
                 completion(nil, error)
+                self.signOut()
                 return
             }
             
             UserService.getCurrentUser { user, error in
+                self.signOut()
                 completion(user, error)
             }
         }

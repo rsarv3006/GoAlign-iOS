@@ -28,6 +28,7 @@ enum UserService {
         Networking.post(url: url, body: userData) { data, response, error in
             guard error == nil else {
                 completionHandler(nil, error)
+                AuthenticationService.signOut()
                 return
             }
             
@@ -43,6 +44,7 @@ enum UserService {
                     completionHandler(userModel, nil)
                 } catch {
                     Logger.log(logLevel: .Verbose, message: "FAILED to createUser: \(error)")
+                    AuthenticationService.signOut()
                     completionHandler(nil, error)
                 }
             }
@@ -73,6 +75,7 @@ enum UserService {
                     completionHandler(userModel, nil)
                 } catch {
                     Logger.log(logLevel: .Verbose, message: "Failed to fetch current user: \(error)")
+                    AuthenticationService.signOut()
                     completionHandler(nil, error)
                 }
             }
