@@ -49,7 +49,6 @@
 		7872D6FC28950C5E00E598D2 /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872D6FB28950C5E00E598D2 /* TeamService.swift */; };
 		7872D6FE2896B03F00E598D2 /* ToJsonProtcol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872D6FD2896B03F00E598D2 /* ToJsonProtcol.swift */; };
 		7872D70028978C1700E598D2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7872D6FF28978C1700E598D2 /* .gitignore */; };
-		7872D70228978D3F00E598D2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7872D70128978D3F00E598D2 /* GoogleService-Info.plist */; };
 		78904AEB28D2D00100F6EF1F /* SettingsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78904AEA28D2D00100F6EF1F /* SettingsScreenView.swift */; };
 		78904AED28D2D01400F6EF1F /* SettingsScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78904AEC28D2D01400F6EF1F /* SettingsScreenVM.swift */; };
 		78904AF028D3FA8B00F6EF1F /* DeleteUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78904AEF28D3FA8B00F6EF1F /* DeleteUserCell.swift */; };
@@ -118,6 +117,9 @@
 		78FAB71F28AB170B009B8D50 /* LoggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAB71E28AB170B009B8D50 /* LoggerService.swift */; };
 		78FAB72228AB58AD009B8D50 /* ModalFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAB72128AB58AC009B8D50 /* ModalFormComponent.swift */; };
 		78FAB72428AB5973009B8D50 /* FormModalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAB72328AB5973009B8D50 /* FormModalCollectionViewCell.swift */; };
+		D505315928E529D1006BD807 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D505315828E529D1006BD807 /* GoogleService-Info.plist */; };
+		D5129C7F28E5475C00AF9EDD /* TaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5129C7E28E5475C00AF9EDD /* TaskView.swift */; };
+		D5129C8128E547C800AF9EDD /* TaskVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5129C8028E547C800AF9EDD /* TaskVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -181,7 +183,6 @@
 		7872D6FB28950C5E00E598D2 /* TeamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamService.swift; sourceTree = "<group>"; };
 		7872D6FD2896B03F00E598D2 /* ToJsonProtcol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToJsonProtcol.swift; sourceTree = "<group>"; };
 		7872D6FF28978C1700E598D2 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		7872D70128978D3F00E598D2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		78904AEA28D2D00100F6EF1F /* SettingsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenView.swift; sourceTree = "<group>"; };
 		78904AEC28D2D01400F6EF1F /* SettingsScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenVM.swift; sourceTree = "<group>"; };
 		78904AEF28D3FA8B00F6EF1F /* DeleteUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserCell.swift; sourceTree = "<group>"; };
@@ -246,6 +247,9 @@
 		78FAB71E28AB170B009B8D50 /* LoggerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerService.swift; sourceTree = "<group>"; };
 		78FAB72128AB58AC009B8D50 /* ModalFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalFormComponent.swift; sourceTree = "<group>"; };
 		78FAB72328AB5973009B8D50 /* FormModalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormModalCollectionViewCell.swift; sourceTree = "<group>"; };
+		D505315828E529D1006BD807 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D5129C7E28E5475C00AF9EDD /* TaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskView.swift; sourceTree = "<group>"; };
+		D5129C8028E547C800AF9EDD /* TaskVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,12 +345,13 @@
 		783DECD028617EEB0062343E /* YourTurn */ = {
 			isa = PBXGroup;
 			children = (
-				7872D70128978D3F00E598D2 /* GoogleService-Info.plist */,
+				D505315828E529D1006BD807 /* GoogleService-Info.plist */,
 				78439FDF28AD2CE00070D48D /* Common */,
 				7802E1A4288E398100F7D501 /* Services */,
 				78BF0D6128A97AA6005C6098 /* DrawerMenu */,
 				78904AE928D2CF8700F6EF1F /* SettingsScreen */,
 				78439FDB28AD2B540070D48D /* TaskAddEditScreen */,
+				D5129C7D28E5470F00AF9EDD /* TaskView */,
 				78E4F47528B3FED200DE8E0C /* TeamAddScreen */,
 				78DF5AF028BC412000C182CF /* TeamInvites */,
 				78439FDC28AD2C1A0070D48D /* AuthFlow */,
@@ -664,6 +669,15 @@
 			path = TeamSelectModal;
 			sourceTree = "<group>";
 		};
+		D5129C7D28E5470F00AF9EDD /* TaskView */ = {
+			isa = PBXGroup;
+			children = (
+				D5129C7E28E5475C00AF9EDD /* TaskView.swift */,
+				D5129C8028E547C800AF9EDD /* TaskVM.swift */,
+			);
+			path = TaskView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -783,9 +797,9 @@
 				78DF5AEE28B88C1300C182CF /* credentials.json in Resources */,
 				7872D70028978C1700E598D2 /* .gitignore in Resources */,
 				783DECDE28617EED0062343E /* LaunchScreen.storyboard in Resources */,
-				7872D70228978D3F00E598D2 /* GoogleService-Info.plist in Resources */,
 				783DECDB28617EED0062343E /* Assets.xcassets in Resources */,
 				783DECD928617EEB0062343E /* Main.storyboard in Resources */,
+				D505315928E529D1006BD807 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -853,6 +867,7 @@
 				78A4E0C32883BDEA0067DBCE /* RegexPatterns.swift in Sources */,
 				780F197228A4907D00371B91 /* DateAgeLimitValidationManagerImpl.swift in Sources */,
 				7802E195288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift in Sources */,
+				D5129C7F28E5475C00AF9EDD /* TaskView.swift in Sources */,
 				7802E1A6288E399500F7D501 /* Authentication.swift in Sources */,
 				783DED062861F4C90062343E /* Extensions.swift in Sources */,
 				78E4F8942893911B0075F04F /* TaskHistoryModel.swift in Sources */,
@@ -927,6 +942,7 @@
 				78EC914C28AF2C920046DF28 /* ModalDelegateProtocol.swift in Sources */,
 				78DF5B0528CC6CE700C182CF /* TeamInviteUserModalVM.swift in Sources */,
 				783DECD428617EEB0062343E /* SceneDelegate.swift in Sources */,
+				D5129C8128E547C800AF9EDD /* TaskVM.swift in Sources */,
 				78E4F896289393150075F04F /* Networking.swift in Sources */,
 				7847732D28768D14009AFC92 /* FormButtonCollectionViewCell.swift in Sources */,
 			);
