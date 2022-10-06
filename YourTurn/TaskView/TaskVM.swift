@@ -8,6 +8,12 @@
 import Foundation
 
 class TaskVM {
+    // Static Values
+    let taskHistoryTitleLabelString: String = "Task History"
+    let taskInformationButtonString: String = "See More"
+    let taskCompleteButtonString: String = "Mark Task Complete"
+    
+    // Dynamic Values
     let contentTitle: String
     let assignedUserString: String
     let assignedTeamString: String

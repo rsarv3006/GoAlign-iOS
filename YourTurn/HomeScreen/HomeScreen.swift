@@ -175,7 +175,22 @@ class HomeScreen: UIViewController {
 }
 
 // MARK: - UITableViewDelegate
-extension HomeScreen: UITableViewDelegate {}
+extension HomeScreen: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        print("HI HI HI")
+        DispatchQueue.main.async {
+            if tableView.tag == TASK_TABLE_TAG {
+                print("HOWDY THERE")
+                let taskVC = TaskView()
+                taskVC.viewModel = TaskVM(task: self.tasks[indexPath.row])
+                self.navigationController?.pushViewController(taskVC, animated: true)
+            }
+        }
+
+        
+        return nil
+    }
+}
 
 // MARK: - UITableViewDataSource
 extension HomeScreen: UITableViewDataSource {
