@@ -119,7 +119,9 @@
 		78FAB72428AB5973009B8D50 /* FormModalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAB72328AB5973009B8D50 /* FormModalCollectionViewCell.swift */; };
 		D505315928E529D1006BD807 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D505315828E529D1006BD807 /* GoogleService-Info.plist */; };
 		D5129C7F28E5475C00AF9EDD /* TaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5129C7E28E5475C00AF9EDD /* TaskView.swift */; };
-		D5129C8128E547C800AF9EDD /* TaskVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5129C8028E547C800AF9EDD /* TaskVM.swift */; };
+		D5129C8128E547C800AF9EDD /* TaskViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5129C8028E547C800AF9EDD /* TaskViewVM.swift */; };
+		D55E671528EFB12100EBE205 /* TaskViewHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E671428EFB11E00EBE205 /* TaskViewHistoryCell.swift */; };
+		D55E671728EFB25700EBE205 /* TaskViewHistoryCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E671628EFB25700EBE205 /* TaskViewHistoryCellVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -249,7 +251,9 @@
 		78FAB72328AB5973009B8D50 /* FormModalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormModalCollectionViewCell.swift; sourceTree = "<group>"; };
 		D505315828E529D1006BD807 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D5129C7E28E5475C00AF9EDD /* TaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskView.swift; sourceTree = "<group>"; };
-		D5129C8028E547C800AF9EDD /* TaskVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskVM.swift; sourceTree = "<group>"; };
+		D5129C8028E547C800AF9EDD /* TaskViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewVM.swift; sourceTree = "<group>"; };
+		D55E671428EFB11E00EBE205 /* TaskViewHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewHistoryCell.swift; sourceTree = "<group>"; };
+		D55E671628EFB25700EBE205 /* TaskViewHistoryCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewHistoryCellVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -673,7 +677,9 @@
 			isa = PBXGroup;
 			children = (
 				D5129C7E28E5475C00AF9EDD /* TaskView.swift */,
-				D5129C8028E547C800AF9EDD /* TaskVM.swift */,
+				D5129C8028E547C800AF9EDD /* TaskViewVM.swift */,
+				D55E671428EFB11E00EBE205 /* TaskViewHistoryCell.swift */,
+				D55E671628EFB25700EBE205 /* TaskViewHistoryCellVM.swift */,
 			);
 			path = TaskView;
 			sourceTree = "<group>";
@@ -920,9 +926,11 @@
 				78FAB71F28AB170B009B8D50 /* LoggerService.swift in Sources */,
 				78E4F88E2893881D0075F04F /* TaskModel.swift in Sources */,
 				78E4F47928B5054C00DE8E0C /* TeamAddModalVM.swift in Sources */,
+				D55E671728EFB25700EBE205 /* TaskViewHistoryCellVM.swift in Sources */,
 				78477327287687DD009AFC92 /* FormModel.swift in Sources */,
 				78904AED28D2D01400F6EF1F /* SettingsScreenVM.swift in Sources */,
 				78B687902887AE29006B6CAB /* FieldVisibilityProtocol.swift in Sources */,
+				D55E671528EFB12100EBE205 /* TaskViewHistoryCell.swift in Sources */,
 				78D7C3C028776499001F48C5 /* FormTextCollectionViewCell.swift in Sources */,
 				78439FD728AC75430070D48D /* StandardButton.swift in Sources */,
 				78BF0D6A28A98103005C6098 /* DrawerPresentationController.swift in Sources */,
@@ -942,7 +950,7 @@
 				78EC914C28AF2C920046DF28 /* ModalDelegateProtocol.swift in Sources */,
 				78DF5B0528CC6CE700C182CF /* TeamInviteUserModalVM.swift in Sources */,
 				783DECD428617EEB0062343E /* SceneDelegate.swift in Sources */,
-				D5129C8128E547C800AF9EDD /* TaskVM.swift in Sources */,
+				D5129C8128E547C800AF9EDD /* TaskViewVM.swift in Sources */,
 				78E4F896289393150075F04F /* Networking.swift in Sources */,
 				7847732D28768D14009AFC92 /* FormButtonCollectionViewCell.swift in Sources */,
 			);

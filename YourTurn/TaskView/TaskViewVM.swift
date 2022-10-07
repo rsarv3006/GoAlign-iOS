@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TaskVM {
+class TaskViewVM {
     // Static Values
     let taskHistoryTitleLabelString: String = "Task History"
     let taskInformationButtonString: String = "See More"
