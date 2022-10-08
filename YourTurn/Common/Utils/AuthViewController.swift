@@ -13,7 +13,7 @@ enum AuthScreenIdVariant {
     case SignUp
 }
 
-class AuthViewController: UIViewController {
+class AuthViewController: YtViewController {
     private(set) var screenId: AuthScreenIdVariant? = nil
     
     var subscriptions = Set<AnyCancellable>()

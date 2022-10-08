@@ -33,7 +33,7 @@ class TaskView: UIViewController {
     
     private lazy var taskHistoryTitleLabel: UILabel = {
         let label = UILabel()
-        
+        label.font.withSize(18)
         return label
     }()
     
@@ -80,7 +80,7 @@ class TaskView: UIViewController {
         title = viewModel.contentTitle
         assignedUserLabel.text = viewModel.assignedUserString
         assignedTeamLabel.text = viewModel.assignedTeamString
-        taskHistoryTitleLabel.text = viewModel.taskHistoryTitleLabelString
+        taskHistoryTitleLabel.attributedText = viewModel.taskHistoryTitleLabelText
         taskInformationButton.setTitle(viewModel.taskInformationButtonString, for: .normal)
         taskHistoryTable.reloadData()
     }

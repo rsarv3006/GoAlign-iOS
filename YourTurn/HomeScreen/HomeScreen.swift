@@ -14,7 +14,7 @@ private let TEAM_REUSE_ID = "TEAM_REUSE_ID"
 private let TASK_TABLE_TAG = 1001
 private let TEAM_TABLE_TAG = 1002
 
-class HomeScreen: UIViewController {
+class HomeScreen: YtViewController {
     // MARK: - Properties
     private var subscriptions = Set<AnyCancellable>()
     
@@ -95,7 +95,6 @@ class HomeScreen: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureView()
         configureInteractables()
         configureTableViews()
         configureCombine()
@@ -106,7 +105,7 @@ class HomeScreen: UIViewController {
     }
     
     // MARK: - Helpers
-    private func configureView() {
+    override func configureView() {
         let topSafeAnchor = view.safeAreaLayoutGuide.topAnchor
         let leftSafeAnchor = view.safeAreaLayoutGuide.leftAnchor
         let rightSafeAnchor = view.safeAreaLayoutGuide.rightAnchor

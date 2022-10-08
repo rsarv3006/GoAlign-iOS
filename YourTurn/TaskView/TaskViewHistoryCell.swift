@@ -42,7 +42,7 @@ class TaskViewHistoryCell: UITableViewCell {
     
     func configureView() {
         addSubview(completedByLabel)
-        completedByLabel.anchor(top: topAnchor, left: leftAnchor)
+        completedByLabel.anchor(top: topAnchor, left: leftAnchor, paddingTop: 8)
         
         addSubview(completedDateLabel)
         completedDateLabel.anchor(top: completedByLabel.bottomAnchor, left: leftAnchor)

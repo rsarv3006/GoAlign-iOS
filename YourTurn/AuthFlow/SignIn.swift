@@ -32,18 +32,11 @@ class SignInScreen: AuthViewController {
     override func loadView() {
         super.loadView()
         configureCollectionView()
-        configureView()
         configureInteractables()
     }
     
     // MARK: - Helpers
-    @objc func onButtonToSignUpScreenPressed() {
-        delegate?.requestOtherAuthScreen(viewController: self)
-    }
-}
-
-private extension SignInScreen {
-    func configureView() {
+    override func configureView() {
         let topSafeAnchor = view.safeAreaLayoutGuide.topAnchor
         let leftSafeAnchor = view.safeAreaLayoutGuide.leftAnchor
         let rightSafeAnchor = view.safeAreaLayoutGuide.rightAnchor
@@ -61,6 +54,12 @@ private extension SignInScreen {
         
     }
     
+    @objc func onButtonToSignUpScreenPressed() {
+        delegate?.requestOtherAuthScreen(viewController: self)
+    }
+}
+
+private extension SignInScreen {
     func configureInteractables() {
         buttonToSignUpScreen.addTarget(self, action: #selector(onButtonToSignUpScreenPressed), for: .touchUpInside)
     }

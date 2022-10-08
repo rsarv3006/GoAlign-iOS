@@ -122,6 +122,8 @@
 		D5129C8128E547C800AF9EDD /* TaskViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5129C8028E547C800AF9EDD /* TaskViewVM.swift */; };
 		D55E671528EFB12100EBE205 /* TaskViewHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E671428EFB11E00EBE205 /* TaskViewHistoryCell.swift */; };
 		D55E671728EFB25700EBE205 /* TaskViewHistoryCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E671628EFB25700EBE205 /* TaskViewHistoryCellVM.swift */; };
+		D55E671928F109F200EBE205 /* TaskMoreInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E671828F109F200EBE205 /* TaskMoreInfoView.swift */; };
+		D55E671B28F1101700EBE205 /* YtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E671A28F1101700EBE205 /* YtViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -254,6 +256,8 @@
 		D5129C8028E547C800AF9EDD /* TaskViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewVM.swift; sourceTree = "<group>"; };
 		D55E671428EFB11E00EBE205 /* TaskViewHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewHistoryCell.swift; sourceTree = "<group>"; };
 		D55E671628EFB25700EBE205 /* TaskViewHistoryCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewHistoryCellVM.swift; sourceTree = "<group>"; };
+		D55E671828F109F200EBE205 /* TaskMoreInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskMoreInfoView.swift; sourceTree = "<group>"; };
+		D55E671A28F1101700EBE205 /* YtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YtViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -463,6 +467,7 @@
 				78477325287687D0009AFC92 /* Models */,
 				783DED042861F4BD0062343E /* Utils */,
 				78439FDA28AD2B150070D48D /* FormBuilder */,
+				D55E671A28F1101700EBE205 /* YtViewController.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -680,6 +685,7 @@
 				D5129C8028E547C800AF9EDD /* TaskViewVM.swift */,
 				D55E671428EFB11E00EBE205 /* TaskViewHistoryCell.swift */,
 				D55E671628EFB25700EBE205 /* TaskViewHistoryCellVM.swift */,
+				D55E671828F109F200EBE205 /* TaskMoreInfoView.swift */,
 			);
 			path = TaskView;
 			sourceTree = "<group>";
@@ -865,8 +871,10 @@
 				78B6878E2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift in Sources */,
 				7802E1AA288E3D0900F7D501 /* SignUpCompletedForm.swift in Sources */,
 				78E4F88C289386F50075F04F /* TaskService.swift in Sources */,
+				D55E671928F109F200EBE205 /* TaskMoreInfoView.swift in Sources */,
 				78B6878A2887A6D2006B6CAB /* SwitchControlledDateFormComponent.swift in Sources */,
 				78DF5AFD28BDA87900C182CF /* TeamInviteCellVM.swift in Sources */,
+				D55E671B28F1101700EBE205 /* YtViewController.swift in Sources */,
 				7802E19D288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift in Sources */,
 				780F197428A490C200371B91 /* DateInFutureValidationManagerImpl.swift in Sources */,
 				78B68792288829F0006B6CAB /* FieldValidInvalidProtocol.swift in Sources */,

@@ -5,11 +5,12 @@
 //  Created by Robby on 9/28/22.
 //
 
-import Foundation
+import UIKit
 
 class TaskViewVM {
     // Static Values
-    let taskHistoryTitleLabelString: String = "Task History"
+    let taskHistoryTitleLabelText: NSAttributedString = NSAttributedString(string: "Task History",
+                                                                attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
     let taskInformationButtonString: String = "See More"
     let taskCompleteButtonString: String = "Mark Task Complete"
     
