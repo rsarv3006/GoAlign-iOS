@@ -7,7 +7,7 @@
 
 import UIKit
 
-let TaskHistoryCellReuseIdentifier = "TaskHistoryCellReuseIdentifier"
+let TaskEntryCellReuseIdentifier = "TaskEntryCellReuseIdentifier"
 
 class TaskView: UIViewController {
     
@@ -86,8 +86,7 @@ class TaskView: UIViewController {
     }
     
     private func configureTaskHistoryTableView() {
-        taskHistoryTable.register(TaskViewHistoryCell.self, forCellReuseIdentifier: TaskHistoryCellReuseIdentifier)
-//        taskHistoryTable.rowHeight = 60
+        taskHistoryTable.register(TaskViewEntryCell.self, forCellReuseIdentifier: TaskEntryCellReuseIdentifier)
         taskHistoryTable.delegate = self
         taskHistoryTable.dataSource = self
     }
@@ -99,13 +98,13 @@ extension TaskView: UITableViewDelegate {}
 // MARK: - UITableViewDataSource
 extension TaskView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.taskHistoryItems.count ?? 0
+        return viewModel?.taskEntries.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TaskHistoryCellReuseIdentifier, for: indexPath) as! TaskViewHistoryCell
-        if let taskHistoryItem = viewModel?.taskHistoryItems[indexPath.row] {
-            cell.viewModel = TaskViewHistoryCellVM(taskHistoryItem: taskHistoryItem)
+        let cell = tableView.dequeueReusableCell(withIdentifier: TaskEntryCellReuseIdentifier, for: indexPath) as! TaskViewEntryCell
+        if let taskHistoryItem = viewModel?.taskEntries[indexPath.row] {
+            cell.viewModel = TaskViewEntryCellVM(taskEntry: taskHistoryItem)
         }
         
         return cell

@@ -1,5 +1,5 @@
 //
-//  TaskViewHistoryCell.swift
+//  TaskViewEntryCell.swift
 //  YourTurn
 //
 //  Created by Robby on 10/6/22.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-class TaskViewHistoryCell: UITableViewCell {
+class TaskViewEntryCell: UITableViewCell {
     
     // MARK: - Properties
-    var viewModel: TaskViewHistoryCellVM? {
+    var viewModel: TaskViewEntryCellVM? {
         didSet {
             guard let viewModel = viewModel else { return }
             onViewModelSet(viewModel: viewModel)
@@ -48,7 +48,7 @@ class TaskViewHistoryCell: UITableViewCell {
         completedDateLabel.anchor(top: completedByLabel.bottomAnchor, left: leftAnchor)
     }
     
-    func onViewModelSet(viewModel: TaskViewHistoryCellVM) {
+    func onViewModelSet(viewModel: TaskViewEntryCellVM) {
         completedByLabel.text = viewModel.completedByLabelString
         completedDateLabel.text = viewModel.dateCompletedLabelString
     }

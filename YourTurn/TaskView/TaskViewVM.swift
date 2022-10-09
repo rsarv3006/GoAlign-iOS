@@ -18,14 +18,17 @@ class TaskViewVM {
     let contentTitle: String
     let assignedUserString: String
     let assignedTeamString: String
-    let taskHistoryItems: [TaskHistoryItem]
+    let taskEntries: [TaskEntryModel]
     
     init(task: TaskModel) {
         self.contentTitle = task.taskName
-        self.assignedUserString = task.assignedUser?.username ?? ""
+        self.assignedUserString = task.findCurrentTaskEntry()?.assignedUser.username ?? ""
         // TODO: - Need to attach team object to getTask
         self.assignedTeamString = task.teamId
-        self.taskHistoryItems = task.taskHistoryItems ?? []
+        self.taskEntries = task.taskEntries?.filter({ taskEntry in
+            taskEntry.status == .completed
+        }) ?? []
+        
     }
     
     

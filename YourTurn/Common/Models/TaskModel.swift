@@ -27,10 +27,19 @@ class TaskModel: Codable {
     let intervalBetweenWindows: IntervalObject?
     let windowLength: IntervalObject?
     let teamId: String
-    let assignedUser: UserModel?
     let creator: UserModel
     let status: String
-    let taskHistoryItems: [TaskHistoryItem]?
+    let taskEntries: [TaskEntryModel]?
+    
+    func findCurrentTaskEntry() -> TaskEntryModel? {
+        var returnValue: TaskEntryModel? = nil
+        if let taskEntries = taskEntries {
+            returnValue = taskEntries.first { taskEntry in
+                taskEntry.status == TaskEntryStatus.active
+            }
+        }
+        return returnValue
+    }
 }
 
 class CreateTaskDto: Codable {

@@ -103,7 +103,6 @@
 		78E4F88E2893881D0075F04F /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F88D2893881C0075F04F /* TaskModel.swift */; };
 		78E4F890289389B00075F04F /* IntervalObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F88F289389B00075F04F /* IntervalObject.swift */; };
 		78E4F89228938DE50075F04F /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F89128938DE50075F04F /* UserModel.swift */; };
-		78E4F8942893911B0075F04F /* TaskHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F8932893911B0075F04F /* TaskHistoryModel.swift */; };
 		78E4F896289393150075F04F /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F895289393150075F04F /* Networking.swift */; };
 		78E743C028A595460069E691 /* SignInFormContentBuilderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E743BF28A595460069E691 /* SignInFormContentBuilderImpl.swift */; };
 		78E743C428A599A00069E691 /* SignInCompletedForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E743C328A599A00069E691 /* SignInCompletedForm.swift */; };
@@ -120,10 +119,11 @@
 		D505315928E529D1006BD807 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D505315828E529D1006BD807 /* GoogleService-Info.plist */; };
 		D5129C7F28E5475C00AF9EDD /* TaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5129C7E28E5475C00AF9EDD /* TaskView.swift */; };
 		D5129C8128E547C800AF9EDD /* TaskViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5129C8028E547C800AF9EDD /* TaskViewVM.swift */; };
-		D55E671528EFB12100EBE205 /* TaskViewHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E671428EFB11E00EBE205 /* TaskViewHistoryCell.swift */; };
-		D55E671728EFB25700EBE205 /* TaskViewHistoryCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E671628EFB25700EBE205 /* TaskViewHistoryCellVM.swift */; };
+		D55E671528EFB12100EBE205 /* TaskViewEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E671428EFB11E00EBE205 /* TaskViewEntryCell.swift */; };
+		D55E671728EFB25700EBE205 /* TaskViewEntryCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E671628EFB25700EBE205 /* TaskViewEntryCellVM.swift */; };
 		D55E671928F109F200EBE205 /* TaskMoreInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E671828F109F200EBE205 /* TaskMoreInfoView.swift */; };
 		D55E671B28F1101700EBE205 /* YtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E671A28F1101700EBE205 /* YtViewController.swift */; };
+		D55E671D28F1332300EBE205 /* TaskEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E671C28F1332300EBE205 /* TaskEntryModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -239,7 +239,6 @@
 		78E4F88D2893881C0075F04F /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		78E4F88F289389B00075F04F /* IntervalObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalObject.swift; sourceTree = "<group>"; };
 		78E4F89128938DE50075F04F /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
-		78E4F8932893911B0075F04F /* TaskHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskHistoryModel.swift; sourceTree = "<group>"; };
 		78E4F895289393150075F04F /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		78E743BF28A595460069E691 /* SignInFormContentBuilderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFormContentBuilderImpl.swift; sourceTree = "<group>"; };
 		78E743C328A599A00069E691 /* SignInCompletedForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCompletedForm.swift; sourceTree = "<group>"; };
@@ -254,10 +253,11 @@
 		D505315828E529D1006BD807 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D5129C7E28E5475C00AF9EDD /* TaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskView.swift; sourceTree = "<group>"; };
 		D5129C8028E547C800AF9EDD /* TaskViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewVM.swift; sourceTree = "<group>"; };
-		D55E671428EFB11E00EBE205 /* TaskViewHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewHistoryCell.swift; sourceTree = "<group>"; };
-		D55E671628EFB25700EBE205 /* TaskViewHistoryCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewHistoryCellVM.swift; sourceTree = "<group>"; };
+		D55E671428EFB11E00EBE205 /* TaskViewEntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewEntryCell.swift; sourceTree = "<group>"; };
+		D55E671628EFB25700EBE205 /* TaskViewEntryCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewEntryCellVM.swift; sourceTree = "<group>"; };
 		D55E671828F109F200EBE205 /* TaskMoreInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskMoreInfoView.swift; sourceTree = "<group>"; };
 		D55E671A28F1101700EBE205 /* YtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YtViewController.swift; sourceTree = "<group>"; };
+		D55E671C28F1332300EBE205 /* TaskEntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEntryModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -480,10 +480,10 @@
 				78E4F88D2893881C0075F04F /* TaskModel.swift */,
 				78E4F88F289389B00075F04F /* IntervalObject.swift */,
 				78E4F89128938DE50075F04F /* UserModel.swift */,
-				78E4F8932893911B0075F04F /* TaskHistoryModel.swift */,
 				7872D6F928950AEF00E598D2 /* TeamModel.swift */,
 				78EC914D28AF2D220046DF28 /* TeamSelectModalReturnModel.swift */,
 				78DF5AF528BC63CA00C182CF /* TeamInviteModel.swift */,
+				D55E671C28F1332300EBE205 /* TaskEntryModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -683,8 +683,8 @@
 			children = (
 				D5129C7E28E5475C00AF9EDD /* TaskView.swift */,
 				D5129C8028E547C800AF9EDD /* TaskViewVM.swift */,
-				D55E671428EFB11E00EBE205 /* TaskViewHistoryCell.swift */,
-				D55E671628EFB25700EBE205 /* TaskViewHistoryCellVM.swift */,
+				D55E671428EFB11E00EBE205 /* TaskViewEntryCell.swift */,
+				D55E671628EFB25700EBE205 /* TaskViewEntryCellVM.swift */,
 				D55E671828F109F200EBE205 /* TaskMoreInfoView.swift */,
 			);
 			path = TaskView;
@@ -864,6 +864,7 @@
 				780F196A28A45F2300371B91 /* AuthenticationCompletedProtocol.swift in Sources */,
 				78E743C028A595460069E691 /* SignInFormContentBuilderImpl.swift in Sources */,
 				78BFFAA428879A3F00A767AB /* FormSwitchControlledDateCollectionViewCell.swift in Sources */,
+				D55E671D28F1332300EBE205 /* TaskEntryModel.swift in Sources */,
 				78E4F89228938DE50075F04F /* UserModel.swift in Sources */,
 				780F196828A45EA300371B91 /* SignInVM.swift in Sources */,
 				780F197828A492E500371B91 /* SwitchAuthScreenProtocol.swift in Sources */,
@@ -884,7 +885,6 @@
 				D5129C7F28E5475C00AF9EDD /* TaskView.swift in Sources */,
 				7802E1A6288E399500F7D501 /* Authentication.swift in Sources */,
 				783DED062861F4C90062343E /* Extensions.swift in Sources */,
-				78E4F8942893911B0075F04F /* TaskHistoryModel.swift in Sources */,
 				78BF0D6528A97F57005C6098 /* DrawerMenuViewController.swift in Sources */,
 				78D7C3C528776F80001F48C5 /* FormCompositionalLayout.swift in Sources */,
 				78EC915028AFB9640046DF28 /* ModalViewController.swift in Sources */,
@@ -934,11 +934,11 @@
 				78FAB71F28AB170B009B8D50 /* LoggerService.swift in Sources */,
 				78E4F88E2893881D0075F04F /* TaskModel.swift in Sources */,
 				78E4F47928B5054C00DE8E0C /* TeamAddModalVM.swift in Sources */,
-				D55E671728EFB25700EBE205 /* TaskViewHistoryCellVM.swift in Sources */,
+				D55E671728EFB25700EBE205 /* TaskViewEntryCellVM.swift in Sources */,
 				78477327287687DD009AFC92 /* FormModel.swift in Sources */,
 				78904AED28D2D01400F6EF1F /* SettingsScreenVM.swift in Sources */,
 				78B687902887AE29006B6CAB /* FieldVisibilityProtocol.swift in Sources */,
-				D55E671528EFB12100EBE205 /* TaskViewHistoryCell.swift in Sources */,
+				D55E671528EFB12100EBE205 /* TaskViewEntryCell.swift in Sources */,
 				78D7C3C028776499001F48C5 /* FormTextCollectionViewCell.swift in Sources */,
 				78439FD728AC75430070D48D /* StandardButton.swift in Sources */,
 				78BF0D6A28A98103005C6098 /* DrawerPresentationController.swift in Sources */,
