@@ -20,6 +20,8 @@ class TaskViewVM {
     let assignedTeamString: String
     let taskEntries: [TaskEntryModel]
     
+    let task: TaskModel
+    
     init(task: TaskModel) {
         self.contentTitle = task.taskName
         self.assignedUserString = task.findCurrentTaskEntry()?.assignedUser.username ?? ""
@@ -29,6 +31,7 @@ class TaskViewVM {
             taskEntry.status == .completed
         }) ?? []
         
+        self.task = task
     }
     
     

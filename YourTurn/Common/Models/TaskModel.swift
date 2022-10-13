@@ -24,8 +24,8 @@ class TaskModel: Codable {
     let endDate: Date?
     let requiredCompletionsNeeded: Int?
     let completionCount: Int
-    let intervalBetweenWindows: IntervalObject?
-    let windowLength: IntervalObject?
+    let intervalBetweenWindows: IntervalObject
+    let windowLength: IntervalObject
     let teamId: String
     let creator: UserModel
     let status: String

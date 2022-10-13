@@ -28,7 +28,7 @@ class IntervalObject: Codable {
     }
     
     func toString() -> String {
-        return "\(intervalNumber) - \(intervalType)"
+        return "\(intervalNumber) - \(intervalType.rawValue)"
     }
     
     private enum CodingKeys: String, CodingKey {

@@ -124,6 +124,7 @@
 		D55E671928F109F200EBE205 /* TaskMoreInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E671828F109F200EBE205 /* TaskMoreInfoView.swift */; };
 		D55E671B28F1101700EBE205 /* YtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E671A28F1101700EBE205 /* YtViewController.swift */; };
 		D55E671D28F1332300EBE205 /* TaskEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E671C28F1332300EBE205 /* TaskEntryModel.swift */; };
+		D55E671F28F5177100EBE205 /* TaskMoreInfoVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E671E28F5177000EBE205 /* TaskMoreInfoVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -258,6 +259,7 @@
 		D55E671828F109F200EBE205 /* TaskMoreInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskMoreInfoView.swift; sourceTree = "<group>"; };
 		D55E671A28F1101700EBE205 /* YtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YtViewController.swift; sourceTree = "<group>"; };
 		D55E671C28F1332300EBE205 /* TaskEntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEntryModel.swift; sourceTree = "<group>"; };
+		D55E671E28F5177000EBE205 /* TaskMoreInfoVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskMoreInfoVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -686,6 +688,7 @@
 				D55E671428EFB11E00EBE205 /* TaskViewEntryCell.swift */,
 				D55E671628EFB25700EBE205 /* TaskViewEntryCellVM.swift */,
 				D55E671828F109F200EBE205 /* TaskMoreInfoView.swift */,
+				D55E671E28F5177000EBE205 /* TaskMoreInfoVM.swift */,
 			);
 			path = TaskView;
 			sourceTree = "<group>";
@@ -870,6 +873,7 @@
 				780F197828A492E500371B91 /* SwitchAuthScreenProtocol.swift in Sources */,
 				7802E189288B9EB000F7D501 /* SignIn.swift in Sources */,
 				78B6878E2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift in Sources */,
+				D55E671F28F5177100EBE205 /* TaskMoreInfoVM.swift in Sources */,
 				7802E1AA288E3D0900F7D501 /* SignUpCompletedForm.swift in Sources */,
 				78E4F88C289386F50075F04F /* TaskService.swift in Sources */,
 				D55E671928F109F200EBE205 /* TaskMoreInfoView.swift in Sources */,

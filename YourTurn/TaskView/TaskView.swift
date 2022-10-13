@@ -59,6 +59,8 @@ class TaskView: UIViewController {
         let safeAreaLeftAnchor = view.safeAreaLayoutGuide.leftAnchor
         let safeAreaRightAnchor = view.safeAreaLayoutGuide.rightAnchor
         
+        taskInformationButton.addTarget(self, action: #selector(onTouchUpInsideTaskInformatioButton), for: .touchUpInside)
+        
         view.addSubview(assignedUserLabel)
         assignedUserLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor)
         
@@ -87,8 +89,20 @@ class TaskView: UIViewController {
     
     private func configureTaskHistoryTableView() {
         taskHistoryTable.register(TaskViewEntryCell.self, forCellReuseIdentifier: TaskEntryCellReuseIdentifier)
+        taskHistoryTable.rowHeight = 60
         taskHistoryTable.delegate = self
         taskHistoryTable.dataSource = self
+    }
+    
+    // MARK: - Actions
+    
+    @objc func onTouchUpInsideTaskInformatioButton() {
+        DispatchQueue.main.async {
+            guard let task = self.viewModel?.task else { return }
+            let newVc = TaskMoreInfoView()
+            newVc.viewModel = TaskMoreInfoVM(task: task)
+            self.present(newVc, animated: true)
+        }
     }
 }
 
