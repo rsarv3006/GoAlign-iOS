@@ -17,6 +17,16 @@ class TaskMoreInfoView: YtViewController {
     }
     
     // MARK: - UI Elements
+    private lazy var closeButton: UIButton = {
+        let button = UIButton(type: .close)
+        return button
+    }()
+    
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+    
     private lazy var creatorLabel: UILabel = {
         let label = UILabel()
         return label
@@ -62,6 +72,13 @@ class TaskMoreInfoView: YtViewController {
         return label
     }()
     
+    private lazy var modalView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    private var stackView: UIStackView?
+    
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,29 +91,69 @@ class TaskMoreInfoView: YtViewController {
         let screenHeight = UIScreen.main.bounds.size.height
         let screenWidth = UIScreen.main.bounds.size.width
         
-        let stackView = UIStackView(arrangedSubviews: [creatorLabel, createdDateLabel, startDateLabel, endDateLabel, requiredCompletions, completionsCount, notesLabel, windowLengthLabel, intervalBetweenWindows])
+        stackView = UIStackView(arrangedSubviews: [creatorLabel, createdDateLabel, startDateLabel, endDateLabel, requiredCompletions, completionsCount, notesLabel, windowLengthLabel, intervalBetweenWindows])
+        
+        guard let stackView = stackView else { return }
         stackView.axis = .vertical
         stackView.spacing = 8
         
-        view.addSubview(stackView)
-        stackView.center(inView: view)
+        view.addSubview(modalView)
+        modalView.center(inView: view)
         
-        stackView.setWidth(screenWidth * 0.75)
-        stackView.setHeight(screenHeight * 0.6)
+        modalView.setWidth(screenWidth * 0.75)
+        modalView.setHeight(screenHeight * 0.6)
         
-        stackView.backgroundColor = .gray
-        stackView.layer.cornerRadius = 10
+        modalView.backgroundColor = .gray
+        modalView.layer.cornerRadius = 10
+        
+        modalView.addSubview(titleLabel)
+        titleLabel.anchor(top: modalView.topAnchor, left: modalView.leftAnchor, right: modalView.rightAnchor)
+        titleLabel.textAlignment = .center
+        
+        modalView.addSubview(stackView)
+        stackView.anchor(top: titleLabel.bottomAnchor, left: modalView.leftAnchor, right: modalView.rightAnchor, paddingTop: 12, paddingLeft: 8, paddingRight: 8)
+        
+        modalView.addSubview(closeButton)
+        closeButton.anchor(top: modalView.topAnchor, left: modalView.leftAnchor)
+        
+        closeButton.addTarget(self, action: #selector(onCloseButtonPressed), for: .touchUpInside)
     }
     
     func onViewModelDidSet(viewModel: TaskMoreInfoVM) {
+        titleLabel.text = viewModel.titleLabel
         creatorLabel.text = viewModel.creatorLabel
         createdDateLabel.text = viewModel.createdDateLabel
         startDateLabel.text = viewModel.startDateLabel
-        endDateLabel.text = viewModel.endDateLabel
-        requiredCompletions.text = viewModel.requiredCompletionsLabel
+        
+        
         completionsCount.text = viewModel.completionsCountLabel
-        notesLabel.text = viewModel.notesLabel
+        
         windowLengthLabel.text = viewModel.windowLengthLabel
         intervalBetweenWindows.text = viewModel.intervalBetweenWindowsLabel
+        
+        if viewModel.isNotesLabelVisible {
+            notesLabel.text = viewModel.notesLabel
+        } else {
+            stackView?.removeArrangedSubview(notesLabel)
+        }
+        
+        if viewModel.isEndDateLabelVisible {
+            endDateLabel.text = viewModel.endDateLabel
+        } else {
+            stackView?.removeArrangedSubview(endDateLabel)
+        }
+        
+        if viewModel.isRequiredCompletionsLabelVisible {
+            requiredCompletions.text = viewModel.requiredCompletionsLabel
+        } else {
+            stackView?.removeArrangedSubview(requiredCompletions)
+        }
+        
+    }
+    
+    // MARK: - Actions
+    
+    @objc func onCloseButtonPressed() {
+        self.dismiss(animated: true)
     }
 }
