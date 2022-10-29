@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import Combine
 
 let TaskEntryCellReuseIdentifier = "TaskEntryCellReuseIdentifier"
 
 class TaskView: UIViewController {
+    var subscriptions = Set<AnyCancellable>()
+    
+    private(set) var requestHomeReload = PassthroughSubject<Bool, Never>()
     
     var viewModel: TaskViewVM? {
         didSet {
@@ -47,6 +51,19 @@ class TaskView: UIViewController {
         return button
     }()
     
+    private lazy var subViewMarkTaskCompleteButton: UIView = {
+        let subView = UIView()
+        return subView
+    }()
+    
+    private lazy var markTaskCompleteButton: StandardButton = {
+        var configuration = UIButton.Configuration.filled()
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+        let button = StandardButton(configuration: configuration)
+        button.addTarget(self, action: #selector(onTouchUpInsideMarkTaskCompleteButton), for: .touchUpInside)
+        return button
+    }()
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,8 +78,11 @@ class TaskView: UIViewController {
         
         taskInformationButton.addTarget(self, action: #selector(onTouchUpInsideTaskInformatioButton), for: .touchUpInside)
         
+        view.addSubview(subViewMarkTaskCompleteButton)
+        subViewMarkTaskCompleteButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor, height: 44)
+        
         view.addSubview(assignedUserLabel)
-        assignedUserLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor)
+        assignedUserLabel.anchor(top: subViewMarkTaskCompleteButton.bottomAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor)
         
         view.addSubview(assignedTeamLabel)
         assignedTeamLabel.anchor(top: assignedUserLabel.bottomAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor)
@@ -76,6 +96,20 @@ class TaskView: UIViewController {
         view.addSubview(taskHistoryTable)
         taskHistoryTable.anchor(top: taskHistoryTitleLabel.bottomAnchor, left: safeAreaLeftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: safeAreaRightAnchor)
         
+        configureMarkTaskCompleteButton()
+    }
+    
+    private func configureMarkTaskCompleteButton() {
+        guard let viewModel = viewModel else { return }
+        
+        viewModel.checkIfMarkTaskCompleteButtonShouldShow { shouldShowMarkTaskCompleteButton in
+            if shouldShowMarkTaskCompleteButton {
+                DispatchQueue.main.async {
+                    self.subViewMarkTaskCompleteButton.addSubview(self.markTaskCompleteButton)
+                    self.markTaskCompleteButton.center(inView: self.subViewMarkTaskCompleteButton)
+                }
+            }
+        }
     }
     
     private func onViewModelDidSet(viewModel: TaskViewVM) {
@@ -84,6 +118,7 @@ class TaskView: UIViewController {
         assignedTeamLabel.text = viewModel.assignedTeamString
         taskHistoryTitleLabel.attributedText = viewModel.taskHistoryTitleLabelText
         taskInformationButton.setTitle(viewModel.taskInformationButtonString, for: .normal)
+        markTaskCompleteButton.setTitle(viewModel.taskCompleteButtonString, for: .normal)
         taskHistoryTable.reloadData()
     }
     
@@ -95,13 +130,28 @@ class TaskView: UIViewController {
     }
     
     // MARK: - Actions
-    
     @objc func onTouchUpInsideTaskInformatioButton() {
         DispatchQueue.main.async {
             guard let task = self.viewModel?.task else { return }
             let newVc = TaskMoreInfoView()
             newVc.viewModel = TaskMoreInfoVM(task: task)
             self.present(newVc, animated: true)
+        }
+    }
+    
+    @objc func onTouchUpInsideMarkTaskCompleteButton() {
+        guard let taskId = viewModel?.task.taskId else { return }
+        TaskService.markTaskComplete(taskId: taskId) { task, error in
+            DispatchQueue.main.async {
+                if task != nil {
+                    self.navigationController?.popViewController(animated: true)
+                    self.requestHomeReload.send(true)
+                } else if let error = error {
+                    self.showMessage(withTitle: "Uh Oh", message: "Error Marking Task Complete: \(error)")
+                } else {
+                    self.showMessage(withTitle: "Uh Oh", message: "Error Marking Task Complete")
+                }
+            }
         }
     }
 }
@@ -114,7 +164,7 @@ extension TaskView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel?.taskEntries.count ?? 0
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskEntryCellReuseIdentifier, for: indexPath) as! TaskViewEntryCell
         if let taskHistoryItem = viewModel?.taskEntries[indexPath.row] {

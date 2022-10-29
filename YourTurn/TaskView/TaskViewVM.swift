@@ -34,5 +34,7 @@ class TaskViewVM {
         self.task = task
     }
     
-    
+    func checkIfMarkTaskCompleteButtonShouldShow(completionHandler: @escaping((Bool) -> Void)) {
+        task.checkIfCurrentUserIsAssignedUser(completionHandler: completionHandler)
+    }
 }

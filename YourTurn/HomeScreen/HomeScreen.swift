@@ -180,6 +180,10 @@ extension HomeScreen: UITableViewDelegate {
             if tableView.tag == TASK_TABLE_TAG {
                 let taskVC = TaskView()
                 taskVC.viewModel = TaskViewVM(task: self.tasks[indexPath.row])
+                taskVC.requestHomeReload.sink { _ in
+                    self.viewModel?.loadTeams()
+                    self.viewModel?.loadTasks()
+                }.store(in: &self.subscriptions)
                 self.navigationController?.pushViewController(taskVC, animated: true)
             }
         }
