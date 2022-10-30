@@ -39,7 +39,7 @@ class TeamSelectModal: ModalViewController {
     
     private lazy var subView: UIView = {
         let subView = UIView()
-        subView.backgroundColor = .gray
+        subView.backgroundColor = .systemGray4
         subView.layer.cornerRadius = 10
         return subView
     }()
@@ -141,6 +141,7 @@ extension TeamSelectModal: UITableViewDataSource {
 
 extension TeamSelectModal {
     func configureView() {
+        subView.backgroundColor = .systemBackground
         subView.addSubview(closeButton)
         closeButton.centerX(inView: subView)
         closeButton.anchor(left: subView.leftAnchor, bottom: subView.bottomAnchor, right: subView.rightAnchor, paddingLeft: 12, paddingBottom: 12, paddingRight: 12)

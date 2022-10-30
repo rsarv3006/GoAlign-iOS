@@ -27,8 +27,7 @@ class FormHideableIntervalPickerCollectionViewCell: UICollectionViewCell {
         button.setTitle("  1 - day(s)  ", for: .normal)
         button.layer.cornerRadius = 8
         button.backgroundColor = .systemGray6
-        button.titleLabel?.textColor = .white
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)        
         return button
     }()
     

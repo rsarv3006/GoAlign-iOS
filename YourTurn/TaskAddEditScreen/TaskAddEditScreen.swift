@@ -37,6 +37,7 @@ class TaskAddEditScreen: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = viewModel?.screenTitleLabelString
+        view.backgroundColor = .systemBackground
     }
 }
 

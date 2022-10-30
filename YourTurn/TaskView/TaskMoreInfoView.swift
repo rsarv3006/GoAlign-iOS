@@ -103,7 +103,7 @@ class TaskMoreInfoView: YtViewController {
         modalView.setWidth(screenWidth * 0.75)
         modalView.setHeight(screenHeight * 0.6)
         
-        modalView.backgroundColor = .gray
+        modalView.backgroundColor = .systemGray4
         modalView.layer.cornerRadius = 10
         
         modalView.addSubview(titleLabel)

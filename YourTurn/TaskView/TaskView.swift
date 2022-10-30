@@ -76,6 +76,8 @@ class TaskView: UIViewController {
         let safeAreaLeftAnchor = view.safeAreaLayoutGuide.leftAnchor
         let safeAreaRightAnchor = view.safeAreaLayoutGuide.rightAnchor
         
+        view.backgroundColor = .systemBackground
+        
         taskInformationButton.addTarget(self, action: #selector(onTouchUpInsideTaskInformatioButton), for: .touchUpInside)
         
         view.addSubview(subViewMarkTaskCompleteButton)
@@ -94,7 +96,7 @@ class TaskView: UIViewController {
         taskHistoryTitleLabel.centerX(inView: view, topAnchor: taskInformationButton.bottomAnchor, paddingTop: 24)
         
         view.addSubview(taskHistoryTable)
-        taskHistoryTable.anchor(top: taskHistoryTitleLabel.bottomAnchor, left: safeAreaLeftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: safeAreaRightAnchor)
+        taskHistoryTable.anchor(top: taskHistoryTitleLabel.bottomAnchor, left: safeAreaLeftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: safeAreaRightAnchor, paddingLeft: 8, paddingRight: 8)
         
         configureMarkTaskCompleteButton()
     }

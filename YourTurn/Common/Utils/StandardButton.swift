@@ -18,11 +18,11 @@ class StandardButton: UIButton {
         super.init(frame: frame)
         layer.cornerRadius = 8
         backgroundColor = .systemGray5
-        titleLabel?.textColor = .white
         titleLabel?.font = UIFont.systemFont(ofSize: 18)
         addTarget(self, action: #selector(onHighLight), for: .touchDown)
         addTarget(self, action: #selector(onNormal), for: .touchUpInside)
         addTarget(self, action: #selector(onNormal), for: .touchUpOutside)
+        self.setTitleColor(.buttonText, for: .normal)
     }
     
     required init?(coder: NSCoder) {

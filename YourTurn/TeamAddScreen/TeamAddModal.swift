@@ -13,7 +13,7 @@ protocol TeamAddModalDelegate {
     func onTeamAddGoToInvite(viewController: UIViewController, teamId: String)
 }
 
-class TeamAddModal: UIViewController {
+class TeamAddModal: YtViewController {
     private var subscriptions = Set<AnyCancellable>()
     var delegate: TeamAddModalDelegate?
     
@@ -45,7 +45,7 @@ class TeamAddModal: UIViewController {
     
     private lazy var subView: UIView = {
         let subView = UIView()
-        subView.backgroundColor = .gray
+        subView.backgroundColor = .systemGray4
         subView.layer.cornerRadius = 10
         return subView
     }()
@@ -80,12 +80,11 @@ class TeamAddModal: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureModal()
-        configureView()
         configureActions()
     }
     
     // MARK: - Helpers
-    func configureView() {
+    override func configureView() {
         subView.addSubview(modalTitle)
         modalTitle.centerX(inView: subView)
         modalTitle.anchor(top: subView.topAnchor, left: subView.leftAnchor, right: subView.rightAnchor, height: 44)

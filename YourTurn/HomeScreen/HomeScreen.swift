@@ -106,6 +106,8 @@ class HomeScreen: YtViewController {
     
     // MARK: - Helpers
     override func configureView() {
+        view.backgroundColor = .systemBackground
+        
         let topSafeAnchor = view.safeAreaLayoutGuide.topAnchor
         let leftSafeAnchor = view.safeAreaLayoutGuide.leftAnchor
         let rightSafeAnchor = view.safeAreaLayoutGuide.rightAnchor
@@ -128,10 +130,10 @@ class HomeScreen: YtViewController {
         addTeamButton.anchor(right: rightSafeAnchor, paddingRight: 12)
         
         view.addSubview(taskTableView)
-        taskTableView.anchor(top: taskTitleLabel.bottomAnchor, left: leftSafeAnchor, bottom: teamTitleLabel.topAnchor, right: rightSafeAnchor)
+        taskTableView.anchor(top: taskTitleLabel.bottomAnchor, left: leftSafeAnchor, bottom: teamTitleLabel.topAnchor, right: rightSafeAnchor, paddingLeft: 8, paddingRight: 8)
         
         view.addSubview(teamTableView)
-        teamTableView.anchor(top: teamTitleLabel.bottomAnchor, left: leftSafeAnchor, bottom: bottomSafeAnchor, right: rightSafeAnchor)
+        teamTableView.anchor(top: teamTitleLabel.bottomAnchor, left: leftSafeAnchor, bottom: bottomSafeAnchor, right: rightSafeAnchor, paddingLeft: 8, paddingRight: 8)
         
     }
     

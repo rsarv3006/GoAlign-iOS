@@ -35,7 +35,7 @@ class TeamInviteUserModal: UIViewController {
     // Mark: UI Elements
     private lazy var subView: UIView = {
         let subView = UIView()
-        subView.backgroundColor = .gray
+        subView.backgroundColor = .systemGray4
         subView.layer.cornerRadius = 10
         return subView
     }()
@@ -68,7 +68,7 @@ class TeamInviteUserModal: UIViewController {
     
     private lazy var invitedTeamMembersTableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .gray
+        tableView.backgroundColor = .systemGray4
         return tableView
     }()
     
