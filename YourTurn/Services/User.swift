@@ -43,7 +43,7 @@ enum UserService {
                     let userModel = try decoder.decode(UserModel.self, from: data)
                     completionHandler(userModel, nil)
                 } catch {
-                    Logger.log(logLevel: .Verbose, message: "FAILED to createUser: \(error)")
+                    Logger.log(logLevel: .Verbose, name: Logger.Events.User.createFailed, payload: ["error": error, "email": user.email])
                     AuthenticationService.signOut()
                     completionHandler(nil, error)
                 }
@@ -74,7 +74,7 @@ enum UserService {
                     let userModel = try decoder.decode(UserModel.self, from: data)
                     completionHandler(userModel, nil)
                 } catch {
-                    Logger.log(logLevel: .Verbose, message: "Failed to fetch current user: \(error)")
+                    Logger.log(logLevel: .Verbose, name: Logger.Events.User.fetchFailed, payload: ["error": error, "user": "current User"])
                     AuthenticationService.signOut()
                     completionHandler(nil, error)
                 }

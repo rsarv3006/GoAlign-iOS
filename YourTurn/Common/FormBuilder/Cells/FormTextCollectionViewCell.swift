@@ -97,7 +97,7 @@ private extension FormTextCollectionViewCell {
                             self.errorLbl.text = message
                         }
                     }
-                    Logger.log(logLevel: .Prod, message: "\(error)")
+                    Logger.log(logLevel: .Prod, name: Logger.Events.Form.Field.validationFailed, payload: ["error": error])
                 }
             }
             .store(in: &subscriptions)

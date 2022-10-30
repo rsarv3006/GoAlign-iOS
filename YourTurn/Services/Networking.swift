@@ -18,7 +18,7 @@ struct Networking {
     private static func apiCall(httpMethod: HttpMethod, url: URL, body: Data? = nil, completion: @escaping((Data?, URLResponse?, Error?) -> Void)) {
         AuthenticationService.getToken { token, error in
             guard let token = token else {
-                Logger.log(logLevel: .Prod, message: "Something is wrong with SignIn form: \(String(describing: error))")
+                Logger.log(logLevel: .Prod, name: Logger.Events.Auth.tokenFetchFailed, payload: ["error": String(describing: error)])
                 return
             }
             var request = URLRequest(url: url)

@@ -73,7 +73,7 @@ struct AuthenticationService {
         do {
             try Auth.auth().signOut()
         } catch {
-            Logger.log(logLevel: .Prod, message: "\(error)")
+            Logger.log(logLevel: .Prod, name: Logger.Events.Auth.signOutFailed, payload: ["error": error])
         }
         
     }

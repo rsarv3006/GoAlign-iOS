@@ -7,7 +7,7 @@
 	<key>LOG_LEVEL</key>
 	<string>verbose</string>
 	<key>LOG_TO_ANALYTICS</key>
-	<false/>
+	<true/>
 	<key>API_URL</key>
 	<string>http://localhost:4001/</string>
 	<key>UIApplicationSceneManifest</key>

@@ -14,22 +14,24 @@ enum LogLevel: String {
 }
 
 struct Logger {
-    static func log(logLevel: LogLevel, message: String) {
+    static func log(logLevel: LogLevel, name: String, payload: Dictionary<String, Any>) {
         let LOG_LEVEL = getLogLevel()
         let IS_ANALYTICS_ENABLED = getAnalyticsEnabled()
         let shouldPrintLogs = getPrintLogs()
         
         guard logLevelMatches(logLevel, setLogLevel: LOG_LEVEL) else { return }
         
-        let logString = "\(Date.now.ISO8601Format()) - \(logLevel.rawValue) - \(message)"
+        let logString = "\(Date.now.ISO8601Format()) - \(logLevel.rawValue) - \(name) - \(payload)"
         
         if shouldPrintLogs {
             print(logString)
         }
         
+        var mutablePayload = payload
+        mutablePayload["originator"] = "iosMobile"
         
         if IS_ANALYTICS_ENABLED {
-            Analytics.logEvent(logString, parameters: [:])
+            Analytics.logEvent(name, parameters: mutablePayload)
         }
     }
     
@@ -65,5 +67,41 @@ struct Logger {
         }
         
         return true
+    }
+    
+    struct Events {
+        struct User {
+            static let fetchFailed = "user.fetch.fail"
+            static let createFailed = "user.create.fail"
+        }
+        
+        struct Auth {
+            static let signOutFailed = "auth.signout.fail"
+            static let tokenFetchFailed = "auth.token.fetch.fail"
+        }
+        
+        struct Team {
+            static let teamCreated = "team.create.success"
+            static let teamCreateFailed = "team.create.fail"
+            static let fetchFailed = "team.fetch.fail"
+            
+            struct Invite {
+                static let fetchFailed = "team.invite.fetch.fail"
+            }
+        }
+        
+        struct Task {
+            static let creationFailed = "task.create.fail"
+        }
+        
+        struct Form {
+            struct Field {
+                static let validationFailed = "form.field.validation.fail"
+            }
+        }
+        
+        struct Networking {
+            static let callFailed = "networking.call.failed"
+        }
     }
 }
