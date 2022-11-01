@@ -58,7 +58,7 @@ final class SignUpFormContentBuilderImpl {
             try formSubmission.send(SignUpCompletedForm(fromDict: validDict ))
             
         } catch {
-            Logger.log(logLevel: .Prod, message: "Something is wrong with SignUp form: \(error)")
+            Logger.log(logLevel: .Prod, name: Logger.Events.Auth.signUpValidationFailed, payload: ["error": error, "message": "Something is wrong with the SignUp form"])
         }
     }
 }

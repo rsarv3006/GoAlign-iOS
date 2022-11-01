@@ -68,7 +68,7 @@ final class TaskAddEditFormContentBuilderImpl {
             }
             
         } catch {
-            Logger.log(logLevel: .Prod, name: Logger.Events.Task.creationFailed, payload: ["error": error])
+            Logger.log(logLevel: .Prod, name: Logger.Events.Task.creationValidationFailed, payload: ["error": error])
         }
     }
 }

@@ -78,6 +78,8 @@ struct Logger {
         struct Auth {
             static let signOutFailed = "auth.signout.fail"
             static let tokenFetchFailed = "auth.token.fetch.fail"
+            static let signInValidationFailed = "auth.signin.validation.fail"
+            static let signUpValidationFailed = "auth.signup.validation.fail"
         }
         
         struct Team {
@@ -92,6 +94,8 @@ struct Logger {
         
         struct Task {
             static let creationFailed = "task.create.fail"
+            static let creationValidationFailed = "task.create.validation.fail"
+            static let markCompleteFailed = "task.mark.complete.fail"
         }
         
         struct Form {

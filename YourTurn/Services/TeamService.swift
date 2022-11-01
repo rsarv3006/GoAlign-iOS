@@ -32,7 +32,6 @@ struct TeamService {
                     let teams = try decoder.decode([TeamModel].self, from: data)
                     completionHandler(teams, nil)
                 } catch {
-                    Logger.log(logLevel: .Verbose, message: "Error pulling teams by current user: \(error)")
                     completionHandler(nil, error)
                     return
                 }
@@ -70,7 +69,6 @@ struct TeamService {
                     let teamModel = try decoder.decode(TeamModel.self, from: data)
                     completionHandler(teamModel, nil)
                 } catch {
-                    Logger.log(logLevel: .Verbose, message: "FAILED to create team: \(error)")
                     completionHandler(nil, error)
                 }
             }
