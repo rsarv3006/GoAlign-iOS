@@ -37,7 +37,7 @@ struct TeamInviteService {
                     let teamInvites = try decoder.decode([TeamInviteModel].self, from: data)
                     completionHandler(teamInvites, nil)
                 } catch {
-                    Logger.log(logLevel: .Verbose, message: "Error pulling team invites by current user: \(error)")
+                    Logger.log(logLevel: .Verbose, name: Logger.Events.Team.Invite.fetchFailed, payload: ["error": error])
                     completionHandler(nil, error)
                     return
                 }

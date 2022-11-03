@@ -175,8 +175,7 @@ private extension FormSwitchControlledDateCollectionViewCell {
                     self.errorLbl.text = message
                 }
             }
-            
-            Logger.log(logLevel: .Prod, message: "\(error)")
+            Logger.log(logLevel: .Prod, name: Logger.Events.Form.Field.validationFailed, payload: ["error": error, "field": "switch_controlled_date"])
         }
     }
 }

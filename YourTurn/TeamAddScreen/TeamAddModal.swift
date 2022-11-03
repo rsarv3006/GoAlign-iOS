@@ -139,7 +139,7 @@ class TeamAddModal: YtViewController {
                 createTeam(teamName: teamName)
             }
         }
-
+        
     }
     
     @objc func onCreateAndInvitePressed() {
@@ -169,7 +169,7 @@ class TeamAddModal: YtViewController {
         viewModel?.createTeam(name: teamName, completion: { team, error in
             if let error = error {
                 print(error)
-                Logger.log(logLevel: .Prod, message: String(describing: error))
+                Logger.log(logLevel: .Prod, name: Logger.Events.Team.teamCreateFailed, payload: ["error": error, "teamName": teamName])
             }
             
             DispatchQueue.main.async {
@@ -185,7 +185,7 @@ class TeamAddModal: YtViewController {
         viewModel?.createTeam(name: teamName, completion: { team, error in
             if let error = error {
                 print(error)
-                Logger.log(logLevel: .Prod, message: String(describing: error))
+                Logger.log(logLevel: .Prod, name: Logger.Events.Team.teamCreateFailed, payload: ["error": error, "teamName": teamName])
             }
             
             DispatchQueue.main.async {
@@ -193,10 +193,11 @@ class TeamAddModal: YtViewController {
             }
             
             guard let teamId = team?.teamId else {
-                Logger.log(logLevel: .Prod, message: "Unable to identify teamID after team creation")
+                Logger.log(logLevel: .Prod, name: Logger.Events.Team.teamCreateFailed, payload: ["error": "\(String(describing: error))", "teamName": teamName, "message": "Unable to identify teamID after team creation"])
                 return
             }
-
+            
+            Logger.log(logLevel: .Verbose, name: Logger.Events.Team.teamCreated, payload: ["teamId": teamId])
             self.closeModal()
             self.delegate?.onTeamAddGoToInvite(viewController: self, teamId: teamId)
         })

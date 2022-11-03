@@ -125,6 +125,7 @@
 		D55E671B28F1101700EBE205 /* YtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E671A28F1101700EBE205 /* YtViewController.swift */; };
 		D55E671D28F1332300EBE205 /* TaskEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E671C28F1332300EBE205 /* TaskEntryModel.swift */; };
 		D55E671F28F5177100EBE205 /* TaskMoreInfoVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E671E28F5177000EBE205 /* TaskMoreInfoVM.swift */; };
+		D5D17088290E21F900C52254 /* LoggingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D17087290E21F900C52254 /* LoggingEvent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -260,6 +261,7 @@
 		D55E671A28F1101700EBE205 /* YtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YtViewController.swift; sourceTree = "<group>"; };
 		D55E671C28F1332300EBE205 /* TaskEntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEntryModel.swift; sourceTree = "<group>"; };
 		D55E671E28F5177000EBE205 /* TaskMoreInfoVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskMoreInfoVM.swift; sourceTree = "<group>"; };
+		D5D17087290E21F900C52254 /* LoggingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingEvent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -486,6 +488,7 @@
 				78EC914D28AF2D220046DF28 /* TeamSelectModalReturnModel.swift */,
 				78DF5AF528BC63CA00C182CF /* TeamInviteModel.swift */,
 				D55E671C28F1332300EBE205 /* TaskEntryModel.swift */,
+				D5D17087290E21F900C52254 /* LoggingEvent.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -934,6 +937,7 @@
 				78904AEB28D2D00100F6EF1F /* SettingsScreenView.swift in Sources */,
 				78EC914E28AF2D220046DF28 /* TeamSelectModalReturnModel.swift in Sources */,
 				78B687862887A67B006B6CAB /* ButtonFormComponent.swift in Sources */,
+				D5D17088290E21F900C52254 /* LoggingEvent.swift in Sources */,
 				78DF5AF228BC413000C182CF /* TeamInvitesViewController.swift in Sources */,
 				78FAB71F28AB170B009B8D50 /* LoggerService.swift in Sources */,
 				78E4F88E2893881D0075F04F /* TaskModel.swift in Sources */,

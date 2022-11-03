@@ -104,7 +104,7 @@ private extension TaskAddEditScreen {
             }, receiveValue: { val in
                 TaskService.createTask(taskToCreate: val) { createdTask, error in
                     guard error == nil else {
-                        Logger.log(logLevel: .Prod, message: String(describing: error))
+                        Logger.log(logLevel: .Prod, name: Logger.Events.Task.creationFailed, payload: ["error": error])
                         // TODO: Handle Error
                         return
                     }

@@ -75,7 +75,7 @@ struct TaskService {
                     let taskModel = try decoder.decode(TaskModel.self, from: data)
                     completionHandler(taskModel, nil)
                 } catch {
-                    Logger.log(logLevel: .Verbose, message: "FAILED to create task: \(error)")
+                    Logger.log(logLevel: .Prod, name: Logger.Events.Task.creationFailed, payload: ["error": error])
                     completionHandler(nil, error)
                 }
             }
@@ -106,7 +106,7 @@ struct TaskService {
                     let taskModel = try decoder.decode(TaskModel.self, from: data)
                     completionHandler(taskModel, nil)
                 } catch {
-                    Logger.log(logLevel: .Verbose, message: "FAILED to create task: \(error)")
+                    Logger.log(logLevel: .Verbose, name: Logger.Events.Task.markCompleteFailed, payload: ["error": error])
                     completionHandler(nil, error)
                 }
             }

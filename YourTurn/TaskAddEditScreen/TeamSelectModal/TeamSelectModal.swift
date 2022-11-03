@@ -87,7 +87,7 @@ class TeamSelectModal: ModalViewController {
             if let teams = teams {
                 self.teams = teams
             } else if let error = error {
-                Logger.log(logLevel: .Prod, message: String(describing: error))
+                Logger.log(logLevel: .Prod, name: Logger.Events.Team.fetchFailed, payload: ["error": error])
             }
         }
     }
