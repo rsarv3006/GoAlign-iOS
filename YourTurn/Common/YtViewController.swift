@@ -14,6 +14,6 @@ class YtViewController: UIViewController {
     }
     
     func configureView() {
-        
+
     }
 }

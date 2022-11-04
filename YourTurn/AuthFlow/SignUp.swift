@@ -45,6 +45,7 @@ class SignUpScreen: AuthViewController {
 
 private extension SignUpScreen {
     func setup() {
+        view.backgroundColor = .systemBackground
         let topSafeAnchor = view.safeAreaLayoutGuide.topAnchor
         let leftSafeAnchor = view.safeAreaLayoutGuide.leftAnchor
         let rightSafeAnchor = view.safeAreaLayoutGuide.rightAnchor

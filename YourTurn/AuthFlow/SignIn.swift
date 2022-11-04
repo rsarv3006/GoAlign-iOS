@@ -37,6 +37,7 @@ class SignInScreen: AuthViewController {
     
     // MARK: - Helpers
     override func configureView() {
+        view.backgroundColor = .systemBackground
         let topSafeAnchor = view.safeAreaLayoutGuide.topAnchor
         let leftSafeAnchor = view.safeAreaLayoutGuide.leftAnchor
         let rightSafeAnchor = view.safeAreaLayoutGuide.rightAnchor
