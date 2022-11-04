@@ -71,41 +71,41 @@ struct Logger {
     
     struct Events {
         struct User {
-            static let fetchFailed = "user.fetch.fail"
-            static let createFailed = "user.create.fail"
+            static let fetchFailed = "user_fetch_fail"
+            static let createFailed = "user_create_fail"
         }
         
         struct Auth {
-            static let signOutFailed = "auth.signout.fail"
-            static let tokenFetchFailed = "auth.token.fetch.fail"
-            static let signInValidationFailed = "auth.signin.validation.fail"
-            static let signUpValidationFailed = "auth.signup.validation.fail"
+            static let signOutFailed = "auth_signout_fail"
+            static let tokenFetchFailed = "auth_token_fetch_fail"
+            static let signInValidationFailed = "auth_signin_validation_fail"
+            static let signUpValidationFailed = "auth_signup_validation_fail"
         }
         
         struct Team {
-            static let teamCreated = "team.create.success"
-            static let teamCreateFailed = "team.create.fail"
-            static let fetchFailed = "team.fetch.fail"
+            static let teamCreated = "team_create_success"
+            static let teamCreateFailed = "team_create_fail"
+            static let fetchFailed = "team_fetch_fail"
             
             struct Invite {
-                static let fetchFailed = "team.invite.fetch.fail"
+                static let fetchFailed = "team_invite_fetch_fail"
             }
         }
         
         struct Task {
-            static let creationFailed = "task.create.fail"
-            static let creationValidationFailed = "task.create.validation.fail"
-            static let markCompleteFailed = "task.mark.complete.fail"
+            static let creationFailed = "task_create_fail"
+            static let creationValidationFailed = "task_create_validation_fail"
+            static let markCompleteFailed = "task_mark_complete_fail"
         }
         
         struct Form {
             struct Field {
-                static let validationFailed = "form.field.validation.fail"
+                static let validationFailed = "form_field_validation_fail"
             }
         }
         
         struct Networking {
-            static let callFailed = "networking.call.failed"
+            static let callFailed = "networking_call_failed"
         }
     }
 }
