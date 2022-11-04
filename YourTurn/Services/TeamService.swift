@@ -73,6 +73,35 @@ struct TeamService {
                 }
             }
         }
+    }
+    
+    static func getTeamsByTeamIds(teamIds: [String], completionHandler: @escaping((([TeamModel]?, Error?) -> Void))) {
+        let queryString = Networking.helpers.createQueryString(items: teamIds)
+        print(queryString)
+        guard let url = Networking.createUrl(endPoint: "team?teamIds=\(queryString)") else {
+            completionHandler(nil, TeamError.custom(message: "Bad URL"))
+            return
+        }
+        
+        Networking.get(url: url) { data, response, error in
+            guard error == nil else {
+                completionHandler(nil, error)
+                return
+            }
+            
+            if let data = data {
+                do {
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+                    
+                    let teams = try decoder.decode([TeamModel].self, from: data)
+                    completionHandler(teams, nil)
+                } catch {
+                    completionHandler(nil, error)
+                    return
+                }
+            }
+        }
         
     }
 }

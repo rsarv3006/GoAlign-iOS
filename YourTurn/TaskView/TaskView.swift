@@ -117,11 +117,16 @@ class TaskView: UIViewController {
     private func onViewModelDidSet(viewModel: TaskViewVM) {
         title = viewModel.contentTitle
         assignedUserLabel.text = viewModel.assignedUserString
-        assignedTeamLabel.text = viewModel.assignedTeamString
         taskHistoryTitleLabel.attributedText = viewModel.taskHistoryTitleLabelText
         taskInformationButton.setTitle(viewModel.taskInformationButtonString, for: .normal)
         markTaskCompleteButton.setTitle(viewModel.taskCompleteButtonString, for: .normal)
         taskHistoryTable.reloadData()
+        
+        viewModel.teamNameSubject.sink { [weak self] teamName in
+            DispatchQueue.main.async {
+                self?.assignedTeamLabel.text = teamName
+            }
+        }.store(in: &subscriptions)
     }
     
     private func configureTaskHistoryTableView() {

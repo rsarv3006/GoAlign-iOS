@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import Combine
 
 class TaskViewVM {
+    var subscriptions = Set<AnyCancellable>()
+    private(set) var teamNameSubject = PassthroughSubject<String, Never>()
+    
     // Static Values
     let taskHistoryTitleLabelText: NSAttributedString = NSAttributedString(string: "Task History",
                                                                 attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
@@ -32,9 +36,19 @@ class TaskViewVM {
         }) ?? []
         
         self.task = task
+        
+        getTeamName(teamId: task.teamId)
     }
     
     func checkIfMarkTaskCompleteButtonShouldShow(completionHandler: @escaping((Bool) -> Void)) {
         task.checkIfCurrentUserIsAssignedUser(completionHandler: completionHandler)
+    }
+    
+    func getTeamName(teamId: String) {
+        TeamService.getTeamsByTeamIds(teamIds: [teamId]) { teams, error in
+            if error == nil, let team = teams?[0] {
+                self.teamNameSubject.send(team.teamName)
+            }
+        }
     }
 }
