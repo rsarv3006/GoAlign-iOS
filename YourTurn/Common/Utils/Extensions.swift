@@ -172,3 +172,13 @@ extension UITextField: FieldValidInvalidHandlers {
         self.layer.borderColor = UIColor.systemRed.cgColor
     }
 }
+
+extension InputTextView: FieldValidInvalidHandlers {
+    func valid() {
+        self.layer.borderColor = UIColor.systemGreen.cgColor
+    }
+    
+    func invalid() {
+        self.layer.borderColor = UIColor.systemRed.cgColor
+    }
+}

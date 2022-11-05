@@ -74,6 +74,8 @@ private extension TaskAddEditScreen {
                 return self.buildFormHideableIntervalPickerCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
             case is ModalFormComponent:
                 return self.buildFormModalCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
+            case is TextBoxFormComponent:
+                return self.buildFormTextBoxCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
             default:
                 return self.buildDefaultCollectionViewCell(collectionView: collectionView, indexPath: indexPath)
             }
@@ -129,6 +131,24 @@ private extension TaskAddEditScreen {
     
     func buildFormTextCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, item: FormComponent) -> FormTextCollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormTextCollectionViewCell.cellId, for: indexPath) as! FormTextCollectionViewCell
+        
+        cell
+            .subject
+            .sink { [weak self] val, indexPath in
+                self?.formContentBuilder.update(val: val, at: indexPath)
+            }
+            .store(in: &self.subscriptions)
+        
+        cell.reload.sink { [weak self] _ in
+            self?.updateDataSource()
+        }.store(in: &self.subscriptions)
+        
+        cell.bind(item, at: indexPath)
+        return cell
+    }
+    
+    func buildFormTextBoxCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, item: FormComponent) -> FormTextBoxCollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormTextBoxCollectionViewCell.cellId, for: indexPath) as! FormTextBoxCollectionViewCell
         
         cell
             .subject
