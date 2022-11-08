@@ -21,7 +21,6 @@ class TeamInviteUserModal: UIViewController {
             closeModalButton.setTitle(viewModel.closeModalButtonText, for: .normal)
             
             viewModel.addedInvitedUserSubject.sink { completion in
-                print("TeamInviteUserModel - addedInvitedUserSubject - completion")
                 print(completion)
             } receiveValue: { _ in
                 DispatchQueue.main.async {

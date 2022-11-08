@@ -77,7 +77,6 @@ struct TeamService {
     
     static func getTeamsByTeamIds(teamIds: [String], completionHandler: @escaping((([TeamModel]?, Error?) -> Void))) {
         let queryString = Networking.helpers.createQueryString(items: teamIds)
-        print(queryString)
         guard let url = Networking.createUrl(endPoint: "team?teamIds=\(queryString)") else {
             completionHandler(nil, TeamError.custom(message: "Bad URL"))
             return

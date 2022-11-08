@@ -187,6 +187,11 @@ extension HomeScreen: UITableViewDelegate {
                     self.viewModel?.loadTasks()
                 }.store(in: &self.subscriptions)
                 self.navigationController?.pushViewController(taskVC, animated: true)
+            } else if tableView.tag == TEAM_TABLE_TAG {
+                let groupTabVM = TeamTabBarVM(team: self.teams[indexPath.row])
+                let groupTabVC = TeamTabBarController()
+                groupTabVC.viewModel = groupTabVM
+                self.navigationController?.pushViewController(groupTabVC, animated: true)
             }
         }
 

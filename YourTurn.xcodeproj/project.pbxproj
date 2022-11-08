@@ -32,6 +32,15 @@
 		7833144529154752009DDD3F /* TextBoxFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7833144429154752009DDD3F /* TextBoxFormComponent.swift */; };
 		78331447291547A3009DDD3F /* FormTextBoxCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78331446291547A3009DDD3F /* FormTextBoxCollectionViewCell.swift */; };
 		7833144929154986009DDD3F /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7833144829154986009DDD3F /* InputTextView.swift */; };
+		7833144C2916DFD9009DDD3F /* TeamTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7833144B2916DFD9009DDD3F /* TeamTabBarController.swift */; };
+		7833144F2916EE08009DDD3F /* TeamTasksTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7833144E2916EE08009DDD3F /* TeamTasksTabView.swift */; };
+		783314512918A386009DDD3F /* TeamUsersTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783314502918A386009DDD3F /* TeamUsersTabView.swift */; };
+		783314532918A918009DDD3F /* TeamStatsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783314522918A918009DDD3F /* TeamStatsTabView.swift */; };
+		783314552918AB1B009DDD3F /* TeamSettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783314542918AB1B009DDD3F /* TeamSettingsTabView.swift */; };
+		783314572918B3C9009DDD3F /* TeamTabBarVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783314562918B3C9009DDD3F /* TeamTabBarVM.swift */; };
+		7833145C2918BD2A009DDD3F /* TeamTasksTabVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7833145B2918BD2A009DDD3F /* TeamTasksTabVM.swift */; };
+		7833145F2919E3A3009DDD3F /* TeamTasksTabViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7833145E2919E3A3009DDD3F /* TeamTasksTabViewTableCell.swift */; };
+		783314622919E667009DDD3F /* TeamTasksTabViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783314612919E667009DDD3F /* TeamTasksTabViewCellVM.swift */; };
 		783DECD228617EEB0062343E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD128617EEB0062343E /* AppDelegate.swift */; };
 		783DECD428617EEB0062343E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD328617EEB0062343E /* SceneDelegate.swift */; };
 		783DECD928617EEB0062343E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 783DECD728617EEB0062343E /* Main.storyboard */; };
@@ -171,6 +180,15 @@
 		7833144429154752009DDD3F /* TextBoxFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBoxFormComponent.swift; sourceTree = "<group>"; };
 		78331446291547A3009DDD3F /* FormTextBoxCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextBoxCollectionViewCell.swift; sourceTree = "<group>"; };
 		7833144829154986009DDD3F /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
+		7833144B2916DFD9009DDD3F /* TeamTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTabBarController.swift; sourceTree = "<group>"; };
+		7833144E2916EE08009DDD3F /* TeamTasksTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTasksTabView.swift; sourceTree = "<group>"; };
+		783314502918A386009DDD3F /* TeamUsersTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamUsersTabView.swift; sourceTree = "<group>"; };
+		783314522918A918009DDD3F /* TeamStatsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamStatsTabView.swift; sourceTree = "<group>"; };
+		783314542918AB1B009DDD3F /* TeamSettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsTabView.swift; sourceTree = "<group>"; };
+		783314562918B3C9009DDD3F /* TeamTabBarVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTabBarVM.swift; sourceTree = "<group>"; };
+		7833145B2918BD2A009DDD3F /* TeamTasksTabVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTasksTabVM.swift; sourceTree = "<group>"; };
+		7833145E2919E3A3009DDD3F /* TeamTasksTabViewTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTasksTabViewTableCell.swift; sourceTree = "<group>"; };
+		783314612919E667009DDD3F /* TeamTasksTabViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTasksTabViewCellVM.swift; sourceTree = "<group>"; };
 		783DECCE28617EEB0062343E /* YourTurn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourTurn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		783DECD128617EEB0062343E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		783DECD328617EEB0062343E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -339,6 +357,54 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		7833144A2916DFB8009DDD3F /* TeamView */ = {
+			isa = PBXGroup;
+			children = (
+				7833145D2919CABC009DDD3F /* Cells */,
+				783314582918B594009DDD3F /* ViewModels */,
+				7833144D2916ED7F009DDD3F /* Tabs */,
+				7833144B2916DFD9009DDD3F /* TeamTabBarController.swift */,
+			);
+			path = TeamView;
+			sourceTree = "<group>";
+		};
+		7833144D2916ED7F009DDD3F /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				7833144E2916EE08009DDD3F /* TeamTasksTabView.swift */,
+				783314502918A386009DDD3F /* TeamUsersTabView.swift */,
+				783314522918A918009DDD3F /* TeamStatsTabView.swift */,
+				783314542918AB1B009DDD3F /* TeamSettingsTabView.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		783314582918B594009DDD3F /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				783314562918B3C9009DDD3F /* TeamTabBarVM.swift */,
+				7833145B2918BD2A009DDD3F /* TeamTasksTabVM.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		7833145D2919CABC009DDD3F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				783314602919E651009DDD3F /* ViewModels */,
+				7833145E2919E3A3009DDD3F /* TeamTasksTabViewTableCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		783314602919E651009DDD3F /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				783314612919E667009DDD3F /* TeamTasksTabViewCellVM.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		783DECC528617EEB0062343E = {
 			isa = PBXGroup;
 			children = (
@@ -369,6 +435,7 @@
 				78BF0D6128A97AA6005C6098 /* DrawerMenu */,
 				78904AE928D2CF8700F6EF1F /* SettingsScreen */,
 				78439FDB28AD2B540070D48D /* TaskAddEditScreen */,
+				7833144A2916DFB8009DDD3F /* TeamView */,
 				D5129C7D28E5470F00AF9EDD /* TaskView */,
 				78E4F47528B3FED200DE8E0C /* TeamAddScreen */,
 				78DF5AF028BC412000C182CF /* TeamInvites */,
@@ -892,6 +959,7 @@
 				78B6878A2887A6D2006B6CAB /* SwitchControlledDateFormComponent.swift in Sources */,
 				78DF5AFD28BDA87900C182CF /* TeamInviteCellVM.swift in Sources */,
 				D55E671B28F1101700EBE205 /* YtViewController.swift in Sources */,
+				7833144C2916DFD9009DDD3F /* TeamTabBarController.swift in Sources */,
 				7802E19D288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift in Sources */,
 				780F197428A490C200371B91 /* DateInFutureValidationManagerImpl.swift in Sources */,
 				78B68792288829F0006B6CAB /* FieldValidInvalidProtocol.swift in Sources */,
@@ -906,10 +974,13 @@
 				78D7C3C528776F80001F48C5 /* FormCompositionalLayout.swift in Sources */,
 				78EC915028AFB9640046DF28 /* ModalViewController.swift in Sources */,
 				78D7C3C22877690B001F48C5 /* FormDateCollectionViewCell.swift in Sources */,
+				783314552918AB1B009DDD3F /* TeamSettingsTabView.swift in Sources */,
+				783314512918A386009DDD3F /* TeamUsersTabView.swift in Sources */,
 				78DF5AFA28BDA5CD00C182CF /* TeamInviteCellView.swift in Sources */,
 				7872D6FC28950C5E00E598D2 /* TeamService.swift in Sources */,
 				78BBB8FC28642207006B3FDC /* HomeScreenTaskCell.swift in Sources */,
 				78FAB71628AAF9D6009B8D50 /* DrawerMenuVM.swift in Sources */,
+				783314622919E667009DDD3F /* TeamTasksTabViewCellVM.swift in Sources */,
 				78C4D95D286EAFFC006550A9 /* IntervalPicker.swift in Sources */,
 				78DF5B0328CC652F00C182CF /* TeamInviteUserModal.swift in Sources */,
 				78DF5B0128C68D8A00C182CF /* TeamInviteSubCellVM.swift in Sources */,
@@ -938,6 +1009,7 @@
 				78B687882887A6B2006B6CAB /* SwitchControlledTextFormComponent.swift in Sources */,
 				78A4E0BD2883B9550067DBCE /* RegexFormItem.swift in Sources */,
 				7872D6FA28950AEF00E598D2 /* TeamModel.swift in Sources */,
+				783314572918B3C9009DDD3F /* TeamTabBarVM.swift in Sources */,
 				78E743C428A599A00069E691 /* SignInCompletedForm.swift in Sources */,
 				78B687842887A64E006B6CAB /* DateFormComponent.swift in Sources */,
 				78BFFAA228878DEC00A767AB /* FormCollectionView.swift in Sources */,
@@ -954,6 +1026,7 @@
 				78E4F47928B5054C00DE8E0C /* TeamAddModalVM.swift in Sources */,
 				7833144529154752009DDD3F /* TextBoxFormComponent.swift in Sources */,
 				D55E671728EFB25700EBE205 /* TaskViewEntryCellVM.swift in Sources */,
+				7833144F2916EE08009DDD3F /* TeamTasksTabView.swift in Sources */,
 				78477327287687DD009AFC92 /* FormModel.swift in Sources */,
 				78904AED28D2D01400F6EF1F /* SettingsScreenVM.swift in Sources */,
 				78331447291547A3009DDD3F /* FormTextBoxCollectionViewCell.swift in Sources */,
@@ -962,6 +1035,8 @@
 				78D7C3C028776499001F48C5 /* FormTextCollectionViewCell.swift in Sources */,
 				78439FD728AC75430070D48D /* StandardButton.swift in Sources */,
 				78BF0D6A28A98103005C6098 /* DrawerPresentationController.swift in Sources */,
+				783314532918A918009DDD3F /* TeamStatsTabView.swift in Sources */,
+				7833145F2919E3A3009DDD3F /* TeamTasksTabViewTableCell.swift in Sources */,
 				78FAB72428AB5973009B8D50 /* FormModalCollectionViewCell.swift in Sources */,
 				7872D6FE2896B03F00E598D2 /* ToJsonProtcol.swift in Sources */,
 				78288CD428B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift in Sources */,
@@ -972,6 +1047,7 @@
 				78904AF028D3FA8B00F6EF1F /* DeleteUserCell.swift in Sources */,
 				78DF5AF628BC63CA00C182CF /* TeamInviteModel.swift in Sources */,
 				78B687802887A5E5006B6CAB /* FormComponent.swift in Sources */,
+				7833145C2918BD2A009DDD3F /* TeamTasksTabVM.swift in Sources */,
 				78E4F890289389B00075F04F /* IntervalObject.swift in Sources */,
 				78E4F47728B4024400DE8E0C /* TeamAddModal.swift in Sources */,
 				78DAADF32869617600FEB0DA /* TaskAddEditScreen.swift in Sources */,

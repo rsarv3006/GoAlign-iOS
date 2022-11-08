@@ -42,7 +42,6 @@ class FormTextBoxCollectionViewCell: UICollectionViewCell {
     
     func bind(_ item: FormComponent,
               at indexPath: IndexPath) {
-        print("TEXT BOX SETUP")
         guard let item = item as? TextBoxFormComponent else { return }
         self.indexPath = indexPath
         self.item = item

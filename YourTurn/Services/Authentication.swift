@@ -54,7 +54,6 @@ struct AuthenticationService {
             }
             
             UserService.getCurrentUser { user, error in
-                self.signOut()
                 completion(user, error)
             }
         }

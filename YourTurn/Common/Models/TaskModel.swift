@@ -15,6 +15,12 @@ enum TaskModelError: Error {
     case custom(message: String)
 }
 
+enum TaskStatusVariant: String, Codable {
+  case active = "active"
+  case completed = "completed"
+  case overdue = "overdue"
+}
+
 class TaskModel: Codable {
     let taskId: String
     let createdAt: Date
@@ -28,7 +34,7 @@ class TaskModel: Codable {
     let windowLength: IntervalObject
     let teamId: String
     let creator: UserModel
-    let status: String
+    let status: TaskStatusVariant
     let taskEntries: [TaskEntryModel]?
     
     func findCurrentTaskEntry() -> TaskEntryModel? {
@@ -123,8 +129,10 @@ class CreateTaskDto: Codable {
         } else {
             throw TaskModelError.custom(message: "Create TaskModel: invalid value given for Creator User id")
         }
-        
-        
+    }
+    
+    func toString() -> String {
+        return "taskName: \(taskName) - notes: \(String(describing: notes)) - startDate: \(startDate) - endDate: \(String(describing: endDate))"
     }
 }
 

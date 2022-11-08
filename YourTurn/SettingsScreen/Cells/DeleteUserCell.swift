@@ -47,12 +47,12 @@ class DeleteUserCell: UITableViewCell {
             let alert = UIAlertController(title: "Delete Account", message: "Are you sure you want to delete your account?", preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
                 alert.removeFromParent()
-                print("DON'T DELETE MY ACCOUNT")
             }
             
             let confirmAction = UIAlertAction(title: "Yes I'm Sure", style: .destructive) { _ in
                 alert.removeFromParent()
                 self.deleteAccount()
+                Logger.log(logLevel: .Prod, name: Logger.Events.User.deleteAttempt, payload: [:])
             }
             
             alert.addAction(cancelAction)

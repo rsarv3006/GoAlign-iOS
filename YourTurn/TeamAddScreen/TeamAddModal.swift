@@ -168,7 +168,6 @@ class TeamAddModal: YtViewController {
     func createTeam(teamName: String) {
         viewModel?.createTeam(name: teamName, completion: { team, error in
             if let error = error {
-                print(error)
                 Logger.log(logLevel: .Prod, name: Logger.Events.Team.teamCreateFailed, payload: ["error": error, "teamName": teamName])
             }
             
@@ -184,7 +183,6 @@ class TeamAddModal: YtViewController {
     func createTeamAndGoToInvite(teamName: String) {
         viewModel?.createTeam(name: teamName, completion: { team, error in
             if let error = error {
-                print(error)
                 Logger.log(logLevel: .Prod, name: Logger.Events.Team.teamCreateFailed, payload: ["error": error, "teamName": teamName])
             }
             

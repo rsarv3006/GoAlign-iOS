@@ -28,7 +28,14 @@ class HomeScreenVM {
             guard let tasks = tasks else {
                 return
             }
-            self?.tasksSubject.send(tasks)
+            
+            self?.tasksSubject.send(tasks.filter({ task in
+                if task.status != .completed {
+                    return true
+                } else {
+                    return false
+                }
+            }))
         }
     }
     
