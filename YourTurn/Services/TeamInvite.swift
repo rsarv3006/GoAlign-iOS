@@ -119,4 +119,33 @@ struct TeamInviteService {
             }
         }
     }
+    
+    static func getOutstandingInvitesByTeamId(teamId: String, completionHandler: @escaping(([TeamInviteModel]?, Error?) -> Void)) {
+        guard let url = Networking.createUrl(endPoint: "teamInvite/outstandingTeamInvites/\(teamId)") else {
+            completionHandler(nil, TeamInviteError.custom(message: "Bad URL"))
+            return
+        }
+        
+        Networking.get(url: url) { data, response, error in
+            guard error == nil else {
+                completionHandler(nil, error)
+                return
+            }
+            
+            if let data = data {
+                do {
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+                    
+                    let teamInvites = try decoder.decode([TeamInviteModel].self, from: data)
+                    completionHandler(teamInvites, nil)
+                } catch {
+                    Logger.log(logLevel: .Verbose, name: Logger.Events.Team.Invite.fetchFailed, payload: ["error": error, "teamId": teamId])
+                    completionHandler(nil, error)
+                    return
+                }
+            }
+        }
+        
+    }
 }

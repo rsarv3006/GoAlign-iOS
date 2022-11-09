@@ -25,8 +25,8 @@ class TeamTasksTabView: YtViewController {
     
     // MARK: LIFECYCLE
     override func viewDidLoad() {
+        super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        configureView()
     }
     
     // MARK: Helpers

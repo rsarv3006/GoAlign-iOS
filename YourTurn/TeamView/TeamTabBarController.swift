@@ -72,8 +72,12 @@ private extension TeamTabBarController {
     
     func configureUsersTab(viewModel: TeamTabBarVM) -> UIViewController {
         let teamUsersTabViewImage = (UIImage(systemName: "person.2.fill"))!
+        let teamUsersTabVM = TeamUsersTabVM(team: viewModel.team)
         
-        let teamUsersTabViewController = templateNavigationController(unSelectedImage: teamUsersTabViewImage, selectedImage: teamUsersTabViewImage, rootViewController: TeamUsersTabView(), title: "Users")
+        let teamUsersTabView = TeamUsersTabView()
+        teamUsersTabView.viewModel = teamUsersTabVM
+        
+        let teamUsersTabViewController = templateNavigationController(unSelectedImage: teamUsersTabViewImage, selectedImage: teamUsersTabViewImage, rootViewController: teamUsersTabView, title: "Users")
         
         return teamUsersTabViewController
     }
