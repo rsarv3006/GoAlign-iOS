@@ -10,7 +10,7 @@ import Combine
 
 class SignInVM {
     let signInLabelTextString = "Sign In"
-    let buttonTextGoToSignUp: String = "Don't have an account? Click here to Sign Up!"
+    let buttonTextGoToSignUp: String = "Don't have an account? \nClick here to Sign Up!"
     
     let signInSubject = PassthroughSubject<UserModel?, Error>()
     

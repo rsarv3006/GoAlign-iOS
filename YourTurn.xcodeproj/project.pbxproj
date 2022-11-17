@@ -46,6 +46,7 @@
 		78331468291B50EC009DDD3F /* TeamUsersTabViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78331467291B50EC009DDD3F /* TeamUsersTabViewCell.swift */; };
 		7833146A291B51D6009DDD3F /* TeamInvitesTabViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78331469291B51D6009DDD3F /* TeamInvitesTabViewCellVM.swift */; };
 		7833146C291B51F6009DDD3F /* TeamInvitesTabViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7833146B291B51F6009DDD3F /* TeamInvitesTabViewCell.swift */; };
+		783314722925EF1F009DDD3F /* ExternalLinkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783314712925EF1F009DDD3F /* ExternalLinkService.swift */; };
 		783DECD228617EEB0062343E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD128617EEB0062343E /* AppDelegate.swift */; };
 		783DECD428617EEB0062343E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD328617EEB0062343E /* SceneDelegate.swift */; };
 		783DECD928617EEB0062343E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 783DECD728617EEB0062343E /* Main.storyboard */; };
@@ -199,6 +200,7 @@
 		78331467291B50EC009DDD3F /* TeamUsersTabViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamUsersTabViewCell.swift; sourceTree = "<group>"; };
 		78331469291B51D6009DDD3F /* TeamInvitesTabViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInvitesTabViewCellVM.swift; sourceTree = "<group>"; };
 		7833146B291B51F6009DDD3F /* TeamInvitesTabViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInvitesTabViewCell.swift; sourceTree = "<group>"; };
+		783314712925EF1F009DDD3F /* ExternalLinkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLinkService.swift; sourceTree = "<group>"; };
 		783DECCE28617EEB0062343E /* YourTurn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourTurn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		783DECD128617EEB0062343E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		783DECD328617EEB0062343E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 				7872D6FB28950C5E00E598D2 /* TeamService.swift */,
 				78FAB71E28AB170B009B8D50 /* LoggerService.swift */,
 				78DF5AF328BC51C400C182CF /* TeamInvite.swift */,
+				783314712925EF1F009DDD3F /* ExternalLinkService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1044,6 +1047,7 @@
 				78E4F47928B5054C00DE8E0C /* TeamAddModalVM.swift in Sources */,
 				7833144529154752009DDD3F /* TextBoxFormComponent.swift in Sources */,
 				D55E671728EFB25700EBE205 /* TaskViewEntryCellVM.swift in Sources */,
+				783314722925EF1F009DDD3F /* ExternalLinkService.swift in Sources */,
 				7833144F2916EE08009DDD3F /* TeamTasksTabView.swift in Sources */,
 				78477327287687DD009AFC92 /* FormModel.swift in Sources */,
 				78904AED28D2D01400F6EF1F /* SettingsScreenVM.swift in Sources */,

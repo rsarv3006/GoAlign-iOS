@@ -21,6 +21,7 @@ class SignUpScreen: AuthViewController {
     private lazy var formContentBuilder = SignUpFormContentBuilderImpl()
     private lazy var dataSource = makeDataSource()
     
+    // MARK: UI Elements
     private let buttonToSignInScreen: UIButton = {
         let button = UIButton(type: .system)
         button.titleLabel?.lineBreakMode = .byWordWrapping
@@ -169,7 +170,11 @@ private extension SignUpScreen {
         cell
             .subject
             .sink { [weak self] id in
-                self?.formContentBuilder.validate()
+                if id == .termsButton {
+                    ExternalLinkService.openTermsAndConditionsLink()
+                } else {
+                    self?.formContentBuilder.validate()
+                }
             }.store(in: &self.subscriptions)
         
         cell.bind(item)

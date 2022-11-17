@@ -7,12 +7,20 @@
 
 import Foundation
 
+enum FormButtonType {
+    case standard
+    case text
+}
 final class ButtonFormComponent: FormComponent {
     let title: String
+    let buttonType: FormButtonType
     
     init(id: FormField,
-         title: String) {
+         title: String,
+         buttonType: FormButtonType = .standard
+    ) {
         self.title = title
+        self.buttonType = buttonType
         super.init(id)
     }
 }

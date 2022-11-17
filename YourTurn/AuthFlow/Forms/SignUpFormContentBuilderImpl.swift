@@ -32,7 +32,8 @@ final class SignUpFormContentBuilderImpl {
                     ]
                 ),
             ]),
-            ButtonFormComponent(id: .signUpSubmit, title: "Sign Up!")
+            ButtonFormComponent(id: .signUpSubmit, title: "Sign Up!"),
+            ButtonFormComponent(id: .termsButton, title: "Continuing indicates acceptance of the Terms And Conditions.", buttonType: .text)
         ])
     ]
     

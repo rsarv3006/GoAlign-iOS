@@ -38,6 +38,8 @@ enum FormField: String, CaseIterable {
     case signInEmailAddress
     case signInPassword
     case signInSubmit
+    
+    case termsButton
 }
 
 final class FormSectionComponent: FormSectionItem, Hashable {

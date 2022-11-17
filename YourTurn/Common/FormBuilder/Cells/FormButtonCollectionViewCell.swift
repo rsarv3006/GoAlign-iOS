@@ -9,15 +9,6 @@ import UIKit
 import Combine
 
 class FormButtonCollectionViewCell: UICollectionViewCell {
-
-    private lazy var actionBtn: BlueButton = {
-        let btn = BlueButton()
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.setTitleColor(.white, for: .normal)
-        btn.layer.cornerRadius = 8
-        btn.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
-        return btn
-    }()
     
     private var item: ButtonFormComponent?
     private(set) var subject = PassthroughSubject<FormField, Never>()
@@ -38,6 +29,7 @@ class FormButtonCollectionViewCell: UICollectionViewCell {
 private extension FormButtonCollectionViewCell {
     
     func setup(item: ButtonFormComponent) {
+        let actionBtn = createButton(item: item)
         
         actionBtn.addTarget(self, action: #selector(actionDidTap), for: .touchUpInside)
         actionBtn.setTitle(item.title, for: .normal)
@@ -53,6 +45,25 @@ private extension FormButtonCollectionViewCell {
         ])
     }
     
+    func createButton(item: ButtonFormComponent) -> UIButton {
+        print("THAT ONE THING: \(item.buttonType)")
+        if item.buttonType == .standard {
+            let btn = BlueButton()
+            btn.translatesAutoresizingMaskIntoConstraints = false
+            btn.setTitleColor(.white, for: .normal)
+            btn.layer.cornerRadius = 8
+            btn.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+            return btn
+        } else {
+            let button = UIButton(type: .system)
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.titleLabel?.lineBreakMode = .byWordWrapping
+            button.titleLabel?.textAlignment = .center
+            return button
+        }
+    }
+    
+
     @objc
     func actionDidTap() {
         guard let item = item else { return }

@@ -19,7 +19,8 @@ final class SignInFormContentBuilderImpl {
                 ])
             ]),
             TextFormComponent(id: .signInPassword, placeholder: "Password", keyboardType: .default, isSecureTextEntryEnabled: true, autoCorrectionType: .no, validations: []),
-            ButtonFormComponent(id: .signInSubmit, title: "Sign In!")
+            ButtonFormComponent(id: .signInSubmit, title: "Sign In!"),
+            ButtonFormComponent(id: .termsButton, title: "Continuing indicates acceptance of the Terms And Conditions.", buttonType: .text)
         ])
     ]
     
