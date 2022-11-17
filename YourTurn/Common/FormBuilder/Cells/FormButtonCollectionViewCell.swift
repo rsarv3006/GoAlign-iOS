@@ -46,7 +46,6 @@ private extension FormButtonCollectionViewCell {
     }
     
     func createButton(item: ButtonFormComponent) -> UIButton {
-        print("THAT ONE THING: \(item.buttonType)")
         if item.buttonType == .standard {
             let btn = BlueButton()
             btn.translatesAutoresizingMaskIntoConstraints = false

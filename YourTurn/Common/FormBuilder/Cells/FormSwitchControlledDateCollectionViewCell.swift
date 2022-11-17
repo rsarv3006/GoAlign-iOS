@@ -118,7 +118,7 @@ private extension FormSwitchControlledDateCollectionViewCell {
         
         
         if let indexPath = indexPath  {
-            self.subject.send((datePicker.date, indexPath))
+            self.subject.send((nil, indexPath))
         }
         
     }
