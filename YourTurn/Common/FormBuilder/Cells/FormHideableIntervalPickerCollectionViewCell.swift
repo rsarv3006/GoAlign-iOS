@@ -102,6 +102,11 @@ private extension FormHideableIntervalPickerCollectionViewCell {
             contentStackVw.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             contentStackVw.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
+        
+        if let indexPath = indexPath {
+            self.subject.send((IntervalObject(1, .day), indexPath))
+        }
+        
     }
     
     @objc func onControlPress() {
