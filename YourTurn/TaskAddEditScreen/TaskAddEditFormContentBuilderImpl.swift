@@ -9,7 +9,7 @@ import Combine
 import UIKit
 
 final class TaskAddEditFormContentBuilderImpl {
-    private(set) var formSubmission = PassthroughSubject<CreateTaskDto, Error>()
+    private(set) var formSubmission = PassthroughSubject<Result<CreateTaskDto, Error>, Never>()
     
     private(set) var formContent = [
         FormSectionComponent(items: [
@@ -62,12 +62,14 @@ final class TaskAddEditFormContentBuilderImpl {
             let uid = AuthenticationService.getCurrentFirebaseUser()?.uid
             
             do {
-                try formSubmission.send(CreateTaskDto(from: validDict, uid: uid))
+                try formSubmission.send(.success(CreateTaskDto(from: validDict, uid: uid)))
             } catch {
-                formSubmission.send(completion: .failure(error))
+                formSubmission.send(.failure(error))
+                Logger.log(logLevel: .Prod, name: Logger.Events.Task.creationValidationFailed, payload: ["error": error])
             }
             
         } catch {
+            formSubmission.send(.failure(error))
             Logger.log(logLevel: .Prod, name: Logger.Events.Task.creationValidationFailed, payload: ["error": error])
         }
     }

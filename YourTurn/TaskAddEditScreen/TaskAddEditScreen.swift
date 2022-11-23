@@ -100,25 +100,28 @@ private extension TaskAddEditScreen {
         formContentBuilder
             .formSubmission
             .throttle(for: .seconds(2.0), scheduler: RunLoop.current, latest: false)
-            .sink(receiveCompletion: { completion in
-                // TODO: Handle this error
-                print(completion)
-            }, receiveValue: { val in
-                TaskService.createTask(taskToCreate: val) { createdTask, error in
-                    guard error == nil else {
-                        Logger.log(logLevel: .Prod, name: Logger.Events.Task.creationFailed, payload: ["error": String(describing: error)])
-                        // TODO: Handle Error
-                        return
+            .sink { result in
+                switch result {
+                case .failure(let error):
+                    print("ERROR IN TASK CREATION PLACEHOLDER")
+                    print(error)
+                case .success(let createTaskDto):
+                    TaskService.createTask(taskToCreate: createTaskDto) { createdTask, error in
+                        guard error == nil else {
+                            Logger.log(logLevel: .Prod, name: Logger.Events.Task.creationFailed, payload: ["error": String(describing: error)])
+                            // TODO: Handle Error
+                            return
+                        }
+                        
+                        self.delegate?.onTaskScreenComplet(viewController: self)
+                        
+                        DispatchQueue.main.async {
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                        
                     }
-                    
-                    self.delegate?.onTaskScreenComplet(viewController: self)
-                    
-                    DispatchQueue.main.async {
-                        self.navigationController?.popViewController(animated: true)
-                    }
-                    
                 }
-            }).store(in: &subscriptions)
+            }.store(in: &subscriptions)
     }
 }
 
@@ -189,6 +192,7 @@ private extension TaskAddEditScreen {
         cell
             .subject
             .sink { [weak self] id in
+                print(id.rawValue + " subject task add edit screen")
                 self?.formContentBuilder.validate()
             }.store(in: &self.subscriptions)
         
@@ -267,7 +271,7 @@ private extension TaskAddEditScreen {
         cell.openModal
             .sink { modalView in
                 DispatchQueue.main.async {
-
+                    
                     modalView.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
                     self.present(modalView, animated: true)
                 }
