@@ -42,6 +42,7 @@
 		780F498929306E98006C8456 /* ISO8601CustomDateDecodingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78288CD328B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift */; };
 		780F498A29306EA1006C8456 /* LoggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAB71E28AB170B009B8D50 /* LoggerService.swift */; };
 		780F498C29307820006C8456 /* AlertModalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F498B29307820006C8456 /* AlertModalService.swift */; };
+		780F498E29307C86006C8456 /* NetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F498D29307C86006C8456 /* NetworkingTests.swift */; };
 		78288CD428B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78288CD328B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift */; };
 		7833144529154752009DDD3F /* TextBoxFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7833144429154752009DDD3F /* TextBoxFormComponent.swift */; };
 		78331447291547A3009DDD3F /* FormTextBoxCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78331446291547A3009DDD3F /* FormTextBoxCollectionViewCell.swift */; };
@@ -198,6 +199,7 @@
 		780F197B28A4B0C700371B91 /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
 		780F497D29306C3A006C8456 /* AuthenticationServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationServiceTest.swift; sourceTree = "<group>"; };
 		780F498B29307820006C8456 /* AlertModalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModalService.swift; sourceTree = "<group>"; };
+		780F498D29307C86006C8456 /* NetworkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingTests.swift; sourceTree = "<group>"; };
 		78288CD328B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO8601CustomDateDecodingStrategy.swift; sourceTree = "<group>"; };
 		7833144429154752009DDD3F /* TextBoxFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBoxFormComponent.swift; sourceTree = "<group>"; };
 		78331446291547A3009DDD3F /* FormTextBoxCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextBoxCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -492,6 +494,7 @@
 			children = (
 				783DECE828617EED0062343E /* YourTurnTests.swift */,
 				780F497D29306C3A006C8456 /* AuthenticationServiceTest.swift */,
+				780F498D29307C86006C8456 /* NetworkingTests.swift */,
 			);
 			path = YourTurnTests;
 			sourceTree = "<group>";
@@ -1120,6 +1123,7 @@
 				780F498529306E42006C8456 /* ValidationManagerProtocol.swift in Sources */,
 				780F498929306E98006C8456 /* ISO8601CustomDateDecodingStrategy.swift in Sources */,
 				780F498729306E77006C8456 /* User.swift in Sources */,
+				780F498E29307C86006C8456 /* NetworkingTests.swift in Sources */,
 				780F498A29306EA1006C8456 /* LoggerService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
