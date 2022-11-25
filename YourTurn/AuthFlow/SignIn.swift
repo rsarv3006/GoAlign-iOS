@@ -90,23 +90,18 @@ private extension SignInScreen {
     }
     
     func signInCompletedSubscription() {
-        viewModel?.signInSubject.sink(receiveCompletion: { (error) in
-            DispatchQueue.main.async {
-                let alert = UIAlertController(title: "Uh Oh", message: "There was an issue signing in. \n Error: \(String(describing: error))", preferredStyle: .alert)
-                let alertAction = UIAlertAction(title: "Close", style: .default) { _ in
-                    alert.removeFromParent()
+        viewModel?.signInSubject.sink(receiveValue: { result in
+            switch result {
+            case .failure(let error):
+                Logger.log(logLevel: .Verbose, name: Logger.Events.Auth.signInFailed, payload: ["error": error])
+                let errorStringToDisplay = AuthenticationService.checkForStandardErrors(error: error)
+                AlertModalService.openAlert(viewController: self, modalMessage: errorStringToDisplay)
+            case .success(let user):
+                if user != nil {
+                    self.delegate?.authenticationDidComplete(viewController: self)
                 }
-                alert.addAction(alertAction)
-                
-                self.present(alert, animated: true)
             }
-            
-        }, receiveValue: { user in
-            if user != nil {
-                self.delegate?.authenticationDidComplete(viewController: self)
-            }
-        })
-        .store(in: &subscriptions)
+        }).store(in: &subscriptions)
     }
     
     func makeDataSource() -> UICollectionViewDiffableDataSource<FormSectionComponent, FormComponent> {

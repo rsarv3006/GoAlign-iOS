@@ -76,4 +76,44 @@ struct AuthenticationService {
         }
         
     }
+    
+    static func checkForStandardErrors(error: Error) -> String {
+        var returnErrorString = AuthErrorHandling.UserFacingErrorStrings.unknownError
+        for errorReference in AuthErrorHandling.errors {
+            if String(describing: error).contains(errorReference.keyword) {
+                returnErrorString = errorReference.userFacingErrorString
+            }
+        }
+        return returnErrorString
+    }
+    
+
+    
+    struct AuthErrorHandling {
+        struct StandardErrorKeywords {
+            static let userNotFound = "ERROR_USER_NOT_FOUND"
+            static let incorrectPassword = "ERROR_WRONG_PASSWORD"
+            static let emailAlreadyInUse = "ERROR_EMAIL_ALREADY_IN_USE"
+            static let invalidEmail = "ERROR_INVALID_EMAIL"
+        }
+        
+        struct UserFacingErrorStrings {
+            static let emailOrPasswordIncorrect = "Email or Password is Incorrect"
+            static let emailAlreadyInuse = "This email already has an account. Please sign in instead."
+            static let unknownError = "Unknown Error"
+        }
+        
+        static let errors: [AuthStandardErrorReference] = [
+            AuthStandardErrorReference(keyword: StandardErrorKeywords.userNotFound, userFacingErrorString: UserFacingErrorStrings.emailOrPasswordIncorrect),
+            AuthStandardErrorReference(keyword: StandardErrorKeywords.incorrectPassword, userFacingErrorString: UserFacingErrorStrings.emailOrPasswordIncorrect),
+            AuthStandardErrorReference(keyword: StandardErrorKeywords.emailAlreadyInUse, userFacingErrorString: UserFacingErrorStrings.emailAlreadyInuse),
+            AuthStandardErrorReference(keyword: StandardErrorKeywords.invalidEmail, userFacingErrorString: UserFacingErrorStrings.emailOrPasswordIncorrect)
+        ]
+        
+    }
+}
+
+struct AuthStandardErrorReference {
+    let keyword: String
+    let userFacingErrorString: String
 }

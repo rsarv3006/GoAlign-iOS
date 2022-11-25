@@ -28,6 +28,20 @@
 		780F197828A492E500371B91 /* SwitchAuthScreenProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F197728A492E500371B91 /* SwitchAuthScreenProtocol.swift */; };
 		780F197A28A493FE00371B91 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F197928A493FE00371B91 /* AuthViewController.swift */; };
 		780F197C28A4B0C700371B91 /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F197B28A4B0C700371B91 /* RootController.swift */; };
+		780F497E29306C3A006C8456 /* AuthenticationServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F497D29306C3A006C8456 /* AuthenticationServiceTest.swift */; };
+		780F497F29306C99006C8456 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E1A5288E399500F7D501 /* Authentication.swift */; };
+		780F498029306DC1006C8456 /* SignUpCompletedForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E1A9288E3D0900F7D501 /* SignUpCompletedForm.swift */; };
+		780F498129306DEA006C8456 /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A4E0BF2883B98F0067DBCE /* ValidationError.swift */; };
+		780F498229306DF5006C8456 /* FormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78477326287687DD009AFC92 /* FormModel.swift */; };
+		780F498329306E2E006C8456 /* SignInCompletedForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E743C328A599A00069E691 /* SignInCompletedForm.swift */; };
+		780F498429306E31006C8456 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F89128938DE50075F04F /* UserModel.swift */; };
+		780F498529306E42006C8456 /* ValidationManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F196C28A4901000371B91 /* ValidationManagerProtocol.swift */; };
+		780F498629306E5E006C8456 /* FormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6877F2887A5E5006B6CAB /* FormComponent.swift */; };
+		780F498729306E77006C8456 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F889289386CB0075F04F /* User.swift */; };
+		780F498829306E92006C8456 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F895289393150075F04F /* Networking.swift */; };
+		780F498929306E98006C8456 /* ISO8601CustomDateDecodingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78288CD328B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift */; };
+		780F498A29306EA1006C8456 /* LoggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAB71E28AB170B009B8D50 /* LoggerService.swift */; };
+		780F498C29307820006C8456 /* AlertModalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F498B29307820006C8456 /* AlertModalService.swift */; };
 		78288CD428B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78288CD328B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift */; };
 		7833144529154752009DDD3F /* TextBoxFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7833144429154752009DDD3F /* TextBoxFormComponent.swift */; };
 		78331447291547A3009DDD3F /* FormTextBoxCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78331446291547A3009DDD3F /* FormTextBoxCollectionViewCell.swift */; };
@@ -182,6 +196,8 @@
 		780F197728A492E500371B91 /* SwitchAuthScreenProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchAuthScreenProtocol.swift; sourceTree = "<group>"; };
 		780F197928A493FE00371B91 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		780F197B28A4B0C700371B91 /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
+		780F497D29306C3A006C8456 /* AuthenticationServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationServiceTest.swift; sourceTree = "<group>"; };
+		780F498B29307820006C8456 /* AlertModalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModalService.swift; sourceTree = "<group>"; };
 		78288CD328B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO8601CustomDateDecodingStrategy.swift; sourceTree = "<group>"; };
 		7833144429154752009DDD3F /* TextBoxFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBoxFormComponent.swift; sourceTree = "<group>"; };
 		78331446291547A3009DDD3F /* FormTextBoxCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextBoxCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -341,6 +357,7 @@
 				78FAB71E28AB170B009B8D50 /* LoggerService.swift */,
 				78DF5AF328BC51C400C182CF /* TeamInvite.swift */,
 				783314712925EF1F009DDD3F /* ExternalLinkService.swift */,
+				780F498B29307820006C8456 /* AlertModalService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -474,6 +491,7 @@
 			isa = PBXGroup;
 			children = (
 				783DECE828617EED0062343E /* YourTurnTests.swift */,
+				780F497D29306C3A006C8456 /* AuthenticationServiceTest.swift */,
 			);
 			path = YourTurnTests;
 			sourceTree = "<group>";
@@ -1039,6 +1057,7 @@
 				78FAB72228AB58AD009B8D50 /* ModalFormComponent.swift in Sources */,
 				78904AEB28D2D00100F6EF1F /* SettingsScreenView.swift in Sources */,
 				78EC914E28AF2D220046DF28 /* TeamSelectModalReturnModel.swift in Sources */,
+				780F498C29307820006C8456 /* AlertModalService.swift in Sources */,
 				78B687862887A67B006B6CAB /* ButtonFormComponent.swift in Sources */,
 				D5D17088290E21F900C52254 /* LoggingEvent.swift in Sources */,
 				78DF5AF228BC413000C182CF /* TeamInvitesViewController.swift in Sources */,
@@ -1088,7 +1107,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				780F498329306E2E006C8456 /* SignInCompletedForm.swift in Sources */,
 				783DECE928617EED0062343E /* YourTurnTests.swift in Sources */,
+				780F498429306E31006C8456 /* UserModel.swift in Sources */,
+				780F498829306E92006C8456 /* Networking.swift in Sources */,
+				780F498629306E5E006C8456 /* FormComponent.swift in Sources */,
+				780F498129306DEA006C8456 /* ValidationError.swift in Sources */,
+				780F497E29306C3A006C8456 /* AuthenticationServiceTest.swift in Sources */,
+				780F498229306DF5006C8456 /* FormModel.swift in Sources */,
+				780F497F29306C99006C8456 /* Authentication.swift in Sources */,
+				780F498029306DC1006C8456 /* SignUpCompletedForm.swift in Sources */,
+				780F498529306E42006C8456 /* ValidationManagerProtocol.swift in Sources */,
+				780F498929306E98006C8456 /* ISO8601CustomDateDecodingStrategy.swift in Sources */,
+				780F498729306E77006C8456 /* User.swift in Sources */,
+				780F498A29306EA1006C8456 /* LoggerService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

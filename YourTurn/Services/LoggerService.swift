@@ -81,6 +81,7 @@ struct Logger {
             static let tokenFetchFailed = "auth_token_fetch_fail"
             static let signInValidationFailed = "auth_signin_validation_fail"
             static let signUpValidationFailed = "auth_signup_validation_fail"
+            static let signInFailed = "auth_signin_fail"
         }
         
         struct Team {

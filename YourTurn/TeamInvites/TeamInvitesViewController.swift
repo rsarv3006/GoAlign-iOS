@@ -43,10 +43,13 @@ class TeamInvitesViewController: UITableViewController {
 
     // MARK: - Helpers
     func configureCombineListeners() {
-        viewModel?.teamInvitesSubject.sink(receiveCompletion: { completion in
-            // TODO: - Handle completion and errors
-        }, receiveValue: { teamInvites in
-            self.teamInvites = teamInvites
+        viewModel?.teamInvitesSubject.sink(receiveValue: { result in
+            switch result {
+            case .failure(let error):
+                Logger.log(logLevel: .Verbose, name: Logger.Events.Team.Invite.fetchFailed, payload: ["error": error])
+            case .success(let teamInvites):
+                self.teamInvites = teamInvites
+            }
         }).store(in: &subscriptions)
     }
 }
