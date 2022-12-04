@@ -13,8 +13,13 @@ struct TeamAddModalVM {
     let modalTitleText = "Create a Team"
     let teamNameFieldPlacholderText = "Team Name"
     
+    
     func createTeam(name: String, completion: @escaping(((TeamModel?, Error?) -> Void))) {
         let teamDto = CreateTeamDto(teamName: name)
         TeamService.createTeam(teamData: teamDto, completionHandler: completion)
+    }
+    
+    func createTeamCreateFailErrorMessageString(error: Error) -> String {
+        return "Problem encountered creating the team. Please try again and contact support if the issue persists. Error: \(error)"
     }
 }

@@ -167,38 +167,48 @@ class TeamAddModal: YtViewController {
     
     func createTeam(teamName: String) {
         viewModel?.createTeam(name: teamName, completion: { team, error in
-            if let error = error {
-                Logger.log(logLevel: .Prod, name: Logger.Events.Team.teamCreateFailed, payload: ["error": error, "teamName": teamName])
-            }
-            
             DispatchQueue.main.async {
                 self.createButton.isEnabled = true
             }
             
-            self.closeModal()
-            self.delegate?.onTeamAddScreenComplete(viewController: self)
+            if let error = error {
+                self.handleTeamCreateFail(error: error, teamName: teamName)
+            } else {
+                Logger.log(logLevel: .Verbose, name: Logger.Events.Team.teamCreated, payload: ["teamId": team?.teamId ?? "unknown", "teamName": teamName])
+                self.closeModal()
+                self.delegate?.onTeamAddScreenComplete(viewController: self)
+            }
         })
     }
     
     func createTeamAndGoToInvite(teamName: String) {
         viewModel?.createTeam(name: teamName, completion: { team, error in
-            if let error = error {
-                Logger.log(logLevel: .Prod, name: Logger.Events.Team.teamCreateFailed, payload: ["error": error, "teamName": teamName])
-            }
-            
             DispatchQueue.main.async {
                 self.createAndInviteButton.isEnabled = true
             }
             
-            guard let teamId = team?.teamId else {
-                Logger.log(logLevel: .Prod, name: Logger.Events.Team.teamCreateFailed, payload: ["error": "\(String(describing: error))", "teamName": teamName, "message": "Unable to identify teamID after team creation"])
-                return
+            if let error = error {
+                self.handleTeamCreateFail(error: error, teamName: teamName)
+            } else {
+                guard let teamId = team?.teamId else {
+                    Logger.log(logLevel: .Prod, name: Logger.Events.Team.teamCreateFailed, payload: ["error": "\(String(describing: error))", "teamName": teamName, "message": "Unable to identify teamID after team creation"])
+                    return
+                }
+                
+                Logger.log(logLevel: .Verbose, name: Logger.Events.Team.teamCreated, payload: ["teamId": teamId, "teamName": teamName])
+                self.closeModal()
+                self.delegate?.onTeamAddGoToInvite(viewController: self, teamId: teamId)
             }
             
-            Logger.log(logLevel: .Verbose, name: Logger.Events.Team.teamCreated, payload: ["teamId": teamId])
-            self.closeModal()
-            self.delegate?.onTeamAddGoToInvite(viewController: self, teamId: teamId)
+
+            
+
         })
+    }
+    
+    private func handleTeamCreateFail(error: Error, teamName: String) {
+        Logger.log(logLevel: .Prod, name: Logger.Events.Team.teamCreateFailed, payload: ["error": error, "teamName": teamName])
+        self.showMessage(withTitle: "Uh Oh", message: viewModel?.createTeamCreateFailErrorMessageString(error: error) ?? "Encountered an issue saving the team.")
     }
     
     func setUpTextFieldListener() {
