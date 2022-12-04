@@ -61,6 +61,29 @@ class YourTurnUITests: XCTestCase {
         
     }
     
+    func testGroupStatsTabs() throws {
+        guard let app = app else { return }
+        
+        app.tables/*@START_MENU_TOKEN@*/.cells.containing(.staticText, identifier:"GroupWithNoName").element/*[[".cells.containing(.staticText, identifier:\"Tasks: 6\").element",".cells.containing(.staticText, identifier:\"GroupWithNoName\").element"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.tabBars["Tab Bar"].buttons["Stats"].tap()
+        app.staticTexts["Team Stats"].tap()
+    }
+    
+    func testDrawerTeamInvites() throws {
+        guard let app = app else { return }
+        app.buttons["drag"].tap()
+        app/*@START_MENU_TOKEN@*/.staticTexts["Invites"]/*[[".buttons[\"Invites\"].staticTexts[\"Invites\"]",".staticTexts[\"Invites\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.navigationBars["Team Invites"].staticTexts["Team Invites"].tap()
+    }
+    
+    func testDrawerSettingsDelete() throws {
+        guard let app = app else { return }
+        app.buttons["drag"].tap()
+        app/*@START_MENU_TOKEN@*/.staticTexts["Settings"]/*[[".buttons[\"Settings\"].staticTexts[\"Settings\"]",".staticTexts[\"Settings\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.tables/*@START_MENU_TOKEN@*/.buttons["Delete Account"]/*[[".cells.buttons[\"Delete Account\"]",".buttons[\"Delete Account\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+    }
+    
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
             // This measures how long it takes to launch your application.

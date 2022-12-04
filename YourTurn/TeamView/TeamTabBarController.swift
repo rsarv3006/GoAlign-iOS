@@ -84,8 +84,12 @@ private extension TeamTabBarController {
     
     func configureStatsTab(viewModel: TeamTabBarVM) -> UIViewController {
         let teamStatsTabViewImage = (UIImage(systemName: "chart.bar.xaxis"))!
+        let teamStatsTabVM = TeamStatsTabVM(teamId: viewModel.team.teamId)
         
-        let teamStatsTabViewController = templateNavigationController(unSelectedImage: teamStatsTabViewImage, selectedImage: teamStatsTabViewImage, rootViewController: TeamStatsTabView(), title: "Stats")
+        let teamStatsTabView = TeamStatsTabView()
+        teamStatsTabView.viewModel = teamStatsTabVM
+        
+        let teamStatsTabViewController = templateNavigationController(unSelectedImage: teamStatsTabViewImage, selectedImage: teamStatsTabViewImage, rootViewController: teamStatsTabView, title: "Stats")
         
         return teamStatsTabViewController
     }

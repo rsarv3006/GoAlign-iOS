@@ -92,6 +92,10 @@ struct Logger {
             struct Invite {
                 static let fetchFailed = "team_invite_fetch_fail"
             }
+            
+            struct Stats {
+                static let fetchFailed = "team_stats_fetch_fail"
+            }
         }
         
         struct Task {
