@@ -95,10 +95,6 @@ extension DrawerMenuViewController {
         viewInvitesButton.addTarget(self, action: #selector(onViewInvitesButtonPressed), for: .touchUpInside)
         viewSettingsButton.addTarget(self, action: #selector(onviewSettingsButtonPressed), for: .touchUpInside)
     }
-
-    @objc func onLogoutButtonPressed() {
-        delegate?.onLogOutPressed(viewController: self)
-    }
     
     @objc func onViewInvitesButtonPressed() {
         DispatchQueue.main.async {
@@ -112,6 +108,26 @@ extension DrawerMenuViewController {
         DispatchQueue.main.async {
             self.dismiss(animated: true)
             self.delegate?.onViewSettingsPressed(viewController: self)
+        }
+    }
+    
+    @objc func onLogoutButtonPressed() {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Logout", message: "Are you sure you want to logout?", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                alert.removeFromParent()
+            }
+            
+            let confirmAction = UIAlertAction(title: "Confirm", style: .destructive) { _ in
+                alert.removeFromParent()
+                self.delegate?.onLogOutPressed(viewController: self)
+                Logger.log(logLevel: .Verbose, name: Logger.Events.User.userRequestedLogout, payload: [:])
+            }
+            
+            alert.addAction(cancelAction)
+            alert.addAction(confirmAction)
+            
+            self.present(alert, animated: true)
         }
     }
     

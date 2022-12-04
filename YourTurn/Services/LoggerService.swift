@@ -74,6 +74,7 @@ struct Logger {
             static let fetchFailed = "user_fetch_fail"
             static let createFailed = "user_create_fail"
             static let deleteAttempt = "user_delete_attempt"
+            static let userRequestedLogout = "user_request_logout"
         }
         
         struct Auth {
