@@ -109,7 +109,7 @@ private extension TaskAddEditScreen {
                     TaskService.createTask(taskToCreate: createTaskDto) { createdTask, error in
                         guard error == nil else {
                             Logger.log(logLevel: .Prod, name: Logger.Events.Task.creationFailed, payload: ["error": String(describing: error)])
-                            // TODO: Handle Error
+                            self.showMessage(withTitle: "Uh Oh", message: "Issue creating a task. Error: \(String(describing: error))")
                             return
                         }
                         
