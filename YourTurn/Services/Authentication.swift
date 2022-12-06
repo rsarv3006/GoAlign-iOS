@@ -35,8 +35,10 @@ struct AuthenticationService {
                 }
             } else {
                 self.signOut()
-                completion(nil, ServiceErrors.custom(message: "Issue with authentication, please try again"))
-                return
+                Auth.auth().currentUser?.delete(completion: { error in
+                    completion(nil, ServiceErrors.custom(message: "Issue with authentication, please try again"))
+                    return
+                })
             }
         }
     }
