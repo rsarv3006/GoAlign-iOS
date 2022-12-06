@@ -7,21 +7,17 @@
 
 import Foundation
 
-enum UserError: Error {
-    case custom(message: String)
-}
-
 enum UserService {
     static func createUser(with user: CreateUserDto, completionHandler: @escaping ((UserModel?, Error?) -> Void)) {
         guard let url = Networking.createUrl(endPoint: "user") else {
-            completionHandler(nil, UserError.custom(message: "Bad URL"))
+            completionHandler(nil, ServiceErrors.unknownUrl)
             return
         }
         
         let userData = try? JSONEncoder().encode(user)
 
         guard let userData = userData else {
-            completionHandler(nil, UserError.custom(message: "Serialization of Create User DTO failed"))
+            completionHandler(nil, ServiceErrors.dataSerializationFailed)
             return
         }
 
@@ -35,7 +31,7 @@ enum UserService {
             if let data = data, let response = response as? HTTPURLResponse {
                 do {
                     if response.statusCode == 500 {
-                        throw UserError.custom(message: String(data: data, encoding: String.Encoding.utf8) ?? "Something went wrong")
+                        throw ServiceErrors.server500(message: String(data: data, encoding: String.Encoding.utf8) ?? "Something went wrong")
                     }
                     let decoder = JSONDecoder()
                     decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
@@ -53,7 +49,7 @@ enum UserService {
     
     static func getCurrentUser(completionHandler: @escaping ((UserModel?, Error?) -> Void)) {
         guard let url = Networking.createUrl(endPoint: "user/current") else {
-            completionHandler(nil, UserError.custom(message: "Bad URL"))
+            completionHandler(nil, ServiceErrors.unknownUrl)
             return
         }
         
@@ -66,7 +62,7 @@ enum UserService {
             if let data = data, let response = response as? HTTPURLResponse {
                 do {
                     if response.statusCode == 500 {
-                        throw UserError.custom(message: String(data: data, encoding: String.Encoding.utf8) ?? "Something went wrong")
+                        throw ServiceErrors.server500(message: String(data: data, encoding: String.Encoding.utf8) ?? "Something went wrong")
                     }
                     let decoder = JSONDecoder()
                     decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
@@ -84,7 +80,7 @@ enum UserService {
     
     static func deleteCurrentUser(completionHandler: @escaping ((Bool, Error?) -> Void)) {
         guard let url = Networking.createUrl(endPoint: "user") else {
-            completionHandler(false, UserError.custom(message: "Bad URL"))
+            completionHandler(false, ServiceErrors.unknownUrl)
             return
         }
         

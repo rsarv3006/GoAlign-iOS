@@ -8,10 +8,6 @@
 import Foundation
 import Firebase
 
-enum AuthenticationError: Error {
-    case custom(message: String)
-}
-
 struct AuthenticationService {
     static func getCurrentFirebaseUser() -> User? {
         return Auth.auth().currentUser
@@ -39,7 +35,7 @@ struct AuthenticationService {
                 }
             } else {
                 self.signOut()
-                completion(nil, AuthenticationError.custom(message: "Issue with authentication, please try again"))
+                completion(nil, ServiceErrors.custom(message: "Issue with authentication, please try again"))
                 return
             }
         }

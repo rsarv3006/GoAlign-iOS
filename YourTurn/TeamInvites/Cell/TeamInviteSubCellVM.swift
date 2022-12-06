@@ -29,7 +29,7 @@ struct TeamInviteSubCellVM {
             } else if let error = error {
                 displayUIAlert(error: error)
             } else {
-                displayUIAlert(error: TeamInviteError.custom(message: "Unknown error accepting invite"))
+                displayUIAlert(error: ServiceErrors.custom(message: "Unknown error accepting invite"))
             }
         }
     }
@@ -41,7 +41,7 @@ struct TeamInviteSubCellVM {
             } else if let error = error {
                 displayUIAlert(error: error)
             } else {
-                displayUIAlert(error: TeamInviteError.custom(message: "Unknown error declining invite"))
+                displayUIAlert(error: ServiceErrors.custom(message: "Unknown error declining invite"))
             }
         }
     }

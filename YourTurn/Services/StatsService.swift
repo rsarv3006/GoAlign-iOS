@@ -7,14 +7,10 @@
 
 import Foundation
 
-enum StatsError: Error {
-    case custom(message: String)
-}
-
 struct StatsService {
     static func getTeamStats(teamId: String, completionHandler: @escaping((TeamStatsModel?, Error?) -> Void)) {
         guard let url = Networking.createUrl(endPoint: "stats/team/\(teamId)") else {
-            completionHandler(nil, StatsError.custom(message: "Bad URL"))
+            completionHandler(nil, ServiceErrors.unknownUrl)
             return
         }
         

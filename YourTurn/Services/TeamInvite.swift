@@ -7,10 +7,6 @@
 
 import Foundation
 
-enum TeamInviteError: Error {
-    case custom(message: String)
-}
-
 enum TeamInviteStatus {
     case success
     case failure
@@ -19,7 +15,7 @@ enum TeamInviteStatus {
 struct TeamInviteService {
     static func getTeamInvitesByCurrentUser(completionHandler: @escaping(([TeamInviteModel]?, Error?) -> Void)) {
         guard let url = Networking.createUrl(endPoint: "teamInvite/byCurrentUser") else {
-            completionHandler(nil, TeamInviteError.custom(message: "Bad URL"))
+            completionHandler(nil, ServiceErrors.unknownUrl)
             return
         }
         
@@ -47,7 +43,7 @@ struct TeamInviteService {
     
     static func acceptInvite(inviteId: String, completionHandler: @escaping((TeamInviteStatus, Error?) -> Void)) {
         guard let url = Networking.createUrl(endPoint: "teamInvite/\(inviteId)/accept") else {
-            completionHandler(.failure, TeamInviteError.custom(message: "Bad URL"))
+            completionHandler(.failure, ServiceErrors.unknownUrl)
             return
         }
         
@@ -61,7 +57,7 @@ struct TeamInviteService {
                 if response.statusCode == 200 {
                     completionHandler(.success, nil)
                 } else {
-                    completionHandler(.failure, TeamInviteError.custom(message: "Unknown Error Accepting Invite"))
+                    completionHandler(.failure, ServiceErrors.custom(message: "Unknown Error Accepting Invite"))
                 }
             }
         }
@@ -71,7 +67,7 @@ struct TeamInviteService {
     
     static func declineInvite(inviteId: String, completionHandler: @escaping((TeamInviteStatus, Error?) -> Void)) {
         guard let url = Networking.createUrl(endPoint: "teamInvite/\(inviteId)/decline") else {
-            completionHandler(.failure, TeamInviteError.custom(message: "Bad URL"))
+            completionHandler(.failure, ServiceErrors.unknownUrl)
             return
         }
         
@@ -85,7 +81,7 @@ struct TeamInviteService {
                 if response.statusCode == 200 {
                     completionHandler(.success, nil)
                 } else {
-                    completionHandler(.failure, TeamInviteError.custom(message: "Unknown Error declining Invite"))
+                    completionHandler(.failure, ServiceErrors.custom(message: "Unknown Error declining Invite"))
                 }
             }
         }
@@ -93,14 +89,14 @@ struct TeamInviteService {
     
     static func createInvite(createInviteDto: CreateInviteDtoModel, completionHandler: @escaping((TeamInviteStatus, Error?) -> Void)) {
         guard let url = Networking.createUrl(endPoint: "teamInvite") else {
-            completionHandler(.failure, TeamInviteError.custom(message: "Bad URL"))
+            completionHandler(.failure, ServiceErrors.unknownUrl)
             return
         }
         
         let createInviteData = try? JSONEncoder().encode(createInviteDto)
 
         guard let createInviteData = createInviteData else {
-            completionHandler(.failure, TeamInviteError.custom(message: "Serialization of Create Invite DTO failed"))
+            completionHandler(.failure, ServiceErrors.dataSerializationFailed)
             return
         }
         
@@ -114,7 +110,7 @@ struct TeamInviteService {
                 if response.statusCode == 201 {
                     completionHandler(.success, nil)
                 } else {
-                    completionHandler(.failure, TeamInviteError.custom(message: "Unknown Error declining Invite"))
+                    completionHandler(.failure, ServiceErrors.custom(message: "Unknown Error declining Invite"))
                 }
             }
         }
@@ -122,7 +118,7 @@ struct TeamInviteService {
     
     static func getOutstandingInvitesByTeamId(teamId: String, completionHandler: @escaping(([TeamInviteModel]?, Error?) -> Void)) {
         guard let url = Networking.createUrl(endPoint: "teamInvite/outstandingTeamInvites/\(teamId)") else {
-            completionHandler(nil, TeamInviteError.custom(message: "Bad URL"))
+            completionHandler(nil, ServiceErrors.unknownUrl)
             return
         }
         

@@ -7,14 +7,10 @@
 
 import Foundation
 
-enum TeamError: Error {
-    case custom(message: String)
-}
-
 struct TeamService {
     static func getTeamsbyCurrentUser(completionHandler: @escaping(([TeamModel]?, Error?) -> Void)) {
         guard let url = Networking.createUrl(endPoint: "team/byCurrentUser") else {
-            completionHandler(nil, TeamError.custom(message: "Bad URL"))
+            completionHandler(nil, ServiceErrors.unknownUrl)
             return
         }
         
@@ -41,14 +37,14 @@ struct TeamService {
     
     static func createTeam(teamData: CreateTeamDto, completionHandler: @escaping(((TeamModel?, Error?) -> Void))) {
         guard let url = Networking.createUrl(endPoint: "team") else {
-            completionHandler(nil, TeamError.custom(message: "Bad URL"))
+            completionHandler(nil, ServiceErrors.unknownUrl)
             return
         }
         
         let teamData = try? JSONEncoder().encode(teamData)
 
         guard let teamData = teamData else {
-            completionHandler(nil, TeamError.custom(message: "Serialization of Create Team DTO failed"))
+            completionHandler(nil, ServiceErrors.dataSerializationFailed)
             return
         }
         
@@ -61,7 +57,7 @@ struct TeamService {
             if let data = data, let response = response as? HTTPURLResponse {
                 do {
                     if response.statusCode == 500 {
-                        throw TeamError.custom(message: (String(data: data, encoding: String.Encoding.utf8) ?? "Something went wrong"))
+                        throw ServiceErrors.server500(message: (String(data: data, encoding: String.Encoding.utf8) ?? "Something went wrong"))
                     }
                     let decoder = JSONDecoder()
                     decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
@@ -78,7 +74,7 @@ struct TeamService {
     static func getTeamsByTeamIds(teamIds: [String], completionHandler: @escaping((([TeamModel]?, Error?) -> Void))) {
         let queryString = Networking.helpers.createQueryString(items: teamIds)
         guard let url = Networking.createUrl(endPoint: "team?teamIds=\(queryString)") else {
-            completionHandler(nil, TeamError.custom(message: "Bad URL"))
+            completionHandler(nil, ServiceErrors.unknownUrl)
             return
         }
         

@@ -101,6 +101,7 @@
 		78B68792288829F0006B6CAB /* FieldValidInvalidProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B68791288829F0006B6CAB /* FieldValidInvalidProtocol.swift */; };
 		78B90EB62939C47B00E6CBA8 /* StatsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B90EB52939C47B00E6CBA8 /* StatsService.swift */; };
 		78B90EB82939C4A600E6CBA8 /* TeamStatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B90EB72939C4A600E6CBA8 /* TeamStatsModel.swift */; };
+		78B90EBA293DB81B00E6CBA8 /* ServiceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B90EB9293DB81B00E6CBA8 /* ServiceErrors.swift */; };
 		78BBB8FC28642207006B3FDC /* HomeScreenTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BBB8FB28642207006B3FDC /* HomeScreenTaskCell.swift */; };
 		78BF0D6528A97F57005C6098 /* DrawerMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BF0D6428A97F57005C6098 /* DrawerMenuViewController.swift */; };
 		78BF0D6828A98052005C6098 /* DrawerTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BF0D6728A98052005C6098 /* DrawerTransitionManager.swift */; };
@@ -265,6 +266,7 @@
 		78B68791288829F0006B6CAB /* FieldValidInvalidProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldValidInvalidProtocol.swift; sourceTree = "<group>"; };
 		78B90EB52939C47B00E6CBA8 /* StatsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsService.swift; sourceTree = "<group>"; };
 		78B90EB72939C4A600E6CBA8 /* TeamStatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamStatsModel.swift; sourceTree = "<group>"; };
+		78B90EB9293DB81B00E6CBA8 /* ServiceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceErrors.swift; sourceTree = "<group>"; };
 		78BBB8FB28642207006B3FDC /* HomeScreenTaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenTaskCell.swift; sourceTree = "<group>"; };
 		78BF0D6428A97F57005C6098 /* DrawerMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerMenuViewController.swift; sourceTree = "<group>"; };
 		78BF0D6728A98052005C6098 /* DrawerTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerTransitionManager.swift; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 				783314712925EF1F009DDD3F /* ExternalLinkService.swift */,
 				780F498B29307820006C8456 /* AlertModalService.swift */,
 				78B90EB52939C47B00E6CBA8 /* StatsService.swift */,
+				78B90EB9293DB81B00E6CBA8 /* ServiceErrors.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1112,6 +1115,7 @@
 				78DF5B0528CC6CE700C182CF /* TeamInviteUserModalVM.swift in Sources */,
 				7833146A291B51D6009DDD3F /* TeamInvitesTabViewCellVM.swift in Sources */,
 				783DECD428617EEB0062343E /* SceneDelegate.swift in Sources */,
+				78B90EBA293DB81B00E6CBA8 /* ServiceErrors.swift in Sources */,
 				D5129C8128E547C800AF9EDD /* TaskViewVM.swift in Sources */,
 				78E4F896289393150075F04F /* Networking.swift in Sources */,
 				7847732D28768D14009AFC92 /* FormButtonCollectionViewCell.swift in Sources */,

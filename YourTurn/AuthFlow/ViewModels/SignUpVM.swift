@@ -22,7 +22,7 @@ class SignUpVM {
             } else if let error = error {
                 self?.signUpSubject.send(.failure(error))
             } else {
-                self?.signUpSubject.send(.failure(AuthenticationError.custom(message: "Something is busted and I have no idea what")))
+                self?.signUpSubject.send(.failure(ServiceErrors.custom(message: "Something is busted and I have no idea what")))
             }
         }
     }

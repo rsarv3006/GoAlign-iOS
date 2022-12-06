@@ -13,7 +13,7 @@ class TeamInviteUserModalVM {
     let modalTitleText = "Invite People to your Team"
     let closeModalButtonText = "Finish"
     
-    var addedInvitedUserSubject = PassthroughSubject<Result<Bool, TeamInviteError>, Never>()
+    var addedInvitedUserSubject = PassthroughSubject<Result<Bool, ServiceErrors>, Never>()
     
     let teamId: String
     var invitedUsers: [String] = []

@@ -21,7 +21,7 @@ class SignInVM {
             } else if let error = error {
                 self?.signInSubject.send(.failure(error))
             } else {
-                self?.signInSubject.send(.failure(AuthenticationError.custom(message: "Something is busted and I have no idea what")))
+                self?.signInSubject.send(.failure(ServiceErrors.custom(message: "Something is busted and I have no idea what")))
             }
         }
     }

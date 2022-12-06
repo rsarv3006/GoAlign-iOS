@@ -8,14 +8,10 @@
 import Foundation
 import Combine
 
-enum TaskError: Error {
-    case custom(message: String)
-}
-
 struct TaskService {
     static func getTasksByAssignedUserId(completionHandler: @escaping((TaskModelArray?, Error?) -> Void)) {
         guard let url = Networking.createUrl(endPoint: "task/assignedToCurrentUser") else {
-            completionHandler(nil, TaskError.custom(message: "Bad URL"))
+            completionHandler(nil, ServiceErrors.unknownUrl)
             return
         }
         
@@ -42,7 +38,7 @@ struct TaskService {
     
     static func createTask(taskToCreate taskDto: CreateTaskDto, completionHandler: @escaping((TaskModel?, Error?) -> Void)) {
         guard let url = Networking.createUrl(endPoint: "task") else {
-            completionHandler(nil, TaskError.custom(message: "Bad URL"))
+            completionHandler(nil, ServiceErrors.unknownUrl)
             return
         }
         
@@ -52,7 +48,7 @@ struct TaskService {
         let taskData = try? encoder.encode(taskDto)
         
         guard let taskData = taskData else {
-            completionHandler(nil, UserError.custom(message: "Serialization of Create Task DTO failed"))
+            completionHandler(nil, ServiceErrors.dataSerializationFailed)
             return
         }
         
@@ -66,7 +62,7 @@ struct TaskService {
             if let data = data, let response = response as? HTTPURLResponse {
                 do {
                     if response.statusCode == 500 {
-                        throw TaskError.custom(message: (String(data: data, encoding: String.Encoding.utf8) ?? "Something went wrong"))
+                        throw ServiceErrors.server500(message: (String(data: data, encoding: String.Encoding.utf8) ?? "Something went wrong"))
                     }
                     
                     let decoder = JSONDecoder()
@@ -84,7 +80,7 @@ struct TaskService {
     
     static func markTaskComplete(taskId: String, completionHandler: @escaping((TaskModel?, Error?) -> Void)) {
         guard let url = Networking.createUrl(endPoint: "task/markTaskComplete/\(taskId)") else {
-            completionHandler(nil, TaskError.custom(message: "Bad URL"))
+            completionHandler(nil, ServiceErrors.unknownUrl)
             return
         }
         
@@ -97,7 +93,7 @@ struct TaskService {
             if let data = data, let response = response as? HTTPURLResponse {
                 do {
                     if response.statusCode == 500 {
-                        throw TaskError.custom(message: (String(data: data, encoding: String.Encoding.utf8) ?? "Something went wrong"))
+                        throw ServiceErrors.server500(message: (String(data: data, encoding: String.Encoding.utf8) ?? "Something went wrong"))
                     }
                     
                     let decoder = JSONDecoder()
