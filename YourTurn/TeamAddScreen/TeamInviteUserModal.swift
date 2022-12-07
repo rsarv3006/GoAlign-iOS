@@ -87,6 +87,8 @@ class TeamInviteUserModal: UIViewController {
         super.viewDidLoad()
         configureModal()
         configureInteractables()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onTextDidChange), name: UITextField.textDidChangeNotification, object: nil)
     }
     
     // MARK: Helpers
@@ -119,11 +121,14 @@ class TeamInviteUserModal: UIViewController {
         subView.addSubview(inviteButton)
         inviteButton.anchor(top: modalTitle.bottomAnchor, left: emailAddressToInvite.rightAnchor, right: subView.rightAnchor, paddingRight: 12, width: subViewWidth * 0.1, height: 32)
         
+        subView.addSubview(errorLbl)
+        errorLbl.anchor(top: inviteButton.bottomAnchor, left: subView.leftAnchor, right: subView.rightAnchor, paddingLeft: 16, paddingRight: 16,  height: 24)
+        
         subView.addSubview(closeModalButton)
         closeModalButton.anchor(left: subView.leftAnchor, bottom: subView.bottomAnchor, right: subView.rightAnchor, paddingLeft: 16, paddingBottom: 8, paddingRight: 16, height: 44)
         
         subView.addSubview(invitedTeamMembersTableView)
-        invitedTeamMembersTableView.anchor(top: emailAddressToInvite.bottomAnchor, left: subView.leftAnchor, bottom: closeModalButton.topAnchor, right: subView.rightAnchor, paddingTop: 12, paddingLeft: 16, paddingBottom: 8, paddingRight: 16)
+        invitedTeamMembersTableView.anchor(top: errorLbl.bottomAnchor, left: subView.leftAnchor, bottom: closeModalButton.topAnchor, right: subView.rightAnchor, paddingTop: 12, paddingLeft: 16, paddingBottom: 8, paddingRight: 16)
         
     }
     
@@ -133,12 +138,42 @@ class TeamInviteUserModal: UIViewController {
     }
     
     @objc func onInviteButtonPressed() {
-        guard let emailAddressToInviteText = emailAddressToInvite.text else { return }
-        viewModel?.createTeamInvite(emailAddressToInvite: emailAddressToInviteText)
+        if let emailAddressToInviteText = emailAddressToInvite.text, emailAddressToInviteText.count > 0, emailAddressToInviteText.contains("@") {
+            viewModel?.createTeamInvite(emailAddressToInvite: emailAddressToInviteText)
+        } else {
+            errorLbl.text = "Email not valid"
+        }
     }
     
     @objc func onCloseModalButtonPressed() {
-        self.dismiss(animated: true)
+        if let count = viewModel?.invitedUsers.count, count > 0 {
+            self.dismiss(animated: true)
+        } else {
+            confirmCloseModal()
+        }
+    }
+    
+    private func confirmCloseModal() {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Confirm", message: "No users have been invited, are you sure you want to leave?", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                alert.removeFromParent()
+            }
+            
+            let confirmAction = UIAlertAction(title: "Yes I'm Sure", style: .destructive) { _ in
+                alert.removeFromParent()
+                self.dismiss(animated: true)
+            }
+            
+            alert.addAction(cancelAction)
+            alert.addAction(confirmAction)
+            
+            self.present(alert, animated: true)
+            
+        }
+    }
+    @objc func onTextDidChange() {
+        errorLbl.text = ""
     }
 }
 
