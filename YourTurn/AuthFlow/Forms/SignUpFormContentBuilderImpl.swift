@@ -19,7 +19,7 @@ final class SignUpFormContentBuilderImpl {
                 ]),
                 StringMaxLengthValidationManagerImpl(maxLength: 18, errorMessage: "Username is too long")
             ]),
-            TextFormComponent(id: .signUpEmailAddress, placeholder: "Email Address", autoCorrectionType: .no, validations: [
+            TextFormComponent(id: .signUpEmailAddress, placeholder: "Email Address", keyboardType: .emailAddress, autoCorrectionType: .no, validations: [
                 RegexValidationManagerImpl([
                     RegexFormItem(pattern: RegexPatterns.emailChars, error: .custom(message: "Not a valid email"))
                 ])

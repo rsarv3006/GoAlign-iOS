@@ -25,6 +25,7 @@ class ForgotPasswordView: AuthViewController {
     
     private lazy var emailInputField: UITextField = {
         let textField = UITextField()
+        textField.keyboardType = .emailAddress
         return textField
     }()
 
