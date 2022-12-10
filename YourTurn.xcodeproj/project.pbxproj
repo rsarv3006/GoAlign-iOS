@@ -92,6 +92,9 @@
 		78A4E0C02883B98F0067DBCE /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A4E0BF2883B98F0067DBCE /* ValidationError.swift */; };
 		78A4E0C32883BDEA0067DBCE /* RegexPatterns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A4E0C22883BDEA0067DBCE /* RegexPatterns.swift */; };
 		78AC28012943FD9600F53EAB /* ServiceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B90EB9293DB81B00E6CBA8 /* ServiceErrors.swift */; };
+		78AC280329442CDA00F53EAB /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AC280229442CDA00F53EAB /* RemoteConfig.swift */; };
+		78AC28062944305800F53EAB /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 78AC28052944305800F53EAB /* FirebaseRemoteConfig */; };
+		78AC28082944314200F53EAB /* remote_config_defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AC28072944314200F53EAB /* remote_config_defaults.plist */; };
 		78B687802887A5E5006B6CAB /* FormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6877F2887A5E5006B6CAB /* FormComponent.swift */; };
 		78B687822887A616006B6CAB /* TextFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B687812887A616006B6CAB /* TextFormComponent.swift */; };
 		78B687842887A64E006B6CAB /* DateFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B687832887A64E006B6CAB /* DateFormComponent.swift */; };
@@ -259,6 +262,8 @@
 		78A4E0BC2883B9550067DBCE /* RegexFormItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexFormItem.swift; sourceTree = "<group>"; };
 		78A4E0BF2883B98F0067DBCE /* ValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
 		78A4E0C22883BDEA0067DBCE /* RegexPatterns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexPatterns.swift; sourceTree = "<group>"; };
+		78AC280229442CDA00F53EAB /* RemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfig.swift; sourceTree = "<group>"; };
+		78AC28072944314200F53EAB /* remote_config_defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = remote_config_defaults.plist; sourceTree = "<group>"; };
 		78B6877F2887A5E5006B6CAB /* FormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormComponent.swift; sourceTree = "<group>"; };
 		78B687812887A616006B6CAB /* TextFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormComponent.swift; sourceTree = "<group>"; };
 		78B687832887A64E006B6CAB /* DateFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormComponent.swift; sourceTree = "<group>"; };
@@ -339,6 +344,7 @@
 				7802E181288B9A1300F7D501 /* FirebaseAuth in Frameworks */,
 				7802E183288B9A1300F7D501 /* FirebaseCrashlytics in Frameworks */,
 				78FAB71D28AB16A2009B8D50 /* FirebaseCrashlytics in Frameworks */,
+				78AC28062944305800F53EAB /* FirebaseRemoteConfig in Frameworks */,
 				78FAB71B28AB16A2009B8D50 /* FirebaseAnalytics in Frameworks */,
 				7802E17F288B9A1300F7D501 /* FirebaseAnalytics in Frameworks */,
 			);
@@ -375,6 +381,7 @@
 				780F498B29307820006C8456 /* AlertModalService.swift */,
 				78B90EB52939C47B00E6CBA8 /* StatsService.swift */,
 				78B90EB9293DB81B00E6CBA8 /* ServiceErrors.swift */,
+				78AC280229442CDA00F53EAB /* RemoteConfig.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -466,6 +473,7 @@
 				783DECE728617EED0062343E /* YourTurnTests */,
 				783DECF128617EED0062343E /* YourTurnUITests */,
 				783DECCF28617EEB0062343E /* Products */,
+				78AC28042944305800F53EAB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -482,6 +490,7 @@
 		783DECD028617EEB0062343E /* YourTurn */ = {
 			isa = PBXGroup;
 			children = (
+				78AC28072944314200F53EAB /* remote_config_defaults.plist */,
 				D505315828E529D1006BD807 /* GoogleService-Info.plist */,
 				78439FDF28AD2CE00070D48D /* Common */,
 				7802E1A4288E398100F7D501 /* Services */,
@@ -694,6 +703,13 @@
 			path = Patterns;
 			sourceTree = "<group>";
 		};
+		78AC28042944305800F53EAB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		78BBB8FD286422DF006B3FDC /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -853,6 +869,7 @@
 				7802E182288B9A1300F7D501 /* FirebaseCrashlytics */,
 				78FAB71A28AB16A2009B8D50 /* FirebaseAnalytics */,
 				78FAB71C28AB16A2009B8D50 /* FirebaseCrashlytics */,
+				78AC28052944305800F53EAB /* FirebaseRemoteConfig */,
 			);
 			productName = YourTurn;
 			productReference = 783DECCE28617EEB0062343E /* YourTurn.app */;
@@ -946,6 +963,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78AC28082944314200F53EAB /* remote_config_defaults.plist in Resources */,
 				78DF5AEE28B88C1300C182CF /* credentials.json in Resources */,
 				7872D70028978C1700E598D2 /* .gitignore in Resources */,
 				783DECDE28617EED0062343E /* LaunchScreen.storyboard in Resources */,
@@ -1048,6 +1066,7 @@
 				78BFFA9E2887784600A767AB /* FormSwitchControlledTextCollectionViewCell.swift in Sources */,
 				783DED092861F5500062343E /* HomeScreenVM.swift in Sources */,
 				78DAADEB2868D36700FEB0DA /* HomeScreenTeamCellVM.swift in Sources */,
+				78AC280329442CDA00F53EAB /* RemoteConfig.swift in Sources */,
 				78331464291B35D1009DDD3F /* TeamUsersTabVM.swift in Sources */,
 				783DED03286180470062343E /* HomeScreen.swift in Sources */,
 				78439FD928AC8EC80070D48D /* TeamSelectModal.swift in Sources */,
@@ -1515,6 +1534,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7802E17D288B9A1300F7D501 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
+		};
+		78AC28052944305800F53EAB /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7802E17D288B9A1300F7D501 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
 		};
 		78FAB71A28AB16A2009B8D50 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

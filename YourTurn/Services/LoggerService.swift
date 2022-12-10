@@ -46,7 +46,8 @@ struct Logger {
     }
     
     private static func getLogLevel() -> LogLevel {
-        if LogLevel.Prod.rawValue == Bundle.main.object(forInfoDictionaryKey: "LOG_LEVEL") as? String {
+        
+        if LogLevel.Prod.rawValue == remoteConfig.configValue(forKey: "LOG_LEVEL").stringValue {
             return .Prod
         }
         
@@ -54,19 +55,12 @@ struct Logger {
     }
     
     private static func getAnalyticsEnabled() -> Bool {
-        if let isAnalyticsEnabled = Bundle.main.object(forInfoDictionaryKey: "LOG_TO_ANALYTICS") as? Bool {
-            return isAnalyticsEnabled
-        }
         
-        return true
+        return remoteConfig.configValue(forKey: "LOG_TO_ANALYTICS").boolValue
     }
     
     private static func getPrintLogs() -> Bool {
-        if let shouldPrintLogs = Bundle.main.object(forInfoDictionaryKey: "PRINT_LOGS") as? Bool {
-            return shouldPrintLogs
-        }
-        
-        return true
+        return remoteConfig.configValue(forKey: "PRINT_LOGS").boolValue
     }
     
     struct Events {

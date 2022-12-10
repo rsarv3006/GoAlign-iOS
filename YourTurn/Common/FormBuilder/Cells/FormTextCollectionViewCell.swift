@@ -88,7 +88,6 @@ private extension FormTextCollectionViewCell {
                     
                     
                 } catch {
-                    
                     self.txtField.invalid()
                     if let validationError = error as? ValidationError {
                         switch validationError {
@@ -97,7 +96,7 @@ private extension FormTextCollectionViewCell {
                             self.errorLbl.text = message
                         }
                     }
-                    Logger.log(logLevel: .Prod, name: Logger.Events.Form.Field.validationFailed, payload: ["error": error, "form": "text"])
+                    Logger.log(logLevel: .Verbose, name: Logger.Events.Form.Field.validationFailed, payload: ["error": error, "form": "text"])
                 }
             }
             .store(in: &subscriptions)

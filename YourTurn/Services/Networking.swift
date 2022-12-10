@@ -59,7 +59,7 @@ struct Networking {
     }
     
     static func createUrl(endPoint: String) -> URL? {
-        guard let baseUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else { return nil }
+        guard let baseUrl = remoteConfig.configValue(forKey: "API_URL").stringValue else { return nil }
         
         let url = URL(string: "\(baseUrl)\(endPoint)")
     
