@@ -11,6 +11,7 @@ import Combine
 enum AuthScreenIdVariant {
     case SignIn
     case SignUp
+    case ForgotPassword
 }
 
 class AuthViewController: YtViewController {

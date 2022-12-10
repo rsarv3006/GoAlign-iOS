@@ -85,6 +85,12 @@ struct AuthenticationService {
         return returnErrorString
     }
     
+    static func requestPasswordReset(emailAddress: String, completion: @escaping((Error?) -> Void)) {
+        Auth.auth().sendPasswordReset(withEmail: emailAddress) { error in
+            completion(error)
+        }
+    }
+    
 
     
     struct AuthErrorHandling {

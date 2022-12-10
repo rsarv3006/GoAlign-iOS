@@ -21,11 +21,11 @@ final class AuthenticationServiceTest: XCTestCase {
 
     func testCheckForStandardErrors() throws {
         for errorToTest in sut.AuthErrorHandling.errors {
-            let errorString = sut.checkForStandardErrors(error: AuthenticationError.custom(message: "garbage garbage \(errorToTest.keyword) garbage garbage"))
+            let errorString = sut.checkForStandardErrors(error: ServiceErrors.custom(message: "garbage garbage \(errorToTest.keyword) garbage garbage"))
             XCTAssert(errorString == errorToTest.userFacingErrorString)
         }
         
-        let errorString = sut.checkForStandardErrors(error: AuthenticationError.custom(message: "garbage garbage garbage garbage"))
+        let errorString = sut.checkForStandardErrors(error: ServiceErrors.custom(message: "garbage garbage garbage garbage"))
         XCTAssert(errorString == sut.AuthErrorHandling.UserFacingErrorStrings.unknownError)
     }
 

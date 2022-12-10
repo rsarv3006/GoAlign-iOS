@@ -85,7 +85,6 @@ extension RootController: AuthScreenDelegate {
         } else if viewController.screenId == .SignIn {
             goSignUp()
         }
-        
     }
     
     func authenticationDidComplete(viewController: AuthViewController) {

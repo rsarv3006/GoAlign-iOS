@@ -58,6 +58,16 @@ class SignInScreen: AuthViewController {
     @objc func onButtonToSignUpScreenPressed() {
         delegate?.requestOtherAuthScreen(viewController: self)
     }
+    
+    private func goForgotPassword() {
+         DispatchQueue.main.async {
+             let controller = ForgotPasswordView()
+             let forgotPasswordVM = ForgotPasswordVM()
+             controller.viewModel = forgotPasswordVM
+             controller.setScreenId(screenId: .ForgotPassword)
+             self.navigationController?.pushViewController(controller, animated: true)
+         }
+     }
 }
 
 private extension SignInScreen {
@@ -170,6 +180,8 @@ private extension SignInScreen {
             .sink { [weak self] id in
                 if id == .termsButton {
                     ExternalLinkService.openTermsAndConditionsLink()
+                } else if id == .signInForgotPassword {
+                    self?.goForgotPassword()
                 } else {
                     self?.formContentBuilder.validate()
                 }
@@ -178,5 +190,4 @@ private extension SignInScreen {
         cell.bind(item)
         return cell
     }
-    
 }
