@@ -7,6 +7,8 @@
 
 import UIKit
 
+private let cellReuseIdentifier = "TeamTasksTabViewTableCell"
+
 class TeamTasksTabView: YtViewController {
     
     var viewModel: TeamTasksTabVM? {
@@ -18,7 +20,7 @@ class TeamTasksTabView: YtViewController {
     // MARK: UIElements
     private lazy var tasksTableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(TeamTasksTabViewTableCell.self, forCellReuseIdentifier: "TeamTasksTabViewTableCell")
+        tableView.register(TeamTasksTabViewTableCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         tableView.rowHeight = 60
         return tableView
     }()
@@ -46,11 +48,20 @@ extension TeamTasksTabView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TeamTasksTabViewTableCell", for: indexPath) as! TeamTasksTabViewTableCell
-        let task = viewModel?.team.tasks[indexPath.row]
-        if let task = task {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! TeamTasksTabViewTableCell
+        if let task = viewModel?.team.tasks[indexPath.row] {
             cell.viewModel = TeamTasksTabViewCellVM(task: task)
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if let task = viewModel?.team.tasks[indexPath.row] {
+            let taskViewVm = TaskViewVM(task: task)
+            let taskView = TaskView()
+            taskView.viewModel = taskViewVm
+            self.navigationController?.pushViewController(taskView, animated: true)
+        }
+        return nil
     }
 }
