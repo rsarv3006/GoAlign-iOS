@@ -18,6 +18,9 @@ class HomeScreen: YtViewController {
     // MARK: - Properties
     private var subscriptions = Set<AnyCancellable>()
     
+    private let taskRefreshControl = UIRefreshControl()
+    private let teamRefreshControl = UIRefreshControl()
+    
     var logoutEventSubject = PassthroughSubject<Bool, Never>()
     
     var viewModel: HomeScreenVM? {
@@ -99,6 +102,7 @@ class HomeScreen: YtViewController {
         configureInteractables()
         configureTableViews()
         configureCombine()
+        configureRefreshControl()
         
         AuthenticationService.getToken { token, error in
             print(String(describing: token))
@@ -138,6 +142,22 @@ class HomeScreen: YtViewController {
         
     }
     
+    private func configureRefreshControl() {
+        taskRefreshControl.addTarget(self, action: #selector(onTaskReloadRequested), for: .valueChanged)
+        taskTableView.refreshControl = taskRefreshControl
+        
+        teamRefreshControl.addTarget(self, action: #selector(onTeamReloadRequested), for: .valueChanged)
+        teamTableView.refreshControl = teamRefreshControl
+    }
+    
+    @objc func onTaskReloadRequested() {
+        viewModel?.loadTasks()
+    }
+    
+    @objc func onTeamReloadRequested() {
+        viewModel?.loadTeams()
+    }
+    
     private func configureInteractables() {
         addTaskButton.addTarget(self, action: #selector(onAddTaskPressed), for: .touchUpInside)
         drawerButton.addTarget(self, action: #selector(onDrawerButtonPress), for: .touchUpInside)
@@ -147,6 +167,7 @@ class HomeScreen: YtViewController {
     private func configureCombine() {
         viewModel?.tasksSubject.receive(on: DispatchQueue.main).sink(receiveValue: { [weak self] incomingTasks in
             self?.showLoader(false)
+            self?.taskRefreshControl.endRefreshing()
             guard let self = self else { return }
             
             self.tasks = incomingTasks
@@ -154,6 +175,7 @@ class HomeScreen: YtViewController {
         
         viewModel?.teamsSubject.receive(on: DispatchQueue.main).sink(receiveValue: { [weak self] incomingTeams in
             self?.showLoader(false)
+            self?.teamRefreshControl.endRefreshing()
             guard let self = self else { return }
             self.teams = incomingTeams
         }).store(in: &subscriptions)
