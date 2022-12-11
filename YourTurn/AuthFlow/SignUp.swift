@@ -116,6 +116,7 @@ private extension SignUpScreen {
     
     func signUpCompletedSubscription() {
         viewModel?.signUpSubject.sink(receiveValue: { result in
+            self.showLoader(false)
             switch result {
             case .failure(let error):
                 Logger.log(logLevel: .Verbose, name: Logger.Events.Auth.signInFailed, payload: ["error": error])
@@ -168,6 +169,7 @@ private extension SignUpScreen {
                 if id == .termsButton {
                     ExternalLinkService.openTermsAndConditionsLink()
                 } else {
+                    self?.showLoader(true)
                     self?.formContentBuilder.validate()
                 }
             }.store(in: &self.subscriptions)

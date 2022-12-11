@@ -107,6 +107,7 @@ private extension TaskAddEditScreen {
                     print(error)
                 case .success(let createTaskDto):
                     TaskService.createTask(taskToCreate: createTaskDto) { createdTask, error in
+                        self.showLoader(false)
                         guard error == nil else {
                             Logger.log(logLevel: .Prod, name: Logger.Events.Task.creationFailed, payload: ["error": String(describing: error)])
                             self.showMessage(withTitle: "Uh Oh", message: "Issue creating a task. Error: \(String(describing: error))")
@@ -192,7 +193,7 @@ private extension TaskAddEditScreen {
         cell
             .subject
             .sink { [weak self] id in
-                print(id.rawValue + " subject task add edit screen")
+                self?.showLoader(true)
                 self?.formContentBuilder.validate()
             }.store(in: &self.subscriptions)
         

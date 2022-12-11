@@ -101,6 +101,7 @@ private extension SignInScreen {
     
     func signInCompletedSubscription() {
         viewModel?.signInSubject.sink(receiveValue: { result in
+            self.showLoader(false)
             switch result {
             case .failure(let error):
                 Logger.log(logLevel: .Verbose, name: Logger.Events.Auth.signInFailed, payload: ["error": error])
@@ -183,6 +184,7 @@ private extension SignInScreen {
                 } else if id == .signInForgotPassword {
                     self?.goForgotPassword()
                 } else {
+                    self?.showLoader(true)
                     self?.formContentBuilder.validate()
                 }
             }.store(in: &self.subscriptions)

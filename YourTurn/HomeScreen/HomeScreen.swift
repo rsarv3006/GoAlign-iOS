@@ -95,6 +95,7 @@ class HomeScreen: YtViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        showLoader(true)
         configureInteractables()
         configureTableViews()
         configureCombine()
@@ -145,12 +146,14 @@ class HomeScreen: YtViewController {
     
     private func configureCombine() {
         viewModel?.tasksSubject.receive(on: DispatchQueue.main).sink(receiveValue: { [weak self] incomingTasks in
+            self?.showLoader(false)
             guard let self = self else { return }
             
             self.tasks = incomingTasks
         }).store(in: &subscriptions)
         
         viewModel?.teamsSubject.receive(on: DispatchQueue.main).sink(receiveValue: { [weak self] incomingTeams in
+            self?.showLoader(false)
             guard let self = self else { return }
             self.teams = incomingTeams
         }).store(in: &subscriptions)

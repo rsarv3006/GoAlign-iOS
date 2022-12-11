@@ -95,6 +95,7 @@
 		78AC280329442CDA00F53EAB /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AC280229442CDA00F53EAB /* RemoteConfig.swift */; };
 		78AC28062944305800F53EAB /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 78AC28052944305800F53EAB /* FirebaseRemoteConfig */; };
 		78AC28082944314200F53EAB /* remote_config_defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AC28072944314200F53EAB /* remote_config_defaults.plist */; };
+		78AC280B29452AA600F53EAB /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 78AC280A29452AA600F53EAB /* JGProgressHUD */; };
 		78B687802887A5E5006B6CAB /* FormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6877F2887A5E5006B6CAB /* FormComponent.swift */; };
 		78B687822887A616006B6CAB /* TextFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B687812887A616006B6CAB /* TextFormComponent.swift */; };
 		78B687842887A64E006B6CAB /* DateFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B687832887A64E006B6CAB /* DateFormComponent.swift */; };
@@ -342,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7802E181288B9A1300F7D501 /* FirebaseAuth in Frameworks */,
+				78AC280B29452AA600F53EAB /* JGProgressHUD in Frameworks */,
 				7802E183288B9A1300F7D501 /* FirebaseCrashlytics in Frameworks */,
 				78FAB71D28AB16A2009B8D50 /* FirebaseCrashlytics in Frameworks */,
 				78AC28062944305800F53EAB /* FirebaseRemoteConfig in Frameworks */,
@@ -870,6 +872,7 @@
 				78FAB71A28AB16A2009B8D50 /* FirebaseAnalytics */,
 				78FAB71C28AB16A2009B8D50 /* FirebaseCrashlytics */,
 				78AC28052944305800F53EAB /* FirebaseRemoteConfig */,
+				78AC280A29452AA600F53EAB /* JGProgressHUD */,
 			);
 			productName = YourTurn;
 			productReference = 783DECCE28617EEB0062343E /* YourTurn.app */;
@@ -946,6 +949,7 @@
 			packageReferences = (
 				7802E17D288B9A1300F7D501 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				78FAB71928AB16A2009B8D50 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				78AC280929452AA600F53EAB /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 			);
 			productRefGroup = 783DECCF28617EEB0062343E /* Products */;
 			projectDirPath = "";
@@ -1509,6 +1513,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		78AC280929452AA600F53EAB /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		78FAB71928AB16A2009B8D50 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1539,6 +1551,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7802E17D288B9A1300F7D501 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseRemoteConfig;
+		};
+		78AC280A29452AA600F53EAB /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 78AC280929452AA600F53EAB /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
 		};
 		78FAB71A28AB16A2009B8D50 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

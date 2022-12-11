@@ -135,6 +135,7 @@ class TeamAddModal: YtViewController {
             } else if teamName.count >= 24 {
                 errorLbl.text = "Team Name is too long"
             } else {
+                showLoader(true)
                 createButton.isEnabled = false
                 createTeam(teamName: teamName)
             }
@@ -149,6 +150,7 @@ class TeamAddModal: YtViewController {
             } else if teamName.count >= 24 {
                 errorLbl.text = "Team Name is too long"
             } else {
+                showLoader(true)
                 createAndInviteButton.isEnabled = false
                 createTeamAndGoToInvite(teamName: teamName)
             }
@@ -167,6 +169,7 @@ class TeamAddModal: YtViewController {
     
     func createTeam(teamName: String) {
         viewModel?.createTeam(name: teamName, completion: { team, error in
+            self.showLoader(true)
             DispatchQueue.main.async {
                 self.createButton.isEnabled = true
             }
@@ -182,6 +185,7 @@ class TeamAddModal: YtViewController {
     }
     
     func createTeamAndGoToInvite(teamName: String) {
+        self.showLoader(false)
         viewModel?.createTeam(name: teamName, completion: { team, error in
             DispatchQueue.main.async {
                 self.createAndInviteButton.isEnabled = true

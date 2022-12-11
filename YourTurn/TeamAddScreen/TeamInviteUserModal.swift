@@ -24,6 +24,7 @@ class TeamInviteUserModal: UIViewController {
                 print(completion)
             } receiveValue: { _ in
                 DispatchQueue.main.async {
+                    self.showLoader(false)
                     self.invitedTeamMembersTableView.reloadData()
                     self.emailAddressToInvite.text = ""
                 }
@@ -139,6 +140,7 @@ class TeamInviteUserModal: UIViewController {
     
     @objc func onInviteButtonPressed() {
         if let emailAddressToInviteText = emailAddressToInvite.text, emailAddressToInviteText.count > 0, emailAddressToInviteText.contains("@") {
+            showLoader(true)
             viewModel?.createTeamInvite(emailAddressToInvite: emailAddressToInviteText)
         } else {
             errorLbl.text = "Email not valid"

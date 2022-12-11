@@ -14,6 +14,7 @@ class TeamSelectModal: ModalViewController {
     
     private var teams = [TeamModel]() {
         didSet {
+            showLoader(false)
             DispatchQueue.main.async {
                 self.teamSelectTableView.reloadData()
                 self.teamMemberSelectTableView.reloadData()
@@ -72,6 +73,7 @@ class TeamSelectModal: ModalViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showLoader(true)
         configureModal()
         setupTables()
         configureView()
