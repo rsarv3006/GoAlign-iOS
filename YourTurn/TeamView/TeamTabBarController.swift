@@ -37,7 +37,7 @@ class TeamTabBarController: UITabBarController {
         
         viewControllers = [teamTasksTabViewController, teamUsersTabViewController, teamStatsTabViewController, teamSettingsTabViewController]
         tabBar.tintColor = .systemBlue
-        tabBar.backgroundColor = .white
+        tabBar.backgroundColor = .systemBackground
     }
     
     func templateNavigationController(unSelectedImage: UIImage, selectedImage: UIImage, rootViewController: UIViewController, title: String? = nil) -> UINavigationController {
