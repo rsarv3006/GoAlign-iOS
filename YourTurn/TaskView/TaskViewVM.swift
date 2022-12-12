@@ -17,19 +17,21 @@ class TaskViewVM {
                                                                 attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
     let taskInformationButtonString: String = "See More"
     let taskCompleteButtonString: String = "Mark Task Complete"
+    let taskIsCompleteLabelString: String = "Task has been Completed!"
     
     // Dynamic Values
     let contentTitle: String
     let assignedUserString: String
     let assignedTeamString: String
     let taskEntries: [TaskEntryModel]
+    let isTaskCompleted: Bool
     
     let task: TaskModel
     
     init(task: TaskModel) {
         self.contentTitle = task.taskName
         self.assignedUserString = task.findCurrentTaskEntry()?.assignedUser.username ?? ""
-        // TODO: - Need to attach team object to getTask
+        self.isTaskCompleted = task.status == TaskStatusVariant.completed ? true : false
         self.assignedTeamString = task.teamId
         self.taskEntries = task.taskEntries?.filter({ taskEntry in
             taskEntry.status == .completed

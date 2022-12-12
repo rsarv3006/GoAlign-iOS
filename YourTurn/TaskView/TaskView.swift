@@ -51,7 +51,7 @@ class TaskView: UIViewController {
         return button
     }()
     
-    private lazy var subViewMarkTaskCompleteButton: UIView = {
+    private lazy var subViewTaskCompletionBox: UIView = {
         let subView = UIView()
         return subView
     }()
@@ -62,6 +62,13 @@ class TaskView: UIViewController {
         let button = StandardButton(configuration: configuration)
         button.addTarget(self, action: #selector(onTouchUpInsideMarkTaskCompleteButton), for: .touchUpInside)
         return button
+    }()
+    
+    private lazy var taskCompleteLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .systemGreen
+        label.font = .systemFont(ofSize: 18)
+        return label
     }()
     
     // MARK: - Lifecycle
@@ -80,11 +87,11 @@ class TaskView: UIViewController {
         
         taskInformationButton.addTarget(self, action: #selector(onTouchUpInsideTaskInformatioButton), for: .touchUpInside)
         
-        view.addSubview(subViewMarkTaskCompleteButton)
-        subViewMarkTaskCompleteButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor, height: 44)
+        view.addSubview(subViewTaskCompletionBox)
+        subViewTaskCompletionBox.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor, height: 44)
         
         view.addSubview(assignedUserLabel)
-        assignedUserLabel.anchor(top: subViewMarkTaskCompleteButton.bottomAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor)
+        assignedUserLabel.anchor(top: subViewTaskCompletionBox.bottomAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor)
         
         view.addSubview(assignedTeamLabel)
         assignedTeamLabel.anchor(top: assignedUserLabel.bottomAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor)
@@ -98,17 +105,22 @@ class TaskView: UIViewController {
         view.addSubview(taskHistoryTable)
         taskHistoryTable.anchor(top: taskHistoryTitleLabel.bottomAnchor, left: safeAreaLeftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: safeAreaRightAnchor, paddingLeft: 8, paddingRight: 8)
         
-        configureMarkTaskCompleteButton()
+        configureTaskCompletionBox()
     }
     
-    private func configureMarkTaskCompleteButton() {
+    private func configureTaskCompletionBox() {
         guard let viewModel = viewModel else { return }
-        
         viewModel.checkIfMarkTaskCompleteButtonShouldShow { shouldShowMarkTaskCompleteButton in
             if shouldShowMarkTaskCompleteButton {
                 DispatchQueue.main.async {
-                    self.subViewMarkTaskCompleteButton.addSubview(self.markTaskCompleteButton)
-                    self.markTaskCompleteButton.center(inView: self.subViewMarkTaskCompleteButton)
+                    self.subViewTaskCompletionBox.addSubview(self.markTaskCompleteButton)
+                    self.markTaskCompleteButton.center(inView: self.subViewTaskCompletionBox)
+                }
+            } else if viewModel.isTaskCompleted == true {
+                DispatchQueue.main.async {
+                    self.subViewTaskCompletionBox.addSubview(self.taskCompleteLabel)
+                    self.taskCompleteLabel.center(inView: self.subViewTaskCompletionBox)
+                    self.taskCompleteLabel.text = viewModel.taskIsCompleteLabelString
                 }
             }
         }
