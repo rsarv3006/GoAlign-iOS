@@ -134,10 +134,16 @@ class TaskView: UIViewController {
         markTaskCompleteButton.setTitle(viewModel.taskCompleteButtonString, for: .normal)
         taskHistoryTable.reloadData()
         
-        viewModel.teamNameSubject.sink { [weak self] teamName in
-            DispatchQueue.main.async {
-                self?.assignedTeamLabel.text = teamName
+        viewModel.teamNameSubject.sink { [weak self] teamNameResult in
+            switch(teamNameResult) {
+            case .failure(let error):
+                self?.showMessage(withTitle: "Uh Oh", message: "Error fetching teamname. Error: \(error)")
+            case .success(let teamName):
+                DispatchQueue.main.async {
+                    self?.assignedTeamLabel.text = teamName
+                }
             }
+            
         }.store(in: &subscriptions)
     }
     

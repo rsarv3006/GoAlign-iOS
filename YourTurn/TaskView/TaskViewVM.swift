@@ -10,7 +10,7 @@ import Combine
 
 class TaskViewVM {
     var subscriptions = Set<AnyCancellable>()
-    private(set) var teamNameSubject = PassthroughSubject<String, Never>()
+    private(set) var teamNameSubject = PassthroughSubject<Result<String, Error>, Never>()
     
     // Static Values
     let taskHistoryTitleLabelText: NSAttributedString = NSAttributedString(string: "Task History",
@@ -49,7 +49,9 @@ class TaskViewVM {
     func getTeamName(teamId: String) {
         TeamService.getTeamsByTeamIds(teamIds: [teamId]) { teams, error in
             if error == nil, let team = teams?[0] {
-                self.teamNameSubject.send(team.teamName)
+                self.teamNameSubject.send(.success(team.teamName))
+            } else if let error = error {
+                self.teamNameSubject.send(.failure(error))
             }
         }
     }
