@@ -19,34 +19,39 @@ class HomeScreenVM {
     let teamTitleLabel: NSAttributedString = NSAttributedString(string: "My Groups",
                                                                 attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
     
-    var tasksSubject = PassthroughSubject<TaskModelArray, Never>()
+    var tasksSubject = PassthroughSubject<Result<TaskModelArray, Error>, Never>()
     
-    var teamsSubject = PassthroughSubject<[TeamModel], Never>()
+    var teamsSubject = PassthroughSubject<Result<[TeamModel], Error>, Never>()
     
     func loadTasks() {
         TaskService.getTasksByAssignedUserId { [weak self] tasks, error in
-            guard let tasks = tasks else {
-                return
+            if let error = error {
+                self?.tasksSubject.send(.failure(error))
+            } else if let tasks = tasks {
+                
+                self?.tasksSubject.send(.success(tasks.filter({ task in
+                    if task.status != .completed {
+                        return true
+                    } else {
+                        return false
+                    }
+                })))
+            } else {
+                self?.tasksSubject.send(.success([]))
             }
             
-            self?.tasksSubject.send(tasks.filter({ task in
-                if task.status != .completed {
-                    return true
-                } else {
-                    return false
-                }
-            }))
         }
     }
     
     func loadTeams() {
         TeamService.getTeamsbyCurrentUser { [weak self] teams, error in
-            guard let teams = teams else {
-                return
+            if let error = error {
+                self?.teamsSubject.send(.failure(error))
+            } else if let teams = teams {
+                self?.teamsSubject.send(.success(teams))
+            } else {
+                self?.teamsSubject.send(.success([]))
             }
-            
-            self?.teamsSubject.send(teams)
-            
         }
     }
     

@@ -165,19 +165,31 @@ class HomeScreen: YtViewController {
     }
     
     private func configureCombine() {
-        viewModel?.tasksSubject.receive(on: DispatchQueue.main).sink(receiveValue: { [weak self] incomingTasks in
+        viewModel?.tasksSubject.receive(on: DispatchQueue.main).sink(receiveValue: { [weak self] tasksResult in
             self?.showLoader(false)
             self?.taskRefreshControl.endRefreshing()
             guard let self = self else { return }
             
-            self.tasks = incomingTasks
+            switch (tasksResult) {
+            case .failure(let error):
+                self.showMessage(withTitle: "Uh Oh", message: "Error encountered retrieving tasks. Error: \(error)")
+            case .success(let incomingTasks):
+                self.tasks = incomingTasks
+            }
+            
         }).store(in: &subscriptions)
         
-        viewModel?.teamsSubject.receive(on: DispatchQueue.main).sink(receiveValue: { [weak self] incomingTeams in
+        viewModel?.teamsSubject.receive(on: DispatchQueue.main).sink(receiveValue: { [weak self] teamsResult in
             self?.showLoader(false)
             self?.teamRefreshControl.endRefreshing()
             guard let self = self else { return }
-            self.teams = incomingTeams
+            switch (teamsResult) {
+            case .failure(let error):
+                self.showMessage(withTitle: "Uh Oh", message: "Error encountered retrieving teams. Error: \(error)")
+            case .success(let incomingTeams):
+                self.teams = incomingTeams
+            }
+            
         }).store(in: &subscriptions)
         
         viewModel?.loadTasks()
@@ -219,7 +231,7 @@ extension HomeScreen: UITableViewDelegate {
                 self.navigationController?.pushViewController(groupTabVC, animated: true)
             }
         }
-
+        
         
         return nil
     }
@@ -268,20 +280,20 @@ extension HomeScreen: UITableViewDataSource {
             let task = tasks[indexPath.row]
             return UIContextMenuConfiguration(identifier: task.taskId as NSString, previewProvider: nil) { _ in
                 let completeTask = UIAction(
-                  title: "Complete Task",
-                  image: UIImage(systemName: "checkmark.circle")) { _ in
-                      self.viewModel?.onMarkTaskComplete(taskId: task.taskId)
-                }
+                    title: "Complete Task",
+                    image: UIImage(systemName: "checkmark.circle")) { _ in
+                        self.viewModel?.onMarkTaskComplete(taskId: task.taskId)
+                    }
                 return UIMenu(title: "", children: [completeTask])
             }
         } else if tableView.tag == TEAM_TABLE_TAG {
             let team = teams[indexPath.row]
             return UIContextMenuConfiguration(identifier: team.teamId as NSString, previewProvider: nil) { _ in
                 let completeTask = UIAction(
-                  title: "Team Thing",
-                  image: UIImage(systemName: "checkmark.circle")) { _ in
-                    // share the task
-                }
+                    title: "Team Thing",
+                    image: UIImage(systemName: "checkmark.circle")) { _ in
+                        // share the task
+                    }
                 return UIMenu(title: "", children: [completeTask])
             }
         }
