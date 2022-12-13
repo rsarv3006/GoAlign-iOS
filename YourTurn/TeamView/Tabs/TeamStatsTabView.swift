@@ -22,6 +22,7 @@ class TeamStatsTabView: YtViewController {
                     self.setLabelTitlesFromTeamStats(viewModel: viewModel)
                 case .failure(let error):
                     Logger.log(logLevel: .Prod, name: Logger.Events.Team.Stats.fetchFailed, payload: ["error": error])
+                    self.showMessage(withTitle: "Uh Oh", message: "Unexpected error fetching stats. \(error.localizedDescription)")
                 }
             }.store(in: &subscriptions)
         }

@@ -169,7 +169,7 @@ class TeamAddModal: YtViewController {
     
     func createTeam(teamName: String) {
         viewModel?.createTeam(name: teamName, completion: { team, error in
-            self.showLoader(true)
+            self.showLoader(false)
             DispatchQueue.main.async {
                 self.createButton.isEnabled = true
             }
@@ -185,8 +185,8 @@ class TeamAddModal: YtViewController {
     }
     
     func createTeamAndGoToInvite(teamName: String) {
-        self.showLoader(false)
         viewModel?.createTeam(name: teamName, completion: { team, error in
+            self.showLoader(false)
             DispatchQueue.main.async {
                 self.createAndInviteButton.isEnabled = true
             }

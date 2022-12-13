@@ -20,6 +20,6 @@ struct TeamAddModalVM {
     }
     
     func createTeamCreateFailErrorMessageString(error: Error) -> String {
-        return "Problem encountered creating the team. Please try again and contact support if the issue persists. Error: \(error)"
+        return "Problem encountered creating the team. \(error.localizedDescription)"
     }
 }

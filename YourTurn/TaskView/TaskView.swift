@@ -137,7 +137,7 @@ class TaskView: UIViewController {
         viewModel.teamNameSubject.sink { [weak self] teamNameResult in
             switch(teamNameResult) {
             case .failure(let error):
-                self?.showMessage(withTitle: "Uh Oh", message: "Error fetching teamname. Error: \(error)")
+                self?.showMessage(withTitle: "Uh Oh", message: "Error fetching teamname. \(error.localizedDescription)")
             case .success(let teamName):
                 DispatchQueue.main.async {
                     self?.assignedTeamLabel.text = teamName

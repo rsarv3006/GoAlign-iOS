@@ -14,7 +14,6 @@ class TeamSelectModal: ModalViewController {
     
     private var teams = [TeamModel]() {
         didSet {
-            showLoader(false)
             DispatchQueue.main.async {
                 self.teamSelectTableView.reloadData()
                 self.teamMemberSelectTableView.reloadData()
@@ -86,10 +85,12 @@ class TeamSelectModal: ModalViewController {
     
     func loadTeamsAndMembers() {
         TeamService.getTeamsbyCurrentUser { teams, error in
+            self.showLoader(false)
             if let teams = teams {
                 self.teams = teams
             } else if let error = error {
                 Logger.log(logLevel: .Prod, name: Logger.Events.Team.fetchFailed, payload: ["error": error])
+                self.showMessage(withTitle: "Uh Oh", message: "Unexpected error encountered loading teams. \(error.localizedDescription)")
             }
         }
     }

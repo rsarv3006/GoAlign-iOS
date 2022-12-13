@@ -20,13 +20,19 @@ struct StatsService {
                 return
             }
             
-            if let data = data {
+            if let data = data, let response = response as? HTTPURLResponse {
                 do {
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-                    
-                    let teamStats = try decoder.decode(TeamStatsModel.self, from: data)
-                    completionHandler(teamStats, nil)
+                    if response.statusCode == 200 {
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+                        
+                        let teamStats = try decoder.decode(TeamStatsModel.self, from: data)
+                        completionHandler(teamStats, nil)
+                    } else {
+                        let decoder = JSONDecoder()
+                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                        throw ServiceErrors.custom(message: serverError.message)
+                    }
                 } catch {
                     completionHandler(nil, error)
                     return

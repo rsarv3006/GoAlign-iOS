@@ -20,13 +20,19 @@ struct TeamService {
                 return
             }
             
-            if let data = data {
+            if let data = data, let response = response as? HTTPURLResponse {
                 do {
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-                    
-                    let teams = try decoder.decode([TeamModel].self, from: data)
-                    completionHandler(teams, nil)
+                    if response.statusCode == 200 {
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+                        
+                        let teams = try decoder.decode([TeamModel].self, from: data)
+                        completionHandler(teams, nil)
+                    } else {
+                        let decoder = JSONDecoder()
+                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                        throw ServiceErrors.custom(message: serverError.message)
+                    }
                 } catch {
                     completionHandler(nil, error)
                     return
@@ -56,14 +62,17 @@ struct TeamService {
             
             if let data = data, let response = response as? HTTPURLResponse {
                 do {
-                    if response.statusCode == 500 {
-                        throw ServiceErrors.server500(message: (String(data: data, encoding: String.Encoding.utf8) ?? "Something went wrong"))
+                    if response.statusCode == 201 {
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+                        
+                        let teamModel = try decoder.decode(TeamModel.self, from: data)
+                        completionHandler(teamModel, nil)
+                    } else {
+                        let decoder = JSONDecoder()
+                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                        throw ServiceErrors.custom(message: serverError.message)
                     }
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-                    
-                    let teamModel = try decoder.decode(TeamModel.self, from: data)
-                    completionHandler(teamModel, nil)
                 } catch {
                     completionHandler(nil, error)
                 }
@@ -84,13 +93,19 @@ struct TeamService {
                 return
             }
             
-            if let data = data {
+            if let data = data, let response = response as? HTTPURLResponse {
                 do {
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-                    
-                    let teams = try decoder.decode([TeamModel].self, from: data)
-                    completionHandler(teams, nil)
+                    if response.statusCode == 200 {
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+                        
+                        let teams = try decoder.decode([TeamModel].self, from: data)
+                        completionHandler(teams, nil)
+                    } else {
+                        let decoder = JSONDecoder()
+                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                        throw ServiceErrors.custom(message: serverError.message)
+                    }
                 } catch {
                     completionHandler(nil, error)
                     return

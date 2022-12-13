@@ -12,6 +12,7 @@ enum TeamInviteStatus {
     case failure
 }
 
+// TODO: Start here fixing errors
 struct TeamInviteService {
     static func getTeamInvitesByCurrentUser(completionHandler: @escaping(([TeamInviteModel]?, Error?) -> Void)) {
         guard let url = Networking.createUrl(endPoint: "teamInvite/byCurrentUser") else {

@@ -11,7 +11,6 @@ enum ServiceErrors: Error, LocalizedError {
     case custom(message: String)
     case unknownUrl
     case dataSerializationFailed(dataObjectName: String)
-    case server500(message: String)
     
     public var errorDescription: String? {
         switch self {
@@ -21,8 +20,6 @@ enum ServiceErrors: Error, LocalizedError {
             return NSLocalizedString("An error occurred connecting.", comment: "Unable to connect.")
         case .dataSerializationFailed(let dataObjectName):
             return NSLocalizedString("An error occurred parsing serialized data. Unable to serialize \(dataObjectName)", comment: "")
-        case .server500(let message):
-            return NSLocalizedString("An unknown server error occurred.", comment: message)
         }
     }
 }
