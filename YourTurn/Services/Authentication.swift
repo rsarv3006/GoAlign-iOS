@@ -76,7 +76,7 @@ struct AuthenticationService {
     }
     
     static func checkForStandardErrors(error: Error) -> String {
-        var returnErrorString = AuthErrorHandling.UserFacingErrorStrings.unknownError
+        var returnErrorString = error.localizedDescription
         for errorReference in AuthErrorHandling.errors {
             if String(describing: error).contains(errorReference.keyword) {
                 returnErrorString = errorReference.userFacingErrorString

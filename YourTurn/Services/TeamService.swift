@@ -44,7 +44,7 @@ struct TeamService {
         let teamData = try? JSONEncoder().encode(teamData)
 
         guard let teamData = teamData else {
-            completionHandler(nil, ServiceErrors.dataSerializationFailed)
+            completionHandler(nil, ServiceErrors.dataSerializationFailed(dataObjectName: "CreateTeamDto"))
             return
         }
         

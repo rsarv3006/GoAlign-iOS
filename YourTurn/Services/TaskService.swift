@@ -21,13 +21,19 @@ struct TaskService {
                 return
             }
             
-            if let data = data {
+            if let data = data, let response = response as? HTTPURLResponse{
                 do {
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-                    
-                    let taskItems = try decoder.decode(TaskModelArray.self, from: data)
-                    completionHandler(taskItems, nil)
+                    if response.statusCode == 200 {
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+                        
+                        let taskItems = try decoder.decode(TaskModelArray.self, from: data)
+                        completionHandler(taskItems, nil)
+                    } else {
+                        let decoder = JSONDecoder()
+                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                        throw ServiceErrors.custom(message: serverError.message)
+                    }
                 } catch {
                     completionHandler(nil, error)
                     return
@@ -44,11 +50,11 @@ struct TaskService {
         
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
-
+        
         let taskData = try? encoder.encode(taskDto)
         
         guard let taskData = taskData else {
-            completionHandler(nil, ServiceErrors.dataSerializationFailed)
+            completionHandler(nil, ServiceErrors.dataSerializationFailed(dataObjectName: "CreateTaskDto"))
             return
         }
         
@@ -58,18 +64,19 @@ struct TaskService {
                 return
             }
             
-                
             if let data = data, let response = response as? HTTPURLResponse {
                 do {
-                    if response.statusCode == 500 {
-                        throw ServiceErrors.server500(message: (String(data: data, encoding: String.Encoding.utf8) ?? "Something went wrong"))
+                    if response.statusCode == 201 {
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+                        
+                        let taskModel = try decoder.decode(TaskModel.self, from: data)
+                        completionHandler(taskModel, nil)
+                    } else {
+                        let decoder = JSONDecoder()
+                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                        throw ServiceErrors.custom(message: serverError.message)
                     }
-                    
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-                    
-                    let taskModel = try decoder.decode(TaskModel.self, from: data)
-                    completionHandler(taskModel, nil)
                 } catch {
                     Logger.log(logLevel: .Prod, name: Logger.Events.Task.creationFailed, payload: ["error": error])
                     completionHandler(nil, error)
@@ -92,15 +99,17 @@ struct TaskService {
             
             if let data = data, let response = response as? HTTPURLResponse {
                 do {
-                    if response.statusCode == 500 {
-                        throw ServiceErrors.server500(message: (String(data: data, encoding: String.Encoding.utf8) ?? "Something went wrong"))
+                    if response.statusCode == 201 {
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+                        
+                        let taskModel = try decoder.decode(TaskModel.self, from: data)
+                        completionHandler(taskModel, nil)
+                    } else {
+                        let decoder = JSONDecoder()
+                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                        throw ServiceErrors.custom(message: serverError.message)
                     }
-                    
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-                    
-                    let taskModel = try decoder.decode(TaskModel.self, from: data)
-                    completionHandler(taskModel, nil)
                 } catch {
                     Logger.log(logLevel: .Verbose, name: Logger.Events.Task.markCompleteFailed, payload: ["error": error])
                     completionHandler(nil, error)

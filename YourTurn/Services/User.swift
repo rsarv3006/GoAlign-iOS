@@ -17,7 +17,7 @@ enum UserService {
         let userData = try? JSONEncoder().encode(user)
 
         guard let userData = userData else {
-            completionHandler(nil, ServiceErrors.dataSerializationFailed)
+            completionHandler(nil, ServiceErrors.dataSerializationFailed(dataObjectName: "CreateUserDto"))
             return
         }
 
@@ -30,14 +30,17 @@ enum UserService {
             
             if let data = data, let response = response as? HTTPURLResponse {
                 do {
-                    if response.statusCode == 500 {
-                        throw ServiceErrors.server500(message: String(data: data, encoding: String.Encoding.utf8) ?? "Something went wrong")
+                    if response.statusCode == 201 {
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+                        
+                        let userModel = try decoder.decode(UserModel.self, from: data)
+                        completionHandler(userModel, nil)
+                    } else {
+                        let decoder = JSONDecoder()
+                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                        throw ServiceErrors.custom(message: serverError.message)
                     }
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-                    
-                    let userModel = try decoder.decode(UserModel.self, from: data)
-                    completionHandler(userModel, nil)
                 } catch {
                     Logger.log(logLevel: .Verbose, name: Logger.Events.User.createFailed, payload: ["error": error, "email": user.email])
                     AuthenticationService.signOut()
@@ -61,14 +64,17 @@ enum UserService {
             
             if let data = data, let response = response as? HTTPURLResponse {
                 do {
-                    if response.statusCode == 500 {
-                        throw ServiceErrors.server500(message: String(data: data, encoding: String.Encoding.utf8) ?? "Something went wrong")
+                    if response.statusCode == 200 {
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+                        
+                        let userModel = try decoder.decode(UserModel.self, from: data)
+                        completionHandler(userModel, nil)
+                    } else {
+                        let decoder = JSONDecoder()
+                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                        throw ServiceErrors.custom(message: serverError.message)
                     }
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-                    
-                    let userModel = try decoder.decode(UserModel.self, from: data)
-                    completionHandler(userModel, nil)
                 } catch {
                     Logger.log(logLevel: .Verbose, name: Logger.Events.User.fetchFailed, payload: ["error": error, "user": "current User"])
                     AuthenticationService.signOut()

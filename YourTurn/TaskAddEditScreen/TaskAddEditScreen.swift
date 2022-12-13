@@ -110,7 +110,9 @@ private extension TaskAddEditScreen {
                         self.showLoader(false)
                         guard error == nil else {
                             Logger.log(logLevel: .Prod, name: Logger.Events.Task.creationFailed, payload: ["error": String(describing: error)])
-                            self.showMessage(withTitle: "Uh Oh", message: "Issue creating a task. Error: \(String(describing: error))")
+                            if let error = error {
+                                self.showMessage(withTitle: "Uh Oh", message: "Issue creating a task. \(error.localizedDescription)")
+                            }
                             return
                         }
                         

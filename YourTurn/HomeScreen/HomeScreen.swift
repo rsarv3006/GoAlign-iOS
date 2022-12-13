@@ -172,7 +172,7 @@ class HomeScreen: YtViewController {
             
             switch (tasksResult) {
             case .failure(let error):
-                self.showMessage(withTitle: "Uh Oh", message: "Error encountered retrieving tasks. Error: \(error)")
+                self.showMessage(withTitle: "Uh Oh", message: "Error encountered retrieving tasks. \(error.localizedDescription)")
             case .success(let incomingTasks):
                 self.tasks = incomingTasks
             }
@@ -185,7 +185,7 @@ class HomeScreen: YtViewController {
             guard let self = self else { return }
             switch (teamsResult) {
             case .failure(let error):
-                self.showMessage(withTitle: "Uh Oh", message: "Error encountered retrieving teams. Error: \(error)")
+                self.showMessage(withTitle: "Uh Oh", message: "Error encountered retrieving teams. \(error.localizedDescription)")
             case .success(let incomingTeams):
                 self.teams = incomingTeams
             }

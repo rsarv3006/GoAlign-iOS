@@ -96,7 +96,7 @@ struct TeamInviteService {
         let createInviteData = try? JSONEncoder().encode(createInviteDto)
 
         guard let createInviteData = createInviteData else {
-            completionHandler(.failure, ServiceErrors.dataSerializationFailed)
+            completionHandler(.failure, ServiceErrors.dataSerializationFailed(dataObjectName: "CreateInviteDtoModel"))
             return
         }
         
