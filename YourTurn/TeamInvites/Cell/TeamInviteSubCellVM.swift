@@ -22,8 +22,10 @@ struct TeamInviteSubCellVM {
     
     private(set) var requestDisplayUIAlert = PassthroughSubject<UIAlertController, Never>()
     
-    func acceptInvite() {
+    func acceptInvite(delegate: TeamInvitesViewControllerDelegate?) {
+        delegate?.modifyLoaderState(shouldShowLoader: true)
         TeamInviteService.acceptInvite(inviteId: inviteId) { status, error in
+            delegate?.modifyLoaderState(shouldShowLoader: false)
             if status == .success {
                 requestReloadSubject.send(true)
             } else if let error = error {
@@ -34,8 +36,10 @@ struct TeamInviteSubCellVM {
         }
     }
     
-    func declineInvite() {
+    func declineInvite(delegate: TeamInvitesViewControllerDelegate?) {
+        delegate?.modifyLoaderState(shouldShowLoader: true)
         TeamInviteService.declineInvite(inviteId: inviteId) { status, error in
+            delegate?.modifyLoaderState(shouldShowLoader: false)
             if status == .success {
                 requestReloadSubject.send(true)
             } else if let error = error {
@@ -46,9 +50,9 @@ struct TeamInviteSubCellVM {
         }
     }
     
-    func displayUIAlert(error: Error) {
+    private func displayUIAlert(error: Error) {
         DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Uh Oh", message: "\(String(describing: error))", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Uh Oh", message: error.localizedDescription, preferredStyle: .alert)
             let alertAction = UIAlertAction(title: "Close", style: .default) { _ in
                 alert.removeFromParent()
             }

@@ -23,6 +23,14 @@ class TeamUsersTabView: YtViewController {
     var subscriptions = Set<AnyCancellable>()
     private let selectedBackgroundColor: UIColor = .systemCyan
     
+    private var teamInvitesArray: [TeamInviteModel] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     private var selected: SelectedList = .users {
         didSet {
             guard let viewModel = viewModel else { return }
@@ -36,6 +44,15 @@ class TeamUsersTabView: YtViewController {
                 currentUsersButton.backgroundColor = .systemBackground
                 tableView.reloadData()
             }
+            
+            viewModel.teamInvitesSubject.sink { teamInviteResult in
+                switch(teamInviteResult) {
+                case .failure(let error):
+                    self.showMessage(withTitle: "Uh Oh", message: "Error encountered fetching outstanding invites. \(error.localizedDescription)")
+                case .success(let teamInvites):
+                    self.teamInvitesArray = teamInvites
+                }
+            }.store(in: &subscriptions)
         }
     }
     
@@ -126,7 +143,7 @@ extension TeamUsersTabView: UITableViewDataSource {
         if selected == .users {
             return viewModel?.usersSubject.value.count ?? 0
         } else {
-            return viewModel?.teamInvitesSubject.value.count ?? 0
+            return teamInvitesArray.count
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -135,9 +152,9 @@ extension TeamUsersTabView: UITableViewDataSource {
             cell.viewModel = TeamUsersTabViewCellVM(user: viewModel.usersSubject.value[indexPath.row])
             return cell
             
-        } else if selected == .invites, let viewModel = viewModel {
+        } else if selected == .invites {
             let cell = tableView.dequeueReusableCell(withIdentifier: TabCellIdentifiers.invites, for: indexPath) as! TeamInvitesTabViewCell
-            cell.viewModel = TeamInvitesTabViewCellVM(invite: viewModel.teamInvitesSubject.value[indexPath.row])
+            cell.viewModel = TeamInvitesTabViewCellVM(invite: teamInvitesArray[indexPath.row])
             return cell
             
         } else {

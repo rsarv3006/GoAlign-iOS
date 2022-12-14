@@ -20,13 +20,17 @@ class TeamInviteUserModal: UIViewController {
             modalTitle.text = viewModel.modalTitleText
             closeModalButton.setTitle(viewModel.closeModalButtonText, for: .normal)
             
-            viewModel.addedInvitedUserSubject.sink { completion in
-                print(completion)
-            } receiveValue: { _ in
+            viewModel.addedInvitedUserSubject.sink { inviteResponse in
                 DispatchQueue.main.async {
                     self.showLoader(false)
-                    self.invitedTeamMembersTableView.reloadData()
-                    self.emailAddressToInvite.text = ""
+                    switch inviteResponse {
+                    case .failure(let error):
+                        self.showMessage(withTitle: "Uh Oh", message: "Unexpected error encountered. \(error.localizedDescription)")
+                    case.success(_):
+                        self.showLoader(false)
+                        self.invitedTeamMembersTableView.reloadData()
+                        self.emailAddressToInvite.text = ""
+                    }
                 }
             }.store(in: &subscriptions)
         }

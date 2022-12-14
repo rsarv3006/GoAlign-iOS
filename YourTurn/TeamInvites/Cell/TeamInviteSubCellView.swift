@@ -18,6 +18,8 @@ class TeamInviteSubCellView: UITableViewCell {
         }
     }
     
+    var delegate: TeamInvitesViewControllerDelegate?
+    
     // MARK: - UI Elements
     private lazy var declineInviteButton: StandardButton = {
         let button = StandardButton()
@@ -59,11 +61,11 @@ class TeamInviteSubCellView: UITableViewCell {
     }
     
     @objc func onAcceptPress() {
-        viewModel?.acceptInvite()
+        viewModel?.acceptInvite(delegate: delegate)
     }
     
     @objc func onDeclinePress() {
-        viewModel?.declineInvite()
+        viewModel?.declineInvite(delegate: delegate)
     }
 }
 

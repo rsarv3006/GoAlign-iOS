@@ -12,7 +12,6 @@ enum TeamInviteStatus {
     case failure
 }
 
-// TODO: Start here fixing errors
 struct TeamInviteService {
     static func getTeamInvitesByCurrentUser(completionHandler: @escaping(([TeamInviteModel]?, Error?) -> Void)) {
         guard let url = Networking.createUrl(endPoint: "teamInvite/byCurrentUser") else {
@@ -26,15 +25,21 @@ struct TeamInviteService {
                 return
             }
             
-            if let data = data {
+            if let data = data, let response = response as? HTTPURLResponse {
                 do {
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-                    
-                    let teamInvites = try decoder.decode([TeamInviteModel].self, from: data)
-                    completionHandler(teamInvites, nil)
+                    if response.statusCode == 200 {
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+                        
+                        let teamInvites = try decoder.decode([TeamInviteModel].self, from: data)
+                        completionHandler(teamInvites, nil)
+                    } else {
+                        let decoder = JSONDecoder()
+                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                        throw ServiceErrors.custom(message: serverError.message)
+                    }
                 } catch {
-                    Logger.log(logLevel: .Verbose, name: Logger.Events.Team.Invite.fetchFailed, payload: ["error": error])
+                    Logger.log(logLevel: .Verbose, name: Logger.Events.Team.Invite.fetchFailed, payload: ["error": error.localizedDescription])
                     completionHandler(nil, error)
                     return
                 }
@@ -54,11 +59,19 @@ struct TeamInviteService {
                 return
             }
             
-            if let response = response as? HTTPURLResponse {
-                if response.statusCode == 200 {
-                    completionHandler(.success, nil)
-                } else {
-                    completionHandler(.failure, ServiceErrors.custom(message: "Unknown Error Accepting Invite"))
+            if let data = data, let response = response as? HTTPURLResponse {
+                do {
+                    if response.statusCode == 201 {
+                        completionHandler(.success, nil)
+                    } else {
+                        let decoder = JSONDecoder()
+                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                        throw ServiceErrors.custom(message: serverError.message)
+                    }
+                } catch {
+                    Logger.log(logLevel: .Verbose, name: Logger.Events.Team.Invite.acceptFailed, payload: ["error": error.localizedDescription])
+                    completionHandler(.failure, error)
+                    return
                 }
             }
         }
@@ -78,11 +91,19 @@ struct TeamInviteService {
                 return
             }
             
-            if let response = response as? HTTPURLResponse {
-                if response.statusCode == 200 {
-                    completionHandler(.success, nil)
-                } else {
-                    completionHandler(.failure, ServiceErrors.custom(message: "Unknown Error declining Invite"))
+            if let data = data, let response = response as? HTTPURLResponse {
+                do {
+                    if response.statusCode == 201 {
+                        completionHandler(.success, nil)
+                    } else {
+                        let decoder = JSONDecoder()
+                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                        throw ServiceErrors.custom(message: serverError.message)
+                    }
+                } catch {
+                    Logger.log(logLevel: .Verbose, name: Logger.Events.Team.Invite.declineFailed, payload: ["error": error.localizedDescription])
+                    completionHandler(.failure, error)
+                    return
                 }
             }
         }
@@ -95,7 +116,7 @@ struct TeamInviteService {
         }
         
         let createInviteData = try? JSONEncoder().encode(createInviteDto)
-
+        
         guard let createInviteData = createInviteData else {
             completionHandler(.failure, ServiceErrors.dataSerializationFailed(dataObjectName: "CreateInviteDtoModel"))
             return
@@ -107,11 +128,19 @@ struct TeamInviteService {
                 return
             }
             
-            if let response = response as? HTTPURLResponse {
-                if response.statusCode == 201 {
-                    completionHandler(.success, nil)
-                } else {
-                    completionHandler(.failure, ServiceErrors.custom(message: "Unknown Error declining Invite"))
+            if let data = data, let response = response as? HTTPURLResponse {
+                do {
+                    if response.statusCode == 201 {
+                        completionHandler(.success, nil)
+                    } else {
+                        let decoder = JSONDecoder()
+                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                        throw ServiceErrors.custom(message: serverError.message)
+                    }
+                } catch {
+                    Logger.log(logLevel: .Verbose, name: Logger.Events.Team.Invite.createFailed, payload: ["error": error.localizedDescription])
+                    completionHandler(.failure, error)
+                    return
                 }
             }
         }
@@ -129,15 +158,21 @@ struct TeamInviteService {
                 return
             }
             
-            if let data = data {
+            if let data = data, let response = response as? HTTPURLResponse {
                 do {
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-                    
-                    let teamInvites = try decoder.decode([TeamInviteModel].self, from: data)
-                    completionHandler(teamInvites, nil)
+                    if response.statusCode == 200 {
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+                        
+                        let teamInvites = try decoder.decode([TeamInviteModel].self, from: data)
+                        completionHandler(teamInvites, nil)
+                    } else {
+                        let decoder = JSONDecoder()
+                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                        throw ServiceErrors.custom(message: serverError.message)
+                    }
                 } catch {
-                    Logger.log(logLevel: .Verbose, name: Logger.Events.Team.Invite.fetchFailed, payload: ["error": error, "teamId": teamId])
+                    Logger.log(logLevel: .Verbose, name: Logger.Events.Team.Invite.fetchFailed, payload: ["error": error.localizedDescription, "teamId": teamId])
                     completionHandler(nil, error)
                     return
                 }

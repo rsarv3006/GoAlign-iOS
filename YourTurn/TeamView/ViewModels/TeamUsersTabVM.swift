@@ -10,7 +10,7 @@ import Combine
 
 struct TeamUsersTabVM {
     
-    var teamInvitesSubject = CurrentValueSubject<[TeamInviteModel], Never>([])
+    var teamInvitesSubject = CurrentValueSubject<Result<[TeamInviteModel], Error>, Never>(.success([]))
     var usersSubject = CurrentValueSubject<[UserModel], Never>([])
     
     private let team: TeamModel
@@ -23,7 +23,9 @@ struct TeamUsersTabVM {
     func fetchTeamInvites() {
         TeamInviteService.getOutstandingInvitesByTeamId(teamId: team.teamId) { teamInvites, error in
             if let teamInvites = teamInvites {
-                teamInvitesSubject.send(teamInvites)
+                teamInvitesSubject.send(.success(teamInvites))
+            } else if let error = error {
+                teamInvitesSubject.send(.failure(error))
             }
         }
     }

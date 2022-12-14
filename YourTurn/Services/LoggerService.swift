@@ -86,6 +86,9 @@ struct Logger {
             
             struct Invite {
                 static let fetchFailed = "team_invite_fetch_fail"
+                static let createFailed = "team_invite_create_fail"
+                static let declineFailed = "team_invite_decline_fail"
+                static let acceptFailed = "team_invite_accept_fail"
             }
             
             struct Stats {

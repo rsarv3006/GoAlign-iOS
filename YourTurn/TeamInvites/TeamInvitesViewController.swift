@@ -11,17 +11,17 @@ import Combine
 private let TEAM_INVITE_CELL_REUSE_ID = "teamInviteCell"
 private let TEAM_INVITE_SUB_CELL_REUSE_ID = "teamInviteSubCell"
 
+
+protocol TeamInvitesViewControllerDelegate {
+    func modifyLoaderState(shouldShowLoader: Bool)
+}
+
 class TeamInvitesViewController: UITableViewController {
     var subscriptions = Set<AnyCancellable>()
     
     private(set) var requestHomeReload = PassthroughSubject<Bool, Never>()
     
-    var viewModel: TeamInvitesVM? {
-        didSet {
-            viewModel?.fetchCurrentInvites()
-            configureCombineListeners()
-        }
-    }
+    var viewModel: TeamInvitesVM?
     
     private lazy var teamInvites: [TeamInviteDisplayModel] = [] {
         didSet {
@@ -39,14 +39,19 @@ class TeamInvitesViewController: UITableViewController {
         tableView.register(TeamInviteCellView.self, forCellReuseIdentifier: TEAM_INVITE_CELL_REUSE_ID)
         tableView.register(TeamInviteSubCellView.self, forCellReuseIdentifier: TEAM_INVITE_SUB_CELL_REUSE_ID)
         tableView.rowHeight = 60
+        
+        viewModel?.fetchCurrentInvites()
+        configureCombineListeners()
+        showLoader(true)
     }
 
     // MARK: - Helpers
     func configureCombineListeners() {
         viewModel?.teamInvitesSubject.sink(receiveValue: { result in
+            self.showLoader(false)
             switch result {
             case .failure(let error):
-                Logger.log(logLevel: .Verbose, name: Logger.Events.Team.Invite.fetchFailed, payload: ["error": error])
+                self.showMessage(withTitle: "Uh Oh", message: "Unexpected error fetching invites. \(error.localizedDescription)")
             case .success(let teamInvites):
                 self.teamInvites = teamInvites
             }
@@ -78,6 +83,7 @@ extension TeamInvitesViewController {
             let inviteId = teamInvites[indexPath.section].inviteModel.inviteId
             
             cell.viewModel = TeamInviteSubCellVM(inviteId: inviteId)
+            cell.delegate = self
             
             cell.viewModel?.requestDisplayUIAlert.sink(receiveValue: { uiAlert in
                 DispatchQueue.main.async {
@@ -101,5 +107,11 @@ extension TeamInvitesViewController {
         }
 
         return nil
+    }
+}
+
+extension TeamInvitesViewController: TeamInvitesViewControllerDelegate {
+    func modifyLoaderState(shouldShowLoader: Bool) {
+        showLoader(shouldShowLoader)
     }
 }

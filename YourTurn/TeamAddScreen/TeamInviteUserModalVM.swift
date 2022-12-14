@@ -13,7 +13,7 @@ class TeamInviteUserModalVM {
     let modalTitleText = "Invite People to your Team"
     let closeModalButtonText = "Finish"
     
-    var addedInvitedUserSubject = PassthroughSubject<Result<Bool, ServiceErrors>, Never>()
+    var addedInvitedUserSubject = PassthroughSubject<Result<Bool, Error>, Never>()
     
     let teamId: String
     var invitedUsers: [String] = []
@@ -28,10 +28,10 @@ class TeamInviteUserModalVM {
             if status == .success {
                 self.invitedUsers.append(emailAddressToInvite)
                 self.addedInvitedUserSubject.send(.success(true))
-            } else if error != nil {
-                self.addedInvitedUserSubject.send(.failure(.custom(message: String(describing: error))))
+            } else if let error = error {
+                self.addedInvitedUserSubject.send(.failure(error))
             } else {
-                self.addedInvitedUserSubject.send(.failure(.custom(message: "Unknown error inviting user. Please try again")))
+                self.addedInvitedUserSubject.send(.failure(ServiceErrors.custom(message: "Unknown error inviting user. Please try again")))
             }
         }
     }
