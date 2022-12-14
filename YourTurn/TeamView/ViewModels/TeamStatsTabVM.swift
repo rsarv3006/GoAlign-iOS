@@ -11,7 +11,7 @@ import Combine
 typealias TeamStatsModelResult = Result<Bool, Error>
 
 class TeamStatsTabVM {
-    var reloadStats = PassthroughSubject<TeamStatsModelResult, Never>()
+    var reloadStats = CurrentValueSubject<TeamStatsModelResult, Never>(.success(true))
     
     let tabTitleString = "Team Stats"
     

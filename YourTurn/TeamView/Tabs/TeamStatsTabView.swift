@@ -11,22 +11,7 @@ import Combine
 class TeamStatsTabView: YtViewController {
     var subscriptions = Set<AnyCancellable>()
     
-    var viewModel: TeamStatsTabVM? {
-        didSet {
-            guard let viewModel = viewModel else { return }
-            tabTitle.text = viewModel.tabTitleString
-            
-            viewModel.reloadStats.sink { teamStatsResult in
-                switch teamStatsResult {
-                case .success(_):
-                    self.setLabelTitlesFromTeamStats(viewModel: viewModel)
-                case .failure(let error):
-                    Logger.log(logLevel: .Prod, name: Logger.Events.Team.Stats.fetchFailed, payload: ["error": error])
-                    self.showMessage(withTitle: "Uh Oh", message: "Unexpected error fetching stats. \(error.localizedDescription)")
-                }
-            }.store(in: &subscriptions)
-        }
-    }
+    var viewModel: TeamStatsTabVM?
     
     private lazy var tabTitle: UILabel = {
         let label = UILabel()
@@ -62,6 +47,26 @@ class TeamStatsTabView: YtViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        
+        showLoader(true)
+        configureFromViewModel()
+
+    }
+    
+    private func configureFromViewModel() {
+        guard let viewModel = viewModel else { return }
+        tabTitle.text = viewModel.tabTitleString
+        
+        viewModel.reloadStats.sink { teamStatsResult in
+            self.showLoader(false)
+            switch teamStatsResult {
+            case .success(_):
+                self.setLabelTitlesFromTeamStats(viewModel: viewModel)
+            case .failure(let error):
+                Logger.log(logLevel: .Prod, name: Logger.Events.Team.Stats.fetchFailed, payload: ["error": error.localizedDescription])
+                self.showMessage(withTitle: "Uh Oh", message: "Unexpected error fetching stats. \(error.localizedDescription)")
+            }
+        }.store(in: &subscriptions)
     }
     
     override func configureView() {
