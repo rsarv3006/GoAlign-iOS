@@ -12,7 +12,7 @@ class DeleteUserCell: UITableViewCell {
     let id: SettingsVariant = .DeleteUser
     
     private(set) var requestDisplayUIAlert = PassthroughSubject<UIAlertController, Never>()
-    private(set) var deleteAccountReturnToSignIn = PassthroughSubject<Bool, Never>()
+    private(set) var deleteAccountReturnToSignIn = PassthroughSubject<Result<Bool, Error>, Never>()
     
     // MARK: UI Elements
     private lazy var deleteUserButton: AlertButton = {
@@ -65,7 +65,14 @@ class DeleteUserCell: UITableViewCell {
     
     func deleteAccount() {
         UserService.deleteCurrentUser { didSucceed, error in
-            self.deleteAccountReturnToSignIn.send(true)
+            if didSucceed == true {
+                self.deleteAccountReturnToSignIn.send(.success(true))
+            } else if let error = error {
+                self.deleteAccountReturnToSignIn.send(.failure(error))
+            } else {
+                self.deleteAccountReturnToSignIn.send(.failure(ServiceErrors.custom(message: "Failed to delete account. Please try again and contact support if the issue persists.")))
+            }
+            
         }
     }
 }

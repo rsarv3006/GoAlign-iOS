@@ -42,8 +42,14 @@ class SettingsScreenView: UITableViewController {
             self.present(alert, animated: true)
         }.store(in: &subscriptions)
         
-        cell.deleteAccountReturnToSignIn.sink { val in
-            self.deleteAccountReturnToSignIn.send(val)
+        cell.deleteAccountReturnToSignIn.sink { deleteResponse in
+            switch deleteResponse {
+            case .failure(let error):
+                self.showMessage(withTitle: "Uh Oh", message: error.localizedDescription)
+            case .success(_):
+                self.deleteAccountReturnToSignIn.send(true)
+            }
+            
         }.store(in: &subscriptions)
         
         return cell

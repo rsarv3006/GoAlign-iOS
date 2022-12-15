@@ -92,7 +92,7 @@ enum UserService {
         
         Networking.delete(url: url) { _, response, error in
             if let response = response as? HTTPURLResponse {
-                if response.statusCode == 200 {
+                if response.statusCode == 204 {
                     completionHandler(true, nil)
                     return
                 } else {
