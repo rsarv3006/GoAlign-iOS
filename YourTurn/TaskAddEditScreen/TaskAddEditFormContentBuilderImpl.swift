@@ -36,7 +36,7 @@ final class TaskAddEditFormContentBuilderImpl {
             HideableIntervalPickerFormComponent(id: .intervalBetweenWindows, title: "Time Between Tasks:", validations: []),
             ModalFormComponent(id: .taskTeamPicker, buttonTitle: "Select Team", viewControllerToOpen: TeamSelectModal()),
             TextBoxFormComponent(id: .notes, placeholder: "Notes"),
-            ButtonFormComponent(id: .taskCreationSubmit, title: "Confirm")
+            ButtonFormComponent(id: .taskCreationSubmit, title: "Create")
         ])
     ]
     
