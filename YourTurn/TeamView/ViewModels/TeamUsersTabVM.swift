@@ -5,7 +5,7 @@
 //  Created by rjs on 11/8/22.
 //
 
-import Foundation
+import UIKit
 import Combine
 
 struct TeamUsersTabVM {
@@ -13,7 +13,7 @@ struct TeamUsersTabVM {
     var teamInvitesSubject = CurrentValueSubject<Result<[TeamInviteModel], Error>, Never>(.success([]))
     var usersSubject = CurrentValueSubject<[UserModel], Never>([])
     
-    private let team: TeamModel
+    let team: TeamModel
     
     init(team: TeamModel) {
         self.team = team

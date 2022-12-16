@@ -21,7 +21,7 @@ private struct TabCellIdentifiers {
 class TeamUsersTabView: YtViewController {
     
     var subscriptions = Set<AnyCancellable>()
-    private let selectedBackgroundColor: UIColor = .systemCyan
+    private let selectedBackgroundColor: UIColor = .systemBlue
     
     private var teamInvitesArray: [TeamInviteModel] = [] {
         didSet {
@@ -100,6 +100,13 @@ class TeamUsersTabView: YtViewController {
         return tableView
     }()
     
+    private lazy var inviteUsersButton: BlueButton = {
+        let button = BlueButton()
+        button.setTitle("Invite Users", for: .normal)
+        button.addTarget(self, action: #selector(onInviteTeamMemberPressed), for: .touchUpInside)
+        return button
+    }()
+    
     // MARK: LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,11 +122,15 @@ class TeamUsersTabView: YtViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
+        view.addSubview(inviteUsersButton)
+        inviteUsersButton.centerX(inView: view, topAnchor: topSafeAnchor)
+        inviteUsersButton.anchor(width: screenWidth * 0.6)
+        
         view.addSubview(currentUsersButton)
-        currentUsersButton.anchor(top: topSafeAnchor, left: view.leftAnchor, width: screenWidth / 2, height: 64)
+        currentUsersButton.anchor(top: inviteUsersButton.bottomAnchor, left: view.leftAnchor, paddingTop: 12, width: screenWidth / 2, height: 64)
         
         view.addSubview(invitesButton)
-        invitesButton.anchor(top: topSafeAnchor, left: currentUsersButton.rightAnchor, right: view.rightAnchor, height: 64)
+        invitesButton.anchor(top: inviteUsersButton.bottomAnchor, left: currentUsersButton.rightAnchor, right: view.rightAnchor, paddingTop: 12, height: 64)
         
         view.addSubview(tableView)
         tableView.anchor(top:currentUsersButton.bottomAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor)
@@ -132,11 +143,17 @@ class TeamUsersTabView: YtViewController {
             selected = .users
         }
     }
+    
+    @objc func onInviteTeamMemberPressed() {
+        guard let viewModel = viewModel else { return }
+        let inviteModal = TeamInviteUserModal()
+        let inviteModalVm = TeamInviteUserModalVM(teamId: viewModel.team.teamId)
+        inviteModal.viewModel = inviteModalVm
+        navigationController?.present(inviteModal, animated: true)
+    }
 }
 
-extension TeamUsersTabView: UITableViewDelegate {
-    
-}
+extension TeamUsersTabView: UITableViewDelegate {}
 
 extension TeamUsersTabView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
