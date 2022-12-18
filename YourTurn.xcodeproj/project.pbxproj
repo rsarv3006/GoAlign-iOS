@@ -65,6 +65,7 @@
 		7833146A291B51D6009DDD3F /* TeamInvitesTabViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78331469291B51D6009DDD3F /* TeamInvitesTabViewCellVM.swift */; };
 		7833146C291B51F6009DDD3F /* TeamInvitesTabViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7833146B291B51F6009DDD3F /* TeamInvitesTabViewCell.swift */; };
 		783314722925EF1F009DDD3F /* ExternalLinkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783314712925EF1F009DDD3F /* ExternalLinkService.swift */; };
+		78352991294E7428000A4290 /* TeamSettingsTabVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78352990294E7428000A4290 /* TeamSettingsTabVM.swift */; };
 		783DECD228617EEB0062343E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD128617EEB0062343E /* AppDelegate.swift */; };
 		783DECD428617EEB0062343E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD328617EEB0062343E /* SceneDelegate.swift */; };
 		783DECD928617EEB0062343E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 783DECD728617EEB0062343E /* Main.storyboard */; };
@@ -234,6 +235,7 @@
 		78331469291B51D6009DDD3F /* TeamInvitesTabViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInvitesTabViewCellVM.swift; sourceTree = "<group>"; };
 		7833146B291B51F6009DDD3F /* TeamInvitesTabViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInvitesTabViewCell.swift; sourceTree = "<group>"; };
 		783314712925EF1F009DDD3F /* ExternalLinkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLinkService.swift; sourceTree = "<group>"; };
+		78352990294E7428000A4290 /* TeamSettingsTabVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsTabVM.swift; sourceTree = "<group>"; };
 		783DECCE28617EEB0062343E /* YourTurn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourTurn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		783DECD128617EEB0062343E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		783DECD328617EEB0062343E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -444,6 +446,7 @@
 				7833145B2918BD2A009DDD3F /* TeamTasksTabVM.swift */,
 				78331463291B35D1009DDD3F /* TeamUsersTabVM.swift */,
 				780F498F2934722F006C8456 /* TeamStatsTabVM.swift */,
+				78352990294E7428000A4290 /* TeamSettingsTabVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1094,6 +1097,7 @@
 				783DECD228617EEB0062343E /* AppDelegate.swift in Sources */,
 				7847732A28768B69009AFC92 /* TaskAddEditFormContentBuilderImpl.swift in Sources */,
 				780F197028A4905100371B91 /* RegexValidationManagerImpl.swift in Sources */,
+				78352991294E7428000A4290 /* TeamSettingsTabVM.swift in Sources */,
 				78B90EB82939C4A600E6CBA8 /* TeamStatsModel.swift in Sources */,
 				78B687882887A6B2006B6CAB /* SwitchControlledTextFormComponent.swift in Sources */,
 				78A4E0BD2883B9550067DBCE /* RegexFormItem.swift in Sources */,

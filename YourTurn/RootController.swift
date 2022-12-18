@@ -14,6 +14,7 @@ class RootController: UIViewController {
     private var subscriptions = Set<AnyCancellable>()
     
     override func viewDidLoad() {
+        view.backgroundColor = .systemBackground
         super.viewDidLoad()
         configureRootView()
     }

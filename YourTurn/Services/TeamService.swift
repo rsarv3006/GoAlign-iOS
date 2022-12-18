@@ -114,4 +114,35 @@ struct TeamService {
         }
         
     }
+    
+    static func deleteTeam(teamId: String, completionHandler: @escaping(((Bool, Error?) -> Void))) {
+        guard let url = Networking.createUrl(endPoint: "team/\(teamId)") else {
+            completionHandler(false, ServiceErrors.unknownUrl)
+            return
+        }
+        
+        Networking.delete(url: url) { data, response, error in
+            guard error == nil else {
+                completionHandler(false, error)
+                return
+            }
+            
+            if let data = data, let response = response as? HTTPURLResponse {
+                do {
+                    if response.statusCode == 204 {
+                        completionHandler(true, nil)
+                    } else {
+                        let decoder = JSONDecoder()
+                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                        throw ServiceErrors.custom(message: serverError.message)
+                    }
+                } catch {
+                    completionHandler(false, error)
+                    return
+                }
+            }
+        }
+        
+        
+    }
 }

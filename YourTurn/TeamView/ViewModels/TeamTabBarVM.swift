@@ -10,6 +10,8 @@ import Combine
 
 struct TeamTabBarVM {
     
+    private(set) var requestHomeReload = PassthroughSubject<Bool, Never>()
+    
     let team: TeamModel
     
     init(team: TeamModel) {

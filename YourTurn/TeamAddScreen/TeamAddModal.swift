@@ -203,10 +203,6 @@ class TeamAddModal: YtViewController {
                 self.closeModal()
                 self.delegate?.onTeamAddGoToInvite(viewController: self, teamId: teamId)
             }
-            
-
-            
-
         })
     }
     

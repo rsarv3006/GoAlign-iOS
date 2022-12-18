@@ -83,6 +83,7 @@ struct Logger {
             static let teamCreated = "team_create_success"
             static let teamCreateFailed = "team_create_fail"
             static let fetchFailed = "team_fetch_fail"
+            static let deleteAttempt = "team_delete_attempt"
             
             struct Invite {
                 static let fetchFailed = "team_invite_fetch_fail"

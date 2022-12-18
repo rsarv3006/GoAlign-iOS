@@ -96,8 +96,20 @@ private extension TeamTabBarController {
     
     func configureSettingsTab(viewModel: TeamTabBarVM) -> UIViewController {
         let teamSettingsTabViewImage = (UIImage(systemName: "gear.circle"))!
+        var teamSettingsTabVM = TeamSettingsTabVM(team: viewModel.team)
         
-        let teamSettingsTabViewController = templateNavigationController(unSelectedImage: teamSettingsTabViewImage, selectedImage: teamSettingsTabViewImage, rootViewController: TeamSettingsTabView(), title: "Settings")
+        let teamSettingsTabView = TeamSettingsTabView()
+        teamSettingsTabVM.requestHomeReload = viewModel.requestHomeReload
+        
+        teamSettingsTabView.viewModel = teamSettingsTabVM
+        
+        teamSettingsTabVM.requestHomeReload.sink { _ in
+            DispatchQueue.main.async {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }.store(in: &subscriptions)
+        
+        let teamSettingsTabViewController = templateNavigationController(unSelectedImage: teamSettingsTabViewImage, selectedImage: teamSettingsTabViewImage, rootViewController: teamSettingsTabView, title: "Settings")
         
         return teamSettingsTabViewController
     }
