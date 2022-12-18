@@ -288,7 +288,7 @@ extension HomeScreen: UITableViewDataSource {
                 let completeTask = UIAction(
                     title: "Complete Task",
                     image: UIImage(systemName: "checkmark.circle")) { _ in
-                        self.viewModel?.onMarkTaskComplete(taskId: task.taskId)
+                        self.viewModel?.onMarkTaskComplete(viewController: self,taskId: task.taskId)
                     }
                 return UIMenu(title: "", children: [completeTask])
             }

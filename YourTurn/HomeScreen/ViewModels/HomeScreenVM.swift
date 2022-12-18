@@ -70,11 +70,14 @@ class HomeScreenVM {
         navigationController?.present(newVc, animated: true)
     }
     
-    func onMarkTaskComplete(taskId: String) {
+    func onMarkTaskComplete(viewController: UIViewController, taskId: String) {
         TaskService.markTaskComplete(taskId: taskId) { newTask, error in
-            // Handle Error
             if error == nil {
                 self.loadTasks()
+            } else if let error = error {
+                viewController.showMessage(withTitle: "Uh Oh", message: error.localizedDescription)
+            } else {
+                viewController.showMessage(withTitle: "Uh Oh", message: "An unexpected error occurred. Please try again.")
             }
         }
     }
