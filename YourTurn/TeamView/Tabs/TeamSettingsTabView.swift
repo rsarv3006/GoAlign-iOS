@@ -36,6 +36,7 @@ class TeamSettingsTabView: YtViewController {
         configureView()
     }
     
+    // MARK: Helpers
     override func configureView() {
         view.addSubview(leaveTeamButton)
         leaveTeamButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, right: view.rightAnchor)
@@ -45,44 +46,10 @@ class TeamSettingsTabView: YtViewController {
     }
     
     @objc func onDeleteTeamPressed() {
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Delete Team", message: "Are you sure you want to delete this team?", preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-                alert.removeFromParent()
-            }
-            
-            let confirmAction = UIAlertAction(title: "Yes I'm Sure", style: .destructive) { _ in
-                alert.removeFromParent()
-                self.viewModel?.onRequestDeleteTeam(viewController: self)
-                Logger.log(logLevel: .Prod, name: Logger.Events.Team.deleteAttempt, payload: ["teamId":"\(String(describing: self.viewModel?.team.teamId))"])
-            }
-            
-            alert.addAction(cancelAction)
-            alert.addAction(confirmAction)
-            
-            self.present(alert, animated: true)
-            
-        }
+        viewModel?.displayConfirmDeleteTeamModal(viewController: self)
     }
     
     @objc func onLeaveTeamPressed() {
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Leave Team", message: "Are you sure you want to leave this team?", preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-                alert.removeFromParent()
-            }
-            
-            let confirmAction = UIAlertAction(title: "Yes I'm Sure", style: .destructive) { _ in
-                alert.removeFromParent()
-                self.viewModel?.onRemoveSelfFromTeam(viewController: self)
-                Logger.log(logLevel: .Prod, name: Logger.Events.Team.leaveAttempt, payload: ["teamId":"\(String(describing: self.viewModel?.team.teamId))"])
-            }
-            
-            alert.addAction(cancelAction)
-            alert.addAction(confirmAction)
-            
-            self.present(alert, animated: true)
-            
-        }
+        viewModel?.displayRemoveSelfFromTeamModal(viewController: self)
     }
 }
