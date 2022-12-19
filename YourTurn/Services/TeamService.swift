@@ -48,7 +48,7 @@ struct TeamService {
         }
         
         let teamData = try? JSONEncoder().encode(teamData)
-
+        
         guard let teamData = teamData else {
             completionHandler(nil, ServiceErrors.dataSerializationFailed(dataObjectName: "CreateTeamDto"))
             return
@@ -142,7 +142,42 @@ struct TeamService {
                 }
             }
         }
+    }
+    
+    static func removeUserFromTeam(teamId: String, userToRemove: String, completionHandler: @escaping(((Bool, Error?) -> Void))) {
+        guard let url = Networking.createUrl(endPoint: "team/removeUserFromTeam") else {
+            completionHandler(false, ServiceErrors.unknownUrl)
+            return
+        }
         
+        let removeUserDto = RemoveUserFromTeamDto(userToRemove: userToRemove, teamId: teamId)
         
+        let removeUserData = try? JSONEncoder().encode(removeUserDto)
+        
+        guard let removeUserData = removeUserData else {
+            completionHandler(false, ServiceErrors.dataSerializationFailed(dataObjectName: "CreateTeamDto"))
+            return
+        }
+        
+        Networking.post(url: url, body: removeUserData) { data, response, error in
+            guard error == nil else {
+                completionHandler(false, error)
+                return
+            }
+            
+            if let data = data, let response = response as? HTTPURLResponse {
+                do {
+                    if response.statusCode == 204 {
+                        completionHandler(true, nil)
+                    } else {
+                        let decoder = JSONDecoder()
+                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                        throw ServiceErrors.custom(message: serverError.message)
+                    }
+                } catch {
+                    completionHandler(false, error)
+                }
+            }
+        }
     }
 }

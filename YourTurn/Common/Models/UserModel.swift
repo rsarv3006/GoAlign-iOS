@@ -35,3 +35,13 @@ class CreateUserDto: Codable {
     }
 
 }
+
+class RemoveUserFromTeamDto: Codable {
+    let userToRemove: String
+    let teamId: String
+    
+    init(userToRemove: String, teamId: String) {
+        self.userToRemove = userToRemove
+        self.teamId = teamId
+    }
+}
