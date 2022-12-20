@@ -50,6 +50,36 @@ enum UserService {
         }
     }
     
+    static func createUser(with user: CreateUserDto) async throws -> UserModel {
+        guard let url = Networking.createUrl(endPoint: "user") else {
+            throw ServiceErrors.unknownUrl
+        }
+        
+        let userData = try? JSONEncoder().encode(user)
+        
+        guard let userData = userData else {
+            throw ServiceErrors.dataSerializationFailed(dataObjectName: "CreateUserDto")
+        }
+        
+        let (data, response) = try await Networking.post(url: url, body: userData)
+        
+        if let response = response as? HTTPURLResponse, response.statusCode == 201 {
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+            
+            let userModel = try decoder.decode(UserModel.self, from: data)
+            return userModel
+        } else {
+            let decoder = JSONDecoder()
+            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            Logger.log(logLevel: .Verbose, name: Logger.Events.User.createFailed, payload: ["error": serverError.message, "email": user.email])
+            AuthenticationService.signOut()
+            throw ServiceErrors.custom(message: serverError.message)
+        }
+        
+        
+    }
+    
     static func getCurrentUser(completionHandler: @escaping ((UserModel?, Error?) -> Void)) {
         guard let url = Networking.createUrl(endPoint: "user/current") else {
             completionHandler(nil, ServiceErrors.unknownUrl)

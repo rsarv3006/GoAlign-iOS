@@ -16,15 +16,13 @@ class SignUpVM {
     let signUpSubject = PassthroughSubject<Result<UserModel?, Error>, Never>()
     
     func signUp(form: SignUpCompletedForm) {
-        AuthenticationService.createAccount(form: form) { [weak self] user, error in
-            if let user = user {
-                self?.signUpSubject.send(.success(user))
-            } else if let error = error {
-                self?.signUpSubject.send(.failure(error))
-            } else {
-                self?.signUpSubject.send(.failure(ServiceErrors.custom(message: "Something is busted and I have no idea what")))
+        Task {
+            do {
+                let user = try await AuthenticationService.createAccount(form: form)
+                signUpSubject.send(.success(user))
+            } catch {
+                signUpSubject.send(.failure(error))
             }
         }
     }
 }
-

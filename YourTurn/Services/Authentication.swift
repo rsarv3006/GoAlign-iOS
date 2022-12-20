@@ -17,29 +17,24 @@ struct AuthenticationService {
         return self.getCurrentFirebaseUser() !== nil
     }
     
-    static func createAccount(form: SignUpCompletedForm, completion: @escaping(((UserModel?, Error?) -> Void))) {
-        Auth.auth().createUser(withEmail: form.emailAddress, password: form.password) { dataResult, error in
-            guard error == nil else {
-                completion(nil, error)
-                self.signOut()
-                return
-            }
-
+    static func createAccount(form: SignUpCompletedForm) async throws -> UserModel {
+        do {
+            try await Auth.auth().createUser(withEmail: form.emailAddress, password: form.password)
+            
             let currentUser = self.getCurrentFirebaseUser()
-
-            if let userId = currentUser?.uid, let email = currentUser?.email {
-                let createUserDto = CreateUserDto(userId: userId, username: form.username, email: email)
-
-                UserService.createUser(with: createUserDto) { user, error in
-                    completion(user, error)
-                }
-            } else {
-                self.signOut()
-                Auth.auth().currentUser?.delete(completion: { error in
-                    completion(nil, ServiceErrors.custom(message: "Issue with authentication, please try again"))
-                    return
-                })
+            
+            guard let userId = currentUser?.uid, let email = currentUser?.email else {
+                throw ServiceErrors.custom(message: "Unable to find email and userid.")
             }
+            
+            let createUserDto = CreateUserDto(userId: userId, username: form.username, email: email)
+            let userModel = try await UserService.createUser(with: createUserDto)
+            return userModel
+            
+        } catch {
+            self.signOut()
+            try await Auth.auth().currentUser?.delete()
+            throw error
         }
     }
     
