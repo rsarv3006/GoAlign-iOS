@@ -40,10 +40,32 @@ struct Networking {
         }
     }
     
+    private static func apiCall(httpMethod: HttpMethod, url: URL, body: Data? = nil) async throws -> (Data, URLResponse) {
+        let token = try await AuthenticationService.getToken()
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = httpMethod.rawValue
+        if let body = body {
+            request.httpBody = body
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        }
+        
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue(token, forHTTPHeaderField: "Authorization")
+
+        let response = try await URLSession.shared.data(for: request)
+
+        return response
+    }
+    
     static func get(url: URL, body: Data? = nil, completion: @escaping((Data?, URLResponse?, Error?) -> Void)) {
         self.apiCall(httpMethod: .get, url: url, body: body) { data, response, error in
             completion(data, response, error)
         }
+    }
+    
+    static func get(url: URL, body: Data? = nil) async throws -> (Data, URLResponse) {
+        try await apiCall(httpMethod: .get, url: url, body: body)
     }
     
     static func post(url: URL, body: Data? = nil, completion: @escaping((Data?, URLResponse?, Error?) -> Void)) {
@@ -52,10 +74,18 @@ struct Networking {
         }
     }
     
+    static func post(url: URL, body: Data? = nil) async throws -> (Data, URLResponse) {
+        try await apiCall(httpMethod: .post, url: url, body: body)
+    }
+    
     static func delete(url: URL, body: Data? = nil, completion: @escaping((Data?, URLResponse?, Error?) -> Void)) {
         self.apiCall(httpMethod: .delete, url: url) { data, response, error in
             completion(data, response, error)
         }
+    }
+    
+    static func delete(url: URL, body: Data? = nil) async throws -> (Data, URLResponse) {
+        try await apiCall(httpMethod: .delete, url: url, body: body)
     }
     
     static func createUrl(endPoint: String) -> URL? {

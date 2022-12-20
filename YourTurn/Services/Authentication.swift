@@ -57,9 +57,12 @@ struct AuthenticationService {
         }
     }
     
-    static func getToken() async throws -> String? {
+    static func getToken() async throws -> String {
         let token = try await self.getCurrentFirebaseUser()?.getIDTokenResult(forcingRefresh: true)
-        return token?.token
+        guard let token = token else {
+            throw ServiceErrors.custom(message: "Token Not Found")
+        }
+        return token.token
     }
     
     static func getToken(completion: @escaping((String?, Error?) -> Void)) {

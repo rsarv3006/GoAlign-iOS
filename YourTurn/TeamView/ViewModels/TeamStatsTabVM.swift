@@ -22,12 +22,13 @@ class TeamStatsTabVM {
     }
     
     private func getTeamStats(teamId: String) {
-        StatsService.getTeamStats(teamId: teamId) { teamStats, error in
-            if let error = error {
-                self.reloadStats.send(.failure(error))
-            } else if let teamStats = teamStats {
+        Task {
+            do {
+                let teamStats = try await StatsService.getTeamStats(teamId: teamId)
                 self.configureLabelStrings(teamStats: teamStats)
                 self.reloadStats.send(.success(true))
+            } catch {
+                self.reloadStats.send(.failure(error))
             }
         }
     }
