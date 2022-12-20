@@ -15,13 +15,12 @@ class SignInVM {
     let signInSubject = PassthroughSubject<Result<UserModel?, Error>, Never>()
     
     func signIn(form: SignInCompletedForm) {
-        AuthenticationService.signInToAccount(form: form) { [weak self] user, error in
-            if let user = user {
-                self?.signInSubject.send(.success(user))
-            } else if let error = error {
-                self?.signInSubject.send(.failure(error))
-            } else {
-                self?.signInSubject.send(.failure(ServiceErrors.custom(message: "Something is busted and I have no idea what")))
+        Task {
+            do {
+                let user = try await AuthenticationService.signInToAccount(form: form)
+                self.signInSubject.send(.success(user))
+            } catch {
+                self.signInSubject.send(.failure(error))
             }
         }
     }

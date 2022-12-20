@@ -44,19 +44,7 @@ class ForgotPasswordView: AuthViewController {
     }
     
     @objc func onResetPasswordButtonPressed() {
-        if let email = emailInputField.text, !email.isEmpty, email.contains("@") {
-            viewModel?.requestPasswordReset(emailAddress: email, completion: { error in
-                if error != nil {
-                    DispatchQueue.main.async {
-                        self.showMessage(withTitle: "Uh Oh", message: "Error requesting password reset. Error: \(String(describing: error))")
-                    }
-                } else {
-                    self.showMessage(withTitle: "Reset Requested", message: "Password reset has been requested. If you don't see it in your email please check your spam folder.")
-                }
-            })
-        } else {
-            showMessage(withTitle: "", message: "Invalid email address")
-        }
+        viewModel?.requestPasswordReset(viewController: self, email: emailInputField.text)
     }
 
 }

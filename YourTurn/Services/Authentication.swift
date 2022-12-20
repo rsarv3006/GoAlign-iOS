@@ -57,6 +57,17 @@ struct AuthenticationService {
         }
     }
     
+    static func signInToAccount(form: SignInCompletedForm) async throws -> UserModel {
+        do {
+            try await Auth.auth().signIn(withEmail: form.emailAddress, password: form.password)
+            let userModel = try await UserService.getCurrentUser()
+            return userModel
+        } catch {
+            self.signOut()
+            throw error
+        }
+    }
+    
     static func getToken() async throws -> String {
         let token = try await self.getCurrentFirebaseUser()?.getIDTokenResult(forcingRefresh: true)
         guard let token = token else {
@@ -88,10 +99,8 @@ struct AuthenticationService {
         return returnErrorString
     }
     
-    static func requestPasswordReset(emailAddress: String, completion: @escaping((Error?) -> Void)) {
-        Auth.auth().sendPasswordReset(withEmail: emailAddress) { error in
-            completion(error)
-        }
+    static func requestPasswordReset(emaillAddress: String) async throws {
+        try await Auth.auth().sendPasswordReset(withEmail: emaillAddress)
     }
     
 

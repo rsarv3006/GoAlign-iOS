@@ -104,8 +104,9 @@ class HomeScreen: YtViewController {
         configureCombine()
         configureRefreshControl()
         
-        AuthenticationService.getToken { token, error in
-            print(String(describing: token))
+        Task {
+            let token = try? await AuthenticationService.getToken()
+            print(token ?? "UH OH NO TOKEN FOUND")
         }
     }
     
