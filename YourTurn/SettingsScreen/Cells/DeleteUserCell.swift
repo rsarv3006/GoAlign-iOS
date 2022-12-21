@@ -64,15 +64,17 @@ class DeleteUserCell: UITableViewCell {
     }
     
     func deleteAccount() {
-        UserService.deleteCurrentUser { didSucceed, error in
-            if didSucceed == true {
-                self.deleteAccountReturnToSignIn.send(.success(true))
-            } else if let error = error {
+        Task {
+            do {
+                let deleteResult = try await UserService.deleteCurrentUser()
+                if deleteResult == true {
+                    self.deleteAccountReturnToSignIn.send(.success(true))
+                } else {
+                    throw ServiceErrors.custom(message: "Failed to delete account. Please try again and contact support if the issue persists.")
+                }
+            } catch {
                 self.deleteAccountReturnToSignIn.send(.failure(error))
-            } else {
-                self.deleteAccountReturnToSignIn.send(.failure(ServiceErrors.custom(message: "Failed to delete account. Please try again and contact support if the issue persists.")))
             }
-            
         }
     }
 }

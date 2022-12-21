@@ -46,6 +46,19 @@ class TaskViewVM {
         task.checkIfCurrentUserIsAssignedUser(completionHandler: completionHandler)
     }
     
+    func onRequestMarkTaskComplete(viewController: TaskView) {
+        Task {
+            do {
+                let _ = try await TaskService.markTaskComplete(taskId: task.taskId)
+                
+                await viewController.navigationController?.popViewController(animated: true)
+                await viewController.requestHomeReload.send(true)
+            } catch {
+                await viewController.showMessage(withTitle: "Uh Oh", message: "Error Marking Task Complete: \(error.localizedDescription)")
+            }
+        }
+    }
+    
     func getTeamName(teamId: String) {
         TeamService.getTeamsByTeamIds(teamIds: [teamId]) { teams, error in
             if error == nil, let team = teams?[0] {

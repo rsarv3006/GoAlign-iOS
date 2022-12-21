@@ -24,22 +24,21 @@ class HomeScreenVM {
     var teamsSubject = PassthroughSubject<Result<[TeamModel], Error>, Never>()
     
     func loadTasks() {
-        TaskService.getTasksByAssignedUserId { [weak self] tasks, error in
-            if let error = error {
-                self?.tasksSubject.send(.failure(error))
-            } else if let tasks = tasks {
+        Task {
+            do {
+                let tasks = try await TaskService.getTasksByAssignedUserId()
                 
-                self?.tasksSubject.send(.success(tasks.filter({ task in
+                tasksSubject.send(.success(tasks.filter({ task in
                     if task.status != .completed {
                         return true
                     } else {
                         return false
                     }
                 })))
-            } else {
-                self?.tasksSubject.send(.success([]))
+                
+            } catch {
+                tasksSubject.send(.failure(error))
             }
-            
         }
     }
     
@@ -71,13 +70,12 @@ class HomeScreenVM {
     }
     
     func onMarkTaskComplete(viewController: UIViewController, taskId: String) {
-        TaskService.markTaskComplete(taskId: taskId) { newTask, error in
-            if error == nil {
+        Task {
+            do {
+                let _ = try await TaskService.markTaskComplete(taskId: taskId)
                 self.loadTasks()
-            } else if let error = error {
-                viewController.showMessage(withTitle: "Uh Oh", message: error.localizedDescription)
-            } else {
-                viewController.showMessage(withTitle: "Uh Oh", message: "An unexpected error occurred. Please try again.")
+            } catch {
+                await viewController.showMessage(withTitle: "Uh Oh", message: error.localizedDescription)
             }
         }
     }

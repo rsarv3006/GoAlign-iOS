@@ -14,14 +14,16 @@ class TeamInvitesVM {
     var teamInvitesSubject = PassthroughSubject<Result<[TeamInviteDisplayModel], Error>, Never>()
     
     func fetchCurrentInvites() {
-        TeamInviteService.getTeamInvitesByCurrentUser { teamInvites, error in
-            if let error = error {
-                self.teamInvitesSubject.send(.failure(error))
-            } else if let teamInvites = teamInvites {
+        Task {
+            do {
+                let teamInvites = try await TeamInviteService.getTeamInvitesByCurrentUser()
                 let teamInvitesDisplayModels: [TeamInviteDisplayModel] = teamInvites.compactMap { teamInvite in
                     return TeamInviteDisplayModel(inviteModel: teamInvite)
                 }
-                self.teamInvitesSubject.send(.success(teamInvitesDisplayModels))
+                teamInvitesSubject.send(.success(teamInvitesDisplayModels))
+            } catch {
+                Logger.log(logLevel: .Verbose, name: Logger.Events.Team.Invite.fetchFailed, payload: ["error": error.localizedDescription])
+                teamInvitesSubject.send(.failure(error))
             }
         }
     }

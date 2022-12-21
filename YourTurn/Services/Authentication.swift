@@ -38,20 +38,6 @@ struct AuthenticationService {
         }
     }
     
-    static func signInToAccount(form: SignInCompletedForm, completion: @escaping(((UserModel?, Error?) -> Void))) {
-        Auth.auth().signIn(withEmail: form.emailAddress, password: form.password) { authResult, error in
-            guard error == nil else {
-                completion(nil, error)
-                self.signOut()
-                return
-            }
-            
-            UserService.getCurrentUser { user, error in
-                completion(user, error)
-            }
-        }
-    }
-    
     static func signInToAccount(form: SignInCompletedForm) async throws -> UserModel {
         do {
             try await Auth.auth().signIn(withEmail: form.emailAddress, password: form.password)
@@ -71,6 +57,7 @@ struct AuthenticationService {
         return token.token
     }
     
+    // TODO: Remove this function when it's no longer needed
     static func getToken(completion: @escaping((String?, Error?) -> Void)) {
         self.getCurrentFirebaseUser()?.getIDTokenForcingRefresh(true, completion: completion)
     }

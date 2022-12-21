@@ -48,7 +48,6 @@ private extension TaskAddEditScreen {
         collectionView.dataSource = dataSource
         
         view.addSubview(collectionView)
-        
         collectionView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.safeAreaLayoutGuide.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.safeAreaLayoutGuide.rightAnchor)
     }
     
@@ -106,23 +105,7 @@ private extension TaskAddEditScreen {
                     print("ERROR IN TASK CREATION PLACEHOLDER")
                     print(error)
                 case .success(let createTaskDto):
-                    TaskService.createTask(taskToCreate: createTaskDto) { createdTask, error in
-                        self.showLoader(false)
-                        guard error == nil else {
-                            Logger.log(logLevel: .Prod, name: Logger.Events.Task.creationFailed, payload: ["error": String(describing: error)])
-                            if let error = error {
-                                self.showMessage(withTitle: "Uh Oh", message: "Issue creating a task. \(error.localizedDescription)")
-                            }
-                            return
-                        }
-                        
-                        self.delegate?.onTaskScreenComplet(viewController: self)
-                        
-                        DispatchQueue.main.async {
-                            self.navigationController?.popViewController(animated: true)
-                        }
-                        
-                    }
+                    self.viewModel?.onTaskCreateRequest(viewController: self, taskForm: createTaskDto)
                 }
             }.store(in: &subscriptions)
     }

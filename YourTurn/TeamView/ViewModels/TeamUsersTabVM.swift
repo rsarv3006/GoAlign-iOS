@@ -21,10 +21,11 @@ struct TeamUsersTabVM {
     }
     
     func fetchTeamInvites() {
-        TeamInviteService.getOutstandingInvitesByTeamId(teamId: team.teamId) { teamInvites, error in
-            if let teamInvites = teamInvites {
+        Task {
+            do {
+                let teamInvites = try await TeamInviteService.getOutstandingInvitesByTeamId(teamId: team.teamId)
                 teamInvitesSubject.send(.success(teamInvites))
-            } else if let error = error {
+            } catch {
                 teamInvitesSubject.send(.failure(error))
             }
         }

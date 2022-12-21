@@ -24,14 +24,16 @@ class TeamInviteUserModalVM {
     
     func createTeamInvite(emailAddressToInvite: String) {
         let createInvite = CreateInviteDtoModel(teamId: teamId, emailAddressToInvite: emailAddressToInvite)
-        TeamInviteService.createInvite(createInviteDto: createInvite) { status, error in
-            if status == .success {
-                self.invitedUsers.append(emailAddressToInvite)
-                self.addedInvitedUserSubject.send(.success(true))
-            } else if let error = error {
+        
+        Task {
+            do {
+                let status = try await TeamInviteService.createInvite(createInviteDto: createInvite)
+                if status == .success {
+                    invitedUsers.append(emailAddressToInvite)
+                    addedInvitedUserSubject.send(.success(true))
+                }
+            } catch {
                 self.addedInvitedUserSubject.send(.failure(error))
-            } else {
-                self.addedInvitedUserSubject.send(.failure(ServiceErrors.custom(message: "Unknown error inviting user. Please try again")))
             }
         }
     }

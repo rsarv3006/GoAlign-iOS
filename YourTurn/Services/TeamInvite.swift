@@ -13,171 +13,90 @@ enum TeamInviteStatus {
 }
 
 struct TeamInviteService {
-    static func getTeamInvitesByCurrentUser(completionHandler: @escaping(([TeamInviteModel]?, Error?) -> Void)) {
+    static func getTeamInvitesByCurrentUser() async throws -> [TeamInviteModel] {
         guard let url = Networking.createUrl(endPoint: "teamInvite/byCurrentUser") else {
-            completionHandler(nil, ServiceErrors.unknownUrl)
-            return
+            throw ServiceErrors.unknownUrl
         }
         
-        Networking.get(url: url) { data, response, error in
-            guard error == nil else {
-                completionHandler(nil, error)
-                return
-            }
-            
-            if let data = data, let response = response as? HTTPURLResponse {
-                do {
-                    if response.statusCode == 200 {
-                        let decoder = JSONDecoder()
-                        decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-                        
-                        let teamInvites = try decoder.decode([TeamInviteModel].self, from: data)
-                        completionHandler(teamInvites, nil)
-                    } else {
-                        let decoder = JSONDecoder()
-                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
-                        throw ServiceErrors.custom(message: serverError.message)
-                    }
-                } catch {
-                    Logger.log(logLevel: .Verbose, name: Logger.Events.Team.Invite.fetchFailed, payload: ["error": error.localizedDescription])
-                    completionHandler(nil, error)
-                    return
-                }
-            }
+        let (data, response) = try await Networking.get(url: url)
+        
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+        
+        if let response = response as? HTTPURLResponse, response.statusCode == 200 {
+            let teamInvites = try decoder.decode([TeamInviteModel].self, from: data)
+            return teamInvites
+        } else {
+            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            throw ServiceErrors.custom(message: serverError.message)
         }
     }
     
-    static func acceptInvite(inviteId: String, completionHandler: @escaping((TeamInviteStatus, Error?) -> Void)) {
+    static func acceptInvite(inviteId: String) async throws -> TeamInviteStatus {
         guard let url = Networking.createUrl(endPoint: "teamInvite/\(inviteId)/accept") else {
-            completionHandler(.failure, ServiceErrors.unknownUrl)
-            return
+            throw ServiceErrors.unknownUrl
         }
         
-        Networking.post(url: url) { data, response, error in
-            guard error == nil else {
-                completionHandler(.failure, error)
-                return
-            }
-            
-            if let data = data, let response = response as? HTTPURLResponse {
-                do {
-                    if response.statusCode == 201 {
-                        completionHandler(.success, nil)
-                    } else {
-                        let decoder = JSONDecoder()
-                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
-                        throw ServiceErrors.custom(message: serverError.message)
-                    }
-                } catch {
-                    Logger.log(logLevel: .Verbose, name: Logger.Events.Team.Invite.acceptFailed, payload: ["error": error.localizedDescription])
-                    completionHandler(.failure, error)
-                    return
-                }
-            }
+        let (data, response) = try await Networking.post(url: url)
+        
+        if let response = response as? HTTPURLResponse, response.statusCode == 201 {
+            return .success
+        } else {
+            let decoder = JSONDecoder()
+            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            throw ServiceErrors.custom(message: serverError.message)
         }
-        
-        
     }
     
-    static func declineInvite(inviteId: String, completionHandler: @escaping((TeamInviteStatus, Error?) -> Void)) {
+    static func declineInvite(inviteId: String) async throws -> TeamInviteStatus {
         guard let url = Networking.createUrl(endPoint: "teamInvite/\(inviteId)/decline") else {
-            completionHandler(.failure, ServiceErrors.unknownUrl)
-            return
+            throw ServiceErrors.unknownUrl
         }
         
-        Networking.post(url: url) { data, response, error in
-            guard error == nil else {
-                completionHandler(.failure, error)
-                return
-            }
-            
-            if let data = data, let response = response as? HTTPURLResponse {
-                do {
-                    if response.statusCode == 201 {
-                        completionHandler(.success, nil)
-                    } else {
-                        let decoder = JSONDecoder()
-                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
-                        throw ServiceErrors.custom(message: serverError.message)
-                    }
-                } catch {
-                    Logger.log(logLevel: .Verbose, name: Logger.Events.Team.Invite.declineFailed, payload: ["error": error.localizedDescription])
-                    completionHandler(.failure, error)
-                    return
-                }
-            }
+        let (data, response) = try await Networking.post(url: url)
+        
+        if let response = response as? HTTPURLResponse, response.statusCode == 201 {
+            return .success
+        } else {
+            let decoder = JSONDecoder()
+            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            throw ServiceErrors.custom(message: serverError.message)
         }
     }
     
-    static func createInvite(createInviteDto: CreateInviteDtoModel, completionHandler: @escaping((TeamInviteStatus, Error?) -> Void)) {
+    static func createInvite(createInviteDto: CreateInviteDtoModel) async throws -> TeamInviteStatus {
         guard let url = Networking.createUrl(endPoint: "teamInvite") else {
-            completionHandler(.failure, ServiceErrors.unknownUrl)
-            return
+            throw ServiceErrors.unknownUrl
         }
         
-        let createInviteData = try? JSONEncoder().encode(createInviteDto)
+        let createInviteData = try JSONEncoder().encode(createInviteDto)
         
-        guard let createInviteData = createInviteData else {
-            completionHandler(.failure, ServiceErrors.dataSerializationFailed(dataObjectName: "CreateInviteDtoModel"))
-            return
-        }
+        let (data, response) = try await Networking.post(url: url, body: createInviteData)
         
-        Networking.post(url: url, body: createInviteData) { data, response, error in
-            guard error == nil else {
-                completionHandler(.failure, error)
-                return
-            }
-            
-            if let data = data, let response = response as? HTTPURLResponse {
-                do {
-                    if response.statusCode == 201 {
-                        completionHandler(.success, nil)
-                    } else {
-                        let decoder = JSONDecoder()
-                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
-                        throw ServiceErrors.custom(message: serverError.message)
-                    }
-                } catch {
-                    Logger.log(logLevel: .Verbose, name: Logger.Events.Team.Invite.createFailed, payload: ["error": error.localizedDescription])
-                    completionHandler(.failure, error)
-                    return
-                }
-            }
+        if let response = response as? HTTPURLResponse, response.statusCode == 201 {
+            return .success
+        } else {
+            let decoder = JSONDecoder()
+            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            throw ServiceErrors.custom(message: serverError.message)
         }
     }
     
-    static func getOutstandingInvitesByTeamId(teamId: String, completionHandler: @escaping(([TeamInviteModel]?, Error?) -> Void)) {
+    static func getOutstandingInvitesByTeamId(teamId: String) async throws -> [TeamInviteModel] {
         guard let url = Networking.createUrl(endPoint: "teamInvite/outstandingTeamInvites/\(teamId)") else {
-            completionHandler(nil, ServiceErrors.unknownUrl)
-            return
+            throw ServiceErrors.unknownUrl
         }
         
-        Networking.get(url: url) { data, response, error in
-            guard error == nil else {
-                completionHandler(nil, error)
-                return
-            }
-            
-            if let data = data, let response = response as? HTTPURLResponse {
-                do {
-                    if response.statusCode == 200 {
-                        let decoder = JSONDecoder()
-                        decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-                        
-                        let teamInvites = try decoder.decode([TeamInviteModel].self, from: data)
-                        completionHandler(teamInvites, nil)
-                    } else {
-                        let decoder = JSONDecoder()
-                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
-                        throw ServiceErrors.custom(message: serverError.message)
-                    }
-                } catch {
-                    Logger.log(logLevel: .Verbose, name: Logger.Events.Team.Invite.fetchFailed, payload: ["error": error.localizedDescription, "teamId": teamId])
-                    completionHandler(nil, error)
-                    return
-                }
-            }
-        }
+        let (data, response) = try await Networking.get(url: url)
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
         
+        if let response = response as? HTTPURLResponse, response.statusCode == 200 {
+            let teamInvites = try decoder.decode([TeamInviteModel].self, from: data)
+            return teamInvites
+        } else {
+            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            throw ServiceErrors.custom(message: serverError.message)
+        }
     }
 }

@@ -9,114 +9,72 @@ import Foundation
 import Combine
 
 struct TaskService {
-    static func getTasksByAssignedUserId(completionHandler: @escaping((TaskModelArray?, Error?) -> Void)) {
+    static func getTasksByAssignedUserId() async throws -> TaskModelArray {
         guard let url = Networking.createUrl(endPoint: "task/assignedToCurrentUser") else {
-            completionHandler(nil, ServiceErrors.unknownUrl)
-            return
+            throw ServiceErrors.unknownUrl
         }
         
-        Networking.get(url: url) { data, response, error in
-            guard error == nil else {
-                completionHandler(nil, error)
-                return
-            }
+        let (data, response) = try await Networking.get(url: url)
+        
+        if let response = response as? HTTPURLResponse, response.statusCode == 200 {
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
             
-            if let data = data, let response = response as? HTTPURLResponse{
-                do {
-                    if response.statusCode == 200 {
-                        let decoder = JSONDecoder()
-                        decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-                        
-                        let taskItems = try decoder.decode(TaskModelArray.self, from: data)
-                        completionHandler(taskItems, nil)
-                    } else {
-                        let decoder = JSONDecoder()
-                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
-                        throw ServiceErrors.custom(message: serverError.message)
-                    }
-                } catch {
-                    completionHandler(nil, error)
-                    return
-                }
-            }
+            let taskItems = try decoder.decode(TaskModelArray.self, from: data)
+            return taskItems
+        } else {
+            let decoder = JSONDecoder()
+            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            throw ServiceErrors.custom(message: serverError.message)
         }
     }
     
-    static func createTask(taskToCreate taskDto: CreateTaskDto, completionHandler: @escaping((TaskModel?, Error?) -> Void)) {
+    static func createTask(taskToCreate taskDto: CreateTaskDto) async throws -> TaskModel {
         guard let url = Networking.createUrl(endPoint: "task") else {
-            completionHandler(nil, ServiceErrors.unknownUrl)
-            return
+            throw ServiceErrors.unknownUrl
         }
         
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         
-        let taskData = try? encoder.encode(taskDto)
+        let taskData = try encoder.encode(taskDto)
         
-        guard let taskData = taskData else {
-            completionHandler(nil, ServiceErrors.dataSerializationFailed(dataObjectName: "CreateTaskDto"))
-            return
-        }
+        let (data, response) = try await Networking.post(url: url, body: taskData)
         
-        Networking.post(url: url, body: taskData) { data, response, error in
-            guard error == nil else {
-                completionHandler(nil, error)
-                return
-            }
+        if let response = response as? HTTPURLResponse, response.statusCode == 201 {
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
             
-            if let data = data, let response = response as? HTTPURLResponse {
-                do {
-                    if response.statusCode == 201 {
-                        let decoder = JSONDecoder()
-                        decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-                        
-                        let taskModel = try decoder.decode(TaskModel.self, from: data)
-                        completionHandler(taskModel, nil)
-                    } else {
-                        let decoder = JSONDecoder()
-                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
-                        throw ServiceErrors.custom(message: serverError.message)
-                    }
-                } catch {
-                    Logger.log(logLevel: .Prod, name: Logger.Events.Task.creationFailed, payload: ["error": error])
-                    completionHandler(nil, error)
-                }
-            }
+            let taskModel = try decoder.decode(TaskModel.self, from: data)
+            return taskModel
+        } else {
+            let decoder = JSONDecoder()
+            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            throw ServiceErrors.custom(message: serverError.message)
         }
+        
     }
     
-    static func markTaskComplete(taskId: String, completionHandler: @escaping((TaskModel?, Error?) -> Void)) {
+    static func markTaskComplete(taskId: String) async throws -> TaskModel {
         guard let url = Networking.createUrl(endPoint: "task/markTaskComplete/\(taskId)") else {
-            completionHandler(nil, ServiceErrors.unknownUrl)
-            return
+            throw ServiceErrors.unknownUrl
         }
         
-        Networking.post(url: url) { data, response, error in
-            guard error == nil else {
-                completionHandler(nil, error)
-                return
-            }
+        let (data, response) = try await Networking.post(url: url)
+        
+        if let response = response as? HTTPURLResponse, response.statusCode == 201 {
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
             
-            if let data = data, let response = response as? HTTPURLResponse {
-                do {
-                    if response.statusCode == 201 {
-                        let decoder = JSONDecoder()
-                        decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-                        
-                        let taskModel = try decoder.decode(TaskModel.self, from: data)
-                        completionHandler(taskModel, nil)
-                    } else {
-                        let decoder = JSONDecoder()
-                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
-                        throw ServiceErrors.custom(message: serverError.message)
-                    }
-                } catch {
-                    Logger.log(logLevel: .Verbose, name: Logger.Events.Task.markCompleteFailed, payload: ["error": error])
-                    completionHandler(nil, error)
-                }
-            }
-            
+            let taskModel = try decoder.decode(TaskModel.self, from: data)
+            return taskModel
+        } else {
+            let decoder = JSONDecoder()
+            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            Logger.log(logLevel: .Verbose, name: Logger.Events.Task.markCompleteFailed, payload: ["error": serverError])
+            throw ServiceErrors.custom(message: serverError.message)
         }
+        
     }
 }
 

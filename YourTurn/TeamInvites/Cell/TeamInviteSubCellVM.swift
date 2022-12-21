@@ -24,28 +24,37 @@ struct TeamInviteSubCellVM {
     
     func acceptInvite(delegate: TeamInvitesViewControllerDelegate?) {
         delegate?.modifyLoaderState(shouldShowLoader: true)
-        TeamInviteService.acceptInvite(inviteId: inviteId) { status, error in
+        defer {
             delegate?.modifyLoaderState(shouldShowLoader: false)
-            if status == .success {
-                requestReloadSubject.send(true)
-            } else if let error = error {
+        }
+        Task {
+            do {
+                let status = try await TeamInviteService.acceptInvite(inviteId: inviteId)
+                if status == .success {
+                    requestReloadSubject.send(true)
+                }
+            } catch {
+                Logger.log(logLevel: .Verbose, name: Logger.Events.Team.Invite.acceptFailed, payload: ["error": error.localizedDescription])
                 displayUIAlert(error: error)
-            } else {
-                displayUIAlert(error: ServiceErrors.custom(message: "Unknown error accepting invite"))
             }
         }
     }
     
     func declineInvite(delegate: TeamInvitesViewControllerDelegate?) {
         delegate?.modifyLoaderState(shouldShowLoader: true)
-        TeamInviteService.declineInvite(inviteId: inviteId) { status, error in
+        defer {
             delegate?.modifyLoaderState(shouldShowLoader: false)
-            if status == .success {
-                requestReloadSubject.send(true)
-            } else if let error = error {
+        }
+        
+        Task {
+            do {
+                let status = try await TeamInviteService.declineInvite(inviteId: inviteId)
+                if status == .success {
+                    requestReloadSubject.send(true)
+                }
+            } catch {
+                Logger.log(logLevel: .Verbose, name: Logger.Events.Team.Invite.declineFailed, payload: ["error": error.localizedDescription])
                 displayUIAlert(error: error)
-            } else {
-                displayUIAlert(error: ServiceErrors.custom(message: "Unknown error declining invite"))
             }
         }
     }

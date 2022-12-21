@@ -165,19 +165,7 @@ class TaskView: UIViewController {
     }
     
     @objc func onTouchUpInsideMarkTaskCompleteButton() {
-        guard let taskId = viewModel?.task.taskId else { return }
-        TaskService.markTaskComplete(taskId: taskId) { task, error in
-            DispatchQueue.main.async {
-                if task != nil {
-                    self.navigationController?.popViewController(animated: true)
-                    self.requestHomeReload.send(true)
-                } else if let error = error {
-                    self.showMessage(withTitle: "Uh Oh", message: "Error Marking Task Complete: \(error)")
-                } else {
-                    self.showMessage(withTitle: "Uh Oh", message: "Error Marking Task Complete")
-                }
-            }
-        }
+        viewModel?.onRequestMarkTaskComplete(viewController: self)
     }
 }
 
