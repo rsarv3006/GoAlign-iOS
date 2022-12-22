@@ -9,9 +9,7 @@ import Foundation
 
 struct StatsService {
     static func getTeamStats(teamId: String) async throws -> TeamStatsModel {
-        guard let url = Networking.createUrl(endPoint: "stats/team/\(teamId)") else {
-            throw ServiceErrors.unknownUrl
-        }
+        let url = try Networking.createUrl(endPoint: "stats/team/\(teamId)")
         
         let (data, response) = try await Networking.get(url: url)
         

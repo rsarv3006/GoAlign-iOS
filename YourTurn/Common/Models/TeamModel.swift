@@ -23,3 +23,13 @@ class CreateTeamDto: Codable {
         self.teamName = teamName
     }
 }
+
+class UpdateTeamManagerDto: Codable {
+    let teamId: String
+    let newManagerId: String
+    
+    init(teamId: String, newManagerId: String) {
+        self.teamId = teamId
+        self.newManagerId = newManagerId
+    }
+}

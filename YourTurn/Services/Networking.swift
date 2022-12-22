@@ -12,34 +12,10 @@ enum HttpMethod: String {
     case get = "GET"
     case post = "POST"
     case delete = "DELETE"
+    case put = "PUT"
 }
 
 struct Networking {
-    private static func apiCall(httpMethod: HttpMethod, url: URL, body: Data? = nil, completion: @escaping((Data?, URLResponse?, Error?) -> Void)) {
-        AuthenticationService.getToken { token, error in
-            guard let token = token else {
-                Logger.log(logLevel: .Prod, name: Logger.Events.Auth.tokenFetchFailed, payload: ["error": String(describing: error)])
-                return
-            }
-            var request = URLRequest(url: url)
-
-            request.httpMethod = httpMethod.rawValue
-            if let body = body {
-                request.httpBody = body
-                request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            }
-            
-            request.addValue("application/json", forHTTPHeaderField: "Accept")
-            request.setValue(token, forHTTPHeaderField: "Authorization")
-
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                completion(data, response, error)
-            }
-
-            task.resume()
-        }
-    }
-    
     private static func apiCall(httpMethod: HttpMethod, url: URL, body: Data? = nil) async throws -> (Data, URLResponse) {
         let token = try await AuthenticationService.getToken()
         
@@ -52,48 +28,38 @@ struct Networking {
         
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue(token, forHTTPHeaderField: "Authorization")
-
+        
         let response = try await URLSession.shared.data(for: request)
-
+        
         return response
-    }
-    
-    static func get(url: URL, body: Data? = nil, completion: @escaping((Data?, URLResponse?, Error?) -> Void)) {
-        self.apiCall(httpMethod: .get, url: url, body: body) { data, response, error in
-            completion(data, response, error)
-        }
     }
     
     static func get(url: URL, body: Data? = nil) async throws -> (Data, URLResponse) {
         try await apiCall(httpMethod: .get, url: url, body: body)
     }
     
-    static func post(url: URL, body: Data? = nil, completion: @escaping((Data?, URLResponse?, Error?) -> Void)) {
-        self.apiCall(httpMethod: .post, url: url, body: body) { data, response, error in
-            completion(data, response, error)
-        }
-    }
-    
     static func post(url: URL, body: Data? = nil) async throws -> (Data, URLResponse) {
         try await apiCall(httpMethod: .post, url: url, body: body)
     }
     
-    static func delete(url: URL, body: Data? = nil, completion: @escaping((Data?, URLResponse?, Error?) -> Void)) {
-        self.apiCall(httpMethod: .delete, url: url) { data, response, error in
-            completion(data, response, error)
-        }
+    static func put(url: URL, body: Data? = nil) async throws -> (Data, URLResponse) {
+        try await apiCall(httpMethod: .put, url: url, body: body)
     }
     
     static func delete(url: URL, body: Data? = nil) async throws -> (Data, URLResponse) {
         try await apiCall(httpMethod: .delete, url: url, body: body)
     }
     
-    static func createUrl(endPoint: String) -> URL? {
-        guard let baseUrl = remoteConfig.configValue(forKey: "API_URL").stringValue else { return nil }
+    static func createUrl(endPoint: String) throws -> URL {
+        guard let baseUrl = remoteConfig.configValue(forKey: "API_URL").stringValue else {
+            throw ServiceErrors.baseUrlNotConfigured
+        }
         
         let url = URL(string: "\(baseUrl)\(endPoint)")
-    
-        guard let url = url else { return nil }
+        
+        guard let url = url else {
+            throw ServiceErrors.unknownUrl
+        }
         
         return url
     }

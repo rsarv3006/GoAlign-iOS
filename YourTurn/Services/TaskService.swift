@@ -10,9 +10,7 @@ import Combine
 
 struct TaskService {
     static func getTasksByAssignedUserId() async throws -> TaskModelArray {
-        guard let url = Networking.createUrl(endPoint: "task/assignedToCurrentUser") else {
-            throw ServiceErrors.unknownUrl
-        }
+        let url = try Networking.createUrl(endPoint: "task/assignedToCurrentUser")
         
         let (data, response) = try await Networking.get(url: url)
         
@@ -30,9 +28,7 @@ struct TaskService {
     }
     
     static func createTask(taskToCreate taskDto: CreateTaskDto) async throws -> TaskModel {
-        guard let url = Networking.createUrl(endPoint: "task") else {
-            throw ServiceErrors.unknownUrl
-        }
+        let url = try Networking.createUrl(endPoint: "task")
         
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
@@ -56,9 +52,7 @@ struct TaskService {
     }
     
     static func markTaskComplete(taskId: String) async throws -> TaskModel {
-        guard let url = Networking.createUrl(endPoint: "task/markTaskComplete/\(taskId)") else {
-            throw ServiceErrors.unknownUrl
-        }
+        let url = try Networking.createUrl(endPoint: "task/markTaskComplete/\(taskId)")
         
         let (data, response) = try await Networking.post(url: url)
         

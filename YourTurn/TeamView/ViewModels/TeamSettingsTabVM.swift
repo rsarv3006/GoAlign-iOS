@@ -44,15 +44,17 @@ struct TeamSettingsTabVM {
     
     private func deleteTeam(viewController: UIViewController) {
         viewController.showLoader(true)
-        TeamService.deleteTeam(teamId: team.teamId) { didSucceed, error in
+        defer {
             viewController.showLoader(false)
-            if didSucceed == true {
+        }
+        
+        Task {
+            do {
+                try await TeamService.deleteTeam(teamId: team.teamId)
                 self.requestHomeReload.send(true)
                 self.requestRemoveTabView.send(true)
-            } else if let error = error {
-                viewController.showMessage(withTitle: "Uh Oh", message: error.localizedDescription)
-            } else {
-                viewController.showMessage(withTitle: "Uh Oh", message: "Unexpected error, please try again.")
+            } catch {
+                await viewController.showMessage(withTitle: "Uh Oh", message: error.localizedDescription)
             }
         }
     }
@@ -80,26 +82,20 @@ struct TeamSettingsTabVM {
     
     private func leaveTeam(viewController: UIViewController) {
         viewController.showLoader(true)
-        UserService.getCurrentUser { user, error in
+        defer {
             viewController.showLoader(false)
-            if let user = user {
-                viewController.showLoader(true)
-                TeamService.removeUserFromTeam(teamId: team.teamId, userToRemove: user.userId) { didSucceed, error in
-                    viewController.showLoader(false)
-                    if didSucceed == true {
-                        Logger.log(logLevel: .Prod, name: Logger.Events.Team.leaveSuccess, payload: ["teamId": team.teamId, "userId": user.userId])
-                        self.requestHomeReload.send(true)
-                        self.requestRemoveTabView.send(true)
-                    } else if let error = error {
-                        viewController.showMessage(withTitle: "Uh Oh", message: error.localizedDescription)
-                    } else {
-                        viewController.showMessage(withTitle: "Uh Oh", message: "Unexpected error, please try again.")
-                    }
-                }
-            } else if let error = error {
-                viewController.showMessage(withTitle: "Uh Oh", message: error.localizedDescription)
-            } else {
-                viewController.showMessage(withTitle: "Uh Oh", message: "Unexpected error, please try again.")
+        }
+        
+        Task {
+            do {
+                let currentUser = try await UserService.getCurrentUser()
+                try await TeamService.removeUserFromTeam(teamId: team.teamId, userToRemove: currentUser.userId)
+                
+                Logger.log(logLevel: .Prod, name: Logger.Events.Team.leaveSuccess, payload: ["teamId": team.teamId, "userId": currentUser.userId])
+                self.requestHomeReload.send(true)
+                self.requestRemoveTabView.send(true)
+            } catch {
+                await viewController.showMessage(withTitle: "Uh Oh", message: error.localizedDescription)
             }
         }
     }

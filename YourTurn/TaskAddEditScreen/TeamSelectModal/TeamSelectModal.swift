@@ -84,11 +84,14 @@ class TeamSelectModal: ModalViewController {
     }
     
     func loadTeamsAndMembers() {
-        TeamService.getTeamsbyCurrentUser { teams, error in
+        defer {
             self.showLoader(false)
-            if let teams = teams {
+        }
+        Task {
+            do {
+                let teams = try await TeamService.getTeamsByCurrentUser()
                 self.teams = teams
-            } else if let error = error {
+            } catch {
                 Logger.log(logLevel: .Prod, name: Logger.Events.Team.fetchFailed, payload: ["error": error])
                 self.showMessage(withTitle: "Uh Oh", message: "Unexpected error encountered loading teams. \(error.localizedDescription)")
             }

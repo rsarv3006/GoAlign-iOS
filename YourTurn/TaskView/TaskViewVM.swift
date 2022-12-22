@@ -60,10 +60,11 @@ class TaskViewVM {
     }
     
     func getTeamName(teamId: String) {
-        TeamService.getTeamsByTeamIds(teamIds: [teamId]) { teams, error in
-            if error == nil, let team = teams?[0] {
-                self.teamNameSubject.send(.success(team.teamName))
-            } else if let error = error {
+        Task {
+            do {
+                let teams = try await TeamService.getTeamsByTeamIds(teamIds: [teamId])
+                self.teamNameSubject.send(.success(teams[0].teamName))
+            } catch {
                 self.teamNameSubject.send(.failure(error))
             }
         }

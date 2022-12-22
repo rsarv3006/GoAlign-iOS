@@ -43,13 +43,12 @@ class HomeScreenVM {
     }
     
     func loadTeams() {
-        TeamService.getTeamsbyCurrentUser { [weak self] teams, error in
-            if let error = error {
-                self?.teamsSubject.send(.failure(error))
-            } else if let teams = teams {
-                self?.teamsSubject.send(.success(teams))
-            } else {
-                self?.teamsSubject.send(.success([]))
+        Task {
+            do {
+                let teams = try await TeamService.getTeamsByCurrentUser()
+                teamsSubject.send(.success(teams))
+            } catch {
+                teamsSubject.send(.failure(error))
             }
         }
     }

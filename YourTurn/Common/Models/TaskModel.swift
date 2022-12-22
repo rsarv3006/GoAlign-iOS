@@ -48,11 +48,16 @@ class TaskModel: Codable {
     }
     
     func checkIfCurrentUserIsAssignedUser(completionHandler: @escaping ((Bool) -> Void)) {
-        UserService.getCurrentUser { user, error in
-            let currentTask = self.findCurrentTaskEntry()
-            if let user = user, user.userId == currentTask?.assignedUser.userId {
-                completionHandler(true)
-            } else {
+        Task {
+            do {
+                let user = try await UserService.getCurrentUser()
+                let currentTask = self.findCurrentTaskEntry()
+                if user.userId == currentTask?.assignedUser.userId {
+                    completionHandler(true)
+                } else {
+                    completionHandler(false)
+                }
+            } catch {
                 completionHandler(false)
             }
         }

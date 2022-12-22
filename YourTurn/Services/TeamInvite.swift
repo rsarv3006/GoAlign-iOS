@@ -14,9 +14,7 @@ enum TeamInviteStatus {
 
 struct TeamInviteService {
     static func getTeamInvitesByCurrentUser() async throws -> [TeamInviteModel] {
-        guard let url = Networking.createUrl(endPoint: "teamInvite/byCurrentUser") else {
-            throw ServiceErrors.unknownUrl
-        }
+        let url = try Networking.createUrl(endPoint: "teamInvite/byCurrentUser")
         
         let (data, response) = try await Networking.get(url: url)
         
@@ -33,9 +31,7 @@ struct TeamInviteService {
     }
     
     static func acceptInvite(inviteId: String) async throws -> TeamInviteStatus {
-        guard let url = Networking.createUrl(endPoint: "teamInvite/\(inviteId)/accept") else {
-            throw ServiceErrors.unknownUrl
-        }
+        let url = try Networking.createUrl(endPoint: "teamInvite/\(inviteId)/accept")
         
         let (data, response) = try await Networking.post(url: url)
         
@@ -49,9 +45,7 @@ struct TeamInviteService {
     }
     
     static func declineInvite(inviteId: String) async throws -> TeamInviteStatus {
-        guard let url = Networking.createUrl(endPoint: "teamInvite/\(inviteId)/decline") else {
-            throw ServiceErrors.unknownUrl
-        }
+        let url = try Networking.createUrl(endPoint: "teamInvite/\(inviteId)/decline")
         
         let (data, response) = try await Networking.post(url: url)
         
@@ -65,9 +59,7 @@ struct TeamInviteService {
     }
     
     static func createInvite(createInviteDto: CreateInviteDtoModel) async throws -> TeamInviteStatus {
-        guard let url = Networking.createUrl(endPoint: "teamInvite") else {
-            throw ServiceErrors.unknownUrl
-        }
+        let url = try Networking.createUrl(endPoint: "teamInvite")
         
         let createInviteData = try JSONEncoder().encode(createInviteDto)
         
@@ -83,9 +75,7 @@ struct TeamInviteService {
     }
     
     static func getOutstandingInvitesByTeamId(teamId: String) async throws -> [TeamInviteModel] {
-        guard let url = Networking.createUrl(endPoint: "teamInvite/outstandingTeamInvites/\(teamId)") else {
-            throw ServiceErrors.unknownUrl
-        }
+        let url = try Networking.createUrl(endPoint: "teamInvite/outstandingTeamInvites/\(teamId)")
         
         let (data, response) = try await Networking.get(url: url)
         let decoder = JSONDecoder()

@@ -9,15 +9,9 @@ import Foundation
 
 enum UserService {
     static func createUser(with user: CreateUserDto) async throws -> UserModel {
-        guard let url = Networking.createUrl(endPoint: "user") else {
-            throw ServiceErrors.unknownUrl
-        }
+        let url = try Networking.createUrl(endPoint: "user")
         
-        let userData = try? JSONEncoder().encode(user)
-        
-        guard let userData = userData else {
-            throw ServiceErrors.dataSerializationFailed(dataObjectName: "CreateUserDto")
-        }
+        let userData = try JSONEncoder().encode(user)
         
         let (data, response) = try await Networking.post(url: url, body: userData)
         
@@ -34,48 +28,10 @@ enum UserService {
             AuthenticationService.signOut()
             throw ServiceErrors.custom(message: serverError.message)
         }
-        
-        
-    }
-    
-    static func getCurrentUser(completionHandler: @escaping ((UserModel?, Error?) -> Void)) {
-        guard let url = Networking.createUrl(endPoint: "user/current") else {
-            completionHandler(nil, ServiceErrors.unknownUrl)
-            return
-        }
-        
-        Networking.get(url: url) { data, response, error in
-            guard error == nil else {
-                completionHandler(nil, error)
-                return
-            }
-            
-            if let data = data, let response = response as? HTTPURLResponse {
-                do {
-                    if response.statusCode == 200 {
-                        let decoder = JSONDecoder()
-                        decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-                        
-                        let userModel = try decoder.decode(UserModel.self, from: data)
-                        completionHandler(userModel, nil)
-                    } else {
-                        let decoder = JSONDecoder()
-                        let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
-                        throw ServiceErrors.custom(message: serverError.message)
-                    }
-                } catch {
-                    Logger.log(logLevel: .Verbose, name: Logger.Events.User.fetchFailed, payload: ["error": error, "user": "current User"])
-                    AuthenticationService.signOut()
-                    completionHandler(nil, error)
-                }
-            }
-        }
     }
     
     static func getCurrentUser() async throws -> UserModel {
-        guard let url = Networking.createUrl(endPoint: "user/current") else {
-            throw ServiceErrors.unknownUrl
-        }
+        let url = try Networking.createUrl(endPoint: "user/current")
         
         let (data, response) = try await Networking.get(url: url)
         
@@ -93,9 +49,7 @@ enum UserService {
     }
     
     static func deleteCurrentUser() async throws -> Bool {
-        guard let url = Networking.createUrl(endPoint: "user") else {
-            throw ServiceErrors.unknownUrl
-        }
+        let url = try Networking.createUrl(endPoint: "user")
         
         let (_, response) = try await Networking.delete(url: url)
         
