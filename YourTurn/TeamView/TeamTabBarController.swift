@@ -96,7 +96,7 @@ private extension TeamTabBarController {
     
     func configureSettingsTab(viewModel: TeamTabBarVM) -> UIViewController {
         let teamSettingsTabViewImage = (UIImage(systemName: "gear.circle"))!
-        var teamSettingsTabVM = TeamSettingsTabVM(team: viewModel.team)
+        let teamSettingsTabVM = TeamSettingsTabVM(team: viewModel.team)
         
         let teamSettingsTabView = TeamSettingsTabView()
         teamSettingsTabVM.requestHomeReload = viewModel.requestHomeReload

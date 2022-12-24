@@ -29,6 +29,7 @@ class TeamTasksTabView: YtViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        navigationController?.isNavigationBarHidden = true
     }
     
     // MARK: Helpers

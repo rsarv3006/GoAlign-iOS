@@ -108,9 +108,7 @@ class TeamAddModal: YtViewController {
         closeButton.anchor(top: subView.topAnchor, left: subView.leftAnchor, paddingTop: 6, paddingLeft: 6)
     }
     
-    func configureModal() {
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        
+    func configureModal() {        
         view.addSubview(subView)
         subView.center(inView: view)
         

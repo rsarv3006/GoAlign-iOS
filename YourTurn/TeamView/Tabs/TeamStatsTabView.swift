@@ -47,6 +47,7 @@ class TeamStatsTabView: YtViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        navigationController?.isNavigationBarHidden = true
         
         showLoader(true)
         configureFromViewModel()

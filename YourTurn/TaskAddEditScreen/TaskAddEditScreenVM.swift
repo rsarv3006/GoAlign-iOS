@@ -23,7 +23,7 @@ struct TaskAddEditScreenVM {
         
         Task {
             do {
-                let task = try await TaskService.createTask(taskToCreate: taskForm)
+                let _ = try await TaskService.createTask(taskToCreate: taskForm)
                 await viewController.delegate?.onTaskScreenComplet(viewController: viewController)
                 
                 DispatchQueue.main.async {

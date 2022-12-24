@@ -10,7 +10,7 @@ import Combine
 
 private let INVITED_TEAM_MEMBER_CELL_ID = "INVITED_TEAM_MEMBER_CELL_ID"
 
-class TeamInviteUserModal: UIViewController {
+class TeamInviteUserModal: YtViewController {
     private(set) var subscriptions = Set<AnyCancellable>()
     
     var viewModel: TeamInviteUserModalVM? {
@@ -103,7 +103,7 @@ class TeamInviteUserModal: UIViewController {
         invitedTeamMembersTableView.dataSource = self
         invitedTeamMembersTableView.delegate = self
         
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+//        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         
         view.addSubview(subView)
         subView.center(inView: view)

@@ -96,7 +96,7 @@ struct TeamService {
     }
     
     static func updateTeamManager(teamId: String, newManagerId: String) async throws {
-        let url = try Networking.createUrl(endPoint: "/team/updateTeamManager")
+        let url = try Networking.createUrl(endPoint: "team/updateTeamManager")
         
         let updateTeamManagerDto = UpdateTeamManagerDto(teamId: teamId, newManagerId: newManagerId)
         let updateTeamManagerData = try JSONEncoder().encode(updateTeamManagerDto)

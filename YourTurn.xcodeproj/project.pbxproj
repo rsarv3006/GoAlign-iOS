@@ -65,6 +65,8 @@
 		7833146A291B51D6009DDD3F /* TeamInvitesTabViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78331469291B51D6009DDD3F /* TeamInvitesTabViewCellVM.swift */; };
 		7833146C291B51F6009DDD3F /* TeamInvitesTabViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7833146B291B51F6009DDD3F /* TeamInvitesTabViewCell.swift */; };
 		783314722925EF1F009DDD3F /* ExternalLinkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783314712925EF1F009DDD3F /* ExternalLinkService.swift */; };
+		78332CE12954936D00073F14 /* ChangeTeamManagerModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78332CE02954936D00073F14 /* ChangeTeamManagerModal.swift */; };
+		78332CE529549EF800073F14 /* ChangeTeamManagerModalVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78332CE429549EF800073F14 /* ChangeTeamManagerModalVM.swift */; };
 		78352991294E7428000A4290 /* TeamSettingsTabVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78352990294E7428000A4290 /* TeamSettingsTabVM.swift */; };
 		783DECD228617EEB0062343E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD128617EEB0062343E /* AppDelegate.swift */; };
 		783DECD428617EEB0062343E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD328617EEB0062343E /* SceneDelegate.swift */; };
@@ -86,6 +88,16 @@
 		7872D6FC28950C5E00E598D2 /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872D6FB28950C5E00E598D2 /* TeamService.swift */; };
 		7872D6FE2896B03F00E598D2 /* ToJsonProtcol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872D6FD2896B03F00E598D2 /* ToJsonProtcol.swift */; };
 		7872D70028978C1700E598D2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7872D6FF28978C1700E598D2 /* .gitignore */; };
+		788CFF9C29554131002650F7 /* ChangeTeamManagerUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788CFF9B29554131002650F7 /* ChangeTeamManagerUserCell.swift */; };
+		788CFF9E29554734002650F7 /* ChangeTeamManagerUserCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788CFF9D29554734002650F7 /* ChangeTeamManagerUserCellVM.swift */; };
+		788CFFA029565B49002650F7 /* TeamSettingsDeleteTeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788CFF9F29565B49002650F7 /* TeamSettingsDeleteTeamCell.swift */; };
+		788CFFA229565F6A002650F7 /* TeamSettingsDeleteTeamCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788CFFA129565F6A002650F7 /* TeamSettingsDeleteTeamCellVM.swift */; };
+		788CFFA4295670C7002650F7 /* TeamSettingsLeaveTeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788CFFA3295670C7002650F7 /* TeamSettingsLeaveTeamCell.swift */; };
+		788CFFA629567104002650F7 /* TeamSettingsLeaveTeamCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788CFFA529567104002650F7 /* TeamSettingsLeaveTeamCellVM.swift */; };
+		788CFFA82956AD31002650F7 /* TeamSettingsChangeTeamManagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788CFFA72956AD31002650F7 /* TeamSettingsChangeTeamManagerCell.swift */; };
+		788CFFAA2956AD59002650F7 /* TeamSettingsChangeTeamManagerCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788CFFA92956AD59002650F7 /* TeamSettingsChangeTeamManagerCellVM.swift */; };
+		788CFFAC2956ADAA002650F7 /* GeneralUIAlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788CFFAB2956ADAA002650F7 /* GeneralUIAlertMessage.swift */; };
+		788CFFAE2956ADCA002650F7 /* TeamSettingsCellsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788CFFAD2956ADCA002650F7 /* TeamSettingsCellsDelegate.swift */; };
 		78904AEB28D2D00100F6EF1F /* SettingsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78904AEA28D2D00100F6EF1F /* SettingsScreenView.swift */; };
 		78904AED28D2D01400F6EF1F /* SettingsScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78904AEC28D2D01400F6EF1F /* SettingsScreenVM.swift */; };
 		78904AF028D3FA8B00F6EF1F /* DeleteUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78904AEF28D3FA8B00F6EF1F /* DeleteUserCell.swift */; };
@@ -235,6 +247,8 @@
 		78331469291B51D6009DDD3F /* TeamInvitesTabViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInvitesTabViewCellVM.swift; sourceTree = "<group>"; };
 		7833146B291B51F6009DDD3F /* TeamInvitesTabViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInvitesTabViewCell.swift; sourceTree = "<group>"; };
 		783314712925EF1F009DDD3F /* ExternalLinkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLinkService.swift; sourceTree = "<group>"; };
+		78332CE02954936D00073F14 /* ChangeTeamManagerModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTeamManagerModal.swift; sourceTree = "<group>"; };
+		78332CE429549EF800073F14 /* ChangeTeamManagerModalVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTeamManagerModalVM.swift; sourceTree = "<group>"; };
 		78352990294E7428000A4290 /* TeamSettingsTabVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsTabVM.swift; sourceTree = "<group>"; };
 		783DECCE28617EEB0062343E /* YourTurn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourTurn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		783DECD128617EEB0062343E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -260,6 +274,16 @@
 		7872D6FB28950C5E00E598D2 /* TeamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamService.swift; sourceTree = "<group>"; };
 		7872D6FD2896B03F00E598D2 /* ToJsonProtcol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToJsonProtcol.swift; sourceTree = "<group>"; };
 		7872D6FF28978C1700E598D2 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		788CFF9B29554131002650F7 /* ChangeTeamManagerUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTeamManagerUserCell.swift; sourceTree = "<group>"; };
+		788CFF9D29554734002650F7 /* ChangeTeamManagerUserCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTeamManagerUserCellVM.swift; sourceTree = "<group>"; };
+		788CFF9F29565B49002650F7 /* TeamSettingsDeleteTeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsDeleteTeamCell.swift; sourceTree = "<group>"; };
+		788CFFA129565F6A002650F7 /* TeamSettingsDeleteTeamCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsDeleteTeamCellVM.swift; sourceTree = "<group>"; };
+		788CFFA3295670C7002650F7 /* TeamSettingsLeaveTeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsLeaveTeamCell.swift; sourceTree = "<group>"; };
+		788CFFA529567104002650F7 /* TeamSettingsLeaveTeamCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsLeaveTeamCellVM.swift; sourceTree = "<group>"; };
+		788CFFA72956AD31002650F7 /* TeamSettingsChangeTeamManagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsChangeTeamManagerCell.swift; sourceTree = "<group>"; };
+		788CFFA92956AD59002650F7 /* TeamSettingsChangeTeamManagerCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsChangeTeamManagerCellVM.swift; sourceTree = "<group>"; };
+		788CFFAB2956ADAA002650F7 /* GeneralUIAlertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralUIAlertMessage.swift; sourceTree = "<group>"; };
+		788CFFAD2956ADCA002650F7 /* TeamSettingsCellsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsCellsDelegate.swift; sourceTree = "<group>"; };
 		78904AEA28D2D00100F6EF1F /* SettingsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenView.swift; sourceTree = "<group>"; };
 		78904AEC28D2D01400F6EF1F /* SettingsScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenVM.swift; sourceTree = "<group>"; };
 		78904AEF28D3FA8B00F6EF1F /* DeleteUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserCell.swift; sourceTree = "<group>"; };
@@ -413,6 +437,7 @@
 				780F196928A45F2300371B91 /* AuthenticationCompletedProtocol.swift */,
 				780F197728A492E500371B91 /* SwitchAuthScreenProtocol.swift */,
 				78EC914B28AF2C920046DF28 /* ModalDelegateProtocol.swift */,
+				788CFFAD2956ADCA002650F7 /* TeamSettingsCellsDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -420,6 +445,7 @@
 		7833144A2916DFB8009DDD3F /* TeamView */ = {
 			isa = PBXGroup;
 			children = (
+				78332CDF2954933D00073F14 /* SettingsItems */,
 				7833145D2919CABC009DDD3F /* Cells */,
 				783314582918B594009DDD3F /* ViewModels */,
 				7833144D2916ED7F009DDD3F /* Tabs */,
@@ -468,6 +494,36 @@
 				783314612919E667009DDD3F /* TeamTasksTabViewCellVM.swift */,
 				78331465291B4D13009DDD3F /* TeamUsersTabViewCellVM.swift */,
 				78331469291B51D6009DDD3F /* TeamInvitesTabViewCellVM.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		78332CDF2954933D00073F14 /* SettingsItems */ = {
+			isa = PBXGroup;
+			children = (
+				788CFF9A29554109002650F7 /* Cells */,
+				78332CE329549E9300073F14 /* ViewModels */,
+				78332CE229549E8800073F14 /* Views */,
+			);
+			path = SettingsItems;
+			sourceTree = "<group>";
+		};
+		78332CE229549E8800073F14 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				78332CE02954936D00073F14 /* ChangeTeamManagerModal.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		78332CE329549E9300073F14 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				78332CE429549EF800073F14 /* ChangeTeamManagerModalVM.swift */,
+				788CFF9D29554734002650F7 /* ChangeTeamManagerUserCellVM.swift */,
+				788CFFA129565F6A002650F7 /* TeamSettingsDeleteTeamCellVM.swift */,
+				788CFFA529567104002650F7 /* TeamSettingsLeaveTeamCellVM.swift */,
+				788CFFA92956AD59002650F7 /* TeamSettingsChangeTeamManagerCellVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -552,6 +608,7 @@
 				78EC914F28AFB9640046DF28 /* ModalViewController.swift */,
 				78288CD328B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift */,
 				7833144829154986009DDD3F /* InputTextView.swift */,
+				788CFFAB2956ADAA002650F7 /* GeneralUIAlertMessage.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -654,6 +711,17 @@
 				78B6878D2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift */,
 				78FAB72328AB5973009B8D50 /* FormModalCollectionViewCell.swift */,
 				78331446291547A3009DDD3F /* FormTextBoxCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		788CFF9A29554109002650F7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				788CFF9B29554131002650F7 /* ChangeTeamManagerUserCell.swift */,
+				788CFF9F29565B49002650F7 /* TeamSettingsDeleteTeamCell.swift */,
+				788CFFA3295670C7002650F7 /* TeamSettingsLeaveTeamCell.swift */,
+				788CFFA72956AD31002650F7 /* TeamSettingsChangeTeamManagerCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1029,15 +1097,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				788CFFAC2956ADAA002650F7 /* GeneralUIAlertMessage.swift in Sources */,
 				780F196A28A45F2300371B91 /* AuthenticationCompletedProtocol.swift in Sources */,
 				78E743C028A595460069E691 /* SignInFormContentBuilderImpl.swift in Sources */,
 				78BFFAA428879A3F00A767AB /* FormSwitchControlledDateCollectionViewCell.swift in Sources */,
 				D55E671D28F1332300EBE205 /* TaskEntryModel.swift in Sources */,
 				78E4F89228938DE50075F04F /* UserModel.swift in Sources */,
+				788CFFA029565B49002650F7 /* TeamSettingsDeleteTeamCell.swift in Sources */,
 				780F196828A45EA300371B91 /* SignInVM.swift in Sources */,
 				780F197828A492E500371B91 /* SwitchAuthScreenProtocol.swift in Sources */,
 				7802E189288B9EB000F7D501 /* SignIn.swift in Sources */,
+				788CFF9C29554131002650F7 /* ChangeTeamManagerUserCell.swift in Sources */,
 				78B6878E2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift in Sources */,
+				78332CE529549EF800073F14 /* ChangeTeamManagerModalVM.swift in Sources */,
 				D55E671F28F5177100EBE205 /* TaskMoreInfoVM.swift in Sources */,
 				7802E1AA288E3D0900F7D501 /* SignUpCompletedForm.swift in Sources */,
 				78E4F88C289386F50075F04F /* TaskService.swift in Sources */,
@@ -1054,12 +1126,15 @@
 				7833144929154986009DDD3F /* InputTextView.swift in Sources */,
 				7802E195288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift in Sources */,
 				D5129C7F28E5475C00AF9EDD /* TaskView.swift in Sources */,
+				78332CE12954936D00073F14 /* ChangeTeamManagerModal.swift in Sources */,
 				78331466291B4D13009DDD3F /* TeamUsersTabViewCellVM.swift in Sources */,
 				7802E1A6288E399500F7D501 /* Authentication.swift in Sources */,
+				788CFFAE2956ADCA002650F7 /* TeamSettingsCellsDelegate.swift in Sources */,
 				783DED062861F4C90062343E /* Extensions.swift in Sources */,
 				78BF0D6528A97F57005C6098 /* DrawerMenuViewController.swift in Sources */,
 				78D7C3C528776F80001F48C5 /* FormCompositionalLayout.swift in Sources */,
 				78EC915028AFB9640046DF28 /* ModalViewController.swift in Sources */,
+				788CFFAA2956AD59002650F7 /* TeamSettingsChangeTeamManagerCellVM.swift in Sources */,
 				78331468291B50EC009DDD3F /* TeamUsersTabViewCell.swift in Sources */,
 				78D7C3C22877690B001F48C5 /* FormDateCollectionViewCell.swift in Sources */,
 				783314552918AB1B009DDD3F /* TeamSettingsTabView.swift in Sources */,
@@ -1079,6 +1154,8 @@
 				78AC280329442CDA00F53EAB /* RemoteConfig.swift in Sources */,
 				78331464291B35D1009DDD3F /* TeamUsersTabVM.swift in Sources */,
 				783DED03286180470062343E /* HomeScreen.swift in Sources */,
+				788CFF9E29554734002650F7 /* ChangeTeamManagerUserCellVM.swift in Sources */,
+				788CFFA629567104002650F7 /* TeamSettingsLeaveTeamCellVM.swift in Sources */,
 				78439FD928AC8EC80070D48D /* TeamSelectModal.swift in Sources */,
 				7802E199288D9FEC00F7D501 /* PasswordFormComponent.swift in Sources */,
 				780F197A28A493FE00371B91 /* AuthViewController.swift in Sources */,
@@ -1102,6 +1179,7 @@
 				78B687882887A6B2006B6CAB /* SwitchControlledTextFormComponent.swift in Sources */,
 				78A4E0BD2883B9550067DBCE /* RegexFormItem.swift in Sources */,
 				7872D6FA28950AEF00E598D2 /* TeamModel.swift in Sources */,
+				788CFFA4295670C7002650F7 /* TeamSettingsLeaveTeamCell.swift in Sources */,
 				783314572918B3C9009DDD3F /* TeamTabBarVM.swift in Sources */,
 				78E743C428A599A00069E691 /* SignInCompletedForm.swift in Sources */,
 				78B687842887A64E006B6CAB /* DateFormComponent.swift in Sources */,
@@ -1114,6 +1192,7 @@
 				780F498C29307820006C8456 /* AlertModalService.swift in Sources */,
 				78B687862887A67B006B6CAB /* ButtonFormComponent.swift in Sources */,
 				D5D17088290E21F900C52254 /* LoggingEvent.swift in Sources */,
+				788CFFA229565F6A002650F7 /* TeamSettingsDeleteTeamCellVM.swift in Sources */,
 				78DF5AF228BC413000C182CF /* TeamInvitesViewController.swift in Sources */,
 				78FAB71F28AB170B009B8D50 /* LoggerService.swift in Sources */,
 				78E4F88E2893881D0075F04F /* TaskModel.swift in Sources */,
@@ -1142,6 +1221,7 @@
 				780F49902934722F006C8456 /* TeamStatsTabVM.swift in Sources */,
 				78DAADF52869663000FEB0DA /* TaskAddEditScreenVM.swift in Sources */,
 				78DF5AF428BC51C400C182CF /* TeamInvite.swift in Sources */,
+				788CFFA82956AD31002650F7 /* TeamSettingsChangeTeamManagerCell.swift in Sources */,
 				78904AF028D3FA8B00F6EF1F /* DeleteUserCell.swift in Sources */,
 				78DF5AF628BC63CA00C182CF /* TeamInviteModel.swift in Sources */,
 				78B687802887A5E5006B6CAB /* FormComponent.swift in Sources */,

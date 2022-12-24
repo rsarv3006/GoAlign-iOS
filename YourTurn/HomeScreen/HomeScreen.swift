@@ -193,17 +193,16 @@ class HomeScreen: YtViewController {
             
         }).store(in: &subscriptions)
         
-        viewModel?.loadTasks()
-        viewModel?.loadTeams()
+        viewModel?.loadTeamsAndTasks()
     }
     
     // MARK: - Actions
     @objc func onAddTaskPressed() {
-        viewModel?.onAddTaskPress(navigationController: navigationController)
+        onAddTaskPress()
     }
     
     @objc func onAddTeamPressed() {
-        viewModel?.onAddTeamPress(navigationController: navigationController)
+        onAddTeamPress()
     }
     
     @objc func onDrawerButtonPress() {
@@ -238,7 +237,6 @@ extension HomeScreen: UITableViewDelegate {
                 self.navigationController?.pushViewController(groupTabVC, animated: true)
             }
         }
-        
         
         return nil
     }
@@ -310,6 +308,47 @@ extension HomeScreen: UITableViewDataSource {
     
 }
 
+// MARK: - Navigation Handling
+extension HomeScreen {
+    func onAddTaskPress() {
+        let newVC = TaskAddEditScreen()
+        newVC.viewModel = TaskAddEditScreenVM()
+        newVC.delegate = self
+        navigationController?.pushViewController(newVC, animated: true)
+    }
+    
+    func onAddTeamPress() {
+        let newVC = TeamAddModal()
+        newVC.viewModel = TeamAddModalVM()
+        newVC.delegate = self
+        navigationController?.present(newVC, animated: true)
+    }
+}
+
+// MARK: TeamAddModalDelegate
+extension HomeScreen: TeamAddModalDelegate {
+    func onTeamAddScreenComplete(viewController: UIViewController) {
+        viewModel?.loadTeamsAndTasks()
+    }
+    
+    func onTeamAddGoToInvite(viewController: UIViewController, teamId: String) {
+        viewModel?.loadTeamsAndTasks()
+        
+        DispatchQueue.main.async {
+            let newVC = TeamInviteUserModal()
+            newVC.viewModel = TeamInviteUserModalVM(teamId: teamId)
+            self.navigationController?.present(newVC, animated: true)
+        }
+    }
+}
+
+// MARK: - TaskAddEditScreenDelegate
+extension HomeScreen: TaskAddEditScreenDelegate {
+    func onTaskScreenComplet(viewController: UIViewController) {
+        viewModel?.loadTeamsAndTasks()
+    }
+}
+
 // MARK: - DrawerMenuViewControllerDelegate
 extension HomeScreen: DrawerMenuViewControllerDelegate {
     func onViewSettingsPressed(viewController: UIViewController) {
@@ -334,8 +373,7 @@ extension HomeScreen: DrawerMenuViewControllerDelegate {
             let newVc = TeamInvitesViewController()
             newVc.viewModel = TeamInvitesVM()
             newVc.requestHomeReload.sink { _ in
-                self.viewModel?.loadTeams()
-                self.viewModel?.loadTasks()
+                self.viewModel?.loadTeamsAndTasks()
             }.store(in: &self.subscriptions)
             self.navigationController?.pushViewController(newVc, animated: true)
         }

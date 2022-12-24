@@ -53,21 +53,6 @@ class HomeScreenVM {
         }
     }
     
-    func onAddTaskPress(navigationController: UINavigationController?) {
-        let newVc = TaskAddEditScreen()
-        newVc.viewModel = TaskAddEditScreenVM()
-        newVc.delegate = self
-        navigationController?.pushViewController(newVc, animated: false)
-    }
-    
-    func onAddTeamPress(navigationController: UINavigationController?) {
-        let newVc = TeamAddModal()
-        newVc.viewModel = TeamAddModalVM()
-        newVc.delegate = self
-        newVc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-        navigationController?.present(newVc, animated: true)
-    }
-    
     func onMarkTaskComplete(viewController: UIViewController, taskId: String) {
         Task {
             do {
@@ -78,30 +63,9 @@ class HomeScreenVM {
             }
         }
     }
-}
-
-extension HomeScreenVM: TaskAddEditScreenDelegate {
-    func onTaskScreenComplet(viewController: UIViewController) {
-        loadTasks()
-        loadTeams()
-    }
-}
-
-extension HomeScreenVM: TeamAddModalDelegate {
-    func onTeamAddScreenComplete(viewController: UIViewController) {
-        loadTasks()
-        loadTeams()
-    }
     
-    func onTeamAddGoToInvite(viewController: UIViewController, teamId: String) {
+    func loadTeamsAndTasks() {
         loadTasks()
         loadTeams()
-        
-        DispatchQueue.main.async {
-            let newVC = TeamInviteUserModal()
-            newVC.viewModel = TeamInviteUserModalVM(teamId: teamId)
-            self.loadViewControllerSubject.send(newVC)
-        }
-        
     }
 }
