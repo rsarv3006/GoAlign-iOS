@@ -103,8 +103,6 @@ class TeamInviteUserModal: YtViewController {
         invitedTeamMembersTableView.dataSource = self
         invitedTeamMembersTableView.delegate = self
         
-//        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        
         view.addSubview(subView)
         subView.center(inView: view)
         

@@ -29,8 +29,6 @@ class UpdateTeamManagerDto: Codable {
     let newManagerId: String
     
     init(teamId: String, newManagerId: String) {
-        print(teamId)
-        print(newManagerId)
         self.teamId = teamId
         self.newManagerId = newManagerId
     }
