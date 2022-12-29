@@ -33,3 +33,17 @@ class UpdateTeamManagerDto: Codable {
         self.newManagerId = newManagerId
     }
 }
+
+class TeamSettingsModel: Codable {
+    let teamSettingsId: String
+    let teamId: String
+    let canAllTeamMembersAddTasks: Bool
+}
+
+class UpdateCanAllTeamMembersAddTasksSettingDto: Codable {
+    let newSettingValue: Bool
+    
+    init(newSettingValue: Bool) {
+        self.newSettingValue = newSettingValue
+    }
+}

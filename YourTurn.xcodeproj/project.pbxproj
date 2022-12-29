@@ -101,6 +101,8 @@
 		78904AEB28D2D00100F6EF1F /* SettingsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78904AEA28D2D00100F6EF1F /* SettingsScreenView.swift */; };
 		78904AED28D2D01400F6EF1F /* SettingsScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78904AEC28D2D01400F6EF1F /* SettingsScreenVM.swift */; };
 		78904AF028D3FA8B00F6EF1F /* DeleteUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78904AEF28D3FA8B00F6EF1F /* DeleteUserCell.swift */; };
+		789377D7295D599C00F6B9A9 /* TeamSettingsAllMembersCanAddTasksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789377D6295D599C00F6B9A9 /* TeamSettingsAllMembersCanAddTasksCell.swift */; };
+		789377D9295D59BB00F6B9A9 /* TeamSettingsAllMembersCanAddTasksCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789377D8295D59BB00F6B9A9 /* TeamSettingsAllMembersCanAddTasksCellVM.swift */; };
 		78A4E0BD2883B9550067DBCE /* RegexFormItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A4E0BC2883B9550067DBCE /* RegexFormItem.swift */; };
 		78A4E0C02883B98F0067DBCE /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A4E0BF2883B98F0067DBCE /* ValidationError.swift */; };
 		78A4E0C32883BDEA0067DBCE /* RegexPatterns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A4E0C22883BDEA0067DBCE /* RegexPatterns.swift */; };
@@ -287,6 +289,8 @@
 		78904AEA28D2D00100F6EF1F /* SettingsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenView.swift; sourceTree = "<group>"; };
 		78904AEC28D2D01400F6EF1F /* SettingsScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenVM.swift; sourceTree = "<group>"; };
 		78904AEF28D3FA8B00F6EF1F /* DeleteUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserCell.swift; sourceTree = "<group>"; };
+		789377D6295D599C00F6B9A9 /* TeamSettingsAllMembersCanAddTasksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsAllMembersCanAddTasksCell.swift; sourceTree = "<group>"; };
+		789377D8295D59BB00F6B9A9 /* TeamSettingsAllMembersCanAddTasksCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsAllMembersCanAddTasksCellVM.swift; sourceTree = "<group>"; };
 		78A4E0BC2883B9550067DBCE /* RegexFormItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexFormItem.swift; sourceTree = "<group>"; };
 		78A4E0BF2883B98F0067DBCE /* ValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
 		78A4E0C22883BDEA0067DBCE /* RegexPatterns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexPatterns.swift; sourceTree = "<group>"; };
@@ -524,6 +528,7 @@
 				788CFFA129565F6A002650F7 /* TeamSettingsDeleteTeamCellVM.swift */,
 				788CFFA529567104002650F7 /* TeamSettingsLeaveTeamCellVM.swift */,
 				788CFFA92956AD59002650F7 /* TeamSettingsChangeTeamManagerCellVM.swift */,
+				789377D8295D59BB00F6B9A9 /* TeamSettingsAllMembersCanAddTasksCellVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -722,6 +727,7 @@
 				788CFF9F29565B49002650F7 /* TeamSettingsDeleteTeamCell.swift */,
 				788CFFA3295670C7002650F7 /* TeamSettingsLeaveTeamCell.swift */,
 				788CFFA72956AD31002650F7 /* TeamSettingsChangeTeamManagerCell.swift */,
+				789377D6295D599C00F6B9A9 /* TeamSettingsAllMembersCanAddTasksCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1122,6 +1128,7 @@
 				780F197428A490C200371B91 /* DateInFutureValidationManagerImpl.swift in Sources */,
 				78B68792288829F0006B6CAB /* FieldValidInvalidProtocol.swift in Sources */,
 				78A4E0C32883BDEA0067DBCE /* RegexPatterns.swift in Sources */,
+				789377D7295D599C00F6B9A9 /* TeamSettingsAllMembersCanAddTasksCell.swift in Sources */,
 				780F197228A4907D00371B91 /* DateAgeLimitValidationManagerImpl.swift in Sources */,
 				7833144929154986009DDD3F /* InputTextView.swift in Sources */,
 				7802E195288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift in Sources */,
@@ -1172,6 +1179,7 @@
 				78BF0D6828A98052005C6098 /* DrawerTransitionManager.swift in Sources */,
 				780F197628A490DB00371B91 /* StringMaxLengthValidationManagerImpl.swift in Sources */,
 				783DECD228617EEB0062343E /* AppDelegate.swift in Sources */,
+				789377D9295D59BB00F6B9A9 /* TeamSettingsAllMembersCanAddTasksCellVM.swift in Sources */,
 				7847732A28768B69009AFC92 /* TaskAddEditFormContentBuilderImpl.swift in Sources */,
 				780F197028A4905100371B91 /* RegexValidationManagerImpl.swift in Sources */,
 				78352991294E7428000A4290 /* TeamSettingsTabVM.swift in Sources */,

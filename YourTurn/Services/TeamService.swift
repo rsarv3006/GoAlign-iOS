@@ -111,4 +111,38 @@ struct TeamService {
             throw ServiceErrors.custom(message: serverError.message)
         }
     }
+    
+    static func getTeamSettings(teamId: String) async throws -> TeamSettingsModel {
+        let url = try Networking.createUrl(endPoint: "team/\(teamId)/settings")
+        
+        let (data, response) = try await Networking.get(url: url)
+        
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+        
+        if let response = response as? HTTPURLResponse, response.statusCode == 200 {
+            let teams = try decoder.decode(TeamSettingsModel.self, from: data)
+            return teams
+        } else {
+            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            throw ServiceErrors.custom(message: serverError.message)
+        }
+    }
+    
+    static func updateCanAllTeamMembersAddTasksSetting(teamId: String, newSettingValue: Bool) async throws {
+        let url = try Networking.createUrl(endPoint: "team/\(teamId)/settings/canAllTeamMembersAddTasks")
+        
+        let updateSettingDto = UpdateCanAllTeamMembersAddTasksSettingDto(newSettingValue: newSettingValue)
+        let updateSettingData = try JSONEncoder().encode(updateSettingDto)
+        
+        let (data, response) = try await Networking.patch(url: url, body: updateSettingData)
+        
+        if let response = response as? HTTPURLResponse, response.statusCode == 204 {
+            return
+        } else {
+            let decoder = JSONDecoder()
+            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            throw ServiceErrors.custom(message: serverError.message)
+        }
+    }
 }

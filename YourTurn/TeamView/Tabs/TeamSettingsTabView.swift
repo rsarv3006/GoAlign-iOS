@@ -12,6 +12,7 @@ private struct ReuseIdentifiers {
     static let DeleteTeam = "settingsDeleteTeamReuseIdentifier"
     static let LeaveTeam = "settingsLeaveTeamReuseIdentifier"
     static let ChangeTeamManager = "settingsChangeTeamManagerReuseIdentifier"
+    static let AllMembersCanAddTasks = "allMembersCanAddTasksReuseIdentifier"
 }
 class TeamSettingsTabView: YtViewController {
     
@@ -43,6 +44,8 @@ class TeamSettingsTabView: YtViewController {
         settingsTableView.register(TeamSettingsDeleteTeamCell.self, forCellReuseIdentifier: ReuseIdentifiers.DeleteTeam)
         settingsTableView.register(TeamSettingsLeaveTeamCell.self, forCellReuseIdentifier: ReuseIdentifiers.LeaveTeam)
         settingsTableView.register(TeamSettingsChangeTeamManagerCell.self, forCellReuseIdentifier: ReuseIdentifiers.ChangeTeamManager)
+        settingsTableView.register(TeamSettingsAllMembersCanAddTasksCell.self, forCellReuseIdentifier: ReuseIdentifiers.AllMembersCanAddTasks)
+        
         settingsTableView.rowHeight = 48
         
         settingsTableView.delegate = self
@@ -83,8 +86,13 @@ extension TeamSettingsTabView: UITableViewDataSource {
             cellVM.delegate = viewModel
             cell.viewModel = cellVM
             return cell
+        case .AllMembersCanAddTasks:
+            let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.AllMembersCanAddTasks, for: indexPath) as! TeamSettingsAllMembersCanAddTasksCell
+            let cellVM = TeamSettingsAllMembersCanAddTasksCellVM(team: team)
+            cellVM.delegate = viewModel
+            cell.viewModel = cellVM
+            return cell
         }
-
     }
 }
 

@@ -12,11 +12,13 @@ enum TeamSettingsVariant {
     case DeleteTeam
     case LeaveTeam
     case ChangeTeamManager
+    case AllMembersCanAddTasks
 }
 
 class TeamSettingsTabVM {
     
     private(set) var settingsItems: [TeamSettingsVariant] = [
+        .AllMembersCanAddTasks,
         .LeaveTeam,
         .DeleteTeam
     ]
@@ -45,7 +47,7 @@ class TeamSettingsTabVM {
         Task {
             let user = try? await UserService.getCurrentUser()
             if let user = user, user.userId == team.teamManagerId {
-                settingsItems.insert(.ChangeTeamManager, at: 0)
+                settingsItems.insert(.ChangeTeamManager, at: 1)
                 reloadTeamSettingsTable.send(Void())
             }
         }

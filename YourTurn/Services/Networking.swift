@@ -13,6 +13,7 @@ enum HttpMethod: String {
     case post = "POST"
     case delete = "DELETE"
     case put = "PUT"
+    case patch = "PATCH"
 }
 
 struct Networking {
@@ -44,6 +45,10 @@ struct Networking {
     
     static func put(url: URL, body: Data? = nil) async throws -> (Data, URLResponse) {
         try await apiCall(httpMethod: .put, url: url, body: body)
+    }
+    
+    static func patch(url: URL, body: Data? = nil) async throws -> (Data, URLResponse) {
+        try await apiCall(httpMethod: .patch, url: url, body: body)
     }
     
     static func delete(url: URL, body: Data? = nil) async throws -> (Data, URLResponse) {
