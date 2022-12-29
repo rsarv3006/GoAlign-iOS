@@ -61,7 +61,7 @@ extension TeamTasksTabView: UITableViewDataSource {
             let taskViewVm = TaskViewVM(task: task)
             let taskView = TaskView()
             taskView.viewModel = taskViewVm
-            self.navigationController?.pushViewController(taskView, animated: true)
+            self.present(taskView, animated: true)
         }
         return nil
     }

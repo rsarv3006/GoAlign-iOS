@@ -86,8 +86,6 @@ class TaskMoreInfoView: YtViewController {
     
     // MARK: - Helpers
     override func configureView() {
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        
         let screenHeight = UIScreen.main.bounds.size.height
         let screenWidth = UIScreen.main.bounds.size.width
         
