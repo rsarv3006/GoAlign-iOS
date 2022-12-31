@@ -88,6 +88,7 @@
 		7872D6FC28950C5E00E598D2 /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872D6FB28950C5E00E598D2 /* TeamService.swift */; };
 		7872D6FE2896B03F00E598D2 /* ToJsonProtcol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872D6FD2896B03F00E598D2 /* ToJsonProtcol.swift */; };
 		7872D70028978C1700E598D2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7872D6FF28978C1700E598D2 /* .gitignore */; };
+		7882B7892960CFE500428FFC /* NotificationBannerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7882B7882960CFE500428FFC /* NotificationBannerSwift */; };
 		788CFF9C29554131002650F7 /* ChangeTeamManagerUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788CFF9B29554131002650F7 /* ChangeTeamManagerUserCell.swift */; };
 		788CFF9E29554734002650F7 /* ChangeTeamManagerUserCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788CFF9D29554734002650F7 /* ChangeTeamManagerUserCellVM.swift */; };
 		788CFFA029565B49002650F7 /* TeamSettingsDeleteTeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788CFF9F29565B49002650F7 /* TeamSettingsDeleteTeamCell.swift */; };
@@ -375,6 +376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7802E181288B9A1300F7D501 /* FirebaseAuth in Frameworks */,
+				7882B7892960CFE500428FFC /* NotificationBannerSwift in Frameworks */,
 				78AC280B29452AA600F53EAB /* JGProgressHUD in Frameworks */,
 				7802E183288B9A1300F7D501 /* FirebaseCrashlytics in Frameworks */,
 				78FAB71D28AB16A2009B8D50 /* FirebaseCrashlytics in Frameworks */,
@@ -953,6 +955,7 @@
 				78FAB71C28AB16A2009B8D50 /* FirebaseCrashlytics */,
 				78AC28052944305800F53EAB /* FirebaseRemoteConfig */,
 				78AC280A29452AA600F53EAB /* JGProgressHUD */,
+				7882B7882960CFE500428FFC /* NotificationBannerSwift */,
 			);
 			productName = YourTurn;
 			productReference = 783DECCE28617EEB0062343E /* YourTurn.app */;
@@ -1030,6 +1033,7 @@
 				7802E17D288B9A1300F7D501 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				78FAB71928AB16A2009B8D50 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				78AC280929452AA600F53EAB /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
+				7882B7872960CFE500428FFC /* XCRemoteSwiftPackageReference "NotificationBanner" */,
 			);
 			productRefGroup = 783DECCF28617EEB0062343E /* Products */;
 			projectDirPath = "";
@@ -1609,6 +1613,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		7882B7872960CFE500428FFC /* XCRemoteSwiftPackageReference "NotificationBanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rsarv3006/NotificationBanner";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		78AC280929452AA600F53EAB /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
@@ -1642,6 +1654,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7802E17D288B9A1300F7D501 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
+		};
+		7882B7882960CFE500428FFC /* NotificationBannerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7882B7872960CFE500428FFC /* XCRemoteSwiftPackageReference "NotificationBanner" */;
+			productName = NotificationBannerSwift;
 		};
 		78AC28052944305800F53EAB /* FirebaseRemoteConfig */ = {
 			isa = XCSwiftPackageProductDependency;

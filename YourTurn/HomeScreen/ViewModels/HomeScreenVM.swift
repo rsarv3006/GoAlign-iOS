@@ -5,9 +5,9 @@
 //  Created by rjs on 6/21/22.
 //
 
-import Foundation
 import Combine
 import UIKit
+import NotificationBannerSwift
 
 class HomeScreenVM {
     private(set) var subscriptions = Set<AnyCancellable>()
@@ -67,5 +67,34 @@ class HomeScreenVM {
     func loadTeamsAndTasks() {
         loadTasks()
         loadTeams()
+    }
+    
+    func checkAndDisplayPendingInviteBaner(viewController: UIViewController) {
+        Task {
+            do {
+                let invites = try await TeamInviteService.getTeamInvitesByCurrentUser()
+                
+                if !invites.isEmpty {
+                    var title = ""
+                    var subTitle = ""
+                    
+                    if invites.count > 1 {
+                        title = "Invites Pending"
+                        subTitle = "You have \(invites.count) pending invites."
+                    } else {
+                        title = "Invite Pending"
+                        subTitle = "\(invites[0].creator.username) as invited you to a team."
+                    }
+                    
+                    let banner = await FloatingNotificationBanner(title: title, subtitle: subTitle)
+                    
+                    await banner.show(on: viewController, cornerRadius: 12, shadowEdgeInsets: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8))
+                }
+
+            } catch {
+                Logger.log(logLevel: .Verbose, name: Logger.Events.Team.Invite.fetchFailed, payload: [:])
+            }
+        }
+
     }
 }

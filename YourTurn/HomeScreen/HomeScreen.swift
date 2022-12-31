@@ -32,6 +32,7 @@ class HomeScreen: YtViewController {
             viewModel.loadViewControllerSubject.sink { viewController in
                 self.navigationController?.present(viewController, animated: true)
             }.store(in: &subscriptions)
+            
         }
     }
     
@@ -108,6 +109,8 @@ class HomeScreen: YtViewController {
             let token = try? await AuthenticationService.getToken()
             print(token ?? "UH OH NO TOKEN FOUND")
         }
+        
+        viewModel?.checkAndDisplayPendingInviteBaner(viewController: self)
     }
     
     // MARK: - Helpers
