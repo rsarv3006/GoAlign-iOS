@@ -10,6 +10,7 @@ import Combine
 
 class TeamSettingsAllMembersCanAddTasksCellVM {
     private(set) var settingPassThrough = CurrentValueSubject<Bool, Never>(false)
+    private(set) var settingEnabledPassThrough = CurrentValueSubject<Bool, Never>(false)
     
     let switchTitle = "Can all members add tasks:"
     var delegate: TeamSettingsCellsDelegate?
@@ -20,6 +21,7 @@ class TeamSettingsAllMembersCanAddTasksCellVM {
         self.team = team
         
         fetchCanAllMembersAddTasksSetting()
+        canUserChangeSetting()
     }
     
     func fetchCanAllMembersAddTasksSetting() {
@@ -41,6 +43,15 @@ class TeamSettingsAllMembersCanAddTasksCellVM {
                 settingPassThrough.send(teamSettings.canAllTeamMembersAddTasks)
             } catch {
                 delegate?.requestShowMessageFromCell(withTitle: "Uh Oh", message: error.localizedDescription)
+            }
+        }
+    }
+    
+    func canUserChangeSetting() {
+        Task {
+            let user = try? await UserService.getCurrentUser()
+            if user?.userId == team.teamManagerId {
+                settingEnabledPassThrough.send(true)
             }
         }
     }

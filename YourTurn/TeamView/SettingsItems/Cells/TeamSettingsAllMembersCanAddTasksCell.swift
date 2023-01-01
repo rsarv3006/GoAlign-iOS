@@ -16,9 +16,16 @@ class TeamSettingsAllMembersCanAddTasksCell: UITableViewCell {
         didSet {
             guard let viewModel = viewModel else { return }
             settingLabel.text = viewModel.switchTitle
+            
             viewModel.settingPassThrough.sink { setting in
                 DispatchQueue.main.async {
                     self.settingSwitch.isOn = setting
+                }
+            }.store(in: &subscriptions)
+            
+            viewModel.settingEnabledPassThrough.sink { isEnabled in
+                DispatchQueue.main.async {
+                    self.settingSwitch.isEnabled = isEnabled
                 }
             }.store(in: &subscriptions)
         }
