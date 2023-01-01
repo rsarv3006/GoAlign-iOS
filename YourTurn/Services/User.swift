@@ -59,4 +59,13 @@ enum UserService {
         
         return false
     }
+    
+    static func isUserTeamManager(forTeam team: TeamModel) async throws -> Bool {
+        let user = try? await self.getCurrentUser()
+        if let user = user, user.userId == team.teamManagerId {
+            return true
+        }
+        
+        return false
+    }
 }
