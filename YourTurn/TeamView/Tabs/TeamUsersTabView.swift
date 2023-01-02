@@ -53,6 +53,12 @@ class TeamUsersTabView: YtViewController {
                     self.teamInvitesArray = teamInvites
                 }
             }.store(in: &subscriptions)
+            
+            viewModel.requestTableReload.sink { _ in
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }.store(in: &subscriptions)
         }
     }
     
@@ -180,5 +186,11 @@ extension TeamUsersTabView: UITableViewDataSource {
         }
     }
     
-    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete && viewModel?.canUserEditTeam == true {
+            let index = indexPath.row
+
+            viewModel?.initiateDeleteUserFlow(viewController: self, index: index, type: selected)
+        }
+    }
 }

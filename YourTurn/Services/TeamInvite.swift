@@ -89,4 +89,19 @@ struct TeamInviteService {
             throw ServiceErrors.custom(message: serverError.message)
         }
     }
+    
+    static func deleteTeamInvite(inviteId: String) async throws {
+        let url = try Networking.createUrl(endPoint: "teamInvite/\(inviteId)")
+        
+        let (data, response) = try await Networking.delete(url: url)
+        
+        if let response = response as? HTTPURLResponse, response.statusCode == 204 {
+            return
+        } else {
+            let decoder = JSONDecoder()
+            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            throw ServiceErrors.custom(message: serverError.message)
+        }
+
+    }
 }
