@@ -10,6 +10,8 @@ import Combine
 
 class TeamInviteUserModalVM {
     
+    var delegate: TeamUsersReloadDelegate?
+    
     let modalTitleText = "Invite People to your Team"
     let closeModalButtonText = "Finish"
     

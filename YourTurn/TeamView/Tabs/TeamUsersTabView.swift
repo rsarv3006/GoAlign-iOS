@@ -155,6 +155,7 @@ class TeamUsersTabView: YtViewController {
         guard let viewModel = viewModel else { return }
         let inviteModal = TeamInviteUserModal()
         let inviteModalVm = TeamInviteUserModalVM(teamId: viewModel.team.teamId)
+        inviteModalVm.delegate = self
         inviteModal.viewModel = inviteModalVm
         navigationController?.present(inviteModal, animated: true)
     }
@@ -193,4 +194,14 @@ extension TeamUsersTabView: UITableViewDataSource {
             viewModel?.initiateDeleteUserFlow(viewController: self, index: index, type: selected)
         }
     }
+}
+
+extension TeamUsersTabView: TeamUsersReloadDelegate {
+    func requestInvitesReload() {
+        DispatchQueue.main.async {
+            self.viewModel?.fetchTeamInvites()
+        }
+    }
+    
+    
 }

@@ -152,6 +152,7 @@ class TeamInviteUserModal: YtViewController {
     @objc func onCloseModalButtonPressed() {
         if let count = viewModel?.invitedUsers.count, count > 0 {
             self.dismiss(animated: true)
+            viewModel?.delegate?.requestInvitesReload()
         } else {
             confirmCloseModal()
         }
@@ -167,6 +168,7 @@ class TeamInviteUserModal: YtViewController {
             let confirmAction = UIAlertAction(title: "Yes I'm Sure", style: .destructive) { _ in
                 alert.removeFromParent()
                 self.dismiss(animated: true)
+                self.viewModel?.delegate?.requestInvitesReload()
             }
             
             alert.addAction(cancelAction)

@@ -45,6 +45,7 @@
 		780F498C29307820006C8456 /* AlertModalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F498B29307820006C8456 /* AlertModalService.swift */; };
 		780F498E29307C86006C8456 /* NetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F498D29307C86006C8456 /* NetworkingTests.swift */; };
 		780F49902934722F006C8456 /* TeamStatsTabVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F498F2934722F006C8456 /* TeamStatsTabVM.swift */; };
+		78209179296361E400853C2C /* TeamUsersReloadDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78209178296361E400853C2C /* TeamUsersReloadDelegate.swift */; };
 		78288CD428B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78288CD328B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift */; };
 		782A5F6F294183250042B0EF /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782A5F6E294183250042B0EF /* ForgotPasswordView.swift */; };
 		7833144529154752009DDD3F /* TextBoxFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7833144429154752009DDD3F /* TextBoxFormComponent.swift */; };
@@ -230,6 +231,7 @@
 		780F498B29307820006C8456 /* AlertModalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModalService.swift; sourceTree = "<group>"; };
 		780F498D29307C86006C8456 /* NetworkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingTests.swift; sourceTree = "<group>"; };
 		780F498F2934722F006C8456 /* TeamStatsTabVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamStatsTabVM.swift; sourceTree = "<group>"; };
+		78209178296361E400853C2C /* TeamUsersReloadDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamUsersReloadDelegate.swift; sourceTree = "<group>"; };
 		78288CD328B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO8601CustomDateDecodingStrategy.swift; sourceTree = "<group>"; };
 		782A5F6E294183250042B0EF /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		7833144429154752009DDD3F /* TextBoxFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBoxFormComponent.swift; sourceTree = "<group>"; };
@@ -444,6 +446,7 @@
 				780F197728A492E500371B91 /* SwitchAuthScreenProtocol.swift */,
 				78EC914B28AF2C920046DF28 /* ModalDelegateProtocol.swift */,
 				788CFFAD2956ADCA002650F7 /* TeamSettingsCellsDelegate.swift */,
+				78209178296361E400853C2C /* TeamUsersReloadDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1194,6 +1197,7 @@
 				788CFFA4295670C7002650F7 /* TeamSettingsLeaveTeamCell.swift in Sources */,
 				783314572918B3C9009DDD3F /* TeamTabBarVM.swift in Sources */,
 				78E743C428A599A00069E691 /* SignInCompletedForm.swift in Sources */,
+				78209179296361E400853C2C /* TeamUsersReloadDelegate.swift in Sources */,
 				78B687842887A64E006B6CAB /* DateFormComponent.swift in Sources */,
 				78BFFAA228878DEC00A767AB /* FormCollectionView.swift in Sources */,
 				780F197C28A4B0C700371B91 /* RootController.swift in Sources */,
