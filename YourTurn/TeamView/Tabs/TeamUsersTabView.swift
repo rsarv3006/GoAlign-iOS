@@ -44,21 +44,6 @@ class TeamUsersTabView: YtViewController {
                 currentUsersButton.backgroundColor = .systemBackground
                 tableView.reloadData()
             }
-            
-            viewModel.teamInvitesSubject.sink { teamInviteResult in
-                switch(teamInviteResult) {
-                case .failure(let error):
-                    self.showMessage(withTitle: "Uh Oh", message: "Error encountered fetching outstanding invites. \(error.localizedDescription)")
-                case .success(let teamInvites):
-                    self.teamInvitesArray = teamInvites
-                }
-            }.store(in: &subscriptions)
-            
-            viewModel.requestTableReload.sink { _ in
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            }.store(in: &subscriptions)
         }
     }
     
@@ -75,6 +60,32 @@ class TeamUsersTabView: YtViewController {
                         self.tableView.reloadData()
                     }
                     
+                }
+            }.store(in: &subscriptions)
+            
+            viewModel.shouldShowCreateInviteButton.sink { shouldShowCreateInviteButton in
+                DispatchQueue.main.async {
+                    self.clearView()
+                    print("Howdy")
+                    if shouldShowCreateInviteButton {
+                        print("Howdy1")
+                        self.loadViewWithTeamInviteButton()
+                    }
+                }
+            }.store(in: &subscriptions)
+            
+            viewModel.requestTableReload.sink { _ in
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }.store(in: &subscriptions)
+            
+            viewModel.teamInvitesSubject.sink { teamInviteResult in
+                switch(teamInviteResult) {
+                case .failure(let error):
+                    self.showMessage(withTitle: "Uh Oh", message: "Error encountered fetching outstanding invites. \(error.localizedDescription)")
+                case .success(let teamInvites):
+                    self.teamInvitesArray = teamInvites
                 }
             }.store(in: &subscriptions)
         }
@@ -122,12 +133,26 @@ class TeamUsersTabView: YtViewController {
     
     // MARK: HELPERS
     override func configureView() {
-        let screenWidth = UIScreen.main.bounds.size.width
-        
-        let topSafeAnchor = view.safeAreaLayoutGuide.topAnchor
-        
         tableView.dataSource = self
         tableView.delegate = self
+        
+        if viewModel?.shouldShowCreateInviteButton.value == true {
+            loadViewWithTeamInviteButton()
+        } else {
+            loadViewWithoutTeamInviteButton()
+        }
+    }
+    
+    private func clearView() {
+        inviteUsersButton.removeFromSuperview()
+        currentUsersButton.removeFromSuperview()
+        invitesButton.removeFromSuperview()
+        tableView.removeFromSuperview()
+    }
+    
+    private func loadViewWithTeamInviteButton() {
+        let screenWidth = UIScreen.main.bounds.size.width
+        let topSafeAnchor = view.safeAreaLayoutGuide.topAnchor
         
         view.addSubview(inviteUsersButton)
         inviteUsersButton.centerX(inView: view, topAnchor: topSafeAnchor)
@@ -141,6 +166,20 @@ class TeamUsersTabView: YtViewController {
         
         view.addSubview(tableView)
         tableView.anchor(top:currentUsersButton.bottomAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor)
+    }
+    
+    private func loadViewWithoutTeamInviteButton() {
+        let screenWidth = UIScreen.main.bounds.size.width
+        let topSafeAnchor = view.safeAreaLayoutGuide.topAnchor
+        
+        view.addSubview(currentUsersButton)
+        currentUsersButton.anchor(top: topSafeAnchor, left: view.leftAnchor, paddingTop: 12, width: screenWidth / 2, height: 64)
+        
+        view.addSubview(invitesButton)
+        invitesButton.anchor(top: topSafeAnchor, left: currentUsersButton.rightAnchor, right: view.rightAnchor, paddingTop: 12, height: 64)
+        
+        view.addSubview(tableView)
+        tableView.anchor(top: currentUsersButton.bottomAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor)
     }
     
     @objc func onButtonPress() {

@@ -12,6 +12,7 @@ class TeamUsersTabVM {
     
     var teamInvitesSubject = CurrentValueSubject<Result<[TeamInviteModel], Error>, Never>(.success([]))
     var usersSubject = CurrentValueSubject<[UserModel], Never>([])
+    var shouldShowCreateInviteButton = CurrentValueSubject<Bool, Never>(false)
     var requestTableReload = PassthroughSubject<Void, Never>()
     
     private(set) var canUserEditTeam: Bool = false
@@ -21,7 +22,7 @@ class TeamUsersTabVM {
     init(team: TeamModel) {
         self.team = team
         usersSubject.send(team.teamMembers)
-        setCanUserEditTeam()
+        setDoesUserHaveTeamEdit()
     }
     
     func fetchTeamInvites() {
@@ -35,11 +36,12 @@ class TeamUsersTabVM {
         }
     }
     
-    private func setCanUserEditTeam() {
+    private func setDoesUserHaveTeamEdit() {
         Task {
             let isUserTeamManager = try? await UserService.isUserTeamManager(forTeam: team)
             if isUserTeamManager == true {
                 canUserEditTeam = true
+                shouldShowCreateInviteButton.send(true)
             }
         }
     }
