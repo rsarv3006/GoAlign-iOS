@@ -6,14 +6,16 @@
 //
 
 import UIKit
+import Combine
 
 private let cellReuseIdentifier = "TeamTasksTabViewTableCell"
 
 class TeamTasksTabView: YtViewController {
-    
+    var subscriptions = Set<AnyCancellable>()
     var viewModel: TeamTasksTabVM? {
         didSet {
             tasksTableView.reloadData()
+            viewModel?.delegate = self
         }
     }
     
@@ -45,12 +47,12 @@ extension TeamTasksTabView: UITableViewDelegate {}
 
 extension TeamTasksTabView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.team.tasks.count ?? 0
+        return viewModel?.tasks.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! TeamTasksTabViewTableCell
-        if let task = viewModel?.team.tasks[indexPath.row] {
+        if let task = viewModel?.tasks[indexPath.row] {
             cell.viewModel = TeamTasksTabViewCellVM(task: task)
         }
         return cell
@@ -58,11 +60,24 @@ extension TeamTasksTabView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if let task = viewModel?.team.tasks[indexPath.row] {
-            let taskViewVm = TaskViewVM(task: task)
-            let taskView = TaskView()
+            let taskViewVm = TeamTaskModalVM(task: task)
+            taskViewVm.requestRefreshTeam.sink { _ in
+                self.viewModel?.refreshTeam()
+                self.viewModel?.requestHomeReload.send(true)
+            }.store(in: &subscriptions)
+            
+            let taskView = TeamTaskModal()
             taskView.viewModel = taskViewVm
             self.present(taskView, animated: true)
         }
         return nil
+    }
+}
+
+extension TeamTasksTabView: TeamTasksTabVMDelegate {
+    func requestTableReload() {
+        DispatchQueue.main.async {
+            self.tasksTableView.reloadData()
+        }
     }
 }

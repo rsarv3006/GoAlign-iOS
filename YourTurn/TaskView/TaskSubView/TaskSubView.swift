@@ -1,8 +1,8 @@
 //
-//  TaskView.swift
+//  TaskSubView.swift
 //  YourTurn
 //
-//  Created by Robby on 9/28/22.
+//  Created by Robert J. Sarvis Jr on 1/3/23.
 //
 
 import UIKit
@@ -10,12 +10,10 @@ import Combine
 
 let TaskEntryCellReuseIdentifier = "TaskEntryCellReuseIdentifier"
 
-class TaskView: UIViewController {
-    var subscriptions = Set<AnyCancellable>()
+class TaskSubView: UIView {
     
-    private(set) var requestHomeReload = PassthroughSubject<Bool, Never>()
-    
-    var viewModel: TaskViewVM? {
+    private var subscriptions = Set<AnyCancellable>()
+    var viewModel: TaskSubViewVM? {
         didSet {
             guard let viewModel = viewModel else { return }
             onViewModelDidSet(viewModel: viewModel)
@@ -71,39 +69,43 @@ class TaskView: UIViewController {
         return label
     }()
     
-    // MARK: - Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureView()
-        configureTaskHistoryTableView()
+    // MARK: Lifecycle
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Helpers
     private func configureView() {
-        let safeAreaLeftAnchor = view.safeAreaLayoutGuide.leftAnchor
-        let safeAreaRightAnchor = view.safeAreaLayoutGuide.rightAnchor
+        let safeAreaTopAnchor = self.safeAreaLayoutGuide.topAnchor
+        let safeAreaBottomAnchor = self.safeAreaLayoutGuide.bottomAnchor
+        let safeAreaLeftAnchor = self.safeAreaLayoutGuide.leftAnchor
+        let safeAreaRightAnchor = self.safeAreaLayoutGuide.rightAnchor
         
-        view.backgroundColor = .systemBackground
+        self.backgroundColor = .systemBackground
         
         taskInformationButton.addTarget(self, action: #selector(onTouchUpInsideTaskInformatioButton), for: .touchUpInside)
         
-        view.addSubview(subViewTaskCompletionBox)
-        subViewTaskCompletionBox.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor, height: 44)
+        self.addSubview(subViewTaskCompletionBox)
+        subViewTaskCompletionBox.anchor(top: safeAreaTopAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor, height: 44)
         
-        view.addSubview(assignedUserLabel)
+        self.addSubview(assignedUserLabel)
         assignedUserLabel.anchor(top: subViewTaskCompletionBox.bottomAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor)
         
-        view.addSubview(assignedTeamLabel)
+        self.addSubview(assignedTeamLabel)
         assignedTeamLabel.anchor(top: assignedUserLabel.bottomAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor)
         
-        view.addSubview(taskInformationButton)
+        self.addSubview(taskInformationButton)
         taskInformationButton.anchor(top: assignedTeamLabel.bottomAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor)
         
-        view.addSubview(taskHistoryTitleLabel)
-        taskHistoryTitleLabel.centerX(inView: view, topAnchor: taskInformationButton.bottomAnchor, paddingTop: 24)
+        self.addSubview(taskHistoryTitleLabel)
+        taskHistoryTitleLabel.centerX(inView: self, topAnchor: taskInformationButton.bottomAnchor, paddingTop: 24)
         
-        view.addSubview(taskHistoryTable)
-        taskHistoryTable.anchor(top: taskHistoryTitleLabel.bottomAnchor, left: safeAreaLeftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: safeAreaRightAnchor, paddingLeft: 8, paddingRight: 8)
+        self.addSubview(taskHistoryTable)
+        taskHistoryTable.anchor(top: taskHistoryTitleLabel.bottomAnchor, left: safeAreaLeftAnchor, bottom: safeAreaBottomAnchor, right: safeAreaRightAnchor, paddingLeft: 8, paddingRight: 8)
         
         configureTaskCompletionBox()
     }
@@ -126,8 +128,10 @@ class TaskView: UIViewController {
         }
     }
     
-    private func onViewModelDidSet(viewModel: TaskViewVM) {
-        title = viewModel.contentTitle
+    private func onViewModelDidSet(viewModel: TaskSubViewVM) {
+        configureView()
+        configureTaskHistoryTableView()
+        
         assignedUserLabel.text = viewModel.assignedUserString
         taskHistoryTitleLabel.attributedText = viewModel.taskHistoryTitleLabelText
         taskInformationButton.setTitle(viewModel.taskInformationButtonString, for: .normal)
@@ -137,7 +141,7 @@ class TaskView: UIViewController {
         viewModel.teamNameSubject.sink { [weak self] teamNameResult in
             switch(teamNameResult) {
             case .failure(let error):
-                self?.showMessage(withTitle: "Uh Oh", message: "Error fetching teamname. \(error.localizedDescription)")
+                viewModel.delegate?.requestShowMessage(withTitle: "Uh Oh", message: "Error fetching teamname. \(error.localizedDescription)")
             case .success(let teamName):
                 DispatchQueue.main.async {
                     self?.assignedTeamLabel.text = teamName
@@ -160,20 +164,21 @@ class TaskView: UIViewController {
             guard let task = self.viewModel?.task else { return }
             let newVc = TaskMoreInfoView()
             newVc.viewModel = TaskMoreInfoVM(task: task)
-            self.present(newVc, animated: true)
+            self.viewModel?.delegate?.requestPresentViewController(newVc)
         }
     }
     
+    // MARK: Actions
     @objc func onTouchUpInsideMarkTaskCompleteButton() {
-        viewModel?.onRequestMarkTaskComplete(viewController: self)
+        viewModel?.onRequestMarkTaskComplete()
     }
 }
 
 // MARK: - UITableViewDelegate
-extension TaskView: UITableViewDelegate {}
+extension TaskSubView: UITableViewDelegate {}
 
 // MARK: - UITableViewDataSource
-extension TaskView: UITableViewDataSource {
+extension TaskSubView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel?.taskEntries.count ?? 0
     }
@@ -183,7 +188,6 @@ extension TaskView: UITableViewDataSource {
         if let taskHistoryItem = viewModel?.taskEntries[indexPath.row] {
             cell.viewModel = TaskViewEntryCellVM(taskEntry: taskHistoryItem)
         }
-        
         return cell
     }
 }

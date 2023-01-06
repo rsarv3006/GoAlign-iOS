@@ -28,7 +28,7 @@ class TeamSettingsTabVM {
     // Back to Tab Bar Controller
     var requestHomeReload = PassthroughSubject<Bool, Never>()
     private(set) var requestRemoveTabView = PassthroughSubject<Bool, Never>()
-    
+
     // Back to Tab Controller
     private(set) var reloadTeamSettingsTable = PassthroughSubject<Void, Never>()
     private(set) var requestShowLoader = PassthroughSubject<Bool, Never>()

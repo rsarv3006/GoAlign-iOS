@@ -220,15 +220,15 @@ extension HomeScreen: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         DispatchQueue.main.async {
             if tableView.tag == TASK_TABLE_TAG {
-                let taskVC = TaskView()
-                taskVC.viewModel = TaskViewVM(task: self.tasks[indexPath.row])
+                let taskVC = TaskViewScreen()
+                taskVC.viewModel = TaskViewScreenVM(task: self.tasks[indexPath.row])
                 taskVC.requestHomeReload.sink { _ in
                     self.viewModel?.loadTeams()
                     self.viewModel?.loadTasks()
                 }.store(in: &self.subscriptions)
                 self.navigationController?.pushViewController(taskVC, animated: true)
             } else if tableView.tag == TEAM_TABLE_TAG {
-                let groupTabVM = TeamTabBarVM(team: self.teams[indexPath.row])
+                let groupTabVM = TeamTabBarControllerVM(team: self.teams[indexPath.row])
                 
                 groupTabVM.requestHomeReload.sink { _ in
                     self.viewModel?.loadTeams()

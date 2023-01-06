@@ -66,9 +66,7 @@ class TeamUsersTabView: YtViewController {
             viewModel.shouldShowCreateInviteButton.sink { shouldShowCreateInviteButton in
                 DispatchQueue.main.async {
                     self.clearView()
-                    print("Howdy")
                     if shouldShowCreateInviteButton {
-                        print("Howdy1")
                         self.loadViewWithTeamInviteButton()
                     }
                 }
@@ -205,7 +203,7 @@ extension TeamUsersTabView: UITableViewDelegate {}
 extension TeamUsersTabView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if selected == .users {
-            return viewModel?.usersSubject.value.count ?? 0
+            return viewModel?.users.count ?? 0
         } else {
             return teamInvitesArray.count
         }
@@ -213,7 +211,7 @@ extension TeamUsersTabView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if selected == .users, let viewModel = viewModel {
             let cell = tableView.dequeueReusableCell(withIdentifier: TabCellIdentifiers.users, for: indexPath) as! TeamUsersTabViewCell
-            cell.viewModel = TeamUsersTabViewCellVM(user: viewModel.usersSubject.value[indexPath.row])
+            cell.viewModel = TeamUsersTabViewCellVM(user: viewModel.users[indexPath.row])
             return cell
             
         } else if selected == .invites {

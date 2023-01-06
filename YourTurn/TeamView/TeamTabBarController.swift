@@ -13,7 +13,7 @@ class TeamTabBarController: UITabBarController {
     
     var subscriptions = Set<AnyCancellable>()
     
-    var viewModel: TeamTabBarVM? {
+    var viewModel: TeamTabBarControllerVM? {
         didSet {
             guard let viewModel = viewModel else { return }
             configureViewControllers(viewModel: viewModel)
@@ -26,7 +26,7 @@ class TeamTabBarController: UITabBarController {
     }
     
     // MARK: - Helpers
-    func configureViewControllers(viewModel: TeamTabBarVM) {
+    func configureViewControllers(viewModel: TeamTabBarControllerVM) {
         view.backgroundColor = .systemBackground
         self.delegate = self
         
@@ -57,10 +57,11 @@ class TeamTabBarController: UITabBarController {
 extension TeamTabBarController: UITabBarControllerDelegate {}
 
 private extension TeamTabBarController {
-    func configureTaskTab(viewModel: TeamTabBarVM) -> UIViewController {
+    func configureTaskTab(viewModel: TeamTabBarControllerVM) -> UIViewController {
         let teamTasksTabViewImage = (UIImage(systemName: "list.bullet.rectangle"))!
         
         let teamTasksTabVM = TeamTasksTabVM(team: viewModel.team)
+        teamTasksTabVM.requestHomeReload = viewModel.requestHomeReload
         
         let teamTasksTabView = TeamTasksTabView()
         teamTasksTabView.viewModel = teamTasksTabVM
@@ -70,7 +71,7 @@ private extension TeamTabBarController {
         return teamTasksTabViewController
     }
     
-    func configureUsersTab(viewModel: TeamTabBarVM) -> UIViewController {
+    func configureUsersTab(viewModel: TeamTabBarControllerVM) -> UIViewController {
         let teamUsersTabViewImage = (UIImage(systemName: "person.2.fill"))!
         let teamUsersTabVM = TeamUsersTabVM(team: viewModel.team)
         
@@ -82,7 +83,7 @@ private extension TeamTabBarController {
         return teamUsersTabViewController
     }
     
-    func configureStatsTab(viewModel: TeamTabBarVM) -> UIViewController {
+    func configureStatsTab(viewModel: TeamTabBarControllerVM) -> UIViewController {
         let teamStatsTabViewImage = (UIImage(systemName: "chart.bar.xaxis"))!
         let teamStatsTabVM = TeamStatsTabVM(teamId: viewModel.team.teamId)
         
@@ -94,7 +95,7 @@ private extension TeamTabBarController {
         return teamStatsTabViewController
     }
     
-    func configureSettingsTab(viewModel: TeamTabBarVM) -> UIViewController {
+    func configureSettingsTab(viewModel: TeamTabBarControllerVM) -> UIViewController {
         let teamSettingsTabViewImage = (UIImage(systemName: "gear.circle"))!
         let teamSettingsTabVM = TeamSettingsTabVM(team: viewModel.team)
         
@@ -103,7 +104,7 @@ private extension TeamTabBarController {
         
         teamSettingsTabView.viewModel = teamSettingsTabVM
         
-        teamSettingsTabVM.requestHomeReload.sink { _ in
+        teamSettingsTabVM.requestRemoveTabView.sink { _ in
             DispatchQueue.main.async {
                 self.navigationController?.popViewController(animated: true)
             }

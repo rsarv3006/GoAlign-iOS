@@ -11,17 +11,20 @@ import Combine
 class TeamUsersTabVM {
     
     var teamInvitesSubject = CurrentValueSubject<Result<[TeamInviteModel], Error>, Never>(.success([]))
-    var usersSubject = CurrentValueSubject<[UserModel], Never>([])
     var shouldShowCreateInviteButton = CurrentValueSubject<Bool, Never>(false)
     var requestTableReload = PassthroughSubject<Void, Never>()
     
     private(set) var canUserEditTeam: Bool = false
     
-    let team: TeamModel
+    private(set) var team: TeamModel
+    var users: [UserModel] {
+        get {
+            team.teamMembers
+        }
+    }
     
     init(team: TeamModel) {
         self.team = team
-        usersSubject.send(team.teamMembers)
         setDoesUserHaveTeamEdit()
     }
     
@@ -95,7 +98,7 @@ class TeamUsersTabVM {
             do {
                 try await TeamService.removeUserFromTeam(teamId: team.teamId, userToRemove: userId)
                 let teams = try await TeamService.getTeamsByTeamIds(teamIds: [team.teamId])
-                usersSubject.send(teams[0].teamMembers)
+                team = teams[0]
                 await viewController.showLoader(false)
                 requestTableReload.send(Void())
             } catch {

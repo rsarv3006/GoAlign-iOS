@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-struct TeamTabBarVM {
+struct TeamTabBarControllerVM {
     
     private(set) var requestHomeReload = PassthroughSubject<Bool, Never>()
     
@@ -16,5 +16,9 @@ struct TeamTabBarVM {
     
     init(team: TeamModel) {
         self.team = team
+    }
+    
+    func refetchTeam() {
+        
     }
 }

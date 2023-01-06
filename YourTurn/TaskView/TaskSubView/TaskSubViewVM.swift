@@ -1,14 +1,16 @@
 //
-//  TaskVM.swift
+//  TaskSubViewVM.swift
 //  YourTurn
 //
-//  Created by Robby on 9/28/22.
+//  Created by Robert J. Sarvis Jr on 1/3/23.
 //
 
 import UIKit
 import Combine
 
-class TaskViewVM {
+class TaskSubViewVM {
+    
+    var delegate: TaskSubViewVMDelegate?
     var subscriptions = Set<AnyCancellable>()
     private(set) var teamNameSubject = PassthroughSubject<Result<String, Error>, Never>()
     
@@ -46,15 +48,15 @@ class TaskViewVM {
         task.checkIfCurrentUserIsAssignedUser(completionHandler: completionHandler)
     }
     
-    func onRequestMarkTaskComplete(viewController: TaskView) {
+    func onRequestMarkTaskComplete() {
         Task {
             do {
                 let _ = try await TaskService.markTaskComplete(taskId: task.taskId)
                 
-                await viewController.navigationController?.popViewController(animated: true)
-                await viewController.requestHomeReload.send(true)
+                delegate?.requestPopView()
+                delegate?.requestHomeReloadFromSubView()
             } catch {
-                await viewController.showMessage(withTitle: "Uh Oh", message: "Error Marking Task Complete: \(error.localizedDescription)")
+                delegate?.requestShowMessage(withTitle: "Uh Oh", message: "Error Marking Task Complete: \(error.localizedDescription)")
             }
         }
     }
@@ -70,3 +72,4 @@ class TaskViewVM {
         }
     }
 }
+
