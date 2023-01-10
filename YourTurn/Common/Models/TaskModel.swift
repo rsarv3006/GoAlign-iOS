@@ -5,8 +5,6 @@
 //  Created by rjs on 7/28/22.
 //
 
-// TODO: CONVERT DATES TO ISO BEFORE SENDING TO THE SERVER
-
 import Foundation
 
 typealias TaskModelArray = [TaskModel]
@@ -153,4 +151,75 @@ struct CreateTaskDictKeys {
     static let CREATOR_USER_ID = "creatorUserId"
     static let ASSIGNED_USER_ID = "assignedUserId"
     
+}
+
+class UpdateTaskDto: Codable {
+    private(set) var taskId: String? = nil
+    let taskName: String?
+    let notes: String?
+    let startDate: Date?
+    let endDate: Date?
+    let requiredCompletionsNeeded: Int?
+    let intervalBetweenWindows: IntervalObject?
+    let windowLength: IntervalObject?
+    let assignedUserId: String?
+    
+    
+    init(from formDict: [String: Any], uid: String?, taskToUpdate: TaskModel, assignedUser currentAssignedUser: String? = nil) throws {
+        if let taskName = formDict[CreateTaskDictKeys.TASK_NAME] as? String, taskName != taskToUpdate.taskName {
+            self.taskName = taskName
+        } else {
+            self.taskName = nil
+        }
+        
+        if let notes = formDict[CreateTaskDictKeys.NOTES] as? String, notes != taskToUpdate.notes {
+            self.notes = notes
+        } else {
+            self.notes = nil
+        }
+        
+        if let startDate = formDict[CreateTaskDictKeys.START_DATE] as? Date, startDate != taskToUpdate.startDate {
+            self.startDate = startDate
+        } else {
+            self.startDate = nil
+        }
+        
+        if let endDate = formDict[CreateTaskDictKeys.END_DATE] as? Date, endDate != taskToUpdate.endDate {
+            self.endDate = endDate
+        } else {
+            self.endDate = nil
+        }
+        
+        if let requiredCompletionsNeededString = formDict[CreateTaskDictKeys.REQUIRED_COMPLETIONS_NEEDED] as? String, let requiredCompletionsNeeded = Int(requiredCompletionsNeededString), requiredCompletionsNeeded != taskToUpdate.requiredCompletionsNeeded {
+            self.requiredCompletionsNeeded = requiredCompletionsNeeded
+        } else {
+            self.requiredCompletionsNeeded = nil
+        }
+        
+        if let intervalBetweenWindows = formDict[CreateTaskDictKeys.INTERVAL_BETWEEN_WINDOWS] as? IntervalObject, intervalBetweenWindows != taskToUpdate.intervalBetweenWindows {
+            self.intervalBetweenWindows = intervalBetweenWindows
+        } else {
+            self.intervalBetweenWindows = nil
+        }
+        
+        if let windowLength = formDict[CreateTaskDictKeys.WINDOW_LENGTH] as? IntervalObject, windowLength != taskToUpdate.windowLength {
+            self.windowLength = windowLength
+        } else {
+            self.windowLength = nil
+        }
+        
+        if let assignedUserId = formDict[CreateTaskDictKeys.ASSIGNED_USER_ID] as? String, assignedUserId != currentAssignedUser {
+            self.assignedUserId = assignedUserId
+        } else {
+            self.assignedUserId = nil
+        }
+    }
+    
+    func insertTaskId(taskId: String) {
+        self.taskId = taskId
+    }
+    
+    func toString() -> String {
+        return "taskName: \(String(describing: taskName)) - notes: \(String(describing: notes)) - startDate: \(String(describing: startDate)) - endDate: \(String(describing: endDate))"
+    }
 }

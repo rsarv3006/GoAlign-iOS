@@ -17,6 +17,11 @@ class FormSwitchControlledDateCollectionViewCell: UICollectionViewCell {
     
     private lazy var dateControl: UISwitch = {
         let sw = UISwitch()
+        
+        if item?.editValue != nil {
+            sw.isOn = true
+        }
+        
         return sw
     }()
     
@@ -29,6 +34,11 @@ class FormSwitchControlledDateCollectionViewCell: UICollectionViewCell {
         let datePicker = UIDatePicker()
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         datePicker.date = Date().advanced(by: TimeInterval(24 * 60 * 60))
+
+        if let editDateValue = item?.editValue {
+            datePicker.date = editDateValue
+        }
+
         return datePicker
     }()
     

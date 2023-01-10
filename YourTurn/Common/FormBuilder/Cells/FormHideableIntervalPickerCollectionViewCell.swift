@@ -27,12 +27,22 @@ class FormHideableIntervalPickerCollectionViewCell: UICollectionViewCell {
         button.setTitle("  1 - day(s)  ", for: .normal)
         button.layer.cornerRadius = 8
         button.backgroundColor = .systemGray6
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)        
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        
+        if let editPickerValue = item?.editValue {
+            button.setTitle("  \(editPickerValue.toString())  ", for: .normal)
+        }
+        
         return button
     }()
     
     private lazy var intervalPicker: IntervalPicker = {
-        let ip = IntervalPicker(frame: .zero)
+        var ip = IntervalPicker(frame: .zero)
+        
+        if let editPickerValue = item?.editValue {
+            ip = IntervalPicker(frame: .zero, interval: editPickerValue)
+        }
+        
         return ip
     }()
     
@@ -94,7 +104,7 @@ private extension FormHideableIntervalPickerCollectionViewCell {
         NSLayoutConstraint.activate([
             controlLabel.heightAnchor.constraint(equalToConstant: 44),
             controlButton.heightAnchor.constraint(equalToConstant: 44),
-
+            
             intervalPicker.heightAnchor.constraint(equalToConstant: 100),
             errorLbl.heightAnchor.constraint(equalToConstant: 22),
             contentStackVw.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -156,7 +166,7 @@ extension FormHideableIntervalPickerCollectionViewCell {
         guard let indexPath = self.indexPath, let item = self.item else { return }
         
         self.subject.send((intervalObj, indexPath))
-
+        
         do {
             for validator in item.validations {
                 try validator.validate(intervalObj)

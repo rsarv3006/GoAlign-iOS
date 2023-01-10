@@ -15,10 +15,12 @@ final class ModalFormComponent: FormComponent {
     init(id: FormField,
          buttonTitle: String,
          viewControllerToOpen: ModalViewController,
-         validations: [ValidationManager] = []
+         validations: [ValidationManager] = [],
+         editValue: Dictionary<String, String?>? = nil
     ) {
         self.buttonTitle = buttonTitle
         self.viewControllerToOpen = viewControllerToOpen
+        self.viewControllerToOpen.editValue = editValue
         super.init(id, validations: validations)
     }
 }

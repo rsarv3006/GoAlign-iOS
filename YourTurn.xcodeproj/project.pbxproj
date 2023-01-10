@@ -120,6 +120,8 @@
 		78AC28082944314200F53EAB /* remote_config_defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AC28072944314200F53EAB /* remote_config_defaults.plist */; };
 		78AC280B29452AA600F53EAB /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 78AC280A29452AA600F53EAB /* JGProgressHUD */; };
 		78AC280D294810A500F53EAB /* ServerErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AC280C294810A500F53EAB /* ServerErrorMessage.swift */; };
+		78AD8DCE296A6EA100C6FE6A /* EditAssignedTeamMemberModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AD8DCD296A6EA100C6FE6A /* EditAssignedTeamMemberModal.swift */; };
+		78AD8DD0296A7D6500C6FE6A /* EditAssignedTeamMemberModalVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AD8DCF296A7D6500C6FE6A /* EditAssignedTeamMemberModalVM.swift */; };
 		78B687802887A5E5006B6CAB /* FormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6877F2887A5E5006B6CAB /* FormComponent.swift */; };
 		78B687822887A616006B6CAB /* TextFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B687812887A616006B6CAB /* TextFormComponent.swift */; };
 		78B687842887A64E006B6CAB /* DateFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B687832887A64E006B6CAB /* DateFormComponent.swift */; };
@@ -312,6 +314,8 @@
 		78AC280229442CDA00F53EAB /* RemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfig.swift; sourceTree = "<group>"; };
 		78AC28072944314200F53EAB /* remote_config_defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = remote_config_defaults.plist; sourceTree = "<group>"; };
 		78AC280C294810A500F53EAB /* ServerErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerErrorMessage.swift; sourceTree = "<group>"; };
+		78AD8DCD296A6EA100C6FE6A /* EditAssignedTeamMemberModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAssignedTeamMemberModal.swift; sourceTree = "<group>"; };
+		78AD8DCF296A7D6500C6FE6A /* EditAssignedTeamMemberModalVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAssignedTeamMemberModalVM.swift; sourceTree = "<group>"; };
 		78B6877F2887A5E5006B6CAB /* FormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormComponent.swift; sourceTree = "<group>"; };
 		78B687812887A616006B6CAB /* TextFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormComponent.swift; sourceTree = "<group>"; };
 		78B687832887A64E006B6CAB /* DateFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormComponent.swift; sourceTree = "<group>"; };
@@ -659,6 +663,8 @@
 				78DAADF22869617500FEB0DA /* TaskAddEditScreen.swift */,
 				78DAADF42869663000FEB0DA /* TaskAddEditScreenVM.swift */,
 				7847732928768B69009AFC92 /* TaskAddEditFormContentBuilderImpl.swift */,
+				78AD8DCD296A6EA100C6FE6A /* EditAssignedTeamMemberModal.swift */,
+				78AD8DCF296A7D6500C6FE6A /* EditAssignedTeamMemberModalVM.swift */,
 			);
 			path = TaskAddEditScreen;
 			sourceTree = "<group>";
@@ -1186,6 +1192,7 @@
 				783314622919E667009DDD3F /* TeamTasksTabViewCellVM.swift in Sources */,
 				78C4D95D286EAFFC006550A9 /* IntervalPicker.swift in Sources */,
 				78DF5B0328CC652F00C182CF /* TeamInviteUserModal.swift in Sources */,
+				78AD8DD0296A7D6500C6FE6A /* EditAssignedTeamMemberModalVM.swift in Sources */,
 				78DF5B0128C68D8A00C182CF /* TeamInviteSubCellVM.swift in Sources */,
 				78A4E0C02883B98F0067DBCE /* ValidationError.swift in Sources */,
 				78BFFA9E2887784600A767AB /* FormSwitchControlledTextCollectionViewCell.swift in Sources */,
@@ -1236,6 +1243,7 @@
 				78EC914E28AF2D220046DF28 /* TeamSelectModalReturnModel.swift in Sources */,
 				780F498C29307820006C8456 /* AlertModalService.swift in Sources */,
 				78B687862887A67B006B6CAB /* ButtonFormComponent.swift in Sources */,
+				78AD8DCE296A6EA100C6FE6A /* EditAssignedTeamMemberModal.swift in Sources */,
 				D5D17088290E21F900C52254 /* LoggingEvent.swift in Sources */,
 				788CFFA229565F6A002650F7 /* TeamSettingsDeleteTeamCellVM.swift in Sources */,
 				78DF5AF228BC413000C182CF /* TeamInvitesViewController.swift in Sources */,

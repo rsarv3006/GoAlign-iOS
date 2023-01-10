@@ -18,7 +18,15 @@ enum IntervalVariant: String {
 
 let INTERVALS_ARRAY = [IntervalVariant.minute, IntervalVariant.hour, IntervalVariant.day, IntervalVariant.week, IntervalVariant.month, IntervalVariant.year]
 
-class IntervalObject: Codable {
+class IntervalObject: Codable, Equatable {
+    static func == (lhs: IntervalObject, rhs: IntervalObject) -> Bool {
+        if lhs.intervalNumber == rhs.intervalNumber && lhs.intervalType == rhs.intervalType {
+            return true
+        }
+        
+        return false
+    }
+    
     var intervalNumber: Int = 1
     var intervalType: IntervalVariant = .day
     

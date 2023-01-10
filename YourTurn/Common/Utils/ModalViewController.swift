@@ -10,4 +10,6 @@ import UIKit
 
 class ModalViewController: UIViewController {
     var delegate: ModalDelegate?
+    
+    var editValue: Dictionary<String, String?>?
 }

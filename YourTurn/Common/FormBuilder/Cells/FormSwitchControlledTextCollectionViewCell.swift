@@ -23,6 +23,11 @@ class FormSwitchControlledTextCollectionViewCell: UICollectionViewCell {
     
     private lazy var textFieldControl: UISwitch = {
         let sw = UISwitch()
+        
+        if item?.editValue != nil {
+            sw.isOn = true
+        }
+        
         return sw
     }()
     
@@ -31,6 +36,11 @@ class FormSwitchControlledTextCollectionViewCell: UICollectionViewCell {
         txtField.translatesAutoresizingMaskIntoConstraints = false
         txtField.borderStyle = .roundedRect
         txtField.backgroundColor = .clear
+
+        if let editTextValue = item?.editValue {
+            txtField.text = editTextValue
+        }
+
         return txtField
     }()
     

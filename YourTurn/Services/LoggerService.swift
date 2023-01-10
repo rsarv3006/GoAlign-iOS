@@ -103,6 +103,7 @@ struct Logger {
             static let creationFailed = "task_create_fail"
             static let creationValidationFailed = "task_create_validation_fail"
             static let markCompleteFailed = "task_mark_complete_fail"
+            static let updateValidationFailed = "task_update_validation_fail"
         }
         
         struct Form {

@@ -16,8 +16,14 @@ class FormTextCollectionViewCell: UICollectionViewCell {
     private(set) var subject = PassthroughSubject<(String, IndexPath), Never>()
     private(set) var reload = PassthroughSubject<String, Never>()
     
-    private lazy var txtField: UITextField = {
+    lazy var txtField: UITextField = {
         let txtField = UITextField()
+        if let editValue = item?.editValue {
+            txtField.text = editValue
+            if let indexPath = indexPath {
+                self.subject.send((editValue, indexPath))
+            }
+        }
         txtField.translatesAutoresizingMaskIntoConstraints = false
         txtField.borderStyle = .roundedRect
         txtField.backgroundColor = .clear

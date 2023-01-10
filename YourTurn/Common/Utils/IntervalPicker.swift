@@ -28,15 +28,21 @@ class IntervalPicker: UIView {
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        numberPicker.dataSource = self
-        numberPicker.delegate = self
-        
-        addSubview(numberPicker)
-        numberPicker.fillSuperview()
+        onInit()
         
         numberPicker.selectRow(0, inComponent: 0, animated: true)
         numberPicker.selectRow(2, inComponent: 1, animated: true)
+    }
+    
+    init(frame: CGRect, interval: IntervalObject) {
+        super.init(frame: frame)
+        onInit()
+        self.intervalObj = interval
+        
+        let indexForInterval = INTERVALS_ARRAY.firstIndex(of: interval.intervalType)
+        
+        numberPicker.selectRow(interval.intervalNumber - 1, inComponent: 0, animated: true)
+        numberPicker.selectRow(indexForInterval ?? 1, inComponent: 1, animated: true)
     }
     
     @available(*, unavailable)
@@ -44,7 +50,15 @@ class IntervalPicker: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
+    // MARK: - Helpers
+    func onInit() {
+        
+        numberPicker.dataSource = self
+        numberPicker.delegate = self
+        
+        addSubview(numberPicker)
+        numberPicker.fillSuperview()
+    }
     
     func convertStringToEnum(_ stringVal: String) -> IntervalVariant {
         return IntervalVariant.init(rawValue: stringVal)!

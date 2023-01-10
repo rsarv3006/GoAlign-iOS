@@ -13,13 +13,17 @@ final class DateFormComponent: FormComponent {
     
     let title: String
     
+    let editValue: Date?
+    
     init(id: FormField,
          mode: UIDatePicker.Mode,
          validations: [ValidationManager] = [],
-         title: String = ""
+         title: String = "",
+         editValue: Date? = nil
     ) {
         self.title = title
         self.mode = mode
+        self.editValue = editValue
         super.init(id, validations: validations)
     }
 }

@@ -16,7 +16,15 @@ class TaskAddEditScreen: UIViewController {
     // MARK: - Properties
     var delegate: TaskAddEditScreenDelegate?
     
-    var viewModel: TaskAddEditScreenVM?
+    var viewModel: TaskAddEditScreenVM? {
+        didSet {
+            guard let viewModel = viewModel else { return }
+            if let taskToEdit = viewModel.taskToEdit {
+                formContentBuilder = TaskAddEditFormContentBuilderImpl(fromTask: taskToEdit)
+            }
+        }
+    }
+    
     private var subscriptions = Set<AnyCancellable>()
     
     private lazy var formContentBuilder = TaskAddEditFormContentBuilderImpl()
@@ -105,7 +113,18 @@ private extension TaskAddEditScreen {
                     print("ERROR IN TASK CREATION PLACEHOLDER")
                     print(error)
                 case .success(let createTaskDto):
-                    self.viewModel?.onTaskCreateRequest(viewController: self, taskForm: createTaskDto)
+                    self.viewModel?.onTaskSubmit(viewController: self, taskForm: createTaskDto)
+                }
+            }.store(in: &subscriptions)
+        
+        formContentBuilder.formSubmissionUpdate.throttle(for: .seconds(2.0), scheduler: RunLoop.current, latest: false)
+            .sink { result in
+                switch result {
+                case .failure(let error):
+                    print("ERROR IN TASK CREATION PLACEHOLDER")
+                    print(error)
+                case .success(let updateTaskDto):
+                    self.viewModel?.onTaskUpdate(viewController: self, taskForm: updateTaskDto)
                 }
             }.store(in: &subscriptions)
     }

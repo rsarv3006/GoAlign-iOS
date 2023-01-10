@@ -14,15 +14,19 @@ final class SwitchControlledDateFormComponent: FormComponent {
     
     let title: String
     
+    let editValue: Date?
+    
     init(id: FormField,
          mode: UIDatePicker.Mode,
          switchLabel: String,
          validations: [ValidationManager] = [],
-         title: String = ""
+         title: String = "",
+         editValue: Date? = nil
     ) {
         self.switchLabel = switchLabel
         self.title = title
         self.mode = mode
+        self.editValue = editValue
         super.init(id, validations: validations)
     }
 }

@@ -10,6 +10,8 @@ import UIKit
 private let TEAM_SELECT = 1020
 private let TEAM_MEMBER_SELECT = 1030
 
+// TODO: Wire up to incoming edit value dict for team value and userId
+
 class TeamSelectModal: ModalViewController {
     
     private var teams = [TeamModel]() {
@@ -18,7 +20,6 @@ class TeamSelectModal: ModalViewController {
                 self.teamSelectTableView.reloadData()
                 self.teamMemberSelectTableView.reloadData()
             }
-            
         }
     }
     

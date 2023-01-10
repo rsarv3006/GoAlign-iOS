@@ -8,7 +8,12 @@
 import Foundation
 import Combine
 
-struct TaskAddEditScreenVM {
+enum TaskMutationStatus {
+    case taskCreate
+    case taskEdit
+}
+
+class TaskAddEditScreenVM {
     let screenTitleLabelString: String = "Add Task"
     
     struct LABEL_KEYS {
@@ -16,7 +21,20 @@ struct TaskAddEditScreenVM {
         static let WINDOW_LENGTH = "WINDOW_LENGTH"
     }
     
-    func onTaskCreateRequest(viewController: TaskAddEditScreen, taskForm: CreateTaskDto) {
+    let taskMutationStatus: TaskMutationStatus
+    private(set) var taskToEdit: TaskModel? = nil
+    private(set) var requestReload = PassthroughSubject<Void, Never>()
+    
+    init() {
+        taskMutationStatus = .taskCreate
+    }
+    
+    init(fromTask taskToEdit: TaskModel) {
+        taskMutationStatus = .taskEdit
+        self.taskToEdit = taskToEdit
+    }
+    
+    func onTaskSubmit(viewController: TaskAddEditScreen, taskForm: CreateTaskDto) {
         defer {
             viewController.showLoader(false)
         }
@@ -33,6 +51,26 @@ struct TaskAddEditScreenVM {
             } catch {
                 await viewController.showMessage(withTitle: "Uh Oh", message: "Unexpected error creating task. \(error.localizedDescription)")
                 Logger.log(logLevel: .Prod, name: Logger.Events.Task.creationFailed, payload: ["error": error.localizedDescription])
+            }
+        }
+    }
+    
+    func onTaskUpdate(viewController: TaskAddEditScreen, taskForm: UpdateTaskDto) {
+        defer {
+            viewController.showLoader(false)
+        }
+        Task {
+            do {
+                guard let taskId = taskToEdit?.taskId else { throw ServiceErrors.custom(message: "No task id when trying to edit a task.")}
+                taskForm.insertTaskId(taskId: taskId)
+                let _ = try await TaskService.updateTask(updateTaskDto: taskForm)
+                
+                DispatchQueue.main.async {
+                    viewController.dismiss(animated: true)
+                }
+                requestReload.send(Void())
+            } catch {
+                await viewController.showMessage(withTitle: "Uh Oh", message: error.localizedDescription)
             }
         }
     }
