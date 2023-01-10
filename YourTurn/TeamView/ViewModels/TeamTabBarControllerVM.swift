@@ -17,8 +17,4 @@ struct TeamTabBarControllerVM {
     init(team: TeamModel) {
         self.team = team
     }
-    
-    func refetchTeam() {
-        
-    }
 }

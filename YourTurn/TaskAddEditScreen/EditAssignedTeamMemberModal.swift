@@ -33,14 +33,7 @@ class EditAssignedTeamMemberModal: ModalViewController {
         }
     }
     
-    // MARK: - UI Elements
-    private lazy var subView: UIView = {
-        let subView = UIView()
-        subView.backgroundColor = .systemGray4
-        subView.layer.cornerRadius = 10
-        return subView
-    }()
-    
+    // MARK: - UI Elements    
     private lazy var titleLabel: UILabel = {
         let title = UILabel()
         title.text = "Assigned Team Member"
