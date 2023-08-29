@@ -6,49 +6,10 @@
 //
 
 import Foundation
+import JWTDecode
 
-enum UserService {
-    static func createUser(with user: CreateUserDto) async throws -> UserModel {
-        let url = try Networking.createUrl(endPoint: "user")
-        
-        let userData = try JSONEncoder().encode(user)
-        
-        let (data, response) = try await Networking.post(url: url, body: userData)
-        
-        if let response = response as? HTTPURLResponse, response.statusCode == 201 {
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-            
-            let userModel = try decoder.decode(UserModel.self, from: data)
-            return userModel
-        } else {
-            let decoder = JSONDecoder()
-            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
-            Logger.log(logLevel: .Verbose, name: Logger.Events.User.createFailed, payload: ["error": serverError.message, "email": user.email])
-            AuthenticationService.signOut()
-            throw ServiceErrors.custom(message: serverError.message)
-        }
-    }
-    
-    static func getCurrentUser() async throws -> UserModel {
-        let url = try Networking.createUrl(endPoint: "user/current")
-        
-        let (data, response) = try await Networking.get(url: url)
-        
-        if let response = response as? HTTPURLResponse, response.statusCode == 200 {
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-            
-            let userModel = try decoder.decode(UserModel.self, from: data)
-            return userModel
-        } else {
-            let decoder = JSONDecoder()
-            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
-            throw ServiceErrors.custom(message: serverError.message)
-        }
-    }
-    
-    static func deleteCurrentUser() async throws -> Bool {
+struct UserService {
+    func deleteCurrentUser() async throws -> Bool {
         let url = try Networking.createUrl(endPoint: "user")
         
         let (_, response) = try await Networking.delete(url: url)
@@ -60,23 +21,44 @@ enum UserService {
         return false
     }
     
-    static func isUserTeamManager(forTeam team: TeamModel) async throws -> Bool {
-        let user = try? await self.getCurrentUser()
-        if let user = user, user.userId == team.teamManagerId {
+    func isUserTeamManager(forTeam team: TeamModel) async throws -> Bool {
+        if let user = currentUser, user.userId == team.teamManagerId {
             return true
         }
         
         return false
     }
     
-    static func isUserTeamManager(forTeamById teamId: String) async throws -> Bool {
+    func isUserTeamManager(forTeamById teamId: String) async throws -> Bool {
         let teams = try await TeamService.getTeamsByTeamIds(teamIds: [teamId])
         let team = teams[0]
-        let user = try? await self.getCurrentUser()
-        if let user = user, user.userId == team.teamManagerId {
+        if let user = currentUser, user.userId == team.teamManagerId {
             return true
         }
         
         return false
+    }
+    
+    let currentUser: UserModel?
+}
+
+extension UserService {
+    init() {
+        do {
+            let jwt = try decode(jwt: KeychainService.getAccessToken())
+            let body = jwt.body
+            
+            let userId = body["user_id"] as? String
+            let username = body["username"] as? String
+            let email = body["email"] as? String
+            let isActive = body["is_active"] as? Bool
+            let isEmailVerified = body["is_email_verified"] as? Bool
+            let createdAt = body["created_at"] as? Date
+            
+            self.currentUser = UserModel(userId: userId!, createdAt: createdAt!, username: username!, email: email!, isActive: isActive!, isEmailVerified: isEmailVerified!)
+        } catch {
+            print(error.localizedDescription)
+            // TODO: Log error to server
+        }
     }
 }

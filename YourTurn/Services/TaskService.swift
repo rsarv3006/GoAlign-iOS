@@ -28,7 +28,7 @@ struct TaskService {
     }
     
     static func getTasksByTaskIds(taskIds: [String]) async throws -> TaskModelArray {
-        let queryString = Networking.helpers.createQueryString(items: taskIds)
+        let queryString = Networking.Helpers.createQueryString(items: taskIds)
         let url = try Networking.createUrl(endPoint: "task?taskIds=\(queryString)")
         
         let (data, response) = try await Networking.get(url: url)

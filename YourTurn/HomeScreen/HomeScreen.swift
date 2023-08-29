@@ -17,7 +17,7 @@ private let TEAM_TABLE_TAG = 1002
 class HomeScreen: YtViewController {
     // MARK: - Properties
     private var subscriptions = Set<AnyCancellable>()
-    
+
     private let taskRefreshControl = UIRefreshControl()
     private let teamRefreshControl = UIRefreshControl()
     
@@ -35,7 +35,7 @@ class HomeScreen: YtViewController {
             
         }
     }
-    
+
     private var tasks = [TaskModel]() {
         didSet {
             taskTableView.reloadData()

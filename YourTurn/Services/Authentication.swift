@@ -17,21 +17,68 @@ struct AuthenticationService {
         return self.getCurrentFirebaseUser() !== nil
     }
     
-    static func createAccount(form: SignUpCompletedForm) async throws -> UserModel {
+    static func fetchJwtWithCode(dto: FetchJwtDtoModel) async throws -> FetchJwtDtoReturnModel {
         do {
-            try await Auth.auth().createUser(withEmail: form.emailAddress, password: form.password)
+            let url = try Networking.createUrl(endPoint: "auth/code")
             
-            let currentUser = self.getCurrentFirebaseUser()
+            let encodedBody = try JSONEncoder().encode(dto)
             
-            guard let userId = currentUser?.uid, let email = currentUser?.email else {
-                throw ServiceErrors.custom(message: "Unable to find email and userid.")
+            let (data, response) = try await Networking.post(url: url, body: encodedBody, noAuth: true)
+            
+            if let response = response as? HTTPURLResponse, response.statusCode == 201 {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+
+                
+                return try decoder.decode(FetchJwtDtoReturnModel.self, from: data)
+            } else {
+                let decoder = JSONDecoder()
+                let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                throw ServiceErrors.custom(message: serverError.message)
             }
-            
-            let createUserDto = CreateUserDto(userId: userId, username: form.username, email: email)
-            let userModel = try await UserService.createUser(with: createUserDto)
-            return userModel
-            
         } catch {
+            print(error.localizedDescription)
+            self.signOut()
+            try await Auth.auth().currentUser?.delete()
+            throw error
+        }
+    }
+    
+    static func createAccount(form: SignUpCompletedForm) async throws -> CreateAccountReturnModel {
+        do {
+            let createUserDto = CreateUserDto(username: form.username, email: form.emailAddress)
+            
+            let url = try Networking.createUrl(endPoint: "auth/register")
+            
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .iso8601
+            
+            let createUserBody = try encoder.encode(createUserDto)
+            
+            let (data, response) = try await Networking.post(url: url, body: createUserBody, noAuth: true)
+            
+            if let response = response as? HTTPURLResponse, response.statusCode == 201 {
+                print("201 response created")
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+               
+                
+                
+                let userModel = try decoder.decode(CreateAccountReturnModel.self, from: data)
+                return userModel
+            } else if let response = response as? HTTPURLResponse, response.statusCode == 400 {
+                let decoder = JSONDecoder()
+                let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                throw ServiceErrors.custom(message: serverError.message)
+            } else {
+                let decoder = JSONDecoder()
+                let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                throw ServiceErrors.custom(message: serverError.message)
+            }
+        } catch {
+            print(error.localizedDescription)
             self.signOut()
             try await Auth.auth().currentUser?.delete()
             throw error

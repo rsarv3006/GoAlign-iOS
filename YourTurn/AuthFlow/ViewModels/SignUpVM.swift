@@ -18,8 +18,8 @@ class SignUpVM {
     func signUp(form: SignUpCompletedForm) {
         Task {
             do {
-                let user = try await AuthenticationService.createAccount(form: form)
-                signUpSubject.send(.success(user))
+                let createAccountReturn = try await AuthenticationService.createAccount(form: form)
+                signUpSubject.send(.success(createAccountReturn.user))
             } catch {
                 signUpSubject.send(.failure(error))
             }

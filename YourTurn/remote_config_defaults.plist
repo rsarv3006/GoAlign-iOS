@@ -2,13 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <key>API_URL</key>
-  <string>http://localhost:4001/</string>
-  <key>LOG_TO_ANALYTICS</key>
-  <string>true</string>
-  <key>LOG_LEVEL</key>
-  <string>verbose</string>
-  <key>PRINT_LOGS</key>
-  <string>true</string>
+	<key>API_URL</key>
+	<string>http://localhost:3000/</string>
+	<key>LOG_TO_ANALYTICS</key>
+	<string>true</string>
+	<key>LOG_LEVEL</key>
+	<string>verbose</string>
+	<key>PRINT_LOGS</key>
+	<string>true</string>
 </dict>
 </plist>

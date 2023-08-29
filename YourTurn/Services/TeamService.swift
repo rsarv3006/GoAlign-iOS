@@ -47,7 +47,7 @@ struct TeamService {
     }
     
     static func getTeamsByTeamIds(teamIds: [String]) async throws -> [TeamModel] {
-        let queryString = Networking.helpers.createQueryString(items: teamIds)
+        let queryString = Networking.Helpers.createQueryString(items: teamIds)
         let url = try Networking.createUrl(endPoint: "team?teamIds=\(queryString)")
         
         let (data, response) = try await Networking.get(url: url)

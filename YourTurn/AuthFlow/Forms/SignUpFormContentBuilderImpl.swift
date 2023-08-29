@@ -24,14 +24,6 @@ final class SignUpFormContentBuilderImpl {
                     RegexFormItem(pattern: RegexPatterns.emailChars, error: .custom(message: "Not a valid email"))
                 ])
             ]),
-            PasswordFormComponent(id: .signUpPassword, placeholder: "Password", confirmPlaceholder: "Confirm Password", validations: [
-                RegexValidationManagerImpl(
-                    [
-                        RegexFormItem(pattern: RegexPatterns.higherThanSixteenChars,
-                                      error: .custom(message: "Password must be 16 characters long."))
-                    ]
-                ),
-            ]),
             ButtonFormComponent(id: .signUpSubmit, title: "Sign Up!"),
             ButtonFormComponent(id: .termsButton, title: "Continuing indicates acceptance of the Terms And Conditions.", buttonType: .text)
         ])

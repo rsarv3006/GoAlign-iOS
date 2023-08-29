@@ -8,27 +8,34 @@
 import Foundation
 
 class UserModel: Codable {
-      let userId: String
-      let createdAt: Date
-      let username: String
-      let email: String
-      let isActive: Bool
+    let userId: String
+    let createdAt: Date
+    let username: String
+    let email: String
+    let isActive: Bool
+    let isEmailVerified: Bool
+    
+    init(userId: String, createdAt: Date, username: String, email: String, isActive: Bool, isEmailVerified: Bool) {
+        self.userId = userId
+        self.createdAt = createdAt
+        self.username = username
+        self.email = email
+        self.isActive = isActive
+        self.isEmailVerified = isEmailVerified
+    }
 }
 
 class CreateUserDto: Codable {
-    let userId: String
     let username: String
     let email: String
     
-    init(userId: String, username: String, email: String) {
-        self.userId = userId
+    init(username: String, email: String) {
         self.username = username
         self.email = email
     }
     
     func toDict() -> [String : String] {
         var dict = [String: String]()
-        dict["userId"] = self.userId
         dict["username"] = self.username
         dict["email"] = self.email
         return dict
