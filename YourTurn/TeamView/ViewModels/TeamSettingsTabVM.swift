@@ -45,7 +45,7 @@ class TeamSettingsTabVM {
     
     private func checkShouldShowChangeTeamManagerButton() {
         Task {
-            let isUserTeamManager = try? await UserService.isUserTeamManager(forTeam: team)
+            let isUserTeamManager = try? await UserService.shared.isUserTeamManager(forTeam: team)
 
             if isUserTeamManager == true {
                 settingsItems.insert(.ChangeTeamManager, at: 1)

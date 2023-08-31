@@ -40,10 +40,12 @@ struct UserService {
     }
     
     let currentUser: UserModel?
+    
+    static let shared = UserService()
 }
 
 extension UserService {
-    init() {
+    private init() {
         do {
             let jwt = try decode(jwt: KeychainService.getAccessToken())
             let body = jwt.body
@@ -59,6 +61,8 @@ extension UserService {
         } catch {
             print(error.localizedDescription)
             // TODO: Log error to server
+            self.currentUser = nil
         }
     }
+    
 }

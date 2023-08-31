@@ -88,8 +88,11 @@ struct AuthenticationService {
     static func signInToAccount(form: SignInCompletedForm) async throws -> UserModel {
         do {
             try await Auth.auth().signIn(withEmail: form.emailAddress, password: form.password)
-            let userModel = try await UserService.getCurrentUser()
-            return userModel
+            if let userModel = UserService.shared.currentUser {
+                return userModel
+            } else {
+                throw ServiceErrors.custom(message: "User Not Found")
+            }
         } catch {
             self.signOut()
             throw error

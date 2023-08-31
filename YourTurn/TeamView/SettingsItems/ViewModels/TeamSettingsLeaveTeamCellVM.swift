@@ -45,12 +45,15 @@ class TeamSettingsLeaveTeamCellVM {
         
         Task {
             do {
-                let currentUser = try await UserService.getCurrentUser()
-                try await TeamService.removeUserFromTeam(teamId: team.teamId, userToRemove: currentUser.userId)
-                
-                Logger.log(logLevel: .Prod, name: Logger.Events.Team.leaveSuccess, payload: ["teamId": team.teamId, "userId": currentUser.userId])
-                delegate?.requestHomeReloadFromCell()
-                delegate?.requestRemoveTabViewFromCell()
+                if let currentUser = UserService.shared.currentUser {
+                    try await TeamService.removeUserFromTeam(teamId: team.teamId, userToRemove: currentUser.userId)
+                    
+                    Logger.log(logLevel: .Prod, name: Logger.Events.Team.leaveSuccess, payload: ["teamId": team.teamId, "userId": currentUser.userId])
+                    delegate?.requestHomeReloadFromCell()
+                    delegate?.requestRemoveTabViewFromCell()
+                } else {
+                    delegate?.requestShowMessageFromCell(withTitle: "Uh Oh", message: "We couldn't find your user account. Please try logging out and back in.")
+                }
             } catch {
                 delegate?.requestShowMessageFromCell(withTitle: "Uh Oh", message: error.localizedDescription)
             }

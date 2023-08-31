@@ -14,9 +14,9 @@ enum TaskModelError: Error {
 }
 
 enum TaskStatusVariant: String, Codable {
-  case active = "active"
-  case completed = "completed"
-  case overdue = "overdue"
+    case active = "active"
+    case completed = "completed"
+    case overdue = "overdue"
 }
 
 class TaskModel: Codable {
@@ -47,15 +47,15 @@ class TaskModel: Codable {
     
     func checkIfCurrentUserIsAssignedUser(completionHandler: @escaping ((Bool) -> Void)) {
         Task {
-            do {
-                let user = try await UserService.getCurrentUser()
-                let currentTask = self.findCurrentTaskEntry()
-                if user.userId == currentTask?.assignedUser.userId {
-                    completionHandler(true)
-                } else {
-                    completionHandler(false)
-                }
-            } catch {
+            guard let user = UserService.shared.currentUser else {
+                completionHandler(false)
+                return
+            }
+            
+            let currentTask = self.findCurrentTaskEntry()
+            if user.userId == currentTask?.assignedUser.userId {
+                completionHandler(true)
+            } else {
                 completionHandler(false)
             }
         }
@@ -125,7 +125,7 @@ class CreateTaskDto: Codable {
             throw TaskModelError.custom(message: "Create TaskModel: invalid value given for Team and Member")
         }
         
-
+        
         
         if let uid = uid {
             self.creatorUserId = uid
