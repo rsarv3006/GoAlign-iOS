@@ -6,11 +6,11 @@
 //
 
 import Foundation
+import JWTDecode
 
 final class TokenService {
     private var accessToken: String?
     private var refreshToken: String?
-    // TODO: parse expiration from token
     private var expiration: Date?
     private var anonToken: String?
     
@@ -21,7 +21,7 @@ final class TokenService {
             try self.loadTokensFromKeychain()
         }
         
-        if try await self.isTokenExpired() {
+        if try self.isTokenExpired() {
             try await self.refreshAccessToken()
         }
 
@@ -48,7 +48,7 @@ final class TokenService {
         }
     }
     
-    func isTokenExpired() async throws -> Bool {
+    func isTokenExpired() throws -> Bool {
         if let expirationDate = self.expiration {
             print(expirationDate.ISO8601Format())
             return expirationDate < Date()
@@ -59,8 +59,10 @@ final class TokenService {
     
     private func loadTokensFromKeychain() throws {
         do {
-            self.accessToken = try KeychainService.getAccessToken()
+            let accessToken = try KeychainService.getAccessToken()
+            self.accessToken = accessToken
             self.refreshToken = try KeychainService.getRefreshToken()
+            try UserService.shared.updateUserFromToken(accessToken: accessToken)
         } catch {
             print(error)
             throw TokenServiceError.failedToLoadTokensFromKeychain
@@ -94,12 +96,20 @@ final class TokenService {
     }
     
     
-    func setToken(accessToken: String, refreshToken: String, expirationDate: Date) throws {
+    func setToken(accessToken: String, refreshToken: String) throws {
+        let jwt = try decode(jwt: accessToken)
+        let body = jwt.body
+        
+        guard let expirationDate = jwt.expiresAt else {
+            throw ServiceErrors.custom(message: "Expiration date is not valid.")
+        }
+        
         self.accessToken = accessToken
         self.refreshToken = refreshToken
         self.expiration = expirationDate
         
         try KeychainService.storeTokens(accessToken, refreshToken, expirationDate)
+        try UserService.shared.updateUserFromToken(accessToken: accessToken)
     }
     
     func reset() {
@@ -108,6 +118,8 @@ final class TokenService {
         self.expiration = nil
         
         KeychainService.reset()
+        
+        UserService.shared.resetStoredUser()
     }
     
 }

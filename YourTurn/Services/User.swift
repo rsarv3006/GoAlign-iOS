@@ -8,7 +8,7 @@
 import Foundation
 import JWTDecode
 
-struct UserService {
+class UserService {
     func deleteCurrentUser() async throws -> Bool {
         let url = try Networking.createUrl(endPoint: "user")
         
@@ -39,30 +39,59 @@ struct UserService {
         return false
     }
     
-    let currentUser: UserModel?
+    var currentUser: UserModel?
     
-    static let shared = UserService()
-}
-
-extension UserService {
     private init() {
-        do {
-            let jwt = try decode(jwt: KeychainService.getAccessToken())
-            let body = jwt.body
-            
-            let userId = body["user_id"] as? String
-            let username = body["username"] as? String
-            let email = body["email"] as? String
-            let isActive = body["is_active"] as? Bool
-            let isEmailVerified = body["is_email_verified"] as? Bool
-            let createdAt = body["created_at"] as? Date
-            
-            self.currentUser = UserModel(userId: userId!, createdAt: createdAt!, username: username!, email: email!, isActive: isActive!, isEmailVerified: isEmailVerified!)
-        } catch {
-            print(error.localizedDescription)
-            // TODO: Log error to server
-            self.currentUser = nil
+        Task {
+            do {
+                try await self.updateUserFromStoredToken()
+            } catch {
+                print(error.localizedDescription)
+                // TODO: Log error to server
+            }
         }
     }
     
+    func updateUserFromStoredToken() async throws {
+        let accessToken = try await TokenService.shared.getAccessToken()
+        try self.updateUserFromToken(accessToken: accessToken)
+    }
+    
+    func updateUserFromToken(accessToken: String) throws {
+        let jwt = try decode(jwt: accessToken)
+        let body = jwt.body
+       
+        guard let jwtUserDict = body["User"] as? [String: Any] else {
+            throw ServiceErrors.custom(message: "User is not a dictionary")
+        }
+       
+        let userId = jwtUserDict["user_id"] as? String
+        let username = jwtUserDict["username"] as? String
+        let email = jwtUserDict["email"] as? String
+        let isActive = jwtUserDict["is_active"] as? Bool
+        let isEmailVerified = jwtUserDict["is_email_verified"] as? Bool
+        let createdAtString = jwtUserDict["created_at"] as? String
+        
+        guard let createdAtString else {
+            throw ServiceErrors.custom(message: "created_at is not a string")
+        }
+        
+        let createAtDate = try decodeISO8601DateFromString(dateString: createdAtString)
+       
+        if let userId, let username, let email, let isActive, let isEmailVerified {
+            currentUser = UserModel(userId: userId, createdAt: createAtDate, username: username, email: email, isActive: isActive, isEmailVerified: isEmailVerified)
+        } else {
+            currentUser = nil
+            throw ServiceErrors.custom(message: "user is unparseable")
+        }
+    }
+   
+    func resetStoredUser() {
+        currentUser = nil
+    }
+    
+}
+
+extension UserService {
+    static let shared = UserService()
 }

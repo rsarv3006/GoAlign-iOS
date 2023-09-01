@@ -41,7 +41,7 @@ extension RootController {
                     self.dismiss(animated: true)
                     self.goSignUp()
                 }
-
+                
             }.store(in: &self.subscriptions)
             
             self.dismiss(animated: true)
@@ -76,6 +76,16 @@ extension RootController {
             self.navigationController?.present(nav, animated: false, completion: nil)
         }
     }
+    
+    func goInputCode(loginRequestModel: LoginRequestModel) {
+        DispatchQueue.main.async {
+            let controller = InputCode()
+            controller.delegate = self
+            let viewModel = InputCodeVM(loginRequestModel: loginRequestModel)
+            controller.viewModel = viewModel
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
 }
 // MARK: - AuthScreenDelegate
 extension RootController: AuthScreenDelegate {
@@ -92,6 +102,13 @@ extension RootController: AuthScreenDelegate {
         DispatchQueue.main.async {
             self.dismiss(animated: true)
             self.goHome()
+        }
+    }
+    
+    func requestInputCodeScreen(viewController: AuthViewController, loginRequestModel: LoginRequestModel) {
+        DispatchQueue.main.async {
+            self.dismiss(animated: true)
+            self.goInputCode(loginRequestModel: loginRequestModel)
         }
     }
 }

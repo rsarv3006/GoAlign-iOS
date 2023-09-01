@@ -106,7 +106,7 @@ class HomeScreen: YtViewController {
         configureRefreshControl()
         
         Task {
-            let token = try? await AuthenticationService.getToken()
+            let token = try? await TokenService.shared.getAccessToken()
             print(token ?? "UH OH NO TOKEN FOUND")
         }
         

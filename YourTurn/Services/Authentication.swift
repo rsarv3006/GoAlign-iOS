@@ -20,8 +20,10 @@ struct AuthenticationService {
     static func fetchJwtWithCode(dto: FetchJwtDtoModel) async throws -> FetchJwtDtoReturnModel {
         do {
             let url = try Networking.createUrl(endPoint: "auth/code")
+            let encoder = JSONEncoder()
+            encoder.keyEncodingStrategy  = .convertToSnakeCase
             
-            let encodedBody = try JSONEncoder().encode(dto)
+            let encodedBody = try encoder.encode(dto)
             
             let (data, response) = try await Networking.post(url: url, body: encodedBody, noAuth: true)
             
@@ -29,7 +31,6 @@ struct AuthenticationService {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-
                 
                 return try decoder.decode(FetchJwtDtoReturnModel.self, from: data)
             } else {
@@ -45,7 +46,7 @@ struct AuthenticationService {
         }
     }
     
-    static func createAccount(form: SignUpCompletedForm) async throws -> CreateAccountReturnModel {
+    static func createAccount(form: SignUpCompletedForm) async throws -> LoginRequestModel {
         do {
             let createUserDto = CreateUserDto(username: form.username, email: form.emailAddress)
             
@@ -66,7 +67,7 @@ struct AuthenticationService {
                
                 
                 
-                let userModel = try decoder.decode(CreateAccountReturnModel.self, from: data)
+                let userModel = try decoder.decode(LoginRequestModel.self, from: data)
                 return userModel
             } else if let response = response as? HTTPURLResponse, response.statusCode == 400 {
                 let decoder = JSONDecoder()
@@ -97,19 +98,6 @@ struct AuthenticationService {
             self.signOut()
             throw error
         }
-    }
-    
-    static func getToken() async throws -> String {
-        let token = try await self.getCurrentFirebaseUser()?.getIDTokenResult(forcingRefresh: true)
-        guard let token = token else {
-            throw ServiceErrors.custom(message: "Token Not Found")
-        }
-        return token.token
-    }
-    
-    // TODO: Remove this function when it's no longer needed
-    static func getToken(completion: @escaping((String?, Error?) -> Void)) {
-        self.getCurrentFirebaseUser()?.getIDTokenForcingRefresh(true, completion: completion)
     }
     
     static func signOut() {
@@ -157,7 +145,6 @@ struct AuthenticationService {
             AuthStandardErrorReference(keyword: StandardErrorKeywords.emailAlreadyInUse, userFacingErrorString: UserFacingErrorStrings.emailAlreadyInuse),
             AuthStandardErrorReference(keyword: StandardErrorKeywords.invalidEmail, userFacingErrorString: UserFacingErrorStrings.emailOrPasswordIncorrect)
         ]
-        
     }
 }
 

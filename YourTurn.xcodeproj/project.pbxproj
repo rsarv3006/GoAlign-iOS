@@ -19,6 +19,8 @@
 		7802E1A1288E2FAE00F7D501 /* SignUpVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E1A0288E2FAE00F7D501 /* SignUpVM.swift */; };
 		7802E1A6288E399500F7D501 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E1A5288E399500F7D501 /* Authentication.swift */; };
 		7802E1AA288E3D0900F7D501 /* SignUpCompletedForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E1A9288E3D0900F7D501 /* SignUpCompletedForm.swift */; };
+		7809E0182AA0404200E65FD0 /* InputCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7809E0172AA0404200E65FD0 /* InputCode.swift */; };
+		7809E01A2AA040CE00E65FD0 /* InputCodeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7809E0192AA040CE00E65FD0 /* InputCodeVM.swift */; };
 		780F196828A45EA300371B91 /* SignInVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F196728A45EA300371B91 /* SignInVM.swift */; };
 		780F196A28A45F2300371B91 /* AuthenticationCompletedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F196928A45F2300371B91 /* AuthenticationCompletedProtocol.swift */; };
 		780F196D28A4901000371B91 /* ValidationManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F196C28A4901000371B91 /* ValidationManagerProtocol.swift */; };
@@ -87,7 +89,7 @@
 		7847732D28768D14009AFC92 /* FormButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7847732C28768D14009AFC92 /* FormButtonCollectionViewCell.swift */; };
 		786616E02A9C3FD200E88774 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786616DF2A9C3FD200E88774 /* Keychain.swift */; };
 		786616E22A9C407B00E88774 /* TokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786616E12A9C407B00E88774 /* TokenService.swift */; };
-		786616E42A9C47D200E88774 /* CreateAccountReturnModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786616E32A9C47D200E88774 /* CreateAccountReturnModel.swift */; };
+		786616E42A9C47D200E88774 /* LoginRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786616E32A9C47D200E88774 /* LoginRequestModel.swift */; };
 		786616E62A9C538D00E88774 /* FetchJwtDtoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786616E52A9C538D00E88774 /* FetchJwtDtoModel.swift */; };
 		786616E82A9C540100E88774 /* FetchJwtDtoReturnModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786616E72A9C540100E88774 /* FetchJwtDtoReturnModel.swift */; };
 		786616EB2A9CE48500E88774 /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = 786616EA2A9CE48500E88774 /* JWTDecode */; };
@@ -231,6 +233,8 @@
 		7802E1A0288E2FAE00F7D501 /* SignUpVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVM.swift; sourceTree = "<group>"; };
 		7802E1A5288E399500F7D501 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		7802E1A9288E3D0900F7D501 /* SignUpCompletedForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompletedForm.swift; sourceTree = "<group>"; };
+		7809E0172AA0404200E65FD0 /* InputCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCode.swift; sourceTree = "<group>"; };
+		7809E0192AA040CE00E65FD0 /* InputCodeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCodeVM.swift; sourceTree = "<group>"; };
 		780F196728A45EA300371B91 /* SignInVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVM.swift; sourceTree = "<group>"; };
 		780F196928A45F2300371B91 /* AuthenticationCompletedProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCompletedProtocol.swift; sourceTree = "<group>"; };
 		780F196C28A4901000371B91 /* ValidationManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManagerProtocol.swift; sourceTree = "<group>"; };
@@ -291,7 +295,7 @@
 		7847732C28768D14009AFC92 /* FormButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormButtonCollectionViewCell.swift; sourceTree = "<group>"; };
 		786616DF2A9C3FD200E88774 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		786616E12A9C407B00E88774 /* TokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenService.swift; sourceTree = "<group>"; };
-		786616E32A9C47D200E88774 /* CreateAccountReturnModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountReturnModel.swift; sourceTree = "<group>"; };
+		786616E32A9C47D200E88774 /* LoginRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestModel.swift; sourceTree = "<group>"; };
 		786616E52A9C538D00E88774 /* FetchJwtDtoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchJwtDtoModel.swift; sourceTree = "<group>"; };
 		786616E72A9C540100E88774 /* FetchJwtDtoReturnModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchJwtDtoReturnModel.swift; sourceTree = "<group>"; };
 		7872D6F928950AEF00E598D2 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
@@ -691,6 +695,7 @@
 				78439FDD28AD2C390070D48D /* ViewModels */,
 				78E743BE28A5923F0069E691 /* Forms */,
 				782A5F6E294183250042B0EF /* ForgotPasswordView.swift */,
+				7809E0172AA0404200E65FD0 /* InputCode.swift */,
 			);
 			path = AuthFlow;
 			sourceTree = "<group>";
@@ -701,6 +706,7 @@
 				7802E1A0288E2FAE00F7D501 /* SignUpVM.swift */,
 				780F196728A45EA300371B91 /* SignInVM.swift */,
 				1B93B4F20908B05939C3AB6A /* ForgotPasswordVM.swift */,
+				7809E0192AA040CE00E65FD0 /* InputCodeVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -741,7 +747,7 @@
 				D5D17087290E21F900C52254 /* LoggingEvent.swift */,
 				78B90EB72939C4A600E6CBA8 /* TeamStatsModel.swift */,
 				78AC280C294810A500F53EAB /* ServerErrorMessage.swift */,
-				786616E32A9C47D200E88774 /* CreateAccountReturnModel.swift */,
+				786616E32A9C47D200E88774 /* LoginRequestModel.swift */,
 				786616E52A9C538D00E88774 /* FetchJwtDtoModel.swift */,
 				786616E72A9C540100E88774 /* FetchJwtDtoReturnModel.swift */,
 			);
@@ -1210,6 +1216,7 @@
 				78BBB8FC28642207006B3FDC /* HomeScreenTaskCell.swift in Sources */,
 				78FAB71628AAF9D6009B8D50 /* DrawerMenuVM.swift in Sources */,
 				783314622919E667009DDD3F /* TeamTasksTabViewCellVM.swift in Sources */,
+				7809E0182AA0404200E65FD0 /* InputCode.swift in Sources */,
 				78C4D95D286EAFFC006550A9 /* IntervalPicker.swift in Sources */,
 				78DF5B0328CC652F00C182CF /* TeamInviteUserModal.swift in Sources */,
 				78AD8DD0296A7D6500C6FE6A /* EditAssignedTeamMemberModalVM.swift in Sources */,
@@ -1218,6 +1225,7 @@
 				78BFFA9E2887784600A767AB /* FormSwitchControlledTextCollectionViewCell.swift in Sources */,
 				783DED092861F5500062343E /* HomeScreenVM.swift in Sources */,
 				78DAADEB2868D36700FEB0DA /* HomeScreenTeamCellVM.swift in Sources */,
+				7809E01A2AA040CE00E65FD0 /* InputCodeVM.swift in Sources */,
 				78AC280329442CDA00F53EAB /* RemoteConfig.swift in Sources */,
 				78331464291B35D1009DDD3F /* TeamUsersTabVM.swift in Sources */,
 				786616E22A9C407B00E88774 /* TokenService.swift in Sources */,
@@ -1228,7 +1236,7 @@
 				78439FD928AC8EC80070D48D /* TeamSelectModal.swift in Sources */,
 				7802E199288D9FEC00F7D501 /* PasswordFormComponent.swift in Sources */,
 				780F197A28A493FE00371B91 /* AuthViewController.swift in Sources */,
-				786616E42A9C47D200E88774 /* CreateAccountReturnModel.swift in Sources */,
+				786616E42A9C47D200E88774 /* LoginRequestModel.swift in Sources */,
 				786616E62A9C538D00E88774 /* FetchJwtDtoModel.swift in Sources */,
 				78B687822887A616006B6CAB /* TextFormComponent.swift in Sources */,
 				782A5F6F294183250042B0EF /* ForgotPasswordView.swift in Sources */,

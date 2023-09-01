@@ -8,6 +8,7 @@
 import Foundation
 
 struct FetchJwtDtoModel: Codable {
-    let email: String
-    let code: String
+    let loginCodeRequestId: UUID
+    let userId: UUID
+    let loginRequestToken: String
 }

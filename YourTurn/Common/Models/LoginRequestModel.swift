@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CreateAccountReturnModel: Codable {
+struct LoginRequestModel: Codable {
     let loginRequestId: UUID
     let userId: UUID
 }
