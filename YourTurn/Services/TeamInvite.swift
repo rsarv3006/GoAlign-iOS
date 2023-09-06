@@ -14,7 +14,7 @@ enum TeamInviteStatus {
 
 struct TeamInviteService {
     static func getTeamInvitesByCurrentUser() async throws -> [TeamInviteModel] {
-        let url = try Networking.createUrl(endPoint: "teamInvite/byCurrentUser")
+        let url = try Networking.createUrl(endPoint: "teamInvite")
         
         let (data, response) = try await Networking.get(url: url)
         

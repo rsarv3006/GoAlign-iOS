@@ -7,18 +7,16 @@
 
 import Foundation
 
-struct SignInCompletedForm {
-    let emailAddress: String
-    let password: String
+struct SignInCompletedForm: Codable {
+    let email: String
     
     init(fromDict dict: [String : Any]) throws {
-        guard let emailAddress = dict[FormField.signInEmailAddress.rawValue] as? String,
-              let password = dict[FormField.signInPassword.rawValue] as? String
+        guard let email = dict[FormField.signInEmailAddress.rawValue] as? String
         else {
             throw ValidationError.custom(message: "Something went wrong with the sign in form")
         }
-
-        self.emailAddress = emailAddress
-        self.password = password
+        
+        self.email = email
+        
     }
 }

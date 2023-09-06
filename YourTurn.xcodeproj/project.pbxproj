@@ -21,6 +21,7 @@
 		7802E1AA288E3D0900F7D501 /* SignUpCompletedForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7802E1A9288E3D0900F7D501 /* SignUpCompletedForm.swift */; };
 		7809E0182AA0404200E65FD0 /* InputCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7809E0172AA0404200E65FD0 /* InputCode.swift */; };
 		7809E01A2AA040CE00E65FD0 /* InputCodeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7809E0192AA040CE00E65FD0 /* InputCodeVM.swift */; };
+		7809E01E2AA52B4600E65FD0 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7809E01D2AA52B4600E65FD0 /* AppState.swift */; };
 		780F196828A45EA300371B91 /* SignInVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F196728A45EA300371B91 /* SignInVM.swift */; };
 		780F196A28A45F2300371B91 /* AuthenticationCompletedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F196928A45F2300371B91 /* AuthenticationCompletedProtocol.swift */; };
 		780F196D28A4901000371B91 /* ValidationManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F196C28A4901000371B91 /* ValidationManagerProtocol.swift */; };
@@ -128,6 +129,28 @@
 		78AC28082944314200F53EAB /* remote_config_defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AC28072944314200F53EAB /* remote_config_defaults.plist */; };
 		78AC280B29452AA600F53EAB /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 78AC280A29452AA600F53EAB /* JGProgressHUD */; };
 		78AC280D294810A500F53EAB /* ServerErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AC280C294810A500F53EAB /* ServerErrorMessage.swift */; };
+		78AC55C22AA6782E00263DAA /* RefreshTokensReturnDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AC55C12AA6782E00263DAA /* RefreshTokensReturnDto.swift */; };
+		78AC55C32AA67D1C00263DAA /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872D6F928950AEF00E598D2 /* TeamModel.swift */; };
+		78AC55C42AA67D2400263DAA /* FetchJwtDtoReturnModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786616E72A9C540100E88774 /* FetchJwtDtoReturnModel.swift */; };
+		78AC55C52AA67D2700263DAA /* FetchJwtDtoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786616E52A9C538D00E88774 /* FetchJwtDtoModel.swift */; };
+		78AC55C62AA67D3900263DAA /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F88D2893881C0075F04F /* TaskModel.swift */; };
+		78AC55C72AA67D4500263DAA /* LoginRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786616E32A9C47D200E88774 /* LoginRequestModel.swift */; };
+		78AC55C82AA67D4C00263DAA /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7809E01D2AA52B4600E65FD0 /* AppState.swift */; };
+		78AC55C92AA67D5100263DAA /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872D6FB28950C5E00E598D2 /* TeamService.swift */; };
+		78AC55CA2AA67D5E00263DAA /* TokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786616E12A9C407B00E88774 /* TokenService.swift */; };
+		78AC55CB2AA67D7200263DAA /* RefreshTokensReturnDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AC55C12AA6782E00263DAA /* RefreshTokensReturnDto.swift */; };
+		78AC55CC2AA67D7B00263DAA /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786616DF2A9C3FD200E88774 /* Keychain.swift */; };
+		78AC55CD2AA67D8700263DAA /* ServerErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AC280C294810A500F53EAB /* ServerErrorMessage.swift */; };
+		78AC55CE2AA67DA800263DAA /* TaskEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E671C28F1332300EBE205 /* TaskEntryModel.swift */; };
+		78AC55CF2AA67DB000263DAA /* IntervalObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F88F289389B00075F04F /* IntervalObject.swift */; };
+		78AC55D02AA67DB700263DAA /* TeamSelectModalReturnModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EC914D28AF2D220046DF28 /* TeamSelectModalReturnModel.swift */; };
+		78AC55D12AA67DBB00263DAA /* TeamInviteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF5AF528BC63CA00C182CF /* TeamInviteModel.swift */; };
+		78AC55D22AA67DC000263DAA /* LoggingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D17087290E21F900C52254 /* LoggingEvent.swift */; };
+		78AC55D32AA67DC400263DAA /* TeamStatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B90EB72939C4A600E6CBA8 /* TeamStatsModel.swift */; };
+		78AC55D42AA67DCE00263DAA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DED052861F4C90062343E /* Extensions.swift */; };
+		78AC55D52AA67DDD00263DAA /* FieldValidInvalidProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B68791288829F0006B6CAB /* FieldValidInvalidProtocol.swift */; };
+		78AC55D62AA67DE700263DAA /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7833144829154986009DDD3F /* InputTextView.swift */; };
+		78AC55D82AA67E4200263DAA /* AppStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AC55D72AA67E4200263DAA /* AppStateTests.swift */; };
 		78AD8DCE296A6EA100C6FE6A /* EditAssignedTeamMemberModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AD8DCD296A6EA100C6FE6A /* EditAssignedTeamMemberModal.swift */; };
 		78AD8DD0296A7D6500C6FE6A /* EditAssignedTeamMemberModalVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AD8DCF296A7D6500C6FE6A /* EditAssignedTeamMemberModalVM.swift */; };
 		78B687802887A5E5006B6CAB /* FormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6877F2887A5E5006B6CAB /* FormComponent.swift */; };
@@ -235,6 +258,7 @@
 		7802E1A9288E3D0900F7D501 /* SignUpCompletedForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompletedForm.swift; sourceTree = "<group>"; };
 		7809E0172AA0404200E65FD0 /* InputCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCode.swift; sourceTree = "<group>"; };
 		7809E0192AA040CE00E65FD0 /* InputCodeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCodeVM.swift; sourceTree = "<group>"; };
+		7809E01D2AA52B4600E65FD0 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		780F196728A45EA300371B91 /* SignInVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVM.swift; sourceTree = "<group>"; };
 		780F196928A45F2300371B91 /* AuthenticationCompletedProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCompletedProtocol.swift; sourceTree = "<group>"; };
 		780F196C28A4901000371B91 /* ValidationManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManagerProtocol.swift; sourceTree = "<group>"; };
@@ -329,6 +353,8 @@
 		78AC280229442CDA00F53EAB /* RemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfig.swift; sourceTree = "<group>"; };
 		78AC28072944314200F53EAB /* remote_config_defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = remote_config_defaults.plist; sourceTree = "<group>"; };
 		78AC280C294810A500F53EAB /* ServerErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerErrorMessage.swift; sourceTree = "<group>"; };
+		78AC55C12AA6782E00263DAA /* RefreshTokensReturnDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokensReturnDto.swift; sourceTree = "<group>"; };
+		78AC55D72AA67E4200263DAA /* AppStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateTests.swift; sourceTree = "<group>"; };
 		78AD8DCD296A6EA100C6FE6A /* EditAssignedTeamMemberModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAssignedTeamMemberModal.swift; sourceTree = "<group>"; };
 		78AD8DCF296A7D6500C6FE6A /* EditAssignedTeamMemberModalVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAssignedTeamMemberModalVM.swift; sourceTree = "<group>"; };
 		78B6877F2887A5E5006B6CAB /* FormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormComponent.swift; sourceTree = "<group>"; };
@@ -454,6 +480,7 @@
 				78AC280229442CDA00F53EAB /* RemoteConfig.swift */,
 				786616DF2A9C3FD200E88774 /* Keychain.swift */,
 				786616E12A9C407B00E88774 /* TokenService.swift */,
+				7809E01D2AA52B4600E65FD0 /* AppState.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -631,6 +658,7 @@
 				783DECE828617EED0062343E /* YourTurnTests.swift */,
 				780F497D29306C3A006C8456 /* AuthenticationServiceTest.swift */,
 				780F498D29307C86006C8456 /* NetworkingTests.swift */,
+				78AC55D72AA67E4200263DAA /* AppStateTests.swift */,
 			);
 			path = YourTurnTests;
 			sourceTree = "<group>";
@@ -750,6 +778,7 @@
 				786616E32A9C47D200E88774 /* LoginRequestModel.swift */,
 				786616E52A9C538D00E88774 /* FetchJwtDtoModel.swift */,
 				786616E72A9C540100E88774 /* FetchJwtDtoReturnModel.swift */,
+				78AC55C12AA6782E00263DAA /* RefreshTokensReturnDto.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1232,6 +1261,7 @@
 				783DED03286180470062343E /* HomeScreen.swift in Sources */,
 				78A083A62965AE5D00E86DAA /* TeamTaskModal.swift in Sources */,
 				788CFF9E29554734002650F7 /* ChangeTeamManagerUserCellVM.swift in Sources */,
+				78AC55C22AA6782E00263DAA /* RefreshTokensReturnDto.swift in Sources */,
 				788CFFA629567104002650F7 /* TeamSettingsLeaveTeamCellVM.swift in Sources */,
 				78439FD928AC8EC80070D48D /* TeamSelectModal.swift in Sources */,
 				7802E199288D9FEC00F7D501 /* PasswordFormComponent.swift in Sources */,
@@ -1253,6 +1283,7 @@
 				780F197628A490DB00371B91 /* StringMaxLengthValidationManagerImpl.swift in Sources */,
 				783DECD228617EEB0062343E /* AppDelegate.swift in Sources */,
 				789377D9295D59BB00F6B9A9 /* TeamSettingsAllMembersCanAddTasksCellVM.swift in Sources */,
+				7809E01E2AA52B4600E65FD0 /* AppState.swift in Sources */,
 				7847732A28768B69009AFC92 /* TaskAddEditFormContentBuilderImpl.swift in Sources */,
 				780F197028A4905100371B91 /* RegexValidationManagerImpl.swift in Sources */,
 				78352991294E7428000A4290 /* TeamSettingsTabVM.swift in Sources */,
@@ -1334,21 +1365,42 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78AC55D12AA67DBB00263DAA /* TeamInviteModel.swift in Sources */,
 				780F498329306E2E006C8456 /* SignInCompletedForm.swift in Sources */,
+				78AC55CD2AA67D8700263DAA /* ServerErrorMessage.swift in Sources */,
+				78AC55D52AA67DDD00263DAA /* FieldValidInvalidProtocol.swift in Sources */,
+				78AC55C32AA67D1C00263DAA /* TeamModel.swift in Sources */,
+				78AC55C62AA67D3900263DAA /* TaskModel.swift in Sources */,
+				78AC55D62AA67DE700263DAA /* InputTextView.swift in Sources */,
 				783DECE928617EED0062343E /* YourTurnTests.swift in Sources */,
 				780F498429306E31006C8456 /* UserModel.swift in Sources */,
 				780F498829306E92006C8456 /* Networking.swift in Sources */,
+				78AC55C72AA67D4500263DAA /* LoginRequestModel.swift in Sources */,
 				780F498629306E5E006C8456 /* FormComponent.swift in Sources */,
+				78AC55D32AA67DC400263DAA /* TeamStatsModel.swift in Sources */,
 				780F498129306DEA006C8456 /* ValidationError.swift in Sources */,
 				780F497E29306C3A006C8456 /* AuthenticationServiceTest.swift in Sources */,
+				78AC55D82AA67E4200263DAA /* AppStateTests.swift in Sources */,
+				78AC55CB2AA67D7200263DAA /* RefreshTokensReturnDto.swift in Sources */,
 				780F498229306DF5006C8456 /* FormModel.swift in Sources */,
 				780F497F29306C99006C8456 /* Authentication.swift in Sources */,
 				780F498029306DC1006C8456 /* SignUpCompletedForm.swift in Sources */,
 				780F498529306E42006C8456 /* ValidationManagerProtocol.swift in Sources */,
+				78AC55CC2AA67D7B00263DAA /* Keychain.swift in Sources */,
 				780F498929306E98006C8456 /* ISO8601CustomDateDecodingStrategy.swift in Sources */,
+				78AC55CA2AA67D5E00263DAA /* TokenService.swift in Sources */,
 				78AC28012943FD9600F53EAB /* ServiceErrors.swift in Sources */,
+				78AC55CF2AA67DB000263DAA /* IntervalObject.swift in Sources */,
+				78AC55D22AA67DC000263DAA /* LoggingEvent.swift in Sources */,
+				78AC55C52AA67D2700263DAA /* FetchJwtDtoModel.swift in Sources */,
+				78AC55C82AA67D4C00263DAA /* AppState.swift in Sources */,
+				78AC55C42AA67D2400263DAA /* FetchJwtDtoReturnModel.swift in Sources */,
+				78AC55D02AA67DB700263DAA /* TeamSelectModalReturnModel.swift in Sources */,
 				780F498729306E77006C8456 /* User.swift in Sources */,
 				780F498E29307C86006C8456 /* NetworkingTests.swift in Sources */,
+				78AC55CE2AA67DA800263DAA /* TaskEntryModel.swift in Sources */,
+				78AC55D42AA67DCE00263DAA /* Extensions.swift in Sources */,
+				78AC55C92AA67D5100263DAA /* TeamService.swift in Sources */,
 				780F498A29306EA1006C8456 /* LoggerService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -49,7 +49,7 @@ class TeamSettingsAllMembersCanAddTasksCellVM {
     
     func canUserChangeSetting() {
         Task {
-            let isUserTeamManager = try? await UserService.shared.isUserTeamManager(forTeam: team)
+            let isUserTeamManager = try? await UserService.isUserTeamManager(forTeam: team)
             if isUserTeamManager == true {
                 settingEnabledPassThrough.send(true)
             }

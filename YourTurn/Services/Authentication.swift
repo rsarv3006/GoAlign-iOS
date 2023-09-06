@@ -9,14 +9,6 @@ import Foundation
 import Firebase
 
 struct AuthenticationService {
-    static func getCurrentFirebaseUser() -> User? {
-        return Auth.auth().currentUser
-    }
-    
-    static func doesCurrentUserExist() -> Bool {
-        return self.getCurrentFirebaseUser() !== nil
-    }
-    
     static func fetchJwtWithCode(dto: FetchJwtDtoModel) async throws -> FetchJwtDtoReturnModel {
         do {
             let url = try Networking.createUrl(endPoint: "auth/code")
@@ -60,12 +52,9 @@ struct AuthenticationService {
             let (data, response) = try await Networking.post(url: url, body: createUserBody, noAuth: true)
             
             if let response = response as? HTTPURLResponse, response.statusCode == 201 {
-                print("201 response created")
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-               
-                
                 
                 let userModel = try decoder.decode(LoginRequestModel.self, from: data)
                 return userModel
@@ -81,18 +70,37 @@ struct AuthenticationService {
         } catch {
             print(error.localizedDescription)
             self.signOut()
+            // TODO: fix this line below
             try await Auth.auth().currentUser?.delete()
             throw error
         }
     }
     
-    static func signInToAccount(form: SignInCompletedForm) async throws -> UserModel {
+    static func signInToAccount(form: SignInCompletedForm) async throws -> LoginRequestModel {
         do {
-            try await Auth.auth().signIn(withEmail: form.emailAddress, password: form.password)
-            if let userModel = UserService.shared.currentUser {
+            let url = try Networking.createUrl(endPoint: "auth/login")
+           
+            let encoder = JSONEncoder()
+           
+            let signInBody = try encoder.encode(form)
+            
+            let (data, response) = try await Networking.post(url: url, body: signInBody, noAuth: true)
+            
+            if let response = response as? HTTPURLResponse, response.statusCode == 201 {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+                
+                let userModel = try decoder.decode(LoginRequestModel.self, from: data)
                 return userModel
+            } else if let response = response as? HTTPURLResponse, response.statusCode == 400 {
+                let decoder = JSONDecoder()
+                let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                throw ServiceErrors.custom(message: serverError.message)
             } else {
-                throw ServiceErrors.custom(message: "User Not Found")
+                let decoder = JSONDecoder()
+                let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                throw ServiceErrors.custom(message: serverError.message)
             }
         } catch {
             self.signOut()

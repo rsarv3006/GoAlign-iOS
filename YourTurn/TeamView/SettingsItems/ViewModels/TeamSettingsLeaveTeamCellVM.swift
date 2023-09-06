@@ -45,7 +45,7 @@ class TeamSettingsLeaveTeamCellVM {
         
         Task {
             do {
-                if let currentUser = UserService.shared.currentUser {
+                if let currentUser = AppState.getInstance().currentUser {
                     try await TeamService.removeUserFromTeam(teamId: team.teamId, userToRemove: currentUser.userId)
                     
                     Logger.log(logLevel: .Prod, name: Logger.Events.Team.leaveSuccess, payload: ["teamId": team.teamId, "userId": currentUser.userId])

@@ -24,7 +24,7 @@ class InputCodeVM {
             do {
                 let returnBody = try await AuthenticationService.fetchJwtWithCode(dto: jwtRequestDto)
                 print(returnBody.token)
-                try TokenService.shared.setToken(accessToken: returnBody.token, refreshToken: "")
+                AppState.getInstance(accessToken: returnBody.token, refreshToken: "")
                 inputCodeSubject.send(.success(true))
             } catch {
                     inputCodeSubject.send(.failure(error))

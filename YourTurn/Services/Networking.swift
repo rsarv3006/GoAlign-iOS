@@ -20,7 +20,7 @@ struct Networking {
     private static let baseUrlString: String = "http://localhost:3000/api/"
 
     private static func apiCall(httpMethod: HttpMethod, url: URL, body: Data? = nil) async throws -> (Data, URLResponse) {
-        let token = try await TokenService.shared.getAccessToken()
+        let token = try await AppState.getInstance().getAccessToken()
         print("token: \(token)")
 
         var request = URLRequest(url: url)

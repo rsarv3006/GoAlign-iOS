@@ -29,7 +29,7 @@ class TeamTaskModalVM {
     func checkIsUserTeamManager() {
         Task {
             do {
-                let isTeamManager = try? await UserService.shared.isUserTeamManager(forTeamById: task.teamId)
+                let isTeamManager = try? await UserService.isUserTeamManager(forTeamById: task.teamId)
                 if isTeamManager == true {
                     isUserTeamManager.send(true)
                 }

@@ -21,7 +21,7 @@ final class NetworkingTests: XCTestCase {
 
     func testQueryStringBuilder() throws {
         let testStringArr = ["test", "other", "test"]
-        let queryString = sut.helpers.createQueryString(items: testStringArr)
+        let queryString = sut.Helpers.createQueryString(items: testStringArr)
         XCTAssert(queryString == "test,other,test")
     }
 

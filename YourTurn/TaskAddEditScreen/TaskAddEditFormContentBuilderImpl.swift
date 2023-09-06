@@ -124,7 +124,7 @@ final class TaskAddEditFormContentBuilderImpl {
                 let validValues = formComponents.map { ($0.formId.rawValue, $0.value) }
                 let validDict = Dictionary(uniqueKeysWithValues: validValues) as [String: Any]
                 
-                let uid = AuthenticationService.getCurrentFirebaseUser()?.uid
+                let uid = AppState.getInstance().currentUser?.userId
                 
                 do {
                     guard let taskToEdit = taskToEdit else { throw ServiceErrors.custom(message: "No Task to edit.")}
@@ -156,7 +156,7 @@ final class TaskAddEditFormContentBuilderImpl {
             let validValues = formComponents.map { ($0.formId.rawValue, $0.value) }
             let validDict = Dictionary(uniqueKeysWithValues: validValues) as [String: Any]
             
-            let uid = AuthenticationService.getCurrentFirebaseUser()?.uid
+            let uid = AppState.getInstance().currentUser?.userId
             
             do {
                 try formSubmission.send(.success(CreateTaskDto(from: validDict, uid: uid)))

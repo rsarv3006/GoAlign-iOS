@@ -107,9 +107,9 @@ private extension SignInScreen {
                 Logger.log(logLevel: .Verbose, name: Logger.Events.Auth.signInFailed, payload: ["error": error])
                 let errorStringToDisplay = AuthenticationService.checkForStandardErrors(error: error)
                 AlertModalService.openAlert(viewController: self, modalMessage: errorStringToDisplay)
-            case .success(let user):
-                if user != nil {
-                    self.delegate?.authenticationDidComplete(viewController: self)
+            case .success(let result):
+                if let result {
+                    self.delegate?.requestInputCodeScreen(viewController: self, loginRequestModel: result)
                 }
             }
         }).store(in: &subscriptions)

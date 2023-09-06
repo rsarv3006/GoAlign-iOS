@@ -12,13 +12,13 @@ class SignInVM {
     let signInLabelTextString = "Sign In"
     let buttonTextGoToSignUp: String = "Don't have an account? \nClick here to Sign Up!"
     
-    let signInSubject = PassthroughSubject<Result<UserModel?, Error>, Never>()
+    let signInSubject = PassthroughSubject<Result<LoginRequestModel?, Error>, Never>()
     
     func signIn(form: SignInCompletedForm) {
         Task {
             do {
-                let user = try await AuthenticationService.signInToAccount(form: form)
-                self.signInSubject.send(.success(user))
+                let result = try await AuthenticationService.signInToAccount(form: form)
+                self.signInSubject.send(.success(result))
             } catch {
                 self.signInSubject.send(.failure(error))
             }

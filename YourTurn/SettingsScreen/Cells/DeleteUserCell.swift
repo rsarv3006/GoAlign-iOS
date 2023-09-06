@@ -66,7 +66,7 @@ class DeleteUserCell: UITableViewCell {
     func deleteAccount() {
         Task {
             do {
-                let deleteResult = try await UserService.shared.deleteCurrentUser()
+                let deleteResult = try await UserService.deleteCurrentUser()
                 if deleteResult == true {
                     self.deleteAccountReturnToSignIn.send(.success(true))
                 } else {

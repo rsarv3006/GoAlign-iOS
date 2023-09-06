@@ -23,6 +23,10 @@ class UserModel: Codable {
         self.isActive = isActive
         self.isEmailVerified = isEmailVerified
     }
+    
+    func toString() {
+        print("userId: \(userId), createdAt: \(createdAt), username: \(username), email: \(email), isActive: \(isActive), isEmailVerified: \(isEmailVerified)")
+    }
 }
 
 class CreateUserDto: Codable {

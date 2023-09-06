@@ -41,7 +41,7 @@ class TeamUsersTabVM {
     
     private func setDoesUserHaveTeamEdit() {
         Task {
-            let isUserTeamManager = try? await UserService.shared.isUserTeamManager(forTeam: team)
+            let isUserTeamManager = try? await UserService.isUserTeamManager(forTeam: team)
             if isUserTeamManager == true {
                 canUserEditTeam = true
                 shouldShowCreateInviteButton.send(true)

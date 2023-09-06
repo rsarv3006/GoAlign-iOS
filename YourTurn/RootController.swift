@@ -17,14 +17,24 @@ class RootController: UIViewController {
         view.backgroundColor = .systemBackground
         super.viewDidLoad()
         configureRootView()
+        
     }
     
     func configureRootView() {
-        if !AuthenticationService.doesCurrentUserExist() {
-            goSignUp()
-        } else {
-            goHome()
+        showLoader(true)
+        Task {
+            defer {
+                showLoader(false)
+            }
+            
+            do {
+                let _ = try await AppState.getInstance().getAccessToken()
+                goHome()
+            } catch {
+                goSignUp()
+            }
         }
+
     }
 }
 

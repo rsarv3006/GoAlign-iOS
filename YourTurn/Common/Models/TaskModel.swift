@@ -47,7 +47,7 @@ class TaskModel: Codable {
     
     func checkIfCurrentUserIsAssignedUser(completionHandler: @escaping ((Bool) -> Void)) {
         Task {
-            guard let user = UserService.shared.currentUser else {
+            guard let user = AppState.getInstance().currentUser else {
                 completionHandler(false)
                 return
             }

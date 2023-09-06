@@ -47,7 +47,7 @@ struct Logger {
     
     private static func getLogLevel() -> LogLevel {
         
-        if LogLevel.Prod.rawValue == remoteConfig.configValue(forKey: "LOG_LEVEL").stringValue {
+        if false {
             return .Prod
         }
         
@@ -55,12 +55,13 @@ struct Logger {
     }
     
     private static func getAnalyticsEnabled() -> Bool {
-        
-        return remoteConfig.configValue(forKey: "LOG_TO_ANALYTICS").boolValue
+       return true
+//        return remoteConfig.configValue(forKey: "LOG_TO_ANALYTICS").boolValue
     }
     
     private static func getPrintLogs() -> Bool {
-        return remoteConfig.configValue(forKey: "PRINT_LOGS").boolValue
+        return true
+//        return remoteConfig.configValue(forKey: "PRINT_LOGS").boolValue
     }
     
     struct Events {
