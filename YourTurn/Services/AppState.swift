@@ -15,15 +15,16 @@ class AppState {
     
     private init(accessToken: String? = nil, refreshToken: String? = nil) {
         do {
-            if (accessToken != nil && refreshToken != nil) {
+            if let accessToken, let refreshToken {
                 self.accessToken = accessToken
                 self.refreshToken = refreshToken
+                // TODO: fix this after server implements refresh tokens
+                try KeychainService.storeTokens(accessToken, "refreshToken", Date())
             } else {
                 self.accessToken = try KeychainService.getAccessToken()
                 self.refreshToken = try KeychainService.getRefreshToken()
             }
             try self.updateUserFromToken(accessToken: self.accessToken)
-            print("completed init no failures")
         } catch {
             print(error.localizedDescription)
             print("do something")

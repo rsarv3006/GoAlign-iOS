@@ -9,7 +9,7 @@ import Foundation
 
 struct TeamService {
     static func getTeamsByCurrentUser() async throws -> [TeamModel] {
-        let url = try Networking.createUrl(endPoint: "team/byCurrentUser")
+        let url = try Networking.createUrl(endPoint: "team")
         
         let (data, response) = try await Networking.get(url: url)
         
@@ -17,8 +17,8 @@ struct TeamService {
         decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
         
         if let response = response as? HTTPURLResponse, response.statusCode == 200 {
-            let teams = try decoder.decode([TeamModel].self, from: data)
-            return teams
+            let teamsResponse = try decoder.decode(TeamsGetByCurrentUserReturnModel.self, from: data)
+            return teamsResponse.teams
         } else {
             let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)

@@ -14,7 +14,7 @@ enum TeamInviteStatus {
 
 struct TeamInviteService {
     static func getTeamInvitesByCurrentUser() async throws -> [TeamInviteModel] {
-        let url = try Networking.createUrl(endPoint: "teamInvite")
+        let url = try Networking.createUrl(endPoint: "team-invite")
         
         let (data, response) = try await Networking.get(url: url)
         
@@ -22,8 +22,8 @@ struct TeamInviteService {
         decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
         
         if let response = response as? HTTPURLResponse, response.statusCode == 200 {
-            let teamInvites = try decoder.decode([TeamInviteModel].self, from: data)
-            return teamInvites
+            let teamInvitesResponse = try decoder.decode(TeamInviteGetByCurrentUserReturnModel.self, from: data)
+            return teamInvitesResponse.invites
         } else {
             let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)

@@ -18,8 +18,8 @@ struct TaskService {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
             
-            let taskItems = try decoder.decode(TaskModelArray.self, from: data)
-            return taskItems
+            let taskItemsReturn = try decoder.decode(TasksReturnModel.self, from: data)
+            return taskItemsReturn.tasks
         } else {
             let decoder = JSONDecoder()
             let serverError = try decoder.decode(ServerErrorMessage.self, from: data)

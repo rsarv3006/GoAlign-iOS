@@ -47,3 +47,9 @@ class UpdateCanAllTeamMembersAddTasksSettingDto: Codable {
         self.newSettingValue = newSettingValue
     }
 }
+
+class TeamsGetByCurrentUserReturnModel: Codable {
+    let teams: [TeamModel]
+    let message: String
+}
+

@@ -105,12 +105,6 @@ class HomeScreen: YtViewController {
         configureCombine()
         configureRefreshControl()
         
-        Task {
-            let token = try? await AppState.getInstance().getAccessToken()
-            print(token ?? "UH OH NO TOKEN FOUND")
-            let localUser = AppState.getInstance().currentUser
-        }
-        
         viewModel?.checkAndDisplayPendingInviteBaner(viewController: self)
     }
     

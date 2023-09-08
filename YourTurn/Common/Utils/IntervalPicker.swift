@@ -39,9 +39,9 @@ class IntervalPicker: UIView {
         onInit()
         self.intervalObj = interval
         
-        let indexForInterval = INTERVALS_ARRAY.firstIndex(of: interval.intervalType)
+        let indexForInterval = INTERVALS_ARRAY.firstIndex(of: interval.intervalUnit)
         
-        numberPicker.selectRow(interval.intervalNumber - 1, inComponent: 0, animated: true)
+        numberPicker.selectRow(interval.intervalCount - 1, inComponent: 0, animated: true)
         numberPicker.selectRow(indexForInterval ?? 1, inComponent: 1, animated: true)
     }
     
@@ -82,9 +82,9 @@ extension IntervalPicker: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0 {
-            intervalObj.intervalNumber = row + 1
+            intervalObj.intervalCount = row + 1
         } else {
-            intervalObj.intervalType = INTERVALS_ARRAY[row]
+            intervalObj.intervalUnit = INTERVALS_ARRAY[row]
         }
         
         delegate?.onIntervalChange(intervalPicker: self, intervalObj: intervalObj)

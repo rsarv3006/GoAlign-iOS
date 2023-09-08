@@ -20,23 +20,23 @@ let INTERVALS_ARRAY = [IntervalVariant.minute, IntervalVariant.hour, IntervalVar
 
 class IntervalObject: Codable, Equatable {
     static func == (lhs: IntervalObject, rhs: IntervalObject) -> Bool {
-        if lhs.intervalNumber == rhs.intervalNumber && lhs.intervalType == rhs.intervalType {
+        if lhs.intervalCount == rhs.intervalCount && lhs.intervalUnit == rhs.intervalUnit {
             return true
         }
         
         return false
     }
     
-    var intervalNumber: Int = 1
-    var intervalType: IntervalVariant = .day
+    var intervalCount: Int = 1
+    var intervalUnit: IntervalVariant = .day
     
-    init(_ intervalNumber: Int, _ intervalType: IntervalVariant){
-        self.intervalNumber = intervalNumber
-        self.intervalType = intervalType
+    init(_ intervalCount: Int, _ intervalUnit: IntervalVariant){
+        self.intervalCount = intervalCount
+        self.intervalUnit = intervalUnit
     }
     
     func toString() -> String {
-        return "\(intervalNumber) - \(intervalType.rawValue)"
+        return "\(intervalCount) - \(intervalUnit.rawValue)"
     }
     
     private enum CodingKeys: String, CodingKey {
@@ -46,14 +46,14 @@ class IntervalObject: Codable, Equatable {
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.intervalNumber = try container.decode(Int.self, forKey: .intervalNumber)
+        self.intervalCount = try container.decode(Int.self, forKey: .intervalNumber)
         let typeString = try container.decode(String.self, forKey: .intervalType)
-        self.intervalType = IntervalVariant(rawValue: typeString)!
+        self.intervalUnit = IntervalVariant(rawValue: typeString)!
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(intervalNumber, forKey: .intervalNumber)
-        try container.encode(intervalType.rawValue, forKey: .intervalType)
+        try container.encode(intervalCount, forKey: .intervalNumber)
+        try container.encode(intervalUnit.rawValue, forKey: .intervalType)
     }
 }

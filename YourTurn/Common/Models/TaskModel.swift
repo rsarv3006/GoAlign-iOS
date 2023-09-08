@@ -32,7 +32,7 @@ class TaskModel: Codable {
     let windowLength: IntervalObject
     let teamId: String
     let creator: UserModel
-    let status: TaskStatusVariant
+    let status: String
     let taskEntries: [TaskEntryModel]?
     
     func findCurrentTaskEntry() -> TaskEntryModel? {
@@ -222,4 +222,10 @@ class UpdateTaskDto: Codable {
     func toString() -> String {
         return "taskName: \(String(describing: taskName)) - notes: \(String(describing: notes)) - startDate: \(String(describing: startDate)) - endDate: \(String(describing: endDate))"
     }
+}
+
+struct TasksReturnModel: Codable {
+    let tasks: [TaskModel]
+    let message: String
+    let success: Bool
 }

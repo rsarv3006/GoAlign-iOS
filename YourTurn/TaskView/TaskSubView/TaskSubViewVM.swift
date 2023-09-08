@@ -33,7 +33,7 @@ class TaskSubViewVM {
     init(task: TaskModel) {
         self.contentTitle = task.taskName
         self.assignedUserString = task.findCurrentTaskEntry()?.assignedUser.username ?? ""
-        self.isTaskCompleted = task.status == TaskStatusVariant.completed ? true : false
+        self.isTaskCompleted = task.status == TaskStatusVariant.completed.rawValue ? true : false
         self.assignedTeamString = task.teamId
         self.taskEntries = task.taskEntries?.filter({ taskEntry in
             taskEntry.status == .completed

@@ -7,6 +7,11 @@
 
 import Foundation
 
+class TeamInviteGetByCurrentUserReturnModel: Codable {
+    let invites: [TeamInviteModel]
+    let message: String
+}
+
 class TeamInviteModel: Codable {
     let inviteId: String
     let teamId: String

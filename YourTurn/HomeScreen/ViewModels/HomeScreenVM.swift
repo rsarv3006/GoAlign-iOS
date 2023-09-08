@@ -29,7 +29,7 @@ class HomeScreenVM {
                 let tasks = try await TaskService.getTasksByAssignedUserId()
                 
                 tasksSubject.send(.success(tasks.filter({ task in
-                    if task.status != .completed {
+                    if task.status != TaskStatusVariant.completed.rawValue {
                         return true
                     } else {
                         return false
@@ -92,7 +92,7 @@ class HomeScreenVM {
                 }
 
             } catch {
-                Logger.log(logLevel: .Verbose, name: Logger.Events.Team.Invite.fetchFailed, payload: [:])
+                Logger.log(logLevel: .Verbose, name: Logger.Events.Team.Invite.fetchFailed, payload: ["message":error.localizedDescription])
             }
         }
 
