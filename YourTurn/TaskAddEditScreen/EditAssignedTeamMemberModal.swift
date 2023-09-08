@@ -101,7 +101,7 @@ class EditAssignedTeamMemberModal: ModalViewController {
 extension EditAssignedTeamMemberModal: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let team = viewModel?.team {
-            let returnValue = TeamSelectModalReturnModel(team: team, teamMember: team.teamMembers[indexPath.row])
+            let returnValue = TeamSelectModalReturnModel(team: team, teamMember: team.users[indexPath.row])
             delegate?.modalSentValue(viewController: self, value: returnValue)
         }
     }

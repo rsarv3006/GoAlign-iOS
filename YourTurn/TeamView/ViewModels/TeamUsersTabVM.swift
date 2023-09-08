@@ -19,7 +19,7 @@ class TeamUsersTabVM {
     private(set) var team: TeamModel
     var users: [UserModel] {
         get {
-            team.teamMembers
+            team.users
         }
     }
     
@@ -79,7 +79,7 @@ class TeamUsersTabVM {
     
     private func getInformationOnObjectToDelete(index: Int, type: SelectedList) -> (String, String) {
         if type == .users {
-            return (team.teamMembers[index].userId, team.teamMembers[index].username)
+            return (team.users[index].userId, team.users[index].username)
         } else {
             let teamInvitesResult = teamInvitesSubject.value
             

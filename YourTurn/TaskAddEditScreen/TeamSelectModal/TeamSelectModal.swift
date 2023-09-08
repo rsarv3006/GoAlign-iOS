@@ -95,11 +95,11 @@ class TeamSelectModal: ModalViewController {
 extension TeamSelectModal: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.tag == TEAM_SELECT {
-            let returnValue = TeamSelectModalReturnModel(team: teams[indexPath.row], teamMember: teams[indexPath.row].teamMembers[0])
+            let returnValue = TeamSelectModalReturnModel(team: teams[indexPath.row], teamMember: teams[indexPath.row].users[0])
             delegate?.modalSentValue(viewController: self, value: returnValue)
             selectedTeamIndex = indexPath.row
         } else if tableView.tag == TEAM_MEMBER_SELECT {
-            let returnValue = TeamSelectModalReturnModel(team: teams[selectedTeamIndex], teamMember: teams[selectedTeamIndex].teamMembers[indexPath.row])
+            let returnValue = TeamSelectModalReturnModel(team: teams[selectedTeamIndex], teamMember: teams[selectedTeamIndex].users[indexPath.row])
             delegate?.modalSentValue(viewController: self, value: returnValue)
         }
     }
@@ -112,7 +112,7 @@ extension TeamSelectModal: UITableViewDataSource {
             return teams.count
         } else if tableView.tag == TEAM_MEMBER_SELECT {
             if teams.count > 0 {
-                return teams[selectedTeamIndex].teamMembers.count
+                return teams[selectedTeamIndex].users.count
             } else {
                 return 0
             }
@@ -129,7 +129,7 @@ extension TeamSelectModal: UITableViewDataSource {
             return cell
         } else if tableView.tag == TEAM_MEMBER_SELECT {
             let cell = tableView.dequeueReusableCell(withIdentifier: "otherThing", for: indexPath) as! TeamSelectModalCellView
-            cell.nameLabelString = teams[selectedTeamIndex].teamMembers[indexPath.row].username
+            cell.nameLabelString = teams[selectedTeamIndex].users[indexPath.row].username
             return cell
         } else {
             return UITableViewCell(style: .default, reuseIdentifier: "crash baby")

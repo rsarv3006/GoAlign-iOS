@@ -19,7 +19,7 @@ class ChangeTeamManagerModalVM {
     
     var teamMembers: [UserModel] {
         get {
-            team.teamMembers
+            team.users
         }
     }
     

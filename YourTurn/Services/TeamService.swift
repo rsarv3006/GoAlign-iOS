@@ -15,6 +15,7 @@ struct TeamService {
         
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
         
         if let response = response as? HTTPURLResponse, response.statusCode == 200 {
             let teamsResponse = try decoder.decode(TeamsGetByCurrentUserReturnModel.self, from: data)
@@ -29,16 +30,20 @@ struct TeamService {
     static func createTeam(teamDto: CreateTeamDto) async throws -> TeamModel {
         let url = try Networking.createUrl(endPoint: "team")
         
-        let teamData = try JSONEncoder().encode(teamDto)
+        let encoder = JSONEncoder()
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        
+        let teamData = try encoder.encode(teamDto)
 
         let (data, response) = try await Networking.post(url: url, body: teamData)
         
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
         
         if let response = response as? HTTPURLResponse, response.statusCode == 201 {
-            let teamModel = try decoder.decode(TeamModel.self, from: data)
-            return teamModel
+            let teamCreateReturn = try decoder.decode(TeamsCreateReturnModel.self, from: data)
+            return teamCreateReturn.team
         } else {
             let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)
@@ -53,10 +58,11 @@ struct TeamService {
         let (data, response) = try await Networking.get(url: url)
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
         
         if let response = response as? HTTPURLResponse, response.statusCode == 200 {
-            let teams = try decoder.decode([TeamModel].self, from: data)
-            return teams
+            let teamsReturn = try decoder.decode(TeamsGetByCurrentUserReturnModel.self, from: data)
+            return teamsReturn.teams
         } else {
             let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)

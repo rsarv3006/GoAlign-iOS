@@ -20,14 +20,14 @@ class EditAssignedTeamMemberModalVM {
     
     var teamMembers: [UserModel] {
         get {
-            team?.teamMembers ?? []
+            team?.users ?? []
         }
     }
     
     var indexOfAssignedUser: Int? {
         get {
             guard let assignedUserId = assignedUserId else { return nil }
-            return team?.teamMembers.firstIndex(where: { user in
+            return team?.users.firstIndex(where: { user in
                 user.userId == assignedUserId
             })
         }

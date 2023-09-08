@@ -12,7 +12,7 @@ class TeamModel: Codable {
     let createdAt: Date
     let teamName: String
     let tasks: TaskModelArray
-    let teamMembers: [UserModel]
+    let users: [UserModel]
     let teamManagerId: String
 }
 
@@ -50,6 +50,11 @@ class UpdateCanAllTeamMembersAddTasksSettingDto: Codable {
 
 class TeamsGetByCurrentUserReturnModel: Codable {
     let teams: [TeamModel]
+    let message: String
+}
+
+class TeamsCreateReturnModel: Codable {
+    let team: TeamModel
     let message: String
 }
 
