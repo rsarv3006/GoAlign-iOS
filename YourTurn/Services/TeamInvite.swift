@@ -72,13 +72,13 @@ struct TeamInviteService {
     }
     
     static func getOutstandingInvitesByTeamId(teamId: String) async throws -> [TeamInviteModel] {
-        let url = try Networking.createUrl(endPoint: "team-invite/outstandingTeamInvites/\(teamId)")
+        let url = try Networking.createUrl(endPoint: "team-invite/byTeam/\(teamId)")
         
         let (data, response) = try await Networking.get(url: url)
         
         if let response = response as? HTTPURLResponse, response.statusCode == 200 {
-            let teamInvites = try GlobalDecoder.decode([TeamInviteModel].self, from: data)
-            return teamInvites
+            let teamInvitesReturn = try GlobalDecoder.decode(TeamInvitesGetByTeamIdReturnModel.self, from: data)
+            return teamInvitesReturn.teamInvites
         } else {
             let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)

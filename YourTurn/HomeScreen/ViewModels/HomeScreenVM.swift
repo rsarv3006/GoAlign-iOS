@@ -83,7 +83,7 @@ class HomeScreenVM {
                         subTitle = "You have \(invites.count) pending invites."
                     } else {
                         title = "Invite Pending"
-                        subTitle = "\(invites[0].creator.username) as invited you to a team."
+                        subTitle = "\(invites[0].inviteCreator.username) as invited you to a team."
                     }
                     
                     let banner = await FloatingNotificationBanner(title: title, subtitle: subTitle)

@@ -13,14 +13,13 @@ class TeamInviteGetByCurrentUserReturnModel: Codable {
 }
 
 class TeamInviteModel: Codable {
-    let inviteId: String
+    let teamInviteId: String
     let teamId: String
-    let emailAddressToInvite: String
-    let inviteStatus: String
-    let userId: String?
+    let email: String
+    let status: String
     let team: TeamModel
-    let creatorUserId: String
-    let creator: UserModel
+    let inviteCreatorId: String
+    let inviteCreator: UserModel
 }
 
 class TeamInviteDisplayModel {
@@ -40,4 +39,9 @@ class CreateInviteDtoModel: Codable {
         self.teamId = teamId
         self.email = emailAddressToInvite
     }
+}
+
+class TeamInvitesGetByTeamIdReturnModel: Codable {
+    let teamInvites: [TeamInviteModel]
+    let message: String
 }

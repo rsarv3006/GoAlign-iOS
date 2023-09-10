@@ -76,11 +76,11 @@ extension TeamInvitesViewController {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: TEAM_INVITE_CELL_REUSE_ID, for: indexPath) as! TeamInviteCellView
             let invite = teamInvites[indexPath.section].inviteModel
-            cell.viewModel = TeamInviteCellVM(teamName: invite.team.teamName, inviterName: invite.creator.username)
+            cell.viewModel = TeamInviteCellVM(teamName: invite.team.teamName, inviterName: invite.inviteCreator.username)
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: TEAM_INVITE_SUB_CELL_REUSE_ID, for: indexPath) as! TeamInviteSubCellView
-            let inviteId = teamInvites[indexPath.section].inviteModel.inviteId
+            let inviteId = teamInvites[indexPath.section].inviteModel.teamInviteId
             
             cell.viewModel = TeamInviteSubCellVM(inviteId: inviteId)
             cell.delegate = self

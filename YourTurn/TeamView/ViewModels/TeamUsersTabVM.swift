@@ -86,7 +86,7 @@ class TeamUsersTabVM {
             switch teamInvitesResult {
             case .success(let teamInvites):
                 let invite = teamInvites[index]
-                return (invite.inviteId, invite.emailAddressToInvite)
+                return (invite.teamInviteId, invite.email)
             default:
                 return ("", "")
             }

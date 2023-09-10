@@ -12,6 +12,6 @@ struct TeamInvitesTabViewCellVM {
     let inviteeEmail: String
     
     init(invite: TeamInviteModel) {
-        self.inviteeEmail = invite.emailAddressToInvite
+        self.inviteeEmail = invite.email
     }
 }
