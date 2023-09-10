@@ -8,6 +8,5 @@
 import Foundation
 
 struct ServerErrorMessage: Codable {
-    let statusCode: Int
     let message: String
 }

@@ -45,7 +45,7 @@ struct TeamInviteService {
         
         let (data, response) = try await Networking.post(url: url)
         
-        if let response = response as? HTTPURLResponse, response.statusCode == 201 {
+        if let response = response as? HTTPURLResponse, response.statusCode == 204 {
             return .success
         } else {
             let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
