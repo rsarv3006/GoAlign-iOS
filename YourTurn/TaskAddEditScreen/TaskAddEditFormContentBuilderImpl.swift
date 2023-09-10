@@ -54,7 +54,7 @@ final class TaskAddEditFormContentBuilderImpl {
                                  ),
                 SwitchControlledDateFormComponent(id: .endDate, mode: .date, switchLabel: "End Date", validations: [DateInFutureValidationManagerImpl()], title: "", editValue: taskToEdit.endDate),
                 SwitchControlledTextFormComponent(id: .requiredCompletionsNeeded, placeholder: "Number of Completions Needed To Close Task", switchLabel: "Completions Needed:", keyboardType: .numberPad, validations: [], editValue: requiredCompletionsString),
-                HideableIntervalPickerFormComponent(id: .windowLength, title: "Task Window:", validations: [], editValue: taskToEdit.windowLength),
+                HideableIntervalPickerFormComponent(id: .windowLength, title: "Task Window:", validations: [], editValue: taskToEdit.windowDuration),
                 HideableIntervalPickerFormComponent(id: .intervalBetweenWindows, title: "Time Between Tasks:", validations: [], editValue: taskToEdit.intervalBetweenWindows),
                 ModalFormComponent(id: .taskTeamPicker, buttonTitle: "Select Team", viewControllerToOpen: editAssignedTeamMemberModal),
                 TextBoxFormComponent(id: .notes, placeholder: "Notes", editValue: taskToEdit.notes),

@@ -34,10 +34,10 @@ class TeamInviteDisplayModel {
 
 class CreateInviteDtoModel: Codable {
     let teamId: String
-    let emailAddressToInvite: String
+    let email: String
     
     init(teamId: String, emailAddressToInvite: String) {
         self.teamId = teamId
-        self.emailAddressToInvite = emailAddressToInvite
+        self.email = emailAddressToInvite
     }
 }

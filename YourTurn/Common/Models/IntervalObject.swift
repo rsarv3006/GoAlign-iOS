@@ -40,20 +40,20 @@ class IntervalObject: Codable, Equatable {
     }
     
     private enum CodingKeys: String, CodingKey {
-        case intervalNumber
-        case intervalType
+        case intervalCount
+        case intervalUnit
     }
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.intervalCount = try container.decode(Int.self, forKey: .intervalNumber)
-        let typeString = try container.decode(String.self, forKey: .intervalType)
+        self.intervalCount = try container.decode(Int.self, forKey: .intervalCount)
+        let typeString = try container.decode(String.self, forKey: .intervalUnit)
         self.intervalUnit = IntervalVariant(rawValue: typeString)!
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(intervalCount, forKey: .intervalNumber)
-        try container.encode(intervalUnit.rawValue, forKey: .intervalType)
+        try container.encode(intervalCount, forKey: .intervalCount)
+        try container.encode(intervalUnit.rawValue, forKey: .intervalUnit)
     }
 }

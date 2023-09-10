@@ -29,7 +29,7 @@ class TaskModel: Codable {
     let requiredCompletionsNeeded: Int?
     let completionCount: Int
     let intervalBetweenWindows: IntervalObject
-    let windowLength: IntervalObject
+    let windowDuration: IntervalObject
     let teamId: String
     let creator: UserModel
     let status: String
@@ -69,7 +69,7 @@ class CreateTaskDto: Codable {
     let endDate: Date?
     let requiredCompletionsNeeded: Int?
     let intervalBetweenWindows: IntervalObject
-    let windowLength: IntervalObject
+    let windowDuration: IntervalObject
     let teamId: String
     let assignedUserId: String
     let creatorUserId: String
@@ -113,7 +113,7 @@ class CreateTaskDto: Codable {
         }
         
         if let windowLength = formDict[CreateTaskDictKeys.WINDOW_LENGTH] as? IntervalObject {
-            self.windowLength = windowLength
+            self.windowDuration = windowLength
         } else {
             throw TaskModelError.custom(message: "Create TaskModel: invalid value given for Window Length")
         }
@@ -202,7 +202,7 @@ class UpdateTaskDto: Codable {
             self.intervalBetweenWindows = nil
         }
         
-        if let windowLength = formDict[CreateTaskDictKeys.WINDOW_LENGTH] as? IntervalObject, windowLength != taskToUpdate.windowLength {
+        if let windowLength = formDict[CreateTaskDictKeys.WINDOW_LENGTH] as? IntervalObject, windowLength != taskToUpdate.windowDuration {
             self.windowLength = windowLength
         } else {
             self.windowLength = nil
@@ -228,4 +228,9 @@ struct TasksReturnModel: Codable {
     let tasks: [TaskModel]
     let message: String
     let success: Bool
+}
+
+struct TaskCreateReturnModel: Codable {
+    let task: TaskModel
+    let message: String
 }

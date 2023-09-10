@@ -20,6 +20,7 @@ struct TeamInviteService {
         
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
         
         if let response = response as? HTTPURLResponse, response.statusCode == 200 {
             let teamInvitesResponse = try decoder.decode(TeamInviteGetByCurrentUserReturnModel.self, from: data)
@@ -31,7 +32,7 @@ struct TeamInviteService {
     }
     
     static func acceptInvite(inviteId: String) async throws -> TeamInviteStatus {
-        let url = try Networking.createUrl(endPoint: "teamInvite/\(inviteId)/accept")
+        let url = try Networking.createUrl(endPoint: "team-invite/\(inviteId)/accept")
         
         let (data, response) = try await Networking.post(url: url)
         
@@ -45,7 +46,7 @@ struct TeamInviteService {
     }
     
     static func declineInvite(inviteId: String) async throws -> TeamInviteStatus {
-        let url = try Networking.createUrl(endPoint: "teamInvite/\(inviteId)/decline")
+        let url = try Networking.createUrl(endPoint: "team-invite/\(inviteId)/decline")
         
         let (data, response) = try await Networking.post(url: url)
         
@@ -53,15 +54,19 @@ struct TeamInviteService {
             return .success
         } else {
             let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
             let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)
         }
     }
     
     static func createInvite(createInviteDto: CreateInviteDtoModel) async throws -> TeamInviteStatus {
-        let url = try Networking.createUrl(endPoint: "teamInvite")
+        let url = try Networking.createUrl(endPoint: "team-invite")
+       
+        let encoder = JSONEncoder()
+        encoder.keyEncodingStrategy = .convertToSnakeCase
         
-        let createInviteData = try JSONEncoder().encode(createInviteDto)
+        let createInviteData = try encoder.encode(createInviteDto)
         
         let (data, response) = try await Networking.post(url: url, body: createInviteData)
         
@@ -69,17 +74,20 @@ struct TeamInviteService {
             return .success
         } else {
             let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            
             let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)
         }
     }
     
     static func getOutstandingInvitesByTeamId(teamId: String) async throws -> [TeamInviteModel] {
-        let url = try Networking.createUrl(endPoint: "teamInvite/outstandingTeamInvites/\(teamId)")
+        let url = try Networking.createUrl(endPoint: "team-invite/outstandingTeamInvites/\(teamId)")
         
         let (data, response) = try await Networking.get(url: url)
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
         
         if let response = response as? HTTPURLResponse, response.statusCode == 200 {
             let teamInvites = try decoder.decode([TeamInviteModel].self, from: data)
@@ -91,7 +99,7 @@ struct TeamInviteService {
     }
     
     static func deleteTeamInvite(inviteId: String) async throws {
-        let url = try Networking.createUrl(endPoint: "teamInvite/\(inviteId)")
+        let url = try Networking.createUrl(endPoint: "team-invite/\(inviteId)")
         
         let (data, response) = try await Networking.delete(url: url)
         

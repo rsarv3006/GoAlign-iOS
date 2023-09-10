@@ -17,6 +17,7 @@ struct TaskService {
         if let response = response as? HTTPURLResponse, response.statusCode == 200 {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
             
             let taskItemsReturn = try decoder.decode(TasksReturnModel.self, from: data)
             return taskItemsReturn.tasks
@@ -36,6 +37,7 @@ struct TaskService {
         if let response = response as? HTTPURLResponse, response.statusCode == 200 {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
             
             let taskItems = try decoder.decode(TaskModelArray.self, from: data)
             return taskItems
@@ -47,21 +49,27 @@ struct TaskService {
     }
     
     static func createTask(taskToCreate taskDto: CreateTaskDto) async throws -> TaskModel {
+        print("taskToCreate: \(taskDto.toString())")
+        
         let url = try Networking.createUrl(endPoint: "task")
         
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
+        encoder.keyEncodingStrategy = .convertToSnakeCase
         
         let taskData = try encoder.encode(taskDto)
+        print("taskData: \(String(data: taskData, encoding: .utf8) ?? "nil")")
+        
         
         let (data, response) = try await Networking.post(url: url, body: taskData)
         
         if let response = response as? HTTPURLResponse, response.statusCode == 201 {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
             
-            let taskModel = try decoder.decode(TaskModel.self, from: data)
-            return taskModel
+            let taskCreateReturn = try decoder.decode(TaskCreateReturnModel.self, from: data)
+            return taskCreateReturn.task
         } else {
             let decoder = JSONDecoder()
             let serverError = try decoder.decode(ServerErrorMessage.self, from: data)

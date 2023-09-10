@@ -31,7 +31,7 @@ struct TaskMoreInfoVM {
         self.createdDateLabel = "Created: \(task.createdAt.ISO8601Format())"
         self.startDateLabel = "Started: \(task.startDate.ISO8601Format())"
         self.completionsCountLabel = "Completions: \(task.completionCount)"
-        self.windowLengthLabel = task.windowLength.toString()
+        self.windowLengthLabel = task.windowDuration.toString()
         self.intervalBetweenWindowsLabel = task.intervalBetweenWindows.toString()
         
         if let endDate = task.endDate {
