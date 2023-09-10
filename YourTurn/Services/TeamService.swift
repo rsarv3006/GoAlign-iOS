@@ -110,23 +110,26 @@ struct TeamService {
         let (data, response) = try await Networking.get(url: url)
         
         if let response = response as? HTTPURLResponse, response.statusCode == 200 {
-            let teams = try GlobalDecoder.decode(TeamSettingsModel.self, from: data)
-            return teams
+            let teamSettingsReturn = try GlobalDecoder.decode(TeamSettingsReturnModel.self, from: data)
+            return teamSettingsReturn.settings
         } else {
             let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)
         }
     }
     
-    static func updateCanAllTeamMembersAddTasksSetting(teamId: String, newSettingValue: Bool) async throws {
-        let url = try Networking.createUrl(endPoint: "team/\(teamId)/settings/canAllTeamMembersAddTasks")
+    static func updateTeamSettings(teamId: String, newSettingValue: Bool) async throws {
+        let url = try Networking.createUrl(endPoint: "team/\(teamId)/settings")
         
-        let updateSettingDto = UpdateCanAllTeamMembersAddTasksSettingDto(newSettingValue: newSettingValue)
-        let updateSettingData = try JSONEncoder().encode(updateSettingDto)
+        let updateSettingDto = UpdateTeamSettings(canAllMembersAddTasks: newSettingValue)
+        let encoder = JSONEncoder()
+        encoder.keyEncodingStrategy = .convertToSnakeCase
         
-        let (data, response) = try await Networking.patch(url: url, body: updateSettingData)
+        let updateSettingData = try encoder.encode(updateSettingDto)
         
-        if let response = response as? HTTPURLResponse, response.statusCode == 204 {
+        let (data, response) = try await Networking.put(url: url, body: updateSettingData)
+        
+        if let response = response as? HTTPURLResponse, response.statusCode == 201 {
             return
         } else {
             let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)

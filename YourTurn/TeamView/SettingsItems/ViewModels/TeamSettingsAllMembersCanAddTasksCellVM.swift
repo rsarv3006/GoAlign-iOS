@@ -28,7 +28,7 @@ class TeamSettingsAllMembersCanAddTasksCellVM {
         Task {
             do {
                 let teamSettings = try await TeamService.getTeamSettings(teamId: team.teamId)
-                settingPassThrough.send(teamSettings.canAllTeamMembersAddTasks)
+                settingPassThrough.send(teamSettings.canAllMembersAddTasks)
             } catch {
                 delegate?.requestShowMessageFromCell(withTitle: "Uh Oh", message: error.localizedDescription)
             }
@@ -38,9 +38,9 @@ class TeamSettingsAllMembersCanAddTasksCellVM {
     func updateSetting(newSettingValue: Bool) {
         Task {
             do {
-                try await TeamService.updateCanAllTeamMembersAddTasksSetting(teamId: team.teamId, newSettingValue: newSettingValue)
+                try await TeamService.updateTeamSettings(teamId: team.teamId, newSettingValue: newSettingValue)
                 let teamSettings = try await TeamService.getTeamSettings(teamId: team.teamId)
-                settingPassThrough.send(teamSettings.canAllTeamMembersAddTasks)
+                settingPassThrough.send(teamSettings.canAllMembersAddTasks)
             } catch {
                 delegate?.requestShowMessageFromCell(withTitle: "Uh Oh", message: error.localizedDescription)
             }

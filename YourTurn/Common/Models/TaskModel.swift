@@ -227,7 +227,6 @@ class UpdateTaskDto: Codable {
 struct TasksReturnModel: Codable {
     let tasks: [TaskModel]
     let message: String
-    let success: Bool
 }
 
 struct TaskCreateReturnModel: Codable {
