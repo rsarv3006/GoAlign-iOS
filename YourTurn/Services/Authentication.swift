@@ -20,14 +20,9 @@ struct AuthenticationService {
             let (data, response) = try await Networking.post(url: url, body: encodedBody, noAuth: true)
             
             if let response = response as? HTTPURLResponse, response.statusCode == 201 {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-                
-                return try decoder.decode(FetchJwtDtoReturnModel.self, from: data)
+                return try GlobalDecoder.decode(FetchJwtDtoReturnModel.self, from: data)
             } else {
-                let decoder = JSONDecoder()
-                let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
                 throw ServiceErrors.custom(message: serverError.message)
             }
         } catch {
@@ -52,19 +47,13 @@ struct AuthenticationService {
             let (data, response) = try await Networking.post(url: url, body: createUserBody, noAuth: true)
             
             if let response = response as? HTTPURLResponse, response.statusCode == 201 {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-                
-                let userModel = try decoder.decode(LoginRequestModel.self, from: data)
+                let userModel = try GlobalDecoder.decode(LoginRequestModel.self, from: data)
                 return userModel
             } else if let response = response as? HTTPURLResponse, response.statusCode == 400 {
-                let decoder = JSONDecoder()
-                let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
                 throw ServiceErrors.custom(message: serverError.message)
             } else {
-                let decoder = JSONDecoder()
-                let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
                 throw ServiceErrors.custom(message: serverError.message)
             }
         } catch {
@@ -87,19 +76,13 @@ struct AuthenticationService {
             let (data, response) = try await Networking.post(url: url, body: signInBody, noAuth: true)
             
             if let response = response as? HTTPURLResponse, response.statusCode == 201 {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-                
-                let userModel = try decoder.decode(LoginRequestModel.self, from: data)
+                let userModel = try GlobalDecoder.decode(LoginRequestModel.self, from: data)
                 return userModel
             } else if let response = response as? HTTPURLResponse, response.statusCode == 400 {
-                let decoder = JSONDecoder()
-                let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
                 throw ServiceErrors.custom(message: serverError.message)
             } else {
-                let decoder = JSONDecoder()
-                let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+                let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
                 throw ServiceErrors.custom(message: serverError.message)
             }
         } catch {

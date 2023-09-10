@@ -48,3 +48,12 @@ func decodeISO8601DateFromString(dateString: String) throws -> Date {
     }
     throw DateError.invalidDate
 }
+
+func createGlobalDecoder() -> JSONDecoder {
+    let decoder = JSONDecoder()
+    decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+    decoder.keyDecodingStrategy = .convertFromSnakeCase
+    return decoder
+}
+
+let GlobalDecoder = createGlobalDecoder()

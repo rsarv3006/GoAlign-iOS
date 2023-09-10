@@ -15,15 +15,11 @@ struct TaskService {
         let (data, response) = try await Networking.get(url: url)
         
         if let response = response as? HTTPURLResponse, response.statusCode == 200 {
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
             
-            let taskItemsReturn = try decoder.decode(TasksReturnModel.self, from: data)
+            let taskItemsReturn = try GlobalDecoder.decode(TasksReturnModel.self, from: data)
             return taskItemsReturn.tasks
         } else {
-            let decoder = JSONDecoder()
-            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)
         }
     }
@@ -35,15 +31,10 @@ struct TaskService {
         let (data, response) = try await Networking.get(url: url)
         
         if let response = response as? HTTPURLResponse, response.statusCode == 200 {
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            
-            let taskItems = try decoder.decode(TaskModelArray.self, from: data)
+            let taskItems = try GlobalDecoder.decode(TaskModelArray.self, from: data)
             return taskItems
         } else {
-            let decoder = JSONDecoder()
-            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)
         }
     }
@@ -64,15 +55,10 @@ struct TaskService {
         let (data, response) = try await Networking.post(url: url, body: taskData)
         
         if let response = response as? HTTPURLResponse, response.statusCode == 201 {
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            
-            let taskCreateReturn = try decoder.decode(TaskCreateReturnModel.self, from: data)
+            let taskCreateReturn = try GlobalDecoder.decode(TaskCreateReturnModel.self, from: data)
             return taskCreateReturn.task
         } else {
-            let decoder = JSONDecoder()
-            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)
         }
         
@@ -84,14 +70,10 @@ struct TaskService {
         let (data, response) = try await Networking.post(url: url)
         
         if let response = response as? HTTPURLResponse, response.statusCode == 201 {
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-            
-            let taskModel = try decoder.decode(TaskModel.self, from: data)
+            let taskModel = try GlobalDecoder.decode(TaskModel.self, from: data)
             return taskModel
         } else {
-            let decoder = JSONDecoder()
-            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
             Logger.log(logLevel: .Verbose, name: Logger.Events.Task.markCompleteFailed, payload: ["error": serverError])
             throw ServiceErrors.custom(message: serverError.message)
         }
@@ -109,14 +91,10 @@ struct TaskService {
         let (data, response) = try await Networking.patch(url: url, body: updateTaskData)
         
         if let response = response as? HTTPURLResponse, response.statusCode == 201 {
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-            
-            let taskModel = try decoder.decode(TaskModel.self, from: data)
+            let taskModel = try GlobalDecoder.decode(TaskModel.self, from: data)
             return taskModel
         } else {
-            let decoder = JSONDecoder()
-            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)
         }
     }

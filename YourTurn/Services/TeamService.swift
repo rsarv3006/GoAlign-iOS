@@ -13,15 +13,11 @@ struct TeamService {
         
         let (data, response) = try await Networking.get(url: url)
         
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        
         if let response = response as? HTTPURLResponse, response.statusCode == 200 {
-            let teamsResponse = try decoder.decode(TeamsGetByCurrentUserReturnModel.self, from: data)
+            let teamsResponse = try GlobalDecoder.decode(TeamsGetByCurrentUserReturnModel.self, from: data)
             return teamsResponse.teams
         } else {
-            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)
         }
         
@@ -37,15 +33,11 @@ struct TeamService {
 
         let (data, response) = try await Networking.post(url: url, body: teamData)
         
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        
         if let response = response as? HTTPURLResponse, response.statusCode == 201 {
-            let teamCreateReturn = try decoder.decode(TeamsCreateReturnModel.self, from: data)
+            let teamCreateReturn = try GlobalDecoder.decode(TeamsCreateReturnModel.self, from: data)
             return teamCreateReturn.team
         } else {
-            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)
         }
         
@@ -56,15 +48,12 @@ struct TeamService {
         let url = try Networking.createUrl(endPoint: "team?teamIds=\(queryString)")
         
         let (data, response) = try await Networking.get(url: url)
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
         
         if let response = response as? HTTPURLResponse, response.statusCode == 200 {
-            let teamsReturn = try decoder.decode(TeamsGetByCurrentUserReturnModel.self, from: data)
+            let teamsReturn = try GlobalDecoder.decode(TeamsGetByCurrentUserReturnModel.self, from: data)
             return teamsReturn.teams
         } else {
-            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)
         }
     }
@@ -77,8 +66,7 @@ struct TeamService {
         if let response = response as? HTTPURLResponse, response.statusCode == 204 {
             return
         } else {
-            let decoder = JSONDecoder()
-            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)
         }
         
@@ -95,8 +83,7 @@ struct TeamService {
         if let response = response as? HTTPURLResponse, response.statusCode == 204 {
             return
         } else {
-            let decoder = JSONDecoder()
-            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)
         }
     }
@@ -112,8 +99,7 @@ struct TeamService {
         if let response = response as? HTTPURLResponse, response.statusCode == 204 {
             return
         } else {
-            let decoder = JSONDecoder()
-            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)
         }
     }
@@ -123,14 +109,11 @@ struct TeamService {
         
         let (data, response) = try await Networking.get(url: url)
         
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
-        
         if let response = response as? HTTPURLResponse, response.statusCode == 200 {
-            let teams = try decoder.decode(TeamSettingsModel.self, from: data)
+            let teams = try GlobalDecoder.decode(TeamSettingsModel.self, from: data)
             return teams
         } else {
-            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)
         }
     }
@@ -146,8 +129,7 @@ struct TeamService {
         if let response = response as? HTTPURLResponse, response.statusCode == 204 {
             return
         } else {
-            let decoder = JSONDecoder()
-            let serverError = try decoder.decode(ServerErrorMessage.self, from: data)
+            let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)
         }
     }
