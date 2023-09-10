@@ -12,5 +12,9 @@ struct TeamStatsModel: Codable {
     let numberOfCompletedTaskEntries: Int
     let numberOfCompletedTasks: Int
     let averageTasksPerUser: Double
-    let numberOfTaskEntries: Int
+    let totalNumberOfTaskEntries: Int
+}
+
+struct TeamStatsReturnModel: Codable {
+    let stats: TeamStatsModel
 }

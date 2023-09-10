@@ -38,7 +38,7 @@ class TeamStatsTabVM {
         labelStrings.numberOfCompletedTaskEntries += String(teamStats.numberOfCompletedTaskEntries)
         labelStrings.numberOfCompletedTasks += String(teamStats.numberOfCompletedTasks)
         labelStrings.averageTasksPerUser += String(teamStats.averageTasksPerUser)
-        labelStrings.numberOfTaskEntries += String(teamStats.numberOfTaskEntries)
+        labelStrings.numberOfTaskEntries += String(teamStats.totalNumberOfTaskEntries)
     }
 }
 
