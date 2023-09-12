@@ -13,12 +13,12 @@ class TeamInviteGetByCurrentUserReturnModel: Codable {
 }
 
 class TeamInviteModel: Codable {
-    let teamInviteId: String
-    let teamId: String
+    let teamInviteId: UUID
+    let teamId: UUID
     let email: String
     let status: String
     let team: TeamModel
-    let inviteCreatorId: String
+    let inviteCreatorId: UUID
     let inviteCreator: UserModel
 }
 
@@ -32,10 +32,10 @@ class TeamInviteDisplayModel {
 }
 
 class CreateInviteDtoModel: Codable {
-    let teamId: String
+    let teamId: UUID
     let email: String
     
-    init(teamId: String, emailAddressToInvite: String) {
+    init(teamId: UUID, emailAddressToInvite: String) {
         self.teamId = teamId
         self.email = emailAddressToInvite
     }

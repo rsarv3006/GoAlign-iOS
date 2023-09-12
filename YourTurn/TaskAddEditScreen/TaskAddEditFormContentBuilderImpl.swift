@@ -15,7 +15,7 @@ enum TaskAddEditType {
 final class TaskAddEditFormContentBuilderImpl {
     let taskAddEditType: TaskAddEditType
     private(set) var taskToEdit: TaskModel? = nil
-    private(set) var assignedUserId: String? = nil
+    private(set) var assignedUserId: UUID? = nil
     
     init() {
         taskAddEditType = .add
@@ -155,9 +155,11 @@ final class TaskAddEditFormContentBuilderImpl {
             
             let validValues = formComponents.map { ($0.formId.rawValue, $0.value) }
             let validDict = Dictionary(uniqueKeysWithValues: validValues) as [String: Any]
-            
-            let uid = AppState.getInstance().currentUser?.userId
-            
+           
+            let appState = AppState.getInstance()
+            let uid = appState.currentUser?.userId
+           
+            print("CURENT USER ID: \(AppState.getInstance().currentUser.debugDescription)")
             do {
                 try formSubmission.send(.success(CreateTaskDto(from: validDict, uid: uid)))
             } catch {

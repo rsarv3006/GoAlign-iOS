@@ -26,6 +26,7 @@ class AppState {
             }
             try self.updateUserFromToken(accessToken: self.accessToken)
         } catch {
+            print(self.accessToken)
             print(error.localizedDescription)
             print("do something")
         }
@@ -66,7 +67,7 @@ class AppState {
             throw ServiceErrors.custom(message: "User is not a dictionary")
         }
         
-        let userId = jwtUserDict["user_id"] as? String
+        let userIdString = jwtUserDict["user_id"] as? String
         let username = jwtUserDict["username"] as? String
         let email = jwtUserDict["email"] as? String
         let isActive = jwtUserDict["is_active"] as? Bool
@@ -79,7 +80,8 @@ class AppState {
         
         let createAtDate = try decodeISO8601DateFromString(dateString: createdAtString)
         
-        if let userId, let username, let email, let isActive, let isEmailVerified {
+        if let userIdString, let userId = UUID(uuidString: userIdString), let username, let email, let isActive, let isEmailVerified {
+            
             currentUser = UserModel(userId: userId, createdAt: createAtDate, username: username, email: email, isActive: isActive, isEmailVerified: isEmailVerified)
         } else {
             currentUser = nil

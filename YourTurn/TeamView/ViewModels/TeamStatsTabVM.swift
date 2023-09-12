@@ -17,11 +17,11 @@ class TeamStatsTabVM {
     
     var labelStrings: TeamStatsLabelDefaultStrings = TeamStatsLabelDefaultStrings()
     
-    init(teamId: String) {
+    init(teamId: UUID) {
         getTeamStats(teamId: teamId)
     }
     
-    private func getTeamStats(teamId: String) {
+    private func getTeamStats(teamId: UUID) {
         Task {
             do {
                 let teamStats = try await StatsService.getTeamStats(teamId: teamId)

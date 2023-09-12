@@ -119,6 +119,9 @@ private extension TaskAddEditScreen {
         
         formContentBuilder.formSubmissionUpdate.throttle(for: .seconds(2.0), scheduler: RunLoop.current, latest: false)
             .sink { result in
+                defer {
+                    self.showLoader(false)
+                }
                 switch result {
                 case .failure(let error):
                     print("ERROR IN TASK CREATION PLACEHOLDER")

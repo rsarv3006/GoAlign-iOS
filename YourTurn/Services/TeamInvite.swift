@@ -27,8 +27,8 @@ struct TeamInviteService {
         }
     }
     
-    static func acceptInvite(inviteId: String) async throws -> TeamInviteStatus {
-        let url = try Networking.createUrl(endPoint: "team-invite/\(inviteId)/accept")
+    static func acceptInvite(inviteId: UUID) async throws -> TeamInviteStatus {
+        let url = try Networking.createUrl(endPoint: "team-invite/\(inviteId.uuidString)/accept")
         
         let (data, response) = try await Networking.post(url: url)
         
@@ -40,7 +40,7 @@ struct TeamInviteService {
         }
     }
     
-    static func declineInvite(inviteId: String) async throws -> TeamInviteStatus {
+    static func declineInvite(inviteId: UUID) async throws -> TeamInviteStatus {
         let url = try Networking.createUrl(endPoint: "team-invite/\(inviteId)/decline")
         
         let (data, response) = try await Networking.post(url: url)
@@ -71,8 +71,8 @@ struct TeamInviteService {
         }
     }
     
-    static func getOutstandingInvitesByTeamId(teamId: String) async throws -> [TeamInviteModel] {
-        let url = try Networking.createUrl(endPoint: "team-invite/byTeam/\(teamId)")
+    static func getOutstandingInvitesByTeamId(teamId: UUID) async throws -> [TeamInviteModel] {
+        let url = try Networking.createUrl(endPoint: "team-invite/byTeam/\(teamId.uuidString)")
         
         let (data, response) = try await Networking.get(url: url)
         
@@ -85,7 +85,7 @@ struct TeamInviteService {
         }
     }
     
-    static func deleteTeamInvite(inviteId: String) async throws {
+    static func deleteTeamInvite(inviteId: UUID) async throws {
         let url = try Networking.createUrl(endPoint: "team-invite/\(inviteId)")
         
         let (data, response) = try await Networking.delete(url: url)

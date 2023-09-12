@@ -8,14 +8,14 @@
 import Foundation
 
 class UserModel: Codable {
-    let userId: String
+    let userId: UUID
     let createdAt: Date
     let username: String
     let email: String
     let isActive: Bool
     let isEmailVerified: Bool
     
-    init(userId: String, createdAt: Date, username: String, email: String, isActive: Bool, isEmailVerified: Bool) {
+    init(userId: UUID, createdAt: Date, username: String, email: String, isActive: Bool, isEmailVerified: Bool) {
         self.userId = userId
         self.createdAt = createdAt
         self.username = username

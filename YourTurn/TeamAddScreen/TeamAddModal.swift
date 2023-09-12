@@ -10,7 +10,7 @@ import Combine
 
 protocol TeamAddModalDelegate {
     func onTeamAddScreenComplete(viewController: UIViewController)
-    func onTeamAddGoToInvite(viewController: UIViewController, teamId: String)
+    func onTeamAddGoToInvite(viewController: UIViewController, teamId: UUID)
 }
 
 class TeamAddModal: YtViewController {

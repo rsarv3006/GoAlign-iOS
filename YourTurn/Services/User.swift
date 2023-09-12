@@ -28,7 +28,7 @@ class UserService {
         return false
     }
     
-    static func isUserTeamManager(forTeamById teamId: String) async throws -> Bool {
+    static func isUserTeamManager(forTeamById teamId: UUID) async throws -> Bool {
         let teams = try await TeamService.getTeamsByTeamIds(teamIds: [teamId])
         let team = teams[0]
         if let user = AppState.getInstance().currentUser, user.userId == team.teamManagerId {

@@ -14,9 +14,9 @@ class EditAssignedTeamMemberModalVM {
     private (set) var requestShowError = PassthroughSubject<Error, Never>()
     
     private (set) var team: TeamModel?
-    private let assignedUserId: String?
+    private let assignedUserId: UUID?
     
-    private let teamId: String
+    private let teamId: UUID
     
     var teamMembers: [UserModel] {
         get {
@@ -34,7 +34,7 @@ class EditAssignedTeamMemberModalVM {
     }
 
     
-    init(teamId: String, currentlyAssignedUserId: String?) {
+    init(teamId: UUID, currentlyAssignedUserId: UUID?) {
         self.teamId = teamId
         self.assignedUserId = currentlyAssignedUserId
     }

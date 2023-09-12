@@ -281,7 +281,7 @@ extension HomeScreen: UITableViewDataSource {
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         if tableView.tag == TASK_TABLE_TAG {
             let task = tasks[indexPath.row]
-            return UIContextMenuConfiguration(identifier: task.taskId as NSString, previewProvider: nil) { _ in
+            return UIContextMenuConfiguration(identifier: task.taskId.uuidString as NSString, previewProvider: nil) { _ in
                 let completeTask = UIAction(
                     title: "Complete Task",
                     image: UIImage(systemName: "checkmark.circle")) { _ in
@@ -291,7 +291,7 @@ extension HomeScreen: UITableViewDataSource {
             }
         } else if tableView.tag == TEAM_TABLE_TAG {
             let team = teams[indexPath.row]
-            return UIContextMenuConfiguration(identifier: team.teamId as NSString, previewProvider: nil) { _ in
+            return UIContextMenuConfiguration(identifier: team.teamId.uuidString as NSString, previewProvider: nil) { _ in
                 let completeTask = UIAction(
                     title: "Team Thing",
                     image: UIImage(systemName: "checkmark.circle")) { _ in
@@ -329,7 +329,7 @@ extension HomeScreen: TeamAddModalDelegate {
         viewModel?.loadTeamsAndTasks()
     }
     
-    func onTeamAddGoToInvite(viewController: UIViewController, teamId: String) {
+    func onTeamAddGoToInvite(viewController: UIViewController, teamId: UUID) {
         viewModel?.loadTeamsAndTasks()
         
         DispatchQueue.main.async {

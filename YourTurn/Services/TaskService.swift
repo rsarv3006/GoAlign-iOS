@@ -24,8 +24,10 @@ struct TaskService {
         }
     }
     
-    static func getTasksByTaskIds(taskIds: [String]) async throws -> TaskModelArray {
-        let queryString = Networking.Helpers.createQueryString(items: taskIds)
+    static func getTasksByTaskIds(taskIds: [UUID]) async throws -> TaskModelArray {
+        let queryString = Networking.Helpers.createQueryString(items: taskIds.map({ uuid in
+            return uuid.uuidString
+        }))
         let url = try Networking.createUrl(endPoint: "task?taskIds=\(queryString)")
         
         let (data, response) = try await Networking.get(url: url)
@@ -64,8 +66,8 @@ struct TaskService {
         
     }
     
-    static func markTaskComplete(taskId: String) async throws -> TaskModel {
-        let url = try Networking.createUrl(endPoint: "task/markTaskComplete/\(taskId)")
+    static func markTaskComplete(taskId: UUID) async throws -> TaskModel {
+        let url = try Networking.createUrl(endPoint: "task/markTaskComplete/\(taskId.uuidString)")
         
         let (data, response) = try await Networking.post(url: url)
         

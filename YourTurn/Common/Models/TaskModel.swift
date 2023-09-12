@@ -20,7 +20,7 @@ enum TaskStatusVariant: String, Codable {
 }
 
 class TaskModel: Codable {
-    let taskId: String
+    let taskId: UUID
     let createdAt: Date
     let taskName: String
     let notes: String?
@@ -30,7 +30,7 @@ class TaskModel: Codable {
     let completionCount: Int
     let intervalBetweenWindows: IntervalObject
     let windowDuration: IntervalObject
-    let teamId: String
+    let teamId: UUID
     let creator: UserModel
     let status: String
     let taskEntries: [TaskEntryModel]?
@@ -70,12 +70,12 @@ class CreateTaskDto: Codable {
     let requiredCompletionsNeeded: Int?
     let intervalBetweenWindows: IntervalObject
     let windowDuration: IntervalObject
-    let teamId: String
-    let assignedUserId: String
-    let creatorUserId: String
+    let teamId: UUID
+    let assignedUserId: UUID
+    let creatorUserId: UUID
     
     
-    init(from formDict: [String: Any], uid: String?) throws {
+    init(from formDict: [String: Any], uid: UUID?) throws {
         if let taskName = formDict[CreateTaskDictKeys.TASK_NAME] as? String {
             self.taskName = taskName
         } else {
@@ -154,7 +154,7 @@ struct CreateTaskDictKeys {
 }
 
 class UpdateTaskDto: Codable {
-    private(set) var taskId: String? = nil
+    private(set) var taskId: UUID? = nil
     let taskName: String?
     let notes: String?
     let startDate: Date?
@@ -162,10 +162,10 @@ class UpdateTaskDto: Codable {
     let requiredCompletionsNeeded: Int?
     let intervalBetweenWindows: IntervalObject?
     let windowLength: IntervalObject?
-    let assignedUserId: String?
+    let assignedUserId: UUID?
     
     
-    init(from formDict: [String: Any], uid: String?, taskToUpdate: TaskModel, assignedUser currentAssignedUser: String? = nil) throws {
+    init(from formDict: [String: Any], uid: UUID?, taskToUpdate: TaskModel, assignedUser currentAssignedUser: UUID? = nil) throws {
         if let taskName = formDict[CreateTaskDictKeys.TASK_NAME] as? String, taskName != taskToUpdate.taskName {
             self.taskName = taskName
         } else {
@@ -208,14 +208,14 @@ class UpdateTaskDto: Codable {
             self.windowLength = nil
         }
         
-        if let assignedUserId = formDict[CreateTaskDictKeys.ASSIGNED_USER_ID] as? String, assignedUserId != currentAssignedUser {
+        if let assignedUserId = formDict[CreateTaskDictKeys.ASSIGNED_USER_ID] as? UUID, assignedUserId != currentAssignedUser {
             self.assignedUserId = assignedUserId
         } else {
             self.assignedUserId = nil
         }
     }
     
-    func insertTaskId(taskId: String) {
+    func insertTaskId(taskId: UUID) {
         self.taskId = taskId
     }
     

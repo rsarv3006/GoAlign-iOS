@@ -14,12 +14,12 @@ enum TaskEntryStatus: String, Codable {
 }
 
 struct TaskEntryModel: Codable {
-    let taskEntryId: String
+    let taskEntryId: UUID
     let startDate: Date
     let endDate: Date?
     let notes: String
     let status: TaskEntryStatus
     let completedDate: Date?
     let assignedUser: UserModel
-    let taskId: String
+    let taskId: UUID
 }

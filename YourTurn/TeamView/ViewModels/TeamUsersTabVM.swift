@@ -77,7 +77,7 @@ class TeamUsersTabVM {
         }
     }
     
-    private func getInformationOnObjectToDelete(index: Int, type: SelectedList) -> (String, String) {
+    private func getInformationOnObjectToDelete(index: Int, type: SelectedList) -> (UUID?, String?) {
         if type == .users {
             return (team.users[index].userId, team.users[index].username)
         } else {
@@ -88,15 +88,17 @@ class TeamUsersTabVM {
                 let invite = teamInvites[index]
                 return (invite.teamInviteId, invite.email)
             default:
-                return ("", "")
+                return (nil, nil)
             }
         }
     }
     
-    private func deleteUserFromTeam(viewController: TeamUsersTabView, userId: String) {
+    private func deleteUserFromTeam(viewController: TeamUsersTabView, userId: UUID?) {
         Task {
             do {
+                guard let userId else { throw ServiceErrors.custom(message: "UserId is not defined")}
                 try await TeamService.removeUserFromTeam(teamId: team.teamId, userToRemove: userId)
+                
                 let teams = try await TeamService.getTeamsByTeamIds(teamIds: [team.teamId])
                 team = teams[0]
                 await viewController.showLoader(false)
@@ -108,9 +110,10 @@ class TeamUsersTabVM {
         }
     }
     
-    private func deleteUserInvite(viewController: TeamUsersTabView, inviteId: String) {
+    private func deleteUserInvite(viewController: TeamUsersTabView, inviteId: UUID?) {
         Task {
             do {
+                guard let inviteId else { throw ServiceErrors.custom(message: "inviteId is not defined")}
                 try await TeamInviteService.deleteTeamInvite(inviteId: inviteId)
                 
                 let teamInvites = try await TeamInviteService.getOutstandingInvitesByTeamId(teamId: team.teamId)

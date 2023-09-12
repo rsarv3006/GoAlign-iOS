@@ -17,10 +17,10 @@ class TeamInviteUserModalVM {
     
     var addedInvitedUserSubject = PassthroughSubject<Result<Bool, Error>, Never>()
     
-    let teamId: String
+    let teamId: UUID
     var invitedUsers: [String] = []
     
-    init(teamId: String) {
+    init(teamId: UUID) {
         self.teamId = teamId
     }
     

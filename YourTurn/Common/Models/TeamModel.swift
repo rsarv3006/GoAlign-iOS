@@ -8,12 +8,12 @@
 import Foundation
 
 class TeamModel: Codable {
-    let teamId: String
+    let teamId: UUID
     let createdAt: Date
     let teamName: String
     let tasks: TaskModelArray
     let users: [UserModel]
-    let teamManagerId: String
+    let teamManagerId: UUID
 }
 
 class CreateTeamDto: Codable {

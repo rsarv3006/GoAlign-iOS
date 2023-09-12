@@ -53,7 +53,7 @@ class HomeScreenVM {
         }
     }
     
-    func onMarkTaskComplete(viewController: UIViewController, taskId: String) {
+    func onMarkTaskComplete(viewController: UIViewController, taskId: UUID) {
         Task {
             do {
                 let _ = try await TaskService.markTaskComplete(taskId: taskId)

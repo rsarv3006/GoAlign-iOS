@@ -12,9 +12,9 @@ struct TeamInviteSubCellVM {
     let acceptButtonLabel: String = "Accept"
     let declineButtonLabel: String = "Decline"
     
-    let inviteId: String
+    let inviteId: UUID
     
-    init(inviteId: String) {
+    init(inviteId: UUID) {
         self.inviteId = inviteId
     }
     

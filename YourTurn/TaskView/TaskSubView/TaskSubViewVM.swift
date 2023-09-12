@@ -34,7 +34,7 @@ class TaskSubViewVM {
         self.contentTitle = task.taskName
         self.assignedUserString = task.findCurrentTaskEntry()?.assignedUser.username ?? ""
         self.isTaskCompleted = task.status == TaskStatusVariant.completed.rawValue ? true : false
-        self.assignedTeamString = task.teamId
+        self.assignedTeamString = task.teamId.uuidString
         self.taskEntries = task.taskEntries?.filter({ taskEntry in
             taskEntry.status == .completed
         }) ?? []
@@ -61,7 +61,7 @@ class TaskSubViewVM {
         }
     }
     
-    func getTeamName(teamId: String) {
+    func getTeamName(teamId: UUID) {
         Task {
             do {
                 let teams = try await TeamService.getTeamsByTeamIds(teamIds: [teamId])
