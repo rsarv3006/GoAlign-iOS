@@ -11,7 +11,7 @@ import Firebase
 struct AuthenticationService {
     static func fetchJwtWithCode(dto: FetchJwtDtoModel) async throws -> FetchJwtDtoReturnModel {
         do {
-            let url = try Networking.createUrl(endPoint: "auth/code")
+            let url = try Networking.createUrl(endPoint: "v1/auth/code")
             let encoder = JSONEncoder()
             encoder.keyEncodingStrategy  = .convertToSnakeCase
             
@@ -37,7 +37,7 @@ struct AuthenticationService {
         do {
             let createUserDto = CreateUserDto(username: form.username, email: form.emailAddress)
             
-            let url = try Networking.createUrl(endPoint: "auth/register")
+            let url = try Networking.createUrl(endPoint: "v1/auth/register")
             
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .iso8601
@@ -67,7 +67,7 @@ struct AuthenticationService {
     
     static func signInToAccount(form: SignInCompletedForm) async throws -> LoginRequestModel {
         do {
-            let url = try Networking.createUrl(endPoint: "auth/login")
+            let url = try Networking.createUrl(endPoint: "v1/auth/login")
            
             let encoder = JSONEncoder()
            

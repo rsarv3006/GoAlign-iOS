@@ -41,7 +41,7 @@ struct TeamInviteService {
     }
     
     static func declineInvite(inviteId: UUID) async throws -> TeamInviteStatus {
-        let url = try Networking.createUrl(endPoint: "team-invite/\(inviteId)/decline")
+        let url = try Networking.createUrl(endPoint: "v1/team-invite/\(inviteId)/decline")
         
         let (data, response) = try await Networking.post(url: url)
         
@@ -54,7 +54,7 @@ struct TeamInviteService {
     }
     
     static func createInvite(createInviteDto: CreateInviteDtoModel) async throws -> TeamInviteStatus {
-        let url = try Networking.createUrl(endPoint: "team-invite")
+        let url = try Networking.createUrl(endPoint: "v1/team-invite")
        
         let encoder = JSONEncoder()
         encoder.keyEncodingStrategy = .convertToSnakeCase
@@ -72,7 +72,7 @@ struct TeamInviteService {
     }
     
     static func getOutstandingInvitesByTeamId(teamId: UUID) async throws -> [TeamInviteModel] {
-        let url = try Networking.createUrl(endPoint: "team-invite/byTeam/\(teamId.uuidString)")
+        let url = try Networking.createUrl(endPoint: "v1/team-invite/byTeam/\(teamId.uuidString)")
         
         let (data, response) = try await Networking.get(url: url)
         
@@ -86,7 +86,7 @@ struct TeamInviteService {
     }
     
     static func deleteTeamInvite(inviteId: UUID) async throws {
-        let url = try Networking.createUrl(endPoint: "team-invite/\(inviteId)")
+        let url = try Networking.createUrl(endPoint: "v1/team-invite/\(inviteId)")
         
         let (data, response) = try await Networking.delete(url: url)
         

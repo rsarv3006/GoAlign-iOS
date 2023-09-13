@@ -9,7 +9,7 @@ import Foundation
 
 struct TeamService {
     static func getTeamsByCurrentUser() async throws -> [TeamModel] {
-        let url = try Networking.createUrl(endPoint: "team")
+        let url = try Networking.createUrl(endPoint: "v1/team")
         
         let (data, response) = try await Networking.get(url: url)
         
@@ -24,7 +24,7 @@ struct TeamService {
     }
     
     static func createTeam(teamDto: CreateTeamDto) async throws -> TeamModel {
-        let url = try Networking.createUrl(endPoint: "team")
+        let url = try Networking.createUrl(endPoint: "v1/team")
         
         let encoder = JSONEncoder()
         encoder.keyEncodingStrategy = .convertToSnakeCase
@@ -47,7 +47,7 @@ struct TeamService {
         let queryString = Networking.Helpers.createQueryString(items: teamIds.map({ uuid in
             return uuid.uuidString
         }))
-        let url = try Networking.createUrl(endPoint: "team?teamIds=\(queryString)")
+        let url = try Networking.createUrl(endPoint: "v1/team?teamIds=\(queryString)")
         
         let (data, response) = try await Networking.get(url: url)
         
@@ -61,7 +61,7 @@ struct TeamService {
     }
     
     static func deleteTeam(teamId: UUID) async throws {
-        let url = try Networking.createUrl(endPoint: "team/\(teamId.uuidString)")
+        let url = try Networking.createUrl(endPoint: "v1/team/\(teamId.uuidString)")
         
         let (data, response) = try await Networking.delete(url: url)
         
@@ -75,7 +75,7 @@ struct TeamService {
     }
     
     static func removeUserFromTeam(teamId: UUID, userToRemove: UUID) async throws {
-        let url = try Networking.createUrl(endPoint: "team/removeUserFromTeam")
+        let url = try Networking.createUrl(endPoint: "v1/team/removeUserFromTeam")
         
         let removeUserDto = RemoveUserFromTeamDto(userToRemove: userToRemove.uuidString, teamId: teamId.uuidString)
         let removeUserData = try JSONEncoder().encode(removeUserDto)
@@ -91,7 +91,7 @@ struct TeamService {
     }
     
     static func updateTeamManager(teamId: UUID, newManagerId: UUID) async throws {
-        let url = try Networking.createUrl(endPoint: "team/updateTeamManager")
+        let url = try Networking.createUrl(endPoint: "v1/team/updateTeamManager")
         
         let updateTeamManagerDto = UpdateTeamManagerDto(teamId: teamId.uuidString, newManagerId: newManagerId.uuidString)
         let updateTeamManagerData = try JSONEncoder().encode(updateTeamManagerDto)
@@ -107,7 +107,7 @@ struct TeamService {
     }
     
     static func getTeamSettings(teamId: UUID) async throws -> TeamSettingsModel {
-        let url = try Networking.createUrl(endPoint: "team/\(teamId.uuidString)/settings")
+        let url = try Networking.createUrl(endPoint: "v1/team/\(teamId.uuidString)/settings")
         
         let (data, response) = try await Networking.get(url: url)
         
@@ -121,7 +121,7 @@ struct TeamService {
     }
     
     static func updateTeamSettings(teamId: UUID, newSettingValue: Bool) async throws {
-        let url = try Networking.createUrl(endPoint: "team/\(teamId)/settings")
+        let url = try Networking.createUrl(endPoint: "v1/team/\(teamId)/settings")
         
         let updateSettingDto = UpdateTeamSettings(canAllMembersAddTasks: newSettingValue)
         let encoder = JSONEncoder()

@@ -10,7 +10,7 @@ import Combine
 
 struct TaskService {
     static func getTasksByAssignedUserId() async throws -> TaskModelArray {
-        let url = try Networking.createUrl(endPoint: "task/assignedToCurrentUser")
+        let url = try Networking.createUrl(endPoint: "v1/task/assignedToCurrentUser")
         
         let (data, response) = try await Networking.get(url: url)
         
@@ -28,7 +28,7 @@ struct TaskService {
         let queryString = Networking.Helpers.createQueryString(items: taskIds.map({ uuid in
             return uuid.uuidString
         }))
-        let url = try Networking.createUrl(endPoint: "task?taskIds=\(queryString)")
+        let url = try Networking.createUrl(endPoint: "v1/task?taskIds=\(queryString)")
         
         let (data, response) = try await Networking.get(url: url)
         
@@ -42,17 +42,14 @@ struct TaskService {
     }
     
     static func createTask(taskToCreate taskDto: CreateTaskDto) async throws -> TaskModel {
-        print("taskToCreate: \(taskDto.toString())")
         
-        let url = try Networking.createUrl(endPoint: "task")
+        let url = try Networking.createUrl(endPoint: "v1/task")
         
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         encoder.keyEncodingStrategy = .convertToSnakeCase
         
         let taskData = try encoder.encode(taskDto)
-        print("taskData: \(String(data: taskData, encoding: .utf8) ?? "nil")")
-        
         
         let (data, response) = try await Networking.post(url: url, body: taskData)
         
@@ -67,7 +64,7 @@ struct TaskService {
     }
     
     static func markTaskComplete(taskId: UUID) async throws -> TaskModel {
-        let url = try Networking.createUrl(endPoint: "task/markTaskComplete/\(taskId.uuidString)")
+        let url = try Networking.createUrl(endPoint: "v1/task/markTaskComplete/\(taskId.uuidString)")
         
         let (data, response) = try await Networking.post(url: url)
         
@@ -83,7 +80,7 @@ struct TaskService {
     }
     
     static func updateTask(updateTaskDto: UpdateTaskDto) async throws -> TaskModel {
-        let url = try Networking.createUrl(endPoint: "task/")
+        let url = try Networking.createUrl(endPoint: "v1/task/")
         
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601

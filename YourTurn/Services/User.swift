@@ -9,7 +9,7 @@ import Foundation
 
 class UserService {
     static func deleteCurrentUser() async throws -> Bool {
-        let url = try Networking.createUrl(endPoint: "user")
+        let url = try Networking.createUrl(endPoint: "v1/user")
         
         let (_, response) = try await Networking.delete(url: url)
         

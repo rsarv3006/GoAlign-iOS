@@ -26,8 +26,6 @@ class AppState {
             }
             try self.updateUserFromToken(accessToken: self.accessToken)
         } catch {
-            print(self.accessToken)
-            print(error.localizedDescription)
             print("do something")
         }
     }
