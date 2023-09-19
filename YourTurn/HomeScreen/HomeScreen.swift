@@ -17,7 +17,7 @@ private let TEAM_TABLE_TAG = 1002
 class HomeScreen: YtViewController {
     // MARK: - Properties
     private var subscriptions = Set<AnyCancellable>()
-
+    
     private let taskRefreshControl = UIRefreshControl()
     private let teamRefreshControl = UIRefreshControl()
     
@@ -35,7 +35,7 @@ class HomeScreen: YtViewController {
             
         }
     }
-
+    
     private var tasks = [TaskModel]() {
         didSet {
             taskTableView.reloadData()
@@ -51,12 +51,14 @@ class HomeScreen: YtViewController {
     private lazy var taskTitleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 24)
+        label.textColor = .customTitleText
         return label
     }()
     
     private lazy var teamTitleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 24)
+        label.textColor = .customTitleText
         return label
     }()
     
@@ -87,12 +89,14 @@ class HomeScreen: YtViewController {
     private let taskTableView: UITableView = {
         let tv = UITableView()
         tv.tag = TASK_TABLE_TAG
+        tv.backgroundColor = .customBackgroundColor
         return tv
     }()
     
     private let teamTableView: UITableView = {
         let tv = UITableView()
         tv.tag = TEAM_TABLE_TAG
+        tv.backgroundColor = .customBackgroundColor
         return tv
     }()
     
@@ -110,8 +114,6 @@ class HomeScreen: YtViewController {
     
     // MARK: - Helpers
     override func configureView() {
-        view.backgroundColor = .systemBackground
-        
         let topSafeAnchor = view.safeAreaLayoutGuide.topAnchor
         let leftSafeAnchor = view.safeAreaLayoutGuide.leftAnchor
         let rightSafeAnchor = view.safeAreaLayoutGuide.rightAnchor
@@ -285,7 +287,12 @@ extension HomeScreen: UITableViewDataSource {
                 let completeTask = UIAction(
                     title: "Complete Task",
                     image: UIImage(systemName: "checkmark.circle")) { _ in
-                        self.viewModel?.onMarkTaskComplete(viewController: self, taskId: task.taskId)
+                        if let taskEntryId = task.findCurrentTaskEntry()?.taskEntryId {
+                            self.viewModel?.onMarkTaskComplete(viewController: self, taskEntryId: taskEntryId)
+                            
+                        } else {
+                                self.showMessage(withTitle: "Uh Oh", message: "Task Entry Not found.")
+                            }
                     }
                 return UIMenu(title: "", children: [completeTask])
             }

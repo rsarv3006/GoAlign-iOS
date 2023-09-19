@@ -12,6 +12,7 @@ class FormSwitchControlledDateCollectionViewCell: UICollectionViewCell {
     
     private lazy var dateControlLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .customText
         return label
     }()
     
@@ -27,6 +28,7 @@ class FormSwitchControlledDateCollectionViewCell: UICollectionViewCell {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .customText
         return label
     }()
     
@@ -145,10 +147,15 @@ private extension FormSwitchControlledDateCollectionViewCell {
     }
     
     @objc func onControlToggle(_ sender: UISwitch) {
+        guard let indexPath = indexPath,
+              let _ = item else { return }
+        
         if sender.isOn {
             manipulateDateFieldVisibility(.show)
+            self.subject.send((datePicker.date, indexPath))
         } else {
             manipulateDateFieldVisibility(.hide)
+            self.subject.send((nil, indexPath))
         }
         self.reload.send("")
     }

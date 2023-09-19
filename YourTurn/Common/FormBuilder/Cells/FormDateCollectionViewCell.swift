@@ -12,13 +12,14 @@ class FormDateCollectionViewCell: UICollectionViewCell {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .customText
         return label
     }()
     
     private lazy var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.translatesAutoresizingMaskIntoConstraints = false
-        datePicker.date = Date().advanced(by: TimeInterval(24 * 60 * 60))
+        datePicker.date = Date()
 
         if let editDateValue = item?.editValue {
             datePicker.date = editDateValue

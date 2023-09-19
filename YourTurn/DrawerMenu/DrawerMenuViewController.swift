@@ -75,7 +75,7 @@ class DrawerMenuViewController: UIViewController {
 
 extension DrawerMenuViewController {
     func configureViews() {
-        view.backgroundColor = .darkGray
+        view.backgroundColor = .customBackgroundColor
         view.layer.cornerRadius = 10
         view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         

@@ -19,11 +19,13 @@ class HomeScreenTaskCell: UITableViewCell {
     private let taskNameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 24)
+        label.textColor = .customText
         return label
     }()
     
     private let timeUntilStartOrEndLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .customText
         return label
     }()
     
@@ -39,6 +41,7 @@ class HomeScreenTaskCell: UITableViewCell {
     
     // MARK: - Helpers
     private func configureView() {
+        backgroundColor = .customBackgroundColor
         addSubview(taskNameLabel)
         taskNameLabel.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor, height: 30)
         

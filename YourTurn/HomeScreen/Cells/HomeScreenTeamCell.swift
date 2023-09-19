@@ -19,11 +19,13 @@ class HomeScreenTeamCell: UITableViewCell {
     private let teamNameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 24)
+        label.textColor = .customText
         return label
     }()
     
     private let numberOfTeamTasksLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .customText
         return label
     }()
     
@@ -39,6 +41,7 @@ class HomeScreenTeamCell: UITableViewCell {
     
     // MARK: Helpers
     private func configureView() {
+        backgroundColor = .customBackgroundColor
         addSubview(teamNameLabel)
         teamNameLabel.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor, height: 30)
         

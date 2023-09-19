@@ -175,6 +175,7 @@
 		78BFFAA228878DEC00A767AB /* FormCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BFFAA128878DEC00A767AB /* FormCollectionView.swift */; };
 		78BFFAA428879A3F00A767AB /* FormSwitchControlledDateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BFFAA328879A3F00A767AB /* FormSwitchControlledDateCollectionViewCell.swift */; };
 		78C4D95D286EAFFC006550A9 /* IntervalPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C4D95C286EAFFC006550A9 /* IntervalPicker.swift */; };
+		78D1DEFF2AB7B66C009E3D68 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D1DEFE2AB7B66C009E3D68 /* Theme.swift */; };
 		78D7C3C028776499001F48C5 /* FormTextCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D7C3BF28776499001F48C5 /* FormTextCollectionViewCell.swift */; };
 		78D7C3C22877690B001F48C5 /* FormDateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D7C3C12877690B001F48C5 /* FormDateCollectionViewCell.swift */; };
 		78D7C3C528776F80001F48C5 /* FormCompositionalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D7C3C428776F80001F48C5 /* FormCompositionalLayout.swift */; };
@@ -297,16 +298,16 @@
 		78332CE02954936D00073F14 /* ChangeTeamManagerModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTeamManagerModal.swift; sourceTree = "<group>"; };
 		78332CE429549EF800073F14 /* ChangeTeamManagerModalVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTeamManagerModalVM.swift; sourceTree = "<group>"; };
 		78352990294E7428000A4290 /* TeamSettingsTabVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsTabVM.swift; sourceTree = "<group>"; };
-		783DECCE28617EEB0062343E /* YourTurn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourTurn.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		783DECCE28617EEB0062343E /* GoAlign.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoAlign.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		783DECD128617EEB0062343E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		783DECD328617EEB0062343E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		783DECD828617EEB0062343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		783DECDA28617EED0062343E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		783DECDD28617EED0062343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		783DECDF28617EED0062343E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		783DECE428617EED0062343E /* YourTurnTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YourTurnTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		783DECE428617EED0062343E /* GoAlignTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoAlignTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		783DECE828617EED0062343E /* YourTurnTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourTurnTests.swift; sourceTree = "<group>"; };
-		783DECEE28617EED0062343E /* YourTurnUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YourTurnUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		783DECEE28617EED0062343E /* GoAlignUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoAlignUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		783DECF228617EED0062343E /* YourTurnUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourTurnUITests.swift; sourceTree = "<group>"; };
 		783DECF428617EED0062343E /* YourTurnUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourTurnUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		783DED02286180470062343E /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
@@ -379,6 +380,7 @@
 		78BFFAA128878DEC00A767AB /* FormCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCollectionView.swift; sourceTree = "<group>"; };
 		78BFFAA328879A3F00A767AB /* FormSwitchControlledDateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSwitchControlledDateCollectionViewCell.swift; sourceTree = "<group>"; };
 		78C4D95C286EAFFC006550A9 /* IntervalPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalPicker.swift; sourceTree = "<group>"; };
+		78D1DEFE2AB7B66C009E3D68 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		78D7C3BF28776499001F48C5 /* FormTextCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextCollectionViewCell.swift; sourceTree = "<group>"; };
 		78D7C3C12877690B001F48C5 /* FormDateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDateCollectionViewCell.swift; sourceTree = "<group>"; };
 		78D7C3C428776F80001F48C5 /* FormCompositionalLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCompositionalLayout.swift; sourceTree = "<group>"; };
@@ -618,9 +620,9 @@
 		783DECCF28617EEB0062343E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				783DECCE28617EEB0062343E /* YourTurn.app */,
-				783DECE428617EED0062343E /* YourTurnTests.xctest */,
-				783DECEE28617EED0062343E /* YourTurnUITests.xctest */,
+				783DECCE28617EEB0062343E /* GoAlign.app */,
+				783DECE428617EED0062343E /* GoAlignTests.xctest */,
+				783DECEE28617EED0062343E /* GoAlignUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -685,6 +687,7 @@
 				78288CD328B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift */,
 				7833144829154986009DDD3F /* InputTextView.swift */,
 				788CFFAB2956ADAA002650F7 /* GeneralUIAlertMessage.swift */,
+				78D1DEFE2AB7B66C009E3D68 /* Theme.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1020,9 +1023,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		783DECCD28617EEB0062343E /* YourTurn */ = {
+		783DECCD28617EEB0062343E /* GoAlign */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 783DECF828617EED0062343E /* Build configuration list for PBXNativeTarget "YourTurn" */;
+			buildConfigurationList = 783DECF828617EED0062343E /* Build configuration list for PBXNativeTarget "GoAlign" */;
 			buildPhases = (
 				783DECCA28617EEB0062343E /* Sources */,
 				783DECCB28617EEB0062343E /* Frameworks */,
@@ -1033,7 +1036,7 @@
 			);
 			dependencies = (
 			);
-			name = YourTurn;
+			name = GoAlign;
 			packageProductDependencies = (
 				7802E17E288B9A1300F7D501 /* FirebaseAnalytics */,
 				7802E180288B9A1300F7D501 /* FirebaseAuth */,
@@ -1046,12 +1049,12 @@
 				786616EA2A9CE48500E88774 /* JWTDecode */,
 			);
 			productName = YourTurn;
-			productReference = 783DECCE28617EEB0062343E /* YourTurn.app */;
+			productReference = 783DECCE28617EEB0062343E /* GoAlign.app */;
 			productType = "com.apple.product-type.application";
 		};
-		783DECE328617EED0062343E /* YourTurnTests */ = {
+		783DECE328617EED0062343E /* GoAlignTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 783DECFB28617EED0062343E /* Build configuration list for PBXNativeTarget "YourTurnTests" */;
+			buildConfigurationList = 783DECFB28617EED0062343E /* Build configuration list for PBXNativeTarget "GoAlignTests" */;
 			buildPhases = (
 				783DECE028617EED0062343E /* Sources */,
 				783DECE128617EED0062343E /* Frameworks */,
@@ -1062,14 +1065,14 @@
 			dependencies = (
 				783DECE628617EED0062343E /* PBXTargetDependency */,
 			);
-			name = YourTurnTests;
+			name = GoAlignTests;
 			productName = YourTurnTests;
-			productReference = 783DECE428617EED0062343E /* YourTurnTests.xctest */;
+			productReference = 783DECE428617EED0062343E /* GoAlignTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		783DECED28617EED0062343E /* YourTurnUITests */ = {
+		783DECED28617EED0062343E /* GoAlignUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 783DECFE28617EED0062343E /* Build configuration list for PBXNativeTarget "YourTurnUITests" */;
+			buildConfigurationList = 783DECFE28617EED0062343E /* Build configuration list for PBXNativeTarget "GoAlignUITests" */;
 			buildPhases = (
 				783DECEA28617EED0062343E /* Sources */,
 				783DECEB28617EED0062343E /* Frameworks */,
@@ -1080,9 +1083,9 @@
 			dependencies = (
 				783DECF028617EED0062343E /* PBXTargetDependency */,
 			);
-			name = YourTurnUITests;
+			name = GoAlignUITests;
 			productName = YourTurnUITests;
-			productReference = 783DECEE28617EED0062343E /* YourTurnUITests.xctest */;
+			productReference = 783DECEE28617EED0062343E /* GoAlignUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -1108,7 +1111,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 783DECC928617EEB0062343E /* Build configuration list for PBXProject "YourTurn" */;
+			buildConfigurationList = 783DECC928617EEB0062343E /* Build configuration list for PBXProject "GoAlign" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -1128,9 +1131,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				783DECCD28617EEB0062343E /* YourTurn */,
-				783DECE328617EED0062343E /* YourTurnTests */,
-				783DECED28617EED0062343E /* YourTurnUITests */,
+				783DECCD28617EEB0062343E /* GoAlign */,
+				783DECE328617EED0062343E /* GoAlignTests */,
+				783DECED28617EED0062343E /* GoAlignUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1254,6 +1257,7 @@
 				78BFFA9E2887784600A767AB /* FormSwitchControlledTextCollectionViewCell.swift in Sources */,
 				783DED092861F5500062343E /* HomeScreenVM.swift in Sources */,
 				78DAADEB2868D36700FEB0DA /* HomeScreenTeamCellVM.swift in Sources */,
+				78D1DEFF2AB7B66C009E3D68 /* Theme.swift in Sources */,
 				7809E01A2AA040CE00E65FD0 /* InputCodeVM.swift in Sources */,
 				78AC280329442CDA00F53EAB /* RemoteConfig.swift in Sources */,
 				78331464291B35D1009DDD3F /* TeamUsersTabVM.swift in Sources */,
@@ -1420,12 +1424,12 @@
 /* Begin PBXTargetDependency section */
 		783DECE628617EED0062343E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 783DECCD28617EEB0062343E /* YourTurn */;
+			target = 783DECCD28617EEB0062343E /* GoAlign */;
 			targetProxy = 783DECE528617EED0062343E /* PBXContainerItemProxy */;
 		};
 		783DECF028617EED0062343E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 783DECCD28617EEB0062343E /* YourTurn */;
+			target = 783DECCD28617EEB0062343E /* GoAlign */;
 			targetProxy = 783DECEF28617EED0062343E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1572,6 +1576,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 4QGR522B9M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = YourTurn/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1584,7 +1589,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rjs.YourTurn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rjs.GoAlign;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1599,6 +1604,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4QGR522B9M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = YourTurn/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1611,7 +1617,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rjs.YourTurn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rjs.GoAlign;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1634,7 +1640,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YourTurn.app/YourTurn";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GoAlign.app/GoAlign";
 			};
 			name = Debug;
 		};
@@ -1653,7 +1659,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YourTurn.app/YourTurn";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GoAlign.app/GoAlign";
 			};
 			name = Release;
 		};
@@ -1694,7 +1700,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		783DECC928617EEB0062343E /* Build configuration list for PBXProject "YourTurn" */ = {
+		783DECC928617EEB0062343E /* Build configuration list for PBXProject "GoAlign" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				783DECF628617EED0062343E /* Debug */,
@@ -1703,7 +1709,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		783DECF828617EED0062343E /* Build configuration list for PBXNativeTarget "YourTurn" */ = {
+		783DECF828617EED0062343E /* Build configuration list for PBXNativeTarget "GoAlign" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				783DECF928617EED0062343E /* Debug */,
@@ -1712,7 +1718,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		783DECFB28617EED0062343E /* Build configuration list for PBXNativeTarget "YourTurnTests" */ = {
+		783DECFB28617EED0062343E /* Build configuration list for PBXNativeTarget "GoAlignTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				783DECFC28617EED0062343E /* Debug */,
@@ -1721,7 +1727,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		783DECFE28617EED0062343E /* Build configuration list for PBXNativeTarget "YourTurnUITests" */ = {
+		783DECFE28617EED0062343E /* Build configuration list for PBXNativeTarget "GoAlignUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				783DECFF28617EED0062343E /* Debug */,

@@ -18,7 +18,7 @@ struct TaskEntryModel: Codable {
     let startDate: Date
     let endDate: Date?
     let notes: String
-    let status: TaskEntryStatus
+    let status: String
     let completedDate: Date?
     let assignedUser: UserModel
     let taskId: UUID

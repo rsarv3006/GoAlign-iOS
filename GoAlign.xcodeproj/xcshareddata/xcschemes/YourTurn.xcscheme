@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "783DECCD28617EEB0062343E"
-               BuildableName = "YourTurn.app"
-               BlueprintName = "YourTurn"
-               ReferencedContainer = "container:YourTurn.xcodeproj">
+               BuildableName = "GoAlign.app"
+               BlueprintName = "GoAlign"
+               ReferencedContainer = "container:GoAlign.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "783DECCD28617EEB0062343E"
-            BuildableName = "YourTurn.app"
-            BlueprintName = "YourTurn"
-            ReferencedContainer = "container:YourTurn.xcodeproj">
+            BuildableName = "GoAlign.app"
+            BlueprintName = "GoAlign"
+            ReferencedContainer = "container:GoAlign.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
@@ -44,9 +44,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "783DECE328617EED0062343E"
-               BuildableName = "YourTurnTests.xctest"
-               BlueprintName = "YourTurnTests"
-               ReferencedContainer = "container:YourTurn.xcodeproj">
+               BuildableName = "GoAlignTests.xctest"
+               BlueprintName = "GoAlignTests"
+               ReferencedContainer = "container:GoAlign.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -54,9 +54,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "783DECED28617EED0062343E"
-               BuildableName = "YourTurnUITests.xctest"
-               BlueprintName = "YourTurnUITests"
-               ReferencedContainer = "container:YourTurn.xcodeproj">
+               BuildableName = "GoAlignUITests.xctest"
+               BlueprintName = "GoAlignUITests"
+               ReferencedContainer = "container:GoAlign.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "783DECCD28617EEB0062343E"
-            BuildableName = "YourTurn.app"
-            BlueprintName = "YourTurn"
-            ReferencedContainer = "container:YourTurn.xcodeproj">
+            BuildableName = "GoAlign.app"
+            BlueprintName = "GoAlign"
+            ReferencedContainer = "container:GoAlign.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
@@ -100,9 +100,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "783DECCD28617EEB0062343E"
-            BuildableName = "YourTurn.app"
-            BlueprintName = "YourTurn"
-            ReferencedContainer = "container:YourTurn.xcodeproj">
+            BuildableName = "GoAlign.app"
+            BlueprintName = "GoAlign"
+            ReferencedContainer = "container:GoAlign.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

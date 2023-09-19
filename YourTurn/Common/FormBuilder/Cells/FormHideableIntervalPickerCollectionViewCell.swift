@@ -19,6 +19,7 @@ class FormHideableIntervalPickerCollectionViewCell: UICollectionViewCell {
     
     private lazy var controlLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .customText
         return label
     }()
     

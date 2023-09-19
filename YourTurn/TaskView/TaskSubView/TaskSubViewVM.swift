@@ -16,7 +16,7 @@ class TaskSubViewVM {
     
     // Static Values
     let taskHistoryTitleLabelText: NSAttributedString = NSAttributedString(string: "Task History",
-                                                                attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
+                                                                           attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
     let taskInformationButtonString: String = "See More"
     let taskCompleteButtonString: String = "Mark Task Complete"
     let taskIsCompleteLabelString: String = "Task has been Completed!"
@@ -36,7 +36,7 @@ class TaskSubViewVM {
         self.isTaskCompleted = task.status == TaskStatusVariant.completed.rawValue ? true : false
         self.assignedTeamString = task.teamId.uuidString
         self.taskEntries = task.taskEntries?.filter({ taskEntry in
-            taskEntry.status == .completed
+            taskEntry.status == TaskEntryStatus.completed.rawValue
         }) ?? []
         
         self.task = task
@@ -51,7 +51,8 @@ class TaskSubViewVM {
     func onRequestMarkTaskComplete() {
         Task {
             do {
-                let _ = try await TaskService.markTaskComplete(taskId: task.taskId)
+                guard let taskEntryId = task.findCurrentTaskEntry()?.taskEntryId else { throw ServiceErrors.custom(message: "Unable to locate task entry.")}
+                let _ = try await TaskService.markTaskComplete(taskEntryId: taskEntryId)
                 
                 delegate?.requestPopView()
                 delegate?.requestHomeReloadFromSubView()

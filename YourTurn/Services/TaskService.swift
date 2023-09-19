@@ -63,14 +63,14 @@ struct TaskService {
         
     }
     
-    static func markTaskComplete(taskId: UUID) async throws -> TaskModel {
-        let url = try Networking.createUrl(endPoint: "v1/task/markTaskComplete/\(taskId.uuidString)")
+    static func markTaskComplete(taskEntryId: UUID) async throws {
+        let url = try Networking.createUrl(endPoint: "v1/task-entry/markTaskEntryComplete/\(taskEntryId.uuidString)")
         
         let (data, response) = try await Networking.post(url: url)
         
         if let response = response as? HTTPURLResponse, response.statusCode == 201 {
-            let taskModel = try GlobalDecoder.decode(TaskModel.self, from: data)
-            return taskModel
+            return
+            
         } else {
             let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
             Logger.log(logLevel: .Verbose, name: Logger.Events.Task.markCompleteFailed, payload: ["error": serverError])

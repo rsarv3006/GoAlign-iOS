@@ -53,10 +53,10 @@ class HomeScreenVM {
         }
     }
     
-    func onMarkTaskComplete(viewController: UIViewController, taskId: UUID) {
+    func onMarkTaskComplete(viewController: UIViewController, taskEntryId: UUID) {
         Task {
             do {
-                let _ = try await TaskService.markTaskComplete(taskId: taskId)
+                let _ = try await TaskService.markTaskComplete(taskEntryId: taskEntryId)
                 self.loadTasks()
             } catch {
                 await viewController.showMessage(withTitle: "Uh Oh", message: error.localizedDescription)

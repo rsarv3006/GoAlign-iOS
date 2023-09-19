@@ -39,7 +39,7 @@ class TaskModel: Codable {
         var returnValue: TaskEntryModel? = nil
         if let taskEntries = taskEntries {
             returnValue = taskEntries.first { taskEntry in
-                taskEntry.status == TaskEntryStatus.active
+                taskEntry.status == TaskEntryStatus.active.rawValue
             }
         }
         return returnValue
