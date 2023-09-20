@@ -20,7 +20,6 @@ final class SignInFormContentBuilderImpl {
             ]),
             ButtonFormComponent(id: .signInSubmit, title: "Sign In!"),
             ButtonFormComponent(id: .termsButton, title: "Continuing indicates acceptance of the Terms And Conditions.", buttonType: .text),
-            ButtonFormComponent(id: .signInForgotPassword, title: "Forgot Password", buttonType: .text)
         ])
     ]
     
@@ -32,7 +31,7 @@ final class SignInFormContentBuilderImpl {
         do {
             let formComponents = formContent
                 .flatMap { $0.items }
-                .filter { $0.formId != .signInSubmit && $0.formId != .signInForgotPassword }
+                .filter { $0.formId != .signInSubmit }
             
             for component in formComponents {
                 for validator in component.validations {

@@ -38,7 +38,6 @@ enum FormField: String, CaseIterable {
     case signInEmailAddress
     case signInPassword
     case signInSubmit
-    case signInForgotPassword
     
     case termsButton
 }

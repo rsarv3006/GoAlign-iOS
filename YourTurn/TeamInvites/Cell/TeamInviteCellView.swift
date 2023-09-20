@@ -22,11 +22,13 @@ class TeamInviteCellView: UITableViewCell {
     // MARK: - UI Elements
     private lazy var teamNameLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .customText
         return label
     }()
     
     private lazy var invitedByLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .customText
         return label
     }()
     
@@ -41,6 +43,7 @@ class TeamInviteCellView: UITableViewCell {
     }
     
     func configureCellView() {
+        contentView.backgroundColor = .customBackgroundColor
         contentView.addSubview(teamNameLabel)
         teamNameLabel.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, right: contentView.rightAnchor)
         

@@ -22,7 +22,7 @@ class StandardButton: UIButton {
         addTarget(self, action: #selector(onHighLight), for: .touchDown)
         addTarget(self, action: #selector(onNormal), for: .touchUpInside)
         addTarget(self, action: #selector(onNormal), for: .touchUpOutside)
-        self.setTitleColor(.buttonText, for: .normal)
+        self.setTitleColor(.lightButtonText, for: .normal)
     }
     
     required init?(coder: NSCoder) {

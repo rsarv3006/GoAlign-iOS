@@ -36,6 +36,10 @@ class TaskViewScreen: UIViewController {
     private func configureView() {        
         view.addSubview(taskSubView)
         taskSubView.fillSuperview()
+        
+        taskSubView.backgroundColor = .customBackgroundColor
+        view.backgroundColor = .customBackgroundColor
+        
     }
     
     
@@ -66,6 +70,4 @@ extension TaskViewScreen: TaskSubViewVMDelegate {
     func requestPresentViewController(_ newVc: UIViewController) {
         present(newVc, animated: true)
     }
-    
-    
 }

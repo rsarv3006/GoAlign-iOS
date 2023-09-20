@@ -37,7 +37,7 @@ class SignInScreen: AuthViewController {
     
     // MARK: - Helpers
     override func configureView() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .customBackgroundColor
         let topSafeAnchor = view.safeAreaLayoutGuide.topAnchor
         let leftSafeAnchor = view.safeAreaLayoutGuide.leftAnchor
         let rightSafeAnchor = view.safeAreaLayoutGuide.rightAnchor
@@ -58,16 +58,6 @@ class SignInScreen: AuthViewController {
     @objc func onButtonToSignUpScreenPressed() {
         delegate?.requestOtherAuthScreen(viewController: self)
     }
-    
-    private func goForgotPassword() {
-         DispatchQueue.main.async {
-             let controller = ForgotPasswordView()
-             let forgotPasswordVM = ForgotPasswordVM()
-             controller.viewModel = forgotPasswordVM
-             controller.setScreenId(screenId: .ForgotPassword)
-             self.navigationController?.pushViewController(controller, animated: true)
-         }
-     }
 }
 
 private extension SignInScreen {
@@ -181,8 +171,6 @@ private extension SignInScreen {
             .sink { [weak self] id in
                 if id == .termsButton {
                     ExternalLinkService.openTermsAndConditionsLink()
-                } else if id == .signInForgotPassword {
-                    self?.goForgotPassword()
                 } else {
                     self?.showLoader(true)
                     self?.formContentBuilder.validate()

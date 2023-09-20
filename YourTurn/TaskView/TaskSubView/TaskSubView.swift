@@ -41,6 +41,7 @@ class TaskSubView: UIView {
     
     private lazy var taskHistoryTable: UITableView = {
         let tableView = UITableView()
+        tableView.backgroundColor = .customBackgroundColor
         return tableView
     }()
     
@@ -85,7 +86,7 @@ class TaskSubView: UIView {
         let safeAreaLeftAnchor = self.safeAreaLayoutGuide.leftAnchor
         let safeAreaRightAnchor = self.safeAreaLayoutGuide.rightAnchor
         
-        self.backgroundColor = .systemBackground
+        self.backgroundColor = .customBackgroundColor
         
         taskInformationButton.addTarget(self, action: #selector(onTouchUpInsideTaskInformatioButton), for: .touchUpInside)
         

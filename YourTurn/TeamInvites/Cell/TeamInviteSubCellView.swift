@@ -54,6 +54,7 @@ class TeamInviteSubCellView: UITableViewCell {
     }
     
     func configureView() {
+        contentView.backgroundColor = .customBackgroundColor
         contentView.addSubview(buttonsStack)
         buttonsStack.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 16, paddingRight: 16)
         acceptInviteButton.setWidth(120)

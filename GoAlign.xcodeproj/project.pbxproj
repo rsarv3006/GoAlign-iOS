@@ -50,7 +50,6 @@
 		780F49902934722F006C8456 /* TeamStatsTabVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F498F2934722F006C8456 /* TeamStatsTabVM.swift */; };
 		78209179296361E400853C2C /* TeamUsersReloadDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78209178296361E400853C2C /* TeamUsersReloadDelegate.swift */; };
 		78288CD428B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78288CD328B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift */; };
-		782A5F6F294183250042B0EF /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782A5F6E294183250042B0EF /* ForgotPasswordView.swift */; };
 		7833144529154752009DDD3F /* TextBoxFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7833144429154752009DDD3F /* TextBoxFormComponent.swift */; };
 		78331447291547A3009DDD3F /* FormTextBoxCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78331446291547A3009DDD3F /* FormTextBoxCollectionViewCell.swift */; };
 		7833144929154986009DDD3F /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7833144829154986009DDD3F /* InputTextView.swift */; };
@@ -276,7 +275,6 @@
 		780F498F2934722F006C8456 /* TeamStatsTabVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamStatsTabVM.swift; sourceTree = "<group>"; };
 		78209178296361E400853C2C /* TeamUsersReloadDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamUsersReloadDelegate.swift; sourceTree = "<group>"; };
 		78288CD328B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO8601CustomDateDecodingStrategy.swift; sourceTree = "<group>"; };
-		782A5F6E294183250042B0EF /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		7833144429154752009DDD3F /* TextBoxFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBoxFormComponent.swift; sourceTree = "<group>"; };
 		78331446291547A3009DDD3F /* FormTextBoxCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextBoxCollectionViewCell.swift; sourceTree = "<group>"; };
 		7833144829154986009DDD3F /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
@@ -725,7 +723,6 @@
 				7802E18C288B9EB900F7D501 /* SignUp.swift */,
 				78439FDD28AD2C390070D48D /* ViewModels */,
 				78E743BE28A5923F0069E691 /* Forms */,
-				782A5F6E294183250042B0EF /* ForgotPasswordView.swift */,
 				7809E0172AA0404200E65FD0 /* InputCode.swift */,
 			);
 			path = AuthFlow;
@@ -1273,7 +1270,6 @@
 				786616E42A9C47D200E88774 /* LoginRequestModel.swift in Sources */,
 				786616E62A9C538D00E88774 /* FetchJwtDtoModel.swift in Sources */,
 				78B687822887A616006B6CAB /* TextFormComponent.swift in Sources */,
-				782A5F6F294183250042B0EF /* ForgotPasswordView.swift in Sources */,
 				78E4F88A289386CB0075F04F /* User.swift in Sources */,
 				7802E1A1288E2FAE00F7D501 /* SignUpVM.swift in Sources */,
 				78DF5AFF28C02FA300C182CF /* TeamInviteSubCellView.swift in Sources */,

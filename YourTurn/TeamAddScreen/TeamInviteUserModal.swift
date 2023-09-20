@@ -39,7 +39,7 @@ class TeamInviteUserModal: YtViewController {
     // Mark: UI Elements
     private lazy var subView: UIView = {
         let subView = UIView()
-        subView.backgroundColor = .systemGray4
+        subView.backgroundColor = .customBackgroundColor
         subView.layer.cornerRadius = 10
         return subView
     }()
@@ -47,6 +47,7 @@ class TeamInviteUserModal: YtViewController {
     private lazy var modalTitle: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.textColor = .customTitleText
         return label
     }()
     
@@ -72,7 +73,7 @@ class TeamInviteUserModal: YtViewController {
     
     private lazy var invitedTeamMembersTableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .systemGray4
+        tableView.backgroundColor = .customBackgroundColor
         return tableView
     }()
     
@@ -84,6 +85,8 @@ class TeamInviteUserModal: YtViewController {
     
     private lazy var closeModalButton: StandardButton = {
         let button = StandardButton()
+        button.backgroundColor = .customAccentColor
+        button.setTitleColor(.customBackgroundColor, for: .normal)
         return button
     }()
     
@@ -197,6 +200,7 @@ extension TeamInviteUserModal: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: INVITED_TEAM_MEMBER_CELL_ID, for: indexPath)
+        cell.backgroundColor = .customBackgroundColor
         cell.textLabel?.text = viewModel?.invitedUsers[indexPath.row] ?? ""
         return cell
     }

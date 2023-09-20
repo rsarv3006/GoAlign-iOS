@@ -45,7 +45,7 @@ class TeamAddModal: YtViewController {
     
     private lazy var subView: UIView = {
         let subView = UIView()
-        subView.backgroundColor = .systemGray4
+        subView.backgroundColor = .customBackgroundColor
         subView.layer.cornerRadius = 10
         return subView
     }()
@@ -53,6 +53,8 @@ class TeamAddModal: YtViewController {
     private lazy var modalTitle: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.textColor = .customTitleText
+        label.font = .systemFont(ofSize: 20)
         return label
     }()
     
@@ -70,7 +72,7 @@ class TeamAddModal: YtViewController {
         txtField.borderStyle = .roundedRect
         txtField.backgroundColor = .clear
         txtField.delegate = self
-        txtField.layer.borderColor = UIColor.systemGray5.cgColor
+        txtField.layer.borderColor = UIColor.customAccentColor?.cgColor
         txtField.layer.borderWidth = 1
         txtField.layer.cornerRadius = 8
         return txtField

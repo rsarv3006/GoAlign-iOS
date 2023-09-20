@@ -49,7 +49,7 @@ private extension FormButtonCollectionViewCell {
         if item.buttonType == .standard {
             let btn = BlueButton()
             btn.translatesAutoresizingMaskIntoConstraints = false
-            btn.setTitleColor(.white, for: .normal)
+            btn.setTitleColor(.lightButtonText, for: .normal)
             btn.layer.cornerRadius = 8
             btn.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
             return btn
