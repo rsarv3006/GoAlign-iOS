@@ -32,7 +32,7 @@ class TaskSubViewVM {
     
     init(task: TaskModel) {
         self.contentTitle = task.taskName
-        self.assignedUserString = task.findCurrentTaskEntry()?.assignedUser.username ?? ""
+        self.assignedUserString = TaskSubViewVM.buildAssignedUserString(task.findCurrentTaskEntry()?.assignedUser.username)
         self.isTaskCompleted = task.status == TaskStatusVariant.completed.rawValue ? true : false
         self.assignedTeamString = task.teamId.uuidString
         self.taskEntries = task.taskEntries?.filter({ taskEntry in
@@ -42,6 +42,14 @@ class TaskSubViewVM {
         self.task = task
         
         getTeamName(teamId: task.teamId)
+    }
+    
+    private static func buildAssignedUserString(_ username: String?) -> String {
+        if let username = username, !username.isEmpty {
+            return "Currently Assigned to: \(username)"
+        }
+        
+        return ""
     }
     
     func checkIfMarkTaskCompleteButtonShouldShow(completionHandler: @escaping((Bool) -> Void)) {
@@ -66,7 +74,7 @@ class TaskSubViewVM {
         Task {
             do {
                 let teams = try await TeamService.getTeamsByTeamIds(teamIds: [teamId])
-                self.teamNameSubject.send(.success(teams[0].teamName))
+                self.teamNameSubject.send(.success("Team: \(teams[0].teamName)"))
             } catch {
                 self.teamNameSubject.send(.failure(error))
             }

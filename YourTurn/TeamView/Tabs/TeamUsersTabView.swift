@@ -21,7 +21,7 @@ private struct TabCellIdentifiers {
 class TeamUsersTabView: YtViewController {
     
     var subscriptions = Set<AnyCancellable>()
-    private let selectedBackgroundColor: UIColor = .systemBlue
+    private let selectedBackgroundColor: UIColor = .customAccentColor ?? .systemBlue
     
     private var teamInvitesArray: [TeamInviteModel] = [] {
         didSet {
@@ -36,12 +36,12 @@ class TeamUsersTabView: YtViewController {
             guard let viewModel = viewModel else { return }
             if selected == .users {
                 currentUsersButton.backgroundColor = selectedBackgroundColor
-                invitesButton.backgroundColor = .systemBackground
+                invitesButton.backgroundColor = .customBackgroundColor
                 tableView.reloadData()
             } else {
                 viewModel.fetchTeamInvites()
                 invitesButton.backgroundColor = selectedBackgroundColor
-                currentUsersButton.backgroundColor = .systemBackground
+                currentUsersButton.backgroundColor = .customBackgroundColor
                 tableView.reloadData()
             }
         }
@@ -96,6 +96,8 @@ class TeamUsersTabView: YtViewController {
         button.setTitleColor(.buttonText, for: .normal)
         button.backgroundColor = selectedBackgroundColor
         button.addTarget(self, action: #selector(onButtonPress), for: .touchUpInside)
+        button.layer.cornerRadius = 5
+        button.titleLabel?.font = .systemFont(ofSize: 20)
         return button
     }()
     
@@ -104,6 +106,9 @@ class TeamUsersTabView: YtViewController {
         button.setTitle("Invites", for: .normal)
         button.setTitleColor(.buttonText, for: .normal)
         button.addTarget(self, action: #selector(onButtonPress), for: .touchUpInside)
+        button.backgroundColor = .customBackgroundColor
+        button.layer.cornerRadius = 5
+        button.titleLabel?.font = .systemFont(ofSize: 20)
         return button
     }()
     
@@ -112,6 +117,7 @@ class TeamUsersTabView: YtViewController {
         tableView.register(TeamInvitesTabViewCell.self, forCellReuseIdentifier: TabCellIdentifiers.invites)
         tableView.register(TeamUsersTabViewCell.self, forCellReuseIdentifier: TabCellIdentifiers.users)
         tableView.rowHeight = 60
+        tableView.backgroundColor = .customBackgroundColor
         return tableView
     }()
     
@@ -119,13 +125,14 @@ class TeamUsersTabView: YtViewController {
         let button = BlueButton()
         button.setTitle("Invite Users", for: .normal)
         button.addTarget(self, action: #selector(onInviteTeamMemberPressed), for: .touchUpInside)
+        button.titleLabel?.font = .systemFont(ofSize: 20)
         return button
     }()
     
     // MARK: LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .customBackgroundColor
         navigationController?.isNavigationBarHidden = true
     }
     
@@ -157,10 +164,10 @@ class TeamUsersTabView: YtViewController {
         inviteUsersButton.anchor(width: screenWidth * 0.6)
         
         view.addSubview(currentUsersButton)
-        currentUsersButton.anchor(top: inviteUsersButton.bottomAnchor, left: view.leftAnchor, paddingTop: 12, width: screenWidth / 2, height: 64)
+        currentUsersButton.anchor(top: inviteUsersButton.bottomAnchor, left: view.leftAnchor, paddingTop: 12, paddingLeft: 8, width: screenWidth / 2, height: 44)
         
         view.addSubview(invitesButton)
-        invitesButton.anchor(top: inviteUsersButton.bottomAnchor, left: currentUsersButton.rightAnchor, right: view.rightAnchor, paddingTop: 12, height: 64)
+        invitesButton.anchor(top: inviteUsersButton.bottomAnchor, left: currentUsersButton.rightAnchor, right: view.rightAnchor, paddingTop: 12, paddingRight: 8, height: 44)
         
         view.addSubview(tableView)
         tableView.anchor(top:currentUsersButton.bottomAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor)

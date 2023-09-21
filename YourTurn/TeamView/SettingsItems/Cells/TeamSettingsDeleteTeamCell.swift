@@ -13,6 +13,7 @@ class TeamSettingsDeleteTeamCell: UITableViewCell {
         didSet {
             guard let viewModel = viewModel else { return }
             deleteTeamButton.setTitle(viewModel.deleteTeamButtonTitle, for: .normal)
+            deleteTeamButton.titleLabel?.textColor = .systemBlue
         }
     }
     
@@ -24,7 +25,7 @@ class TeamSettingsDeleteTeamCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+        backgroundColor = .customBackgroundColor
         contentView.addSubview(deleteTeamButton)
         deleteTeamButton.fillSuperview()
     }
@@ -34,10 +35,10 @@ class TeamSettingsDeleteTeamCell: UITableViewCell {
     }
     
     override func layoutSubviews() {
-          super.layoutSubviews()
-          let margins = UIEdgeInsets(top: 5, left: 8, bottom: 5, right: 8)
-          contentView.frame = contentView.frame.inset(by: margins)
-          contentView.layer.cornerRadius = 8
+        super.layoutSubviews()
+        let margins = UIEdgeInsets(top: 5, left: 8, bottom: 5, right: 8)
+        contentView.frame = contentView.frame.inset(by: margins)
+        contentView.layer.cornerRadius = 8
     }
     
     @objc func onDeleteTeamPressed() {

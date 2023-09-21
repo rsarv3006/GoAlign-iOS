@@ -141,7 +141,7 @@ extension TeamSelectModal: UITableViewDataSource {
 
 extension TeamSelectModal {
     func configureView() {
-        subView.backgroundColor = .systemBackground
+        subView.backgroundColor = .customBackgroundColor
         subView.addSubview(closeButton)
         closeButton.centerX(inView: subView)
         closeButton.anchor(left: subView.leftAnchor, bottom: subView.bottomAnchor, right: subView.rightAnchor, paddingLeft: 12, paddingBottom: 12, paddingRight: 12)

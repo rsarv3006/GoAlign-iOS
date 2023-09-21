@@ -17,8 +17,8 @@ class TaskViewEntryCellVM {
     }
     
     static func createDateLabelString(date: Date?) -> String {
-        guard let date = date else { return "" }
+        guard let date else { return "" }
         
-        return "Date Completed: \(date.ISO8601Format())"
+        return "Date Completed: \(String(describing: date.formatted()))"
     }
 }

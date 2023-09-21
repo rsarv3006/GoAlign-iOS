@@ -11,7 +11,7 @@ struct DateInFutureValidationManagerImpl: ValidationManager {
     func validate(_ val: Any) throws {
         print("val: \(val)")
         guard let date = val as? Date else {
-            throw ValidationError.custom(message: "date is not a date")
+            return
         }
            
         let dayInSeconds: Double = 24 * 60 * 60

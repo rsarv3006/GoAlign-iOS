@@ -20,13 +20,13 @@ class TaskViewEntryCell: UITableViewCell {
     // MARK: - UI Elements
     private lazy var completedByLabel: UILabel = {
         let label = UILabel()
-        
+        label.textColor = .customText
         return label
     }()
     
     private lazy var completedDateLabel: UILabel = {
         let label = UILabel()
-        
+        label.textColor = .customText
         return label
     }()
     
@@ -34,6 +34,7 @@ class TaskViewEntryCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureView()
+        backgroundColor = .customBackgroundColor
     }
     
     required init?(coder: NSCoder) {
@@ -42,10 +43,10 @@ class TaskViewEntryCell: UITableViewCell {
     
     func configureView() {
         addSubview(completedByLabel)
-        completedByLabel.anchor(top: topAnchor, left: leftAnchor, paddingTop: 8)
+        completedByLabel.anchor(top: topAnchor, left: leftAnchor, paddingTop: 8, paddingLeft: 8)
         
         addSubview(completedDateLabel)
-        completedDateLabel.anchor(top: completedByLabel.bottomAnchor, left: leftAnchor)
+        completedDateLabel.anchor(top: completedByLabel.bottomAnchor, left: leftAnchor, paddingLeft: 8)
     }
     
     func onViewModelSet(viewModel: TaskViewEntryCellVM) {

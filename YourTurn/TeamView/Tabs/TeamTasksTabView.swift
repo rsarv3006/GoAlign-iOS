@@ -15,6 +15,7 @@ class TeamTasksTabView: YtViewController {
     var viewModel: TeamTasksTabVM? {
         didSet {
             tasksTableView.reloadData()
+            taskTitle.text = viewModel?.screenTitle
             viewModel?.delegate = self
         }
     }
@@ -24,13 +25,22 @@ class TeamTasksTabView: YtViewController {
         let tableView = UITableView()
         tableView.register(TeamTasksTabViewTableCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         tableView.rowHeight = 60
+        tableView.backgroundColor = .customBackgroundColor
         return tableView
+    }()
+    
+    private lazy var taskTitle: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .customTitleText
+        label.font = .systemFont(ofSize: 20)
+        return label
     }()
     
     // MARK: LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .customBackgroundColor
         navigationController?.isNavigationBarHidden = true
     }
     
@@ -38,9 +48,15 @@ class TeamTasksTabView: YtViewController {
     override func configureView() {
         tasksTableView.delegate = self
         tasksTableView.dataSource = self
+        
+        view.addSubview(taskTitle)
+        taskTitle.anchor(top: view.safeAreaLayoutGuide.topAnchor)
+        taskTitle.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor, paddingTop: 8)
+        
         view.addSubview(tasksTableView)
-        tasksTableView.fillSuperview()
+        tasksTableView.anchor(top: taskTitle.bottomAnchor, left: view.safeAreaLayoutGuide.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.safeAreaLayoutGuide.rightAnchor)
     }
+    
 }
 
 extension TeamTasksTabView: UITableViewDelegate {}

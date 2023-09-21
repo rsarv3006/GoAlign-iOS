@@ -19,6 +19,8 @@ class TeamInvitesTabViewCell: UITableViewCell {
     // MARK: UI Elements
     private lazy var inviteeEmailLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .customText
+        label.font = .systemFont(ofSize: 18)
         return label
     }()
     
@@ -34,8 +36,10 @@ class TeamInvitesTabViewCell: UITableViewCell {
     
     // MARK: Helpers
     private func configureView() {
+        contentView.backgroundColor = .customBackgroundColor
         contentView.addSubview(inviteeEmailLabel)
-        inviteeEmailLabel.fillSuperview()
+        inviteeEmailLabel.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 12)
+        inviteeEmailLabel.centerY(inView: contentView)
     }
     
     private func onViewModelSet(viewModel: TeamInvitesTabViewCellVM) {

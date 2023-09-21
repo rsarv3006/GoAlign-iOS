@@ -19,6 +19,8 @@ class TeamUsersTabViewCell: UITableViewCell {
     // MARK: UI Elements
     private lazy var userNameLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .customText
+        label.font = .systemFont(ofSize: 18)
         return label
     }()
     
@@ -34,8 +36,11 @@ class TeamUsersTabViewCell: UITableViewCell {
     
     // MARK: Helpers
     private func configureView() {
+        contentView.backgroundColor = .customBackgroundColor
         contentView.addSubview(userNameLabel)
-        userNameLabel.fillSuperview()
+        userNameLabel.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 12)
+        userNameLabel.centerY(inView: contentView)
+        
     }
     
     private func onViewModelSet(viewModel: TeamUsersTabViewCellVM) {

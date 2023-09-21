@@ -33,6 +33,7 @@ class TeamSettingsAllMembersCanAddTasksCell: UITableViewCell {
     
     private lazy var settingLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .customText
         return label
     }()
     
@@ -44,6 +45,7 @@ class TeamSettingsAllMembersCanAddTasksCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = .customBackgroundColor
         let stack = UIStackView(arrangedSubviews: [settingLabel, settingSwitch])
         stack.axis = .horizontal
         

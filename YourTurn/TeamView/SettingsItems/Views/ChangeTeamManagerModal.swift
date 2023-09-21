@@ -32,7 +32,7 @@ class ChangeTeamManagerModal: YtViewController {
     
     private lazy var membersTableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .systemBackground
+        tableView.backgroundColor = .customBackgroundColor
         return tableView
     }()
     
@@ -58,7 +58,7 @@ class ChangeTeamManagerModal: YtViewController {
     override func configureView() {
         let modalWidth = UIScreen.main.bounds.size.width * 0.75
         
-        modalView.backgroundColor = .systemBackground
+        modalView.backgroundColor = .customBackgroundColor
         
         modalView.addSubview(titleLabel)
         titleLabel.centerX(inView: modalView, topAnchor: modalView.topAnchor, paddingTop: 8)

@@ -18,4 +18,6 @@ extension UIColor {
     static let customTitleText = UIColor(named: "ButtonText")
     static let customBackgroundColor = UIColor(named: "CustomBackgroundColor")
     static let customAccentColor = UIColor(named: "AccentColor")
+    static let russianViolet = UIColor(named: "RussianViolet")
+    static let timberwolf = UIColor(named: "Timberwolf")
 }

@@ -27,7 +27,6 @@ class TeamTabBarController: UITabBarController {
     
     // MARK: - Helpers
     func configureViewControllers(viewModel: TeamTabBarControllerVM) {
-        view.backgroundColor = .systemBackground
         self.delegate = self
         
         let teamTasksTabViewController = configureTaskTab(viewModel: viewModel)
@@ -36,8 +35,8 @@ class TeamTabBarController: UITabBarController {
         let teamSettingsTabViewController = configureSettingsTab(viewModel: viewModel)
         
         viewControllers = [teamTasksTabViewController, teamUsersTabViewController, teamStatsTabViewController, teamSettingsTabViewController]
-        tabBar.tintColor = .systemBlue
-        tabBar.backgroundColor = .systemBackground
+        tabBar.tintColor = .customAccentColor
+        tabBar.backgroundColor = .customBackgroundColor
     }
     
     func templateNavigationController(unSelectedImage: UIImage, selectedImage: UIImage, rootViewController: UIViewController, title: String? = nil) -> UINavigationController {

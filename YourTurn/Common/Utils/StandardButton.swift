@@ -55,6 +55,7 @@ class AlertButton: StandardButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setButtonColors(backgroundColor: .systemRed, onTouchColor: .systemGray)
+        self.setTitleColor(.timberwolf, for: .normal)
     }
     
     required init?(coder: NSCoder) {

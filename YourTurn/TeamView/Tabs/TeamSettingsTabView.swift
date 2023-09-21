@@ -28,14 +28,14 @@ class TeamSettingsTabView: YtViewController {
     // MARK: UI Elements
     private lazy var settingsTableView: UITableView = {
         let tv = UITableView()
-        tv.backgroundColor = .systemBackground
+        tv.backgroundColor = .customBackgroundColor
         return tv
     }()
     
     // MARK: LIFECYCLE
     override func viewDidLoad() {
         navigationController?.isNavigationBarHidden = true
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .customBackgroundColor
         super.viewDidLoad()
     }
     

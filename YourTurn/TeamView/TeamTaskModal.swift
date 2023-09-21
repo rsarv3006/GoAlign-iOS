@@ -58,6 +58,8 @@ class TeamTaskModal: YtViewController {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
+        label.font = .systemFont(ofSize: 20)
+        label.textColor = .customTitleText
         return label
     }()
     
@@ -68,7 +70,7 @@ class TeamTaskModal: YtViewController {
     // MARK: - Lifecycle
     override func configureView() {
         super.configureView()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .customBackgroundColor
         
         let topSafeAnchor = view.safeAreaLayoutGuide.topAnchor
         

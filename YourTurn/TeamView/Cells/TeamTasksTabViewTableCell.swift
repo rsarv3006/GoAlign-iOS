@@ -19,6 +19,7 @@ class TeamTasksTabViewTableCell: UITableViewCell {
     // MARK: UI Elements
     private lazy var taskNameLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .customText
         return label
     }()
     
@@ -26,6 +27,7 @@ class TeamTasksTabViewTableCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureView()
+        backgroundColor = .customBackgroundColor
     }
     
     required init?(coder: NSCoder) {
@@ -35,7 +37,8 @@ class TeamTasksTabViewTableCell: UITableViewCell {
     // MARK: Helpers
     private func configureView() {
         contentView.addSubview(taskNameLabel)
-        taskNameLabel.fillSuperview()
+        taskNameLabel.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 12)
+        taskNameLabel.centerY(inView: contentView)
     }
     
     private func onViewModelSet(viewModel: TeamTasksTabViewCellVM) {

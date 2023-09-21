@@ -23,19 +23,20 @@ class TaskSubView: UIView {
     // MARK: UI Elements
     private lazy var assignedUserLabel: UILabel = {
         let label = UILabel()
-        
+        label.textColor = .customText
         return label
     }()
     
     private lazy var assignedTeamLabel: UILabel = {
         let label = UILabel()
-        
+        label.textColor = .customText
         return label
     }()
     
     private lazy var taskHistoryTitleLabel: UILabel = {
         let label = UILabel()
-        label.font.withSize(18)
+        label.font = .systemFont(ofSize: 20)
+        label.textColor = .customTitleText
         return label
     }()
     
@@ -94,10 +95,10 @@ class TaskSubView: UIView {
         subViewTaskCompletionBox.anchor(top: safeAreaTopAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor, height: 44)
         
         self.addSubview(assignedUserLabel)
-        assignedUserLabel.anchor(top: subViewTaskCompletionBox.bottomAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor)
+        assignedUserLabel.anchor(top: subViewTaskCompletionBox.bottomAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor, paddingTop: 8, paddingLeft: 8)
         
         self.addSubview(assignedTeamLabel)
-        assignedTeamLabel.anchor(top: assignedUserLabel.bottomAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor)
+        assignedTeamLabel.anchor(top: assignedUserLabel.bottomAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor, paddingLeft: 8)
         
         self.addSubview(taskInformationButton)
         taskInformationButton.anchor(top: assignedTeamLabel.bottomAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor)
@@ -176,7 +177,11 @@ class TaskSubView: UIView {
 }
 
 // MARK: - UITableViewDelegate
-extension TaskSubView: UITableViewDelegate {}
+extension TaskSubView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return nil
+    }
+}
 
 // MARK: - UITableViewDataSource
 extension TaskSubView: UITableViewDataSource {

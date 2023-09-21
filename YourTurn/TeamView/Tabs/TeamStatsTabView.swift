@@ -15,6 +15,8 @@ class TeamStatsTabView: YtViewController {
     
     private lazy var tabTitle: UILabel = {
         let label = UILabel()
+        label.textColor = .customText
+        label.font = .systemFont(ofSize: 20)
         return label
     }()
     
@@ -46,7 +48,7 @@ class TeamStatsTabView: YtViewController {
     // MARK: LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .customBackgroundColor
         navigationController?.isNavigationBarHidden = true
         
         showLoader(true)
