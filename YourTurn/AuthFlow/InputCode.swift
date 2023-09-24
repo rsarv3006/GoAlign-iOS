@@ -34,25 +34,32 @@ class InputCode: AuthViewController {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "American Typewriter", size: 32)
+        label.font = .systemFont(ofSize: 32)
+        label.textColor = .customTitleText
         return label
     }()
     
     let subtitleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "American Typewriter", size: 16)
+        label.font = .systemFont(ofSize: 16)
+        label.textColor = .customTitleText
         return label
     }()
     
     let codeInputField: UITextField = {
         let tf = UITextField()
         tf.borderStyle = .roundedRect
+        tf.backgroundColor = .customBackgroundColor
         return tf
     }()
     
     let submitButton: UIButton = {
-        let button = UIButton(configuration: .borderedProminent())
-        return button
+        let btn = BlueButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.setTitleColor(.lightButtonText, for: .normal)
+        btn.layer.cornerRadius = 8
+        btn.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        return btn
     }()
     
     override func viewDidLoad() {
@@ -73,6 +80,7 @@ class InputCode: AuthViewController {
         
         view.addSubview(submitButton)
         submitButton.centerX(inView: view, topAnchor: codeInputField.bottomAnchor, paddingTop: 16)
+        submitButton.anchor(left: view.safeAreaLayoutGuide.leftAnchor, right: view.safeAreaLayoutGuide.rightAnchor, paddingLeft: 8, paddingRight: 8)
         submitButton.addTarget(self, action: #selector(onSubmitPressed), for: .touchUpInside)
     }
     

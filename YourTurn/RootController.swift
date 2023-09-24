@@ -17,7 +17,6 @@ class RootController: UIViewController {
         view.backgroundColor = .customBackgroundColor
         super.viewDidLoad()
         configureRootView()
-        
     }
     
     func configureRootView() {
@@ -87,13 +86,13 @@ extension RootController {
         }
     }
     
-    func goInputCode(loginRequestModel: LoginRequestModel) {
+    func goInputCode(viewController: AuthViewController, loginRequestModel: LoginRequestModel) {
         DispatchQueue.main.async {
             let controller = InputCode()
             controller.delegate = self
             let viewModel = InputCodeVM(loginRequestModel: loginRequestModel)
             controller.viewModel = viewModel
-            self.navigationController?.pushViewController(controller, animated: true)
+            viewController.navigationController?.pushViewController(controller, animated: true)
         }
     }
 }
@@ -117,8 +116,7 @@ extension RootController: AuthScreenDelegate {
     
     func requestInputCodeScreen(viewController: AuthViewController, loginRequestModel: LoginRequestModel) {
         DispatchQueue.main.async {
-            self.dismiss(animated: true)
-            self.goInputCode(loginRequestModel: loginRequestModel)
+            self.goInputCode(viewController: viewController, loginRequestModel: loginRequestModel)
         }
     }
 }
