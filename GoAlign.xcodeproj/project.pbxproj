@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B93BFC1F104E2CEE238D7A7 /* ForgotPasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B93B4F20908B05939C3AB6A /* ForgotPasswordVM.swift */; };
 		7802E17F288B9A1300F7D501 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7802E17E288B9A1300F7D501 /* FirebaseAnalytics */; };
 		7802E181288B9A1300F7D501 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7802E180288B9A1300F7D501 /* FirebaseAuth */; };
 		7802E183288B9A1300F7D501 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7802E182288B9A1300F7D501 /* FirebaseCrashlytics */; };
@@ -248,7 +247,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1B93B4F20908B05939C3AB6A /* ForgotPasswordVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVM.swift; sourceTree = "<group>"; };
 		7802E188288B9EB000F7D501 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
 		7802E18C288B9EB900F7D501 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		7802E194288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFormContentBuilderImpl.swift; sourceTree = "<group>"; };
@@ -736,7 +734,6 @@
 			children = (
 				7802E1A0288E2FAE00F7D501 /* SignUpVM.swift */,
 				780F196728A45EA300371B91 /* SignInVM.swift */,
-				1B93B4F20908B05939C3AB6A /* ForgotPasswordVM.swift */,
 				7809E0192AA040CE00E65FD0 /* InputCodeVM.swift */,
 			);
 			path = ViewModels;
@@ -1361,7 +1358,6 @@
 				D5129C8128E547C800AF9EDD /* TaskViewScreenVM.swift in Sources */,
 				78E4F896289393150075F04F /* Networking.swift in Sources */,
 				7847732D28768D14009AFC92 /* FormButtonCollectionViewCell.swift in Sources */,
-				1B93BFC1F104E2CEE238D7A7 /* ForgotPasswordVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

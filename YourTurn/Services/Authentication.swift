@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Firebase
 
 struct AuthenticationService {
     static func fetchJwtWithCode(dto: FetchJwtDtoModel) async throws -> FetchJwtDtoReturnModel {
@@ -28,7 +27,6 @@ struct AuthenticationService {
         } catch {
             print(error.localizedDescription)
             self.signOut()
-            try await Auth.auth().currentUser?.delete()
             throw error
         }
     }
@@ -59,8 +57,6 @@ struct AuthenticationService {
         } catch {
             print(error.localizedDescription)
             self.signOut()
-            // TODO: fix this line below
-            try await Auth.auth().currentUser?.delete()
             throw error
         }
     }
@@ -68,9 +64,9 @@ struct AuthenticationService {
     static func signInToAccount(form: SignInCompletedForm) async throws -> LoginRequestModel {
         do {
             let url = try Networking.createUrl(endPoint: "v1/auth/login")
-           
+            
             let encoder = JSONEncoder()
-           
+            
             let signInBody = try encoder.encode(form)
             
             let (data, response) = try await Networking.post(url: url, body: signInBody, noAuth: true)
@@ -92,12 +88,7 @@ struct AuthenticationService {
     }
     
     static func signOut() {
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            Logger.log(logLevel: .Prod, name: Logger.Events.Auth.signOutFailed, payload: ["error": error])
-        }
-        
+        AppState.resetState()
     }
     
     static func checkForStandardErrors(error: Error) -> String {
@@ -109,12 +100,6 @@ struct AuthenticationService {
         }
         return returnErrorString
     }
-    
-    static func requestPasswordReset(emaillAddress: String) async throws {
-        try await Auth.auth().sendPasswordReset(withEmail: emaillAddress)
-    }
-    
-
     
     struct AuthErrorHandling {
         struct StandardErrorKeywords {
