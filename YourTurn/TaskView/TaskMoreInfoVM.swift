@@ -28,14 +28,14 @@ struct TaskMoreInfoVM {
     // MARK: - Lifecycle
     init(task: TaskModel) {
         self.creatorLabel = "Created By: \(task.creator.username)"
-        self.createdDateLabel = "Created: \(task.createdAt.ISO8601Format())"
-        self.startDateLabel = "Started: \(task.startDate.ISO8601Format())"
+        self.createdDateLabel = "Created: \(task.createdAt.formatted())"
+        self.startDateLabel = "Started: \(task.startDate.formatted())"
         self.completionsCountLabel = "Completions: \(task.completionCount)"
-        self.windowLengthLabel = task.windowDuration.toString()
-        self.intervalBetweenWindowsLabel = task.intervalBetweenWindows.toString()
+        self.windowLengthLabel = "Time to Complete Task: \(task.windowDuration.toString())"
+        self.intervalBetweenWindowsLabel = "Time Between Tasks: \(task.intervalBetweenWindows.toString())"
         
         if let endDate = task.endDate {
-            self.endDateLabel = "End Date: \(endDate.ISO8601Format())"
+            self.endDateLabel = "End Date: \(endDate.formatted())"
             self.isEndDateLabelVisible = true
         } else {
             self.endDateLabel = ""

@@ -27,7 +27,8 @@ class AuthViewController: YtViewController {
     
     let topLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "American Typewriter", size: 32)
+        label.font = .systemFont(ofSize: 32)
+        label.textColor = .customTitleText
         return label
     }()
     

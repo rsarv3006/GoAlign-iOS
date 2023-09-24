@@ -24,56 +24,59 @@ class TaskMoreInfoView: YtViewController {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
+        label.font = .systemFont(ofSize: 20)
+        label.textColor = .customTitleText
         return label
     }()
     
-    private lazy var creatorLabel: UILabel = {
-        let label = UILabel()
+    private lazy var creatorLabel: LabelWithCustomTextColor = {
+        let label = LabelWithCustomTextColor()
         return label
     }()
     
-    private lazy var createdDateLabel: UILabel = {
-        let label = UILabel()
+    private lazy var createdDateLabel: LabelWithCustomTextColor = {
+        let label = LabelWithCustomTextColor()
         return label
     }()
     
-    private lazy var startDateLabel: UILabel = {
-        let label = UILabel()
+    private lazy var startDateLabel: LabelWithCustomTextColor = {
+        let label = LabelWithCustomTextColor()
         return label
     }()
     
-    private lazy var endDateLabel: UILabel = {
-        let label = UILabel()
+    private lazy var endDateLabel: LabelWithCustomTextColor = {
+        let label = LabelWithCustomTextColor()
         return label
     }()
     
-    private lazy var requiredCompletions: UILabel = {
-        let label = UILabel()
+    private lazy var requiredCompletions: LabelWithCustomTextColor = {
+        let label = LabelWithCustomTextColor()
         return label
     }()
     
-    private lazy var completionsCount: UILabel = {
-        let label = UILabel()
+    private lazy var completionsCount: LabelWithCustomTextColor = {
+        let label = LabelWithCustomTextColor()
         return label
     }()
     
-    private lazy var notesLabel: UILabel = {
-        let label = UILabel()
+    private lazy var notesLabel: LabelWithCustomTextColor = {
+        let label = LabelWithCustomTextColor()
         return label
     }()
     
-    private lazy var windowLengthLabel: UILabel = {
-        let label = UILabel()
+    private lazy var windowLengthLabel: LabelWithCustomTextColor = {
+        let label = LabelWithCustomTextColor()
         return label
     }()
     
-    private lazy var intervalBetweenWindows: UILabel = {
-        let label = UILabel()
+    private lazy var intervalBetweenWindows: LabelWithCustomTextColor = {
+        let label = LabelWithCustomTextColor()
         return label
     }()
     
     private lazy var modalView: UIView = {
         let view = UIView()
+        view.backgroundColor = .customBackgroundColor
         return view
     }()
     

@@ -71,6 +71,7 @@
 		78332CE12954936D00073F14 /* ChangeTeamManagerModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78332CE02954936D00073F14 /* ChangeTeamManagerModal.swift */; };
 		78332CE529549EF800073F14 /* ChangeTeamManagerModalVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78332CE429549EF800073F14 /* ChangeTeamManagerModalVM.swift */; };
 		78352991294E7428000A4290 /* TeamSettingsTabVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78352990294E7428000A4290 /* TeamSettingsTabVM.swift */; };
+		783C94302ABFCA9C00B7EFFA /* LabelWithCustomTextColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C942F2ABFCA9C00B7EFFA /* LabelWithCustomTextColor.swift */; };
 		783DECD228617EEB0062343E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD128617EEB0062343E /* AppDelegate.swift */; };
 		783DECD428617EEB0062343E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DECD328617EEB0062343E /* SceneDelegate.swift */; };
 		783DECD928617EEB0062343E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 783DECD728617EEB0062343E /* Main.storyboard */; };
@@ -296,6 +297,7 @@
 		78332CE02954936D00073F14 /* ChangeTeamManagerModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTeamManagerModal.swift; sourceTree = "<group>"; };
 		78332CE429549EF800073F14 /* ChangeTeamManagerModalVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTeamManagerModalVM.swift; sourceTree = "<group>"; };
 		78352990294E7428000A4290 /* TeamSettingsTabVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsTabVM.swift; sourceTree = "<group>"; };
+		783C942F2ABFCA9C00B7EFFA /* LabelWithCustomTextColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelWithCustomTextColor.swift; sourceTree = "<group>"; };
 		783DECCE28617EEB0062343E /* GoAlign.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoAlign.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		783DECD128617EEB0062343E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		783DECD328617EEB0062343E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -686,6 +688,7 @@
 				7833144829154986009DDD3F /* InputTextView.swift */,
 				788CFFAB2956ADAA002650F7 /* GeneralUIAlertMessage.swift */,
 				78D1DEFE2AB7B66C009E3D68 /* Theme.swift */,
+				783C942F2ABFCA9C00B7EFFA /* LabelWithCustomTextColor.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1268,6 +1271,7 @@
 				7802E199288D9FEC00F7D501 /* PasswordFormComponent.swift in Sources */,
 				780F197A28A493FE00371B91 /* AuthViewController.swift in Sources */,
 				786616E42A9C47D200E88774 /* LoginRequestModel.swift in Sources */,
+				783C94302ABFCA9C00B7EFFA /* LabelWithCustomTextColor.swift in Sources */,
 				786616E62A9C538D00E88774 /* FetchJwtDtoModel.swift in Sources */,
 				78B687822887A616006B6CAB /* TextFormComponent.swift in Sources */,
 				78E4F88A289386CB0075F04F /* User.swift in Sources */,
