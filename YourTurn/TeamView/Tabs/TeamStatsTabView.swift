@@ -20,28 +20,33 @@ class TeamStatsTabView: YtViewController {
         return label
     }()
     
-    private lazy var totalNumberOfTasksLabel: UILabel = {
-        let label = UILabel()
+    private lazy var totalNumberOfTasksLabel: LabelWithCustomTextColor = {
+        let label = LabelWithCustomTextColor()
+        label.font = .systemFont(ofSize: 16)
         return label
     }()
     
-    private lazy var numberOfCompletedTaskEntriesLabel: UILabel = {
-        let label = UILabel()
+    private lazy var numberOfCompletedTaskEntriesLabel: LabelWithCustomTextColor = {
+        let label = LabelWithCustomTextColor()
+        label.font = .systemFont(ofSize: 16)
         return label
     }()
     
-    private lazy var numberOfCompletedTasksLabel: UILabel = {
-        let label = UILabel()
+    private lazy var numberOfCompletedTasksLabel: LabelWithCustomTextColor = {
+        let label = LabelWithCustomTextColor()
+        label.font = .systemFont(ofSize: 16)
         return label
     }()
     
-    private lazy var averageTasksPerUserLabel: UILabel = {
-        let label = UILabel()
+    private lazy var averageTasksPerUserLabel: LabelWithCustomTextColor = {
+        let label = LabelWithCustomTextColor()
+        label.font = .systemFont(ofSize: 16)
         return label
     }()
     
-    private lazy var numberOfTaskEntriesLabel: UILabel = {
-        let label = UILabel()
+    private lazy var numberOfTaskEntriesLabel: LabelWithCustomTextColor = {
+        let label = LabelWithCustomTextColor()
+        label.font = .systemFont(ofSize: 16)
         return label
     }()
     
