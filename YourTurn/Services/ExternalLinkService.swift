@@ -10,8 +10,7 @@ import UIKit
 struct ExternalLinkService {
     static func openTermsAndConditionsLink() {
         DispatchQueue.main.async {
-            // TODO: Replace with actual T&C Link
-            let url = URL(string: "https://google.com")
+            let url = URL(string: "https://rjsappdev.wixsite.com/goalign/eula")
             guard let url = url else { return }
             UIApplication.shared.open(url)
         }
