@@ -42,6 +42,8 @@ class TeamSelectModal: ModalViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.text = "Select the Team"
+        label.textColor = .customTitleText
+        label.font = .systemFont(ofSize: 20)
         return label
     }()
     
@@ -49,18 +51,22 @@ class TeamSelectModal: ModalViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.text = "Select the Team Member"
+        label.textColor = .customTitleText
+        label.font = .systemFont(ofSize: 20)
         return label
     }()
     
     private let teamSelectTableView: UITableView = {
         let tv = UITableView()
         tv.tag = TEAM_SELECT
+        tv.backgroundColor = .customBackgroundColor
         return tv
     }()
     
     private let teamMemberSelectTableView: UITableView = {
         let tv = UITableView()
         tv.tag = TEAM_MEMBER_SELECT
+        tv.backgroundColor = .customBackgroundColor
         return tv
     }()
     

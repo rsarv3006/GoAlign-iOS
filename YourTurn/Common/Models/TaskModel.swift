@@ -9,8 +9,16 @@ import Foundation
 
 typealias TaskModelArray = [TaskModel]
 
-enum TaskModelError: Error {
+enum TaskModelError: Error, LocalizedError {
     case custom(message: String)
+    
+    public var errorDescription: String? {
+        switch self {
+        case .custom(let message):
+            return NSLocalizedString(message, comment: "An unexpected error occurred.")
+        }
+    }
+    
 }
 
 enum TaskStatusVariant: String, Codable {

@@ -109,10 +109,12 @@ private extension TaskAddEditScreen {
             .formSubmission
             .throttle(for: .seconds(2.0), scheduler: RunLoop.current, latest: false)
             .sink { result in
+                defer {
+                    self.showLoader(false)
+                }
                 switch result {
                 case .failure(let error):
-                    print("ERROR IN TASK CREATION PLACEHOLDER")
-                    print(error)
+                    self.showMessage(withTitle: "Uh Oh", message: error.localizedDescription)
                 case .success(let createTaskDto):
                     self.viewModel?.onTaskSubmit(viewController: self, taskForm: createTaskDto)
                 }
@@ -125,8 +127,7 @@ private extension TaskAddEditScreen {
                 }
                 switch result {
                 case .failure(let error):
-                    print("ERROR IN TASK CREATION PLACEHOLDER")
-                    print(error)
+                    self.showMessage(withTitle: "Uh Oh", message: error.localizedDescription)
                 case .success(let updateTaskDto):
                     self.viewModel?.onTaskUpdate(viewController: self, taskForm: updateTaskDto)
                 }
