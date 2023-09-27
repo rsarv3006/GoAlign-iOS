@@ -11,6 +11,7 @@ protocol DrawerMenuViewControllerDelegate {
     func onLogOutPressed(viewController: UIViewController)
     func onViewTeamInvitesPressed(viewController: UIViewController)
     func onViewSettingsPressed(viewController: UIViewController)
+    func onViewLegalScreenPressed(viewController: UIViewController)
 }
 
 class DrawerMenuViewController: UIViewController {
@@ -42,6 +43,19 @@ class DrawerMenuViewController: UIViewController {
         button.setImage(UIImage(systemName: "gear.circle"), for: .normal)
         return button
     }()
+    
+    private lazy var legalScreenButton: UIButton = {
+        var config = UIButton.Configuration.borderless()
+        config.imagePadding = 6
+        
+        let button = UIButton(configuration: config)
+        button.setTitle("Legal", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 26)
+
+        button.setImage(UIImage(systemName: "doc.text"), for: .normal)
+        return button
+    }()
+    
     
     let logoutButton: UIButton = {
         var config = UIButton.Configuration.borderless()
@@ -85,8 +99,11 @@ extension DrawerMenuViewController {
         view.addSubview(viewSettingsButton)
         viewSettingsButton.centerX(inView: view, topAnchor: viewInvitesButton.bottomAnchor, paddingTop: 16)
         
+        view.addSubview(legalScreenButton)
+        legalScreenButton.centerX(inView: view, topAnchor: viewSettingsButton.bottomAnchor, paddingTop: 16)
+        
         view.addSubview(logoutButton)
-        logoutButton.centerX(inView: view, topAnchor: viewSettingsButton.bottomAnchor, paddingTop: 16)
+        logoutButton.centerX(inView: view, topAnchor: legalScreenButton.bottomAnchor, paddingTop: 16)
 
     }
     
@@ -94,6 +111,7 @@ extension DrawerMenuViewController {
         logoutButton.addTarget(self, action: #selector(onLogoutButtonPressed), for: .touchUpInside)
         viewInvitesButton.addTarget(self, action: #selector(onViewInvitesButtonPressed), for: .touchUpInside)
         viewSettingsButton.addTarget(self, action: #selector(onviewSettingsButtonPressed), for: .touchUpInside)
+        legalScreenButton.addTarget(self, action: #selector(onLegalScreenButtonPressed), for: .touchUpInside)
     }
     
     @objc func onViewInvitesButtonPressed() {
@@ -108,6 +126,13 @@ extension DrawerMenuViewController {
         DispatchQueue.main.async {
             self.dismiss(animated: true)
             self.delegate?.onViewSettingsPressed(viewController: self)
+        }
+    }
+    
+    @objc func onLegalScreenButtonPressed() {
+        DispatchQueue.main.async {
+            self.dismiss(animated: true)
+            self.delegate?.onViewLegalScreenPressed(viewController: self)
         }
     }
     

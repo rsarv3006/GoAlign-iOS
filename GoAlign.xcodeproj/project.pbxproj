@@ -49,6 +49,8 @@
 		780F49902934722F006C8456 /* TeamStatsTabVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F498F2934722F006C8456 /* TeamStatsTabVM.swift */; };
 		78209179296361E400853C2C /* TeamUsersReloadDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78209178296361E400853C2C /* TeamUsersReloadDelegate.swift */; };
 		78288CD428B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78288CD328B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift */; };
+		782F5EC32AC3C75600E77B1D /* LegalScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782F5EC22AC3C75600E77B1D /* LegalScreen.swift */; };
+		782F5EC52AC3C88000E77B1D /* LegalScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782F5EC42AC3C88000E77B1D /* LegalScreenVM.swift */; };
 		7833144529154752009DDD3F /* TextBoxFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7833144429154752009DDD3F /* TextBoxFormComponent.swift */; };
 		78331447291547A3009DDD3F /* FormTextBoxCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78331446291547A3009DDD3F /* FormTextBoxCollectionViewCell.swift */; };
 		7833144929154986009DDD3F /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7833144829154986009DDD3F /* InputTextView.swift */; };
@@ -274,6 +276,8 @@
 		780F498F2934722F006C8456 /* TeamStatsTabVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamStatsTabVM.swift; sourceTree = "<group>"; };
 		78209178296361E400853C2C /* TeamUsersReloadDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamUsersReloadDelegate.swift; sourceTree = "<group>"; };
 		78288CD328B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO8601CustomDateDecodingStrategy.swift; sourceTree = "<group>"; };
+		782F5EC22AC3C75600E77B1D /* LegalScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalScreen.swift; sourceTree = "<group>"; };
+		782F5EC42AC3C88000E77B1D /* LegalScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalScreenVM.swift; sourceTree = "<group>"; };
 		7833144429154752009DDD3F /* TextBoxFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBoxFormComponent.swift; sourceTree = "<group>"; };
 		78331446291547A3009DDD3F /* FormTextBoxCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextBoxCollectionViewCell.swift; sourceTree = "<group>"; };
 		7833144829154986009DDD3F /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
@@ -514,6 +518,15 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		782F5EC12AC3C72F00E77B1D /* LegalScreen */ = {
+			isa = PBXGroup;
+			children = (
+				782F5EC22AC3C75600E77B1D /* LegalScreen.swift */,
+				782F5EC42AC3C88000E77B1D /* LegalScreenVM.swift */,
+			);
+			path = LegalScreen;
+			sourceTree = "<group>";
+		};
 		7833144A2916DFB8009DDD3F /* TeamView */ = {
 			isa = PBXGroup;
 			children = (
@@ -628,6 +641,7 @@
 		783DECD028617EEB0062343E /* YourTurn */ = {
 			isa = PBXGroup;
 			children = (
+				782F5EC12AC3C72F00E77B1D /* LegalScreen */,
 				78AC28072944314200F53EAB /* remote_config_defaults.plist */,
 				D505315828E529D1006BD807 /* GoogleService-Info.plist */,
 				78439FDF28AD2CE00070D48D /* Common */,
@@ -1262,6 +1276,7 @@
 				783DED03286180470062343E /* HomeScreen.swift in Sources */,
 				78A083A62965AE5D00E86DAA /* TeamTaskModal.swift in Sources */,
 				788CFF9E29554734002650F7 /* ChangeTeamManagerUserCellVM.swift in Sources */,
+				782F5EC52AC3C88000E77B1D /* LegalScreenVM.swift in Sources */,
 				78AC55C22AA6782E00263DAA /* RefreshTokensReturnDto.swift in Sources */,
 				788CFFA629567104002650F7 /* TeamSettingsLeaveTeamCellVM.swift in Sources */,
 				78439FD928AC8EC80070D48D /* TeamSelectModal.swift in Sources */,
@@ -1269,6 +1284,7 @@
 				780F197A28A493FE00371B91 /* AuthViewController.swift in Sources */,
 				786616E42A9C47D200E88774 /* LoginRequestModel.swift in Sources */,
 				783C94302ABFCA9C00B7EFFA /* LabelWithCustomTextColor.swift in Sources */,
+				782F5EC32AC3C75600E77B1D /* LegalScreen.swift in Sources */,
 				786616E62A9C538D00E88774 /* FetchJwtDtoModel.swift in Sources */,
 				78B687822887A616006B6CAB /* TextFormComponent.swift in Sources */,
 				78E4F88A289386CB0075F04F /* User.swift in Sources */,
