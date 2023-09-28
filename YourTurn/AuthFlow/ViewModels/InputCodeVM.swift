@@ -10,7 +10,7 @@ import Combine
 
 class InputCodeVM {
    let inputCodeLabelTextString = "Input Code"
-    let inputCodeSubtitleString = "Please check your email for your login code."
+    let inputCodeSubtitleString = "Please check your email for your login code. \nIf you don't see it, please check your spam folder."
     let submitButtonString = "Submit"
     
     let inputCodeSubject = PassthroughSubject<Result<Bool, Error>, Never>()

@@ -43,6 +43,7 @@ class InputCode: AuthViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16)
         label.textColor = .customTitleText
+        label.numberOfLines = -1
         return label
     }()
     
@@ -50,6 +51,7 @@ class InputCode: AuthViewController {
         let tf = UITextField()
         tf.borderStyle = .roundedRect
         tf.backgroundColor = .customBackgroundColor
+        
         return tf
     }()
     
