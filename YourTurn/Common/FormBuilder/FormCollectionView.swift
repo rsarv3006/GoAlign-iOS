@@ -31,6 +31,7 @@ final class FormCollectionView: UICollectionView {
         register(FormPasswordCollectionViewCell.self, forCellWithReuseIdentifier: FormPasswordCollectionViewCell.cellId)
         register(FormModalCollectionViewCell.self, forCellWithReuseIdentifier: FormModalCollectionViewCell.cellId)
         register(FormTextBoxCollectionViewCell.self, forCellWithReuseIdentifier: FormTextBoxCollectionViewCell.cellId)
+        register(FormLabelCollectionViewCell.self, forCellWithReuseIdentifier: FormLabelCollectionViewCell.cellId)
     }
 }
 

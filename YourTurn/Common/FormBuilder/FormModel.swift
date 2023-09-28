@@ -40,6 +40,9 @@ enum FormField: String, CaseIterable {
     case signInSubmit
     
     case termsButton
+    
+    case taskEditCancel
+    case taskEditTitle
 }
 
 final class FormSectionComponent: FormSectionItem, Hashable {

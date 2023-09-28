@@ -61,6 +61,12 @@ final class TaskAddEditFormContentBuilderImpl {
                 ButtonFormComponent(id: .taskCreationSubmit, title: "Update")
             ])
         ]
+        
+        if taskAddEditType == .edit {
+            formContent[0].items.insert(LabelFormComponent(id: .taskEditTitle, labelText: "Edit Task"), at: 0)
+            formContent[0].items.append(ButtonFormComponent(id: .taskEditCancel, title: "Cancel"))
+        
+        }
     }
     
     private(set) var formSubmission = PassthroughSubject<Result<CreateTaskDto, Error>, Never>()

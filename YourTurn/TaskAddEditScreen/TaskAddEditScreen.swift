@@ -84,6 +84,8 @@ private extension TaskAddEditScreen {
                 return self.buildFormModalCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
             case is TextBoxFormComponent:
                 return self.buildFormTextBoxCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
+            case is LabelFormComponent:
+                return self.buildFormLabelCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
             default:
                 return self.buildDefaultCollectionViewCell(collectionView: collectionView, indexPath: indexPath)
             }
@@ -178,6 +180,14 @@ private extension TaskAddEditScreen {
         return cell
     }
     
+    func buildFormLabelCollectionViewCell(collectionView: UICollectionView,
+                                          indexPath: IndexPath, item: FormComponent) -> FormLabelCollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormLabelCollectionViewCell.cellId, for: indexPath) as! FormLabelCollectionViewCell
+        cell.bind(item, at: indexPath)
+        
+        return cell
+    }
+    
     func buildFormDateCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, item: FormComponent) -> FormDateCollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormDateCollectionViewCell.cellId, for: indexPath) as! FormDateCollectionViewCell
         
@@ -202,10 +212,13 @@ private extension TaskAddEditScreen {
         cell
             .subject
             .sink { [weak self] id in
-                self?.showLoader(true)
-                self?.formContentBuilder.validate()
+                if item.formId == .taskCreationSubmit {
+                    self?.showLoader(true)
+                    self?.formContentBuilder.validate()
+                } else {
+                    self?.dismiss(animated: true)
+                }
             }.store(in: &self.subscriptions)
-        
         cell.bind(item)
         return cell
     }

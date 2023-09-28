@@ -51,6 +51,8 @@
 		78288CD428B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78288CD328B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift */; };
 		782F5EC32AC3C75600E77B1D /* LegalScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782F5EC22AC3C75600E77B1D /* LegalScreen.swift */; };
 		782F5EC52AC3C88000E77B1D /* LegalScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782F5EC42AC3C88000E77B1D /* LegalScreenVM.swift */; };
+		782F5EC72AC3E90300E77B1D /* FormLabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782F5EC62AC3E90300E77B1D /* FormLabelCollectionViewCell.swift */; };
+		782F5EC92AC3E9F100E77B1D /* LabelFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782F5EC82AC3E9F100E77B1D /* LabelFormComponent.swift */; };
 		7833144529154752009DDD3F /* TextBoxFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7833144429154752009DDD3F /* TextBoxFormComponent.swift */; };
 		78331447291547A3009DDD3F /* FormTextBoxCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78331446291547A3009DDD3F /* FormTextBoxCollectionViewCell.swift */; };
 		7833144929154986009DDD3F /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7833144829154986009DDD3F /* InputTextView.swift */; };
@@ -278,6 +280,8 @@
 		78288CD328B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO8601CustomDateDecodingStrategy.swift; sourceTree = "<group>"; };
 		782F5EC22AC3C75600E77B1D /* LegalScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalScreen.swift; sourceTree = "<group>"; };
 		782F5EC42AC3C88000E77B1D /* LegalScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalScreenVM.swift; sourceTree = "<group>"; };
+		782F5EC62AC3E90300E77B1D /* FormLabelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormLabelCollectionViewCell.swift; sourceTree = "<group>"; };
+		782F5EC82AC3E9F100E77B1D /* LabelFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelFormComponent.swift; sourceTree = "<group>"; };
 		7833144429154752009DDD3F /* TextBoxFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBoxFormComponent.swift; sourceTree = "<group>"; };
 		78331446291547A3009DDD3F /* FormTextBoxCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextBoxCollectionViewCell.swift; sourceTree = "<group>"; };
 		7833144829154986009DDD3F /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
@@ -809,6 +813,7 @@
 				78B6878D2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift */,
 				78FAB72328AB5973009B8D50 /* FormModalCollectionViewCell.swift */,
 				78331446291547A3009DDD3F /* FormTextBoxCollectionViewCell.swift */,
+				782F5EC62AC3E90300E77B1D /* FormLabelCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -936,6 +941,7 @@
 				78B6878B2887A9CE006B6CAB /* HideableIntervalPickerFormComponent.swift */,
 				78FAB72128AB58AC009B8D50 /* ModalFormComponent.swift */,
 				7833144429154752009DDD3F /* TextBoxFormComponent.swift */,
+				782F5EC82AC3E9F100E77B1D /* LabelFormComponent.swift */,
 			);
 			path = "Form Components";
 			sourceTree = "<group>";
@@ -1224,6 +1230,7 @@
 				78B6878E2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift in Sources */,
 				78332CE529549EF800073F14 /* ChangeTeamManagerModalVM.swift in Sources */,
 				D55E671F28F5177100EBE205 /* TaskMoreInfoVM.swift in Sources */,
+				782F5EC72AC3E90300E77B1D /* FormLabelCollectionViewCell.swift in Sources */,
 				7802E1AA288E3D0900F7D501 /* SignUpCompletedForm.swift in Sources */,
 				78E4F88C289386F50075F04F /* TaskService.swift in Sources */,
 				D55E671928F109F200EBE205 /* TaskMoreInfoView.swift in Sources */,
@@ -1303,6 +1310,7 @@
 				7809E01E2AA52B4600E65FD0 /* AppState.swift in Sources */,
 				7847732A28768B69009AFC92 /* TaskAddEditFormContentBuilderImpl.swift in Sources */,
 				780F197028A4905100371B91 /* RegexValidationManagerImpl.swift in Sources */,
+				782F5EC92AC3E9F100E77B1D /* LabelFormComponent.swift in Sources */,
 				78352991294E7428000A4290 /* TeamSettingsTabVM.swift in Sources */,
 				78A083A02965242400E86DAA /* TaskSubView.swift in Sources */,
 				78B90EB82939C4A600E6CBA8 /* TeamStatsModel.swift in Sources */,
