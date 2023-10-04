@@ -116,7 +116,7 @@ private extension TaskAddEditScreen {
                 }
                 switch result {
                 case .failure(let error):
-                    self.showMessage(withTitle: "Uh Oh", message: error.localizedDescription)
+                    self.showMessage(withTitle: "Uh Oh formSubmission", message: error.localizedDescription)
                 case .success(let createTaskDto):
                     self.viewModel?.onTaskSubmit(viewController: self, taskForm: createTaskDto)
                 }
@@ -129,7 +129,7 @@ private extension TaskAddEditScreen {
                 }
                 switch result {
                 case .failure(let error):
-                    self.showMessage(withTitle: "Uh Oh", message: error.localizedDescription)
+                    self.showMessage(withTitle: "Uh Oh formSubmission Update", message: error.localizedDescription)
                 case .success(let updateTaskDto):
                     self.viewModel?.onTaskUpdate(viewController: self, taskForm: updateTaskDto)
                 }

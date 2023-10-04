@@ -40,8 +40,7 @@ class TeamTaskModalVM {
     func refetchTeam() {
         Task {
             do {
-                let task = try await TaskService.getTasksByTaskIds(taskIds: [task.taskId])
-                self.task = task[0]
+                self.task = try await TaskService.getTaskByTaskId(taskId: task.taskId)
                 resetView.send(nil)
             } catch {
                 resetView.send(error)

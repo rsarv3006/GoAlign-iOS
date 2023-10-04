@@ -30,7 +30,7 @@ class TeamTaskModal: YtViewController {
             
             viewModel.resetView.sink { error in
                 if let error = error {
-                    self.showMessage(withTitle: "Uh Oh", message: error.localizedDescription)
+                    self.showMessage(withTitle: "Uh Oh resetView.sink", message: error.localizedDescription)
                 } else {
                     DispatchQueue.main.async {
                         self.configureTaskSubViewVM(modalViewModel: viewModel)

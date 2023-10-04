@@ -49,7 +49,7 @@ class TaskAddEditScreenVM {
                 }
                 
             } catch {
-                await viewController.showMessage(withTitle: "Uh Oh", message: "Unexpected error creating task. \(error.localizedDescription)")
+                await viewController.showMessage(withTitle: "Uh Oh onTaskSubmit", message: "Unexpected error creating task. \(error.localizedDescription)")
                 Logger.log(logLevel: .Prod, name: Logger.Events.Task.creationFailed, payload: ["error": error.localizedDescription])
             }
         }
@@ -63,14 +63,14 @@ class TaskAddEditScreenVM {
             do {
                 guard let taskId = taskToEdit?.taskId else { throw ServiceErrors.custom(message: "No task id when trying to edit a task.")}
                 taskForm.insertTaskId(taskId: taskId)
-                let _ = try await TaskService.updateTask(updateTaskDto: taskForm)
+                try await TaskService.updateTask(updateTaskDto: taskForm)
                 
                 DispatchQueue.main.async {
                     viewController.dismiss(animated: true)
                 }
                 requestReload.send(Void())
             } catch {
-                await viewController.showMessage(withTitle: "Uh Oh", message: error.localizedDescription)
+                await viewController.showMessage(withTitle: "Uh Oh Spaghetti Oh", message: error.localizedDescription)
             }
         }
     }

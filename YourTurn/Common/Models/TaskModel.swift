@@ -27,6 +27,9 @@ enum TaskStatusVariant: String, Codable {
     case overdue = "overdue"
 }
 
+struct TaskReturnModel: Codable {
+    let task: TaskModel
+}
 class TaskModel: Codable {
     let taskId: UUID
     let createdAt: Date

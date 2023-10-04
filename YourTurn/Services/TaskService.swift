@@ -24,17 +24,14 @@ struct TaskService {
         }
     }
     
-    static func getTasksByTaskIds(taskIds: [UUID]) async throws -> TaskModelArray {
-        let queryString = Networking.Helpers.createQueryString(items: taskIds.map({ uuid in
-            return uuid.uuidString
-        }))
-        let url = try Networking.createUrl(endPoint: "v1/task?taskIds=\(queryString)")
+    static func getTaskByTaskId(taskId: UUID) async throws -> TaskModel {
+        let url = try Networking.createUrl(endPoint: "v1/task/\(taskId)")
         
         let (data, response) = try await Networking.get(url: url)
         
         if let response = response as? HTTPURLResponse, response.statusCode == 200 {
-            let taskItems = try GlobalDecoder.decode(TaskModelArray.self, from: data)
-            return taskItems
+            let taskItem = try GlobalDecoder.decode(TaskReturnModel.self, from: data)
+            return taskItem.task
         } else {
             let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)
@@ -79,20 +76,18 @@ struct TaskService {
         
     }
     
-    static func updateTask(updateTaskDto: UpdateTaskDto) async throws -> TaskModel {
+    static func updateTask(updateTaskDto: UpdateTaskDto) async throws {
         let url = try Networking.createUrl(endPoint: "v1/task/")
         
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
+        encoder.keyEncodingStrategy = .convertToSnakeCase
         
         let updateTaskData = try encoder.encode(updateTaskDto)
         
-        let (data, response) = try await Networking.patch(url: url, body: updateTaskData)
+        let (data, response) = try await Networking.put(url: url, body: updateTaskData)
         
-        if let response = response as? HTTPURLResponse, response.statusCode == 201 {
-            let taskModel = try GlobalDecoder.decode(TaskModel.self, from: data)
-            return taskModel
-        } else {
+        if let response = response as? HTTPURLResponse, response.statusCode != 201 {
             let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)
         }
