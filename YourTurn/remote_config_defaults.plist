@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>API_URL</key>
-	<string>http://localhost:3000/</string>
+	<string>http://localhost:3000/api/</string>
 	<key>LOG_TO_ANALYTICS</key>
 	<string>true</string>
 	<key>LOG_LEVEL</key>

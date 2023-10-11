@@ -17,7 +17,7 @@ enum HttpMethod: String {
 }
 
 struct Networking {
-    private static let baseUrlString: String = "http://localhost:3000/api/"
+    private static let baseUrlString: String? = remoteConfig.configValue(forKey: "API_URL").stringValue
 
     private static func apiCall(httpMethod: HttpMethod, url: URL, body: Data? = nil) async throws -> (Data, URLResponse) {
         let token = try await AppState.getInstance().getAccessToken()
@@ -96,7 +96,7 @@ struct Networking {
     }
 
     static func createUrl(endPoint: String) throws -> URL {
-        let url = URL(string: "\(self.baseUrlString)\(endPoint)")
+        let url = URL(string: "\(self.baseUrlString!)\(endPoint)")
 
         guard let url = url else {
             throw ServiceErrors.unknownUrl

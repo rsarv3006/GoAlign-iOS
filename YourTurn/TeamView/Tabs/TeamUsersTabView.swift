@@ -37,11 +37,17 @@ class TeamUsersTabView: YtViewController {
             if selected == .users {
                 currentUsersButton.backgroundColor = selectedBackgroundColor
                 invitesButton.backgroundColor = .customBackgroundColor
+                
+                currentUsersButton.setTitleColor(.lightButtonText, for: .normal)
+                invitesButton.setTitleColor(.customTitleText, for: .normal)
                 tableView.reloadData()
             } else {
                 viewModel.fetchTeamInvites()
                 invitesButton.backgroundColor = selectedBackgroundColor
                 currentUsersButton.backgroundColor = .customBackgroundColor
+                
+                currentUsersButton.setTitleColor(.customTitleText, for: .normal)
+                invitesButton.setTitleColor(.lightButtonText, for: .normal)
                 tableView.reloadData()
             }
         }
@@ -93,7 +99,7 @@ class TeamUsersTabView: YtViewController {
     private lazy var currentUsersButton: UIButton = {
         let button = UIButton()
         button.setTitle("Current Users", for: .normal)
-        button.setTitleColor(.buttonText, for: .normal)
+        button.setTitleColor(.lightButtonText, for: .normal)
         button.backgroundColor = selectedBackgroundColor
         button.addTarget(self, action: #selector(onButtonPress), for: .touchUpInside)
         button.layer.cornerRadius = 5
@@ -104,7 +110,7 @@ class TeamUsersTabView: YtViewController {
     private lazy var invitesButton: UIButton = {
         let button = UIButton()
         button.setTitle("Invites", for: .normal)
-        button.setTitleColor(.buttonText, for: .normal)
+        button.setTitleColor(.customTitleText, for: .normal)
         button.addTarget(self, action: #selector(onButtonPress), for: .touchUpInside)
         button.backgroundColor = .customBackgroundColor
         button.layer.cornerRadius = 5
