@@ -75,12 +75,12 @@ struct TeamService {
     }
     
     static func removeUserFromTeam(teamId: UUID, userToRemove: UUID) async throws {
-        let url = try Networking.createUrl(endPoint: "v1/team/removeUserFromTeam")
+        let url = try Networking.createUrl(endPoint: "v1/team/\(teamId)/removeUserFromTeam/\(userToRemove)")
         
         let removeUserDto = RemoveUserFromTeamDto(userToRemove: userToRemove.uuidString, teamId: teamId.uuidString)
         let removeUserData = try JSONEncoder().encode(removeUserDto)
         
-        let (data, response) = try await Networking.post(url: url, body: removeUserData)
+        let (data, response) = try await Networking.delete(url: url, body: removeUserData)
         
         if let response = response as? HTTPURLResponse, response.statusCode == 204 {
             return
@@ -91,14 +91,12 @@ struct TeamService {
     }
     
     static func updateTeamManager(teamId: UUID, newManagerId: UUID) async throws {
-        let url = try Networking.createUrl(endPoint: "v1/team/updateTeamManager")
+        let url = try Networking.createUrl(endPoint: "v1/team/updateTeamManager/\(teamId)/\(newManagerId)")
         
-        let updateTeamManagerDto = UpdateTeamManagerDto(teamId: teamId.uuidString, newManagerId: newManagerId.uuidString)
-        let updateTeamManagerData = try JSONEncoder().encode(updateTeamManagerDto)
         
-        let (data, response) = try await Networking.put(url: url, body: updateTeamManagerData)
+        let (data, response) = try await Networking.post(url: url)
         
-        if let response = response as? HTTPURLResponse, response.statusCode == 204 {
+        if let response = response as? HTTPURLResponse, response.statusCode == 201 {
             return
         } else {
             let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
