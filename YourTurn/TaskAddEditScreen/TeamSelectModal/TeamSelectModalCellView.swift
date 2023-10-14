@@ -16,10 +16,10 @@ class TeamSelectModalCellView: UITableViewCell {
         }
     }
     
-    private let nameLabel: UILabel = {
+    let nameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20)
-        label.textColor = .customText
+        label.textColor = .teamMemberSelectModalText
         return label
     }()
     

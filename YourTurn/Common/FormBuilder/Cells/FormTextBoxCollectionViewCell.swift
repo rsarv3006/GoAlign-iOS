@@ -19,8 +19,8 @@ class FormTextBoxCollectionViewCell: UICollectionViewCell {
     private lazy var txtField: InputTextView = {
         let txtField = InputTextView()
         txtField.translatesAutoresizingMaskIntoConstraints = false
-//        txtField.borderStyle = .roundedRect
         txtField.backgroundColor = .clear
+        txtField.font = .systemFont(ofSize: 18)
         return txtField
     }()
     

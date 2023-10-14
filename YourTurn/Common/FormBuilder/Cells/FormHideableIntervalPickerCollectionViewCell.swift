@@ -23,11 +23,10 @@ class FormHideableIntervalPickerCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var controlButton: StandardButton = {
-        let button = StandardButton(type: .custom)
+    private lazy var controlButton: BlueButton = {
+        let button = BlueButton(type: .custom)
         button.setTitle("  1 - day(s)  ", for: .normal)
         button.layer.cornerRadius = 8
-        button.backgroundColor = .systemGray6
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         
         if let editPickerValue = item?.editValue {

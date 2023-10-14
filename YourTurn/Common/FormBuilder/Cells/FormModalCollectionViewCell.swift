@@ -18,8 +18,8 @@ class FormModalCollectionViewCell: UICollectionViewCell {
     private(set) var openModal = PassthroughSubject<UIViewController, Never>()
     
     // MARK: - UIElements
-    private lazy var openModalButton: StandardButton = {
-        let button = StandardButton()
+    private lazy var openModalButton: BlueButton = {
+        let button = BlueButton()
         return button
     }()
     

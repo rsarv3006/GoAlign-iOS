@@ -24,7 +24,7 @@ class FormDateCollectionViewCell: UICollectionViewCell {
         if let editDateValue = item?.editValue {
             datePicker.date = editDateValue
         }
-
+        
         return datePicker
     }()
     

@@ -30,11 +30,10 @@ class TeamSelectModal: ModalViewController {
     }
     
     // MARK: - UI Elements
-    private lazy var closeButton: StandardButton = {
-        let button = StandardButton()
+    private lazy var closeButton: BlueButton = {
+        let button = BlueButton()
         button.setTitle("Close", for: .normal)
         button.setTitleColor(.customBackgroundColor, for: .normal)
-        button.backgroundColor = .customAccentColor
         return button
     }()
     

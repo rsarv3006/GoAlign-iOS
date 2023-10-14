@@ -20,4 +20,6 @@ extension UIColor {
     static let customAccentColor = UIColor(named: "AccentColor")
     static let russianViolet = UIColor(named: "RussianViolet")
     static let timberwolf = UIColor(named: "Timberwolf")
+    static let customLightPurple = UIColor(named: "LightPurple")
+    static let teamMemberSelectModalText = UIColor(named: "TeamMemberSelectModalText")
 }

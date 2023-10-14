@@ -36,6 +36,7 @@ class FormSwitchControlledTextCollectionViewCell: UICollectionViewCell {
         let txtField = UITextField()
         txtField.translatesAutoresizingMaskIntoConstraints = false
         txtField.borderStyle = .roundedRect
+        txtField.textColor = .customText
         txtField.backgroundColor = .clear
         
         if let editTextValue = item?.editValue {
