@@ -27,10 +27,12 @@ class SettingsScreenView: UITableViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         configureTable()
+        view.backgroundColor = .customBackgroundColor
     }
     
     // MARK: Helpers
     func configureTable() {
+        tableView.backgroundColor = .customBackgroundColor
         tableView.register(DeleteUserCell.self, forCellReuseIdentifier: CellIdentifiers.DeleteUserCell)
         tableView.rowHeight = 32
     }

@@ -9,5 +9,5 @@ import Foundation
 
 protocol TeamTasksTabVMDelegate {
     func requestTableReload()
-    func showMessage(withTitle: String, message: String)
+    func showMessage(withTitle: String, message: String, completion: (() -> Void)?)
 }

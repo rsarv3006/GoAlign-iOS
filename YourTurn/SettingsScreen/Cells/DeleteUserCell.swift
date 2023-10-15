@@ -34,6 +34,8 @@ class DeleteUserCell: UITableViewCell {
     
     // MARK: Helpers
     func configureView() {
+        contentView.backgroundColor = .customBackgroundColor
+        
         contentView.addSubview(deleteUserButton)
         deleteUserButton.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingTop: 2, paddingLeft: 8, paddingBottom: 2, paddingRight: 8)
     }

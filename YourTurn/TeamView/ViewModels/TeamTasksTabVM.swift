@@ -33,7 +33,7 @@ class TeamTasksTabVM {
                 self.team = teams[0]
                 delegate?.requestTableReload()
             } catch {
-                delegate?.showMessage(withTitle: "Uh OH", message: error.localizedDescription)
+                delegate?.showMessage(withTitle: "Uh OH", message: error.localizedDescription, completion: nil)
             }
         }
     }
