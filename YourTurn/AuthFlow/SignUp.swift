@@ -61,7 +61,12 @@ private extension SignUpScreen {
         topLabel.centerX(inView: view, topAnchor: topSafeAnchor, paddingTop: 32)
 
         view.addSubview(collectionView)
-        collectionView.anchor(top: topLabel.bottomAnchor, left: leftSafeAnchor, bottom: bottomSafeAnchor, right: rightSafeAnchor, paddingTop: 24)
+        collectionView.anchor(
+            top: topLabel.bottomAnchor,
+            left: leftSafeAnchor,
+            bottom: bottomSafeAnchor,
+            right: rightSafeAnchor,
+            paddingTop: 24)
 
         view.addSubview(buttonToSignInScreen)
         buttonToSignInScreen.centerX(inView: view)
@@ -69,19 +74,31 @@ private extension SignUpScreen {
     }
 
     func makeDataSource() -> UICollectionViewDiffableDataSource<FormSectionComponent, FormComponent> {
-        return UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self] collectionView, indexPath, item in
+        return UICollectionViewDiffableDataSource(
+            collectionView: collectionView) { [weak self] collectionView, indexPath, item in
             guard let self = self else {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewCell.cellId, for: indexPath)
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: UICollectionViewCell.cellId,
+                    for: indexPath)
                 return cell
             }
 
             switch item {
             case is TextFormComponent:
-                return self.buildFormTextCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
+                return self.buildFormTextCollectionViewCell(
+                    collectionView: collectionView,
+                    indexPath: indexPath,
+                    item: item)
             case is ButtonFormComponent:
-                return self.buildFormButtonCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
+                return self.buildFormButtonCollectionViewCell(
+                    collectionView: collectionView,
+                    indexPath: indexPath,
+                    item: item)
             case is PasswordFormComponent:
-                return self.buildFormPasswordCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
+                return self.buildFormPasswordCollectionViewCell(
+                    collectionView: collectionView,
+                    indexPath: indexPath,
+                    item: item)
             default:
                 return self.buildDefaultCollectionViewCell(collectionView: collectionView, indexPath: indexPath)
             }
@@ -124,7 +141,9 @@ private extension SignUpScreen {
                 AlertModalService.openAlert(viewController: self, modalMessage: errorStringToDisplay)
             case .success(let createAccountReturnModel):
                 if let createAccountReturnModel {
-                    self.delegate?.requestInputCodeScreen(viewController: self, loginRequestModel: createAccountReturnModel)
+                    self.delegate?.requestInputCodeScreen(
+                        viewController: self,
+                        loginRequestModel: createAccountReturnModel)
                 }
             }
         }).store(in: &subscriptions)
@@ -137,13 +156,23 @@ private extension SignUpScreen {
 
 // MARK: - UICollectionViewCell builders
 private extension SignUpScreen {
-    func buildDefaultCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewCell.cellId, for: indexPath)
+    func buildDefaultCollectionViewCell(
+        collectionView: UICollectionView,
+        indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: UICollectionViewCell.cellId,
+            for: indexPath)
         return cell
     }
 
-    func buildFormTextCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, item: FormComponent) -> FormTextCollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormTextCollectionViewCell.cellId, for: indexPath) as! FormTextCollectionViewCell
+    func buildFormTextCollectionViewCell(
+        collectionView: UICollectionView,
+        indexPath: IndexPath,
+        item: FormComponent) -> FormTextCollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: FormTextCollectionViewCell.cellId,
+            // swiftlint:disable:next force_cast
+            for: indexPath) as! FormTextCollectionViewCell
 
         cell
             .subject
@@ -160,8 +189,14 @@ private extension SignUpScreen {
         return cell
     }
 
-    func buildFormButtonCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, item: FormComponent) -> FormButtonCollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormButtonCollectionViewCell.cellId, for: indexPath) as! FormButtonCollectionViewCell
+    func buildFormButtonCollectionViewCell(
+        collectionView: UICollectionView,
+        indexPath: IndexPath,
+        item: FormComponent) -> FormButtonCollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: FormButtonCollectionViewCell.cellId,
+            // swiftlint:disable:next force_cast
+            for: indexPath) as! FormButtonCollectionViewCell
 
         cell
             .subject
@@ -178,8 +213,14 @@ private extension SignUpScreen {
         return cell
     }
 
-    func buildFormPasswordCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, item: FormComponent) -> FormPasswordCollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormPasswordCollectionViewCell.cellId, for: indexPath) as! FormPasswordCollectionViewCell
+    func buildFormPasswordCollectionViewCell(
+        collectionView: UICollectionView,
+        indexPath: IndexPath,
+        item: FormComponent) -> FormPasswordCollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: FormPasswordCollectionViewCell.cellId,
+            // swiftlint:disable:next force_cast
+            for: indexPath) as! FormPasswordCollectionViewCell
 
         cell
             .subject
