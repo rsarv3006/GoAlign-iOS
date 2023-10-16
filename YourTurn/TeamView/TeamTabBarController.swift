@@ -64,7 +64,12 @@ private extension TeamTabBarController {
         let teamTasksTabView = TeamTasksTabView()
         teamTasksTabView.viewModel = teamTasksTabVM
 
-        let teamTasksTabViewController = templateNavigationController(unSelectedImage: teamTasksTabViewImage, selectedImage: teamTasksTabViewImage, rootViewController: teamTasksTabView, title: "Tasks")
+        let teamTasksTabViewController =
+        templateNavigationController(
+            unSelectedImage: teamTasksTabViewImage,
+            selectedImage: teamTasksTabViewImage,
+            rootViewController: teamTasksTabView,
+            title: "Tasks")
 
         return teamTasksTabViewController
     }
@@ -76,7 +81,12 @@ private extension TeamTabBarController {
         let teamUsersTabView = TeamUsersTabView()
         teamUsersTabView.viewModel = teamUsersTabVM
 
-        let teamUsersTabViewController = templateNavigationController(unSelectedImage: teamUsersTabViewImage, selectedImage: teamUsersTabViewImage, rootViewController: teamUsersTabView, title: "Users")
+        let teamUsersTabViewController =
+        templateNavigationController(
+            unSelectedImage: teamUsersTabViewImage,
+            selectedImage: teamUsersTabViewImage,
+            rootViewController: teamUsersTabView,
+            title: "Users")
 
         return teamUsersTabViewController
     }
@@ -88,7 +98,12 @@ private extension TeamTabBarController {
         let teamStatsTabView = TeamStatsTabView()
         teamStatsTabView.viewModel = teamStatsTabVM
 
-        let teamStatsTabViewController = templateNavigationController(unSelectedImage: teamStatsTabViewImage, selectedImage: teamStatsTabViewImage, rootViewController: teamStatsTabView, title: "Stats")
+        let teamStatsTabViewController =
+        templateNavigationController(
+            unSelectedImage: teamStatsTabViewImage,
+            selectedImage: teamStatsTabViewImage,
+            rootViewController: teamStatsTabView,
+            title: "Stats")
 
         return teamStatsTabViewController
     }
@@ -108,7 +123,12 @@ private extension TeamTabBarController {
             }
         }.store(in: &subscriptions)
 
-        let teamSettingsTabViewController = templateNavigationController(unSelectedImage: teamSettingsTabViewImage, selectedImage: teamSettingsTabViewImage, rootViewController: teamSettingsTabView, title: "Settings")
+        let teamSettingsTabViewController =
+        templateNavigationController(
+            unSelectedImage: teamSettingsTabViewImage,
+            selectedImage: teamSettingsTabViewImage,
+            rootViewController: teamSettingsTabView,
+            title: "Settings")
 
         return teamSettingsTabViewController
     }
