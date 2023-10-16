@@ -10,7 +10,7 @@ import Foundation
 struct HomeScreenTaskCellVM {
     let taskNameLabelString: String
     let timeIntervalLabelString: String
-    
+
     init(withTask task: TaskModel) {
         taskNameLabelString = task.taskName
         // TODO: - Figure out what this label should say

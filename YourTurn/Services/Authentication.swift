@@ -13,11 +13,11 @@ struct AuthenticationService {
             let url = try Networking.createUrl(endPoint: "v1/auth/code")
             let encoder = JSONEncoder()
             encoder.keyEncodingStrategy  = .convertToSnakeCase
-            
+
             let encodedBody = try encoder.encode(dto)
-            
+
             let (data, response) = try await Networking.post(url: url, body: encodedBody, noAuth: true)
-            
+
             if let response = response as? HTTPURLResponse, response.statusCode == 201 {
                 return try globalDecoder.decode(FetchJwtDtoReturnModel.self, from: data)
             } else {
@@ -30,20 +30,20 @@ struct AuthenticationService {
             throw error
         }
     }
-    
+
     static func createAccount(form: SignUpCompletedForm) async throws -> LoginRequestModel {
         do {
             let createUserDto = CreateUserDto(username: form.username, email: form.emailAddress)
-            
+
             let url = try Networking.createUrl(endPoint: "v1/auth/register")
-            
+
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .iso8601
-            
+
             let createUserBody = try encoder.encode(createUserDto)
-            
+
             let (data, response) = try await Networking.post(url: url, body: createUserBody, noAuth: true)
-            
+
             if let response = response as? HTTPURLResponse, response.statusCode == 201 {
                 let userModel = try globalDecoder.decode(LoginRequestModel.self, from: data)
                 return userModel
@@ -60,17 +60,17 @@ struct AuthenticationService {
             throw error
         }
     }
-    
+
     static func signInToAccount(form: SignInCompletedForm) async throws -> LoginRequestModel {
         do {
             let url = try Networking.createUrl(endPoint: "v1/auth/login")
-            
+
             let encoder = JSONEncoder()
-            
+
             let signInBody = try encoder.encode(form)
-            
+
             let (data, response) = try await Networking.post(url: url, body: signInBody, noAuth: true)
-            
+
             if let response = response as? HTTPURLResponse, response.statusCode == 201 {
                 let userModel = try globalDecoder.decode(LoginRequestModel.self, from: data)
                 return userModel
@@ -86,11 +86,11 @@ struct AuthenticationService {
             throw error
         }
     }
-    
+
     static func signOut() {
         AppState.resetState()
     }
-    
+
     static func checkForStandardErrors(error: Error) -> String {
         var returnErrorString = error.localizedDescription
         for errorReference in AuthErrorHandling.errors {
@@ -100,7 +100,7 @@ struct AuthenticationService {
         }
         return returnErrorString
     }
-    
+
     struct AuthErrorHandling {
         struct StandardErrorKeywords {
             static let userNotFound = "ERROR_USER_NOT_FOUND"
@@ -108,13 +108,13 @@ struct AuthenticationService {
             static let emailAlreadyInUse = "ERROR_EMAIL_ALREADY_IN_USE"
             static let invalidEmail = "ERROR_INVALID_EMAIL"
         }
-        
+
         struct UserFacingErrorStrings {
             static let emailOrPasswordIncorrect = "Email or Password is Incorrect"
             static let emailAlreadyInuse = "This email already has an account. Please sign in instead."
             static let unknownError = "Unknown Error"
         }
-        
+
         static let errors: [AuthStandardErrorReference] = [
             AuthStandardErrorReference(keyword: StandardErrorKeywords.userNotFound, userFacingErrorString: UserFacingErrorStrings.emailOrPasswordIncorrect),
             AuthStandardErrorReference(keyword: StandardErrorKeywords.incorrectPassword, userFacingErrorString: UserFacingErrorStrings.emailOrPasswordIncorrect),

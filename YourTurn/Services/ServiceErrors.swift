@@ -12,7 +12,7 @@ enum ServiceErrors: Error, LocalizedError {
     case unknownUrl
     case dataSerializationFailed(dataObjectName: String)
     case baseUrlNotConfigured
-    
+
     public var errorDescription: String? {
         switch self {
         case .custom(let message):

@@ -9,11 +9,11 @@ import Foundation
 import Combine
 
 struct TeamTabBarControllerVM {
-    
+
     private(set) var requestHomeReload = PassthroughSubject<Bool, Never>()
-    
+
     let team: TeamModel
-    
+
     init(team: TeamModel) {
         self.team = team
     }

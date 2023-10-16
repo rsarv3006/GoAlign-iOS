@@ -8,11 +8,11 @@
 import Foundation
 
 struct TeamUsersTabViewCellVM {
-    
+
     let username: String
-    
+
     init(user: UserModel) {
         self.username = user.username
     }
-    
+
 }

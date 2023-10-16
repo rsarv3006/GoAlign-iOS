@@ -15,7 +15,7 @@ enum AuthScreenIdVariant {
 }
 
 class AuthViewController: YtViewController {
-    private(set) var screenId: AuthScreenIdVariant? = nil
+    private(set) var screenId: AuthScreenIdVariant?
 
     var subscriptions = Set<AnyCancellable>()
     weak var delegate: AuthScreenDelegate?

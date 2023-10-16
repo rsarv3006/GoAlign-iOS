@@ -9,16 +9,16 @@ import UIKit
 import Combine
 
 class FormButtonCollectionViewCell: UICollectionViewCell {
-    
+
     private var item: ButtonFormComponent?
     private(set) var subject = PassthroughSubject<FormField, Never>()
-    
+
     func bind(_ item: FormComponent) {
         guard let item = item as? ButtonFormComponent else { return }
         self.item = item
         setup(item: item)
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         removeViews()
@@ -27,15 +27,15 @@ class FormButtonCollectionViewCell: UICollectionViewCell {
 }
 
 private extension FormButtonCollectionViewCell {
-    
+
     func setup(item: ButtonFormComponent) {
         let actionBtn = createButton(item: item)
-        
+
         actionBtn.addTarget(self, action: #selector(actionDidTap), for: .touchUpInside)
         actionBtn.setTitle(item.title, for: .normal)
 
         contentView.addSubview(actionBtn)
-        
+
         NSLayoutConstraint.activate([
             actionBtn.heightAnchor.constraint(equalToConstant: 44),
             actionBtn.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -44,7 +44,7 @@ private extension FormButtonCollectionViewCell {
             actionBtn.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
     }
-    
+
     func createButton(item: ButtonFormComponent) -> UIButton {
         if item.buttonType == .standard {
             let btn = BlueButton()
@@ -61,7 +61,6 @@ private extension FormButtonCollectionViewCell {
             return button
         }
     }
-    
 
     @objc
     func actionDidTap() {

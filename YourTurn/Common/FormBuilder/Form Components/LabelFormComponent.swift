@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 final class LabelFormComponent: FormComponent {
-   
+
     let labelText: String
-    
+
     init(id: FormField,
          labelText: String
     ) {

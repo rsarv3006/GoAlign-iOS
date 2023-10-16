@@ -9,13 +9,13 @@ import UIKit
 import Combine
 
 class FormTextBoxCollectionViewCell: UICollectionViewCell {
-    
+
     private var subscriptions = Set<AnyCancellable>()
     private var item: TextBoxFormComponent?
     private var indexPath: IndexPath?
     private(set) var subject = PassthroughSubject<(String, IndexPath), Never>()
     private(set) var reload = PassthroughSubject<String, Never>()
-    
+
     private lazy var txtField: InputTextView = {
         let txtField = InputTextView()
         txtField.translatesAutoresizingMaskIntoConstraints = false
@@ -23,7 +23,7 @@ class FormTextBoxCollectionViewCell: UICollectionViewCell {
         txtField.font = .systemFont(ofSize: 18)
         return txtField
     }()
-    
+
     private lazy var errorLbl: UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
@@ -31,7 +31,7 @@ class FormTextBoxCollectionViewCell: UICollectionViewCell {
         lbl.text = ""
         return lbl
     }()
-    
+
     private lazy var contentStackVw: UIStackView = {
         let stackVw = UIStackView()
         stackVw.translatesAutoresizingMaskIntoConstraints = false
@@ -39,7 +39,7 @@ class FormTextBoxCollectionViewCell: UICollectionViewCell {
         stackVw.spacing = 6
         return stackVw
     }()
-    
+
     func bind(_ item: FormComponent,
               at indexPath: IndexPath) {
         guard let item = item as? TextBoxFormComponent else { return }
@@ -48,7 +48,7 @@ class FormTextBoxCollectionViewCell: UICollectionViewCell {
         setup(item: item)
         self.backgroundColor = .clear
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         removeViews()
@@ -59,37 +59,36 @@ class FormTextBoxCollectionViewCell: UICollectionViewCell {
 }
 
 private extension FormTextBoxCollectionViewCell {
-    
+
     func setup(item: TextBoxFormComponent) {
-        
+
         txtField.isSecureTextEntry = item.isSecureTextEntryEnabled
-        
+
         NotificationCenter
             .default
             .publisher(for: InputTextView.textDidChangeNotification, object: txtField)
             .compactMap { ($0.object as? UITextField)?.text }
             .sink { [weak self] val in
-                
+
                 guard let self = self,
                       let indexPath = self.indexPath else { return }
-                
+
                 self.subject.send((val, indexPath))
-                
+
                 do {
-                    
+
                     for validator in item.validations {
                         try validator.validate(val)
                     }
-                    
+
                     self.txtField.valid()
                     if let errorLabelTextCount = self.errorLbl.text?.count, errorLabelTextCount > 0 {
                         self.manipulateErrorLabel(.hide)
                     }
                     self.errorLbl.text = ""
-                    
-                    
+
                 } catch {
-                    
+
                     self.txtField.invalid()
                     if let validationError = error as? ValidationError {
                         switch validationError {
@@ -102,7 +101,7 @@ private extension FormTextBoxCollectionViewCell {
                 }
             }
             .store(in: &subscriptions)
-        
+
         // Setup
         txtField.delegate = self
         txtField.placeholderText = item.placeholder
@@ -110,13 +109,13 @@ private extension FormTextBoxCollectionViewCell {
         txtField.layer.borderColor = UIColor.systemGray5.cgColor
         txtField.layer.borderWidth = 1
         txtField.layer.cornerRadius = 8
-        
+
         // Layout
-        
+
         contentView.addSubview(contentStackVw)
-        
+
         contentStackVw.addArrangedSubview(txtField)
-        
+
         NSLayoutConstraint.activate([
             txtField.heightAnchor.constraint(equalToConstant: 44),
             errorLbl.heightAnchor.constraint(equalToConstant: 22),
@@ -125,10 +124,9 @@ private extension FormTextBoxCollectionViewCell {
             contentStackVw.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             contentStackVw.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
-        
-        
+
     }
-    
+
     func manipulateErrorLabel(_ showHideVariant: ShowHideLabelVariant) {
         if showHideVariant == .hide {
             contentStackVw.removeArrangedSubview(errorLbl)
@@ -137,11 +135,11 @@ private extension FormTextBoxCollectionViewCell {
         }
         self.reload.send("")
     }
-    
+
 }
 
 extension FormTextBoxCollectionViewCell: UITextViewDelegate {
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

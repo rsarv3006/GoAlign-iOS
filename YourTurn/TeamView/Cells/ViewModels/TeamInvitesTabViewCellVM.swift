@@ -8,9 +8,9 @@
 import Foundation
 
 struct TeamInvitesTabViewCellVM {
-    
+
     let inviteeEmail: String
-    
+
     init(invite: TeamInviteModel) {
         self.inviteeEmail = invite.email
     }

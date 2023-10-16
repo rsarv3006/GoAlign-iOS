@@ -15,11 +15,11 @@ final class FormCollectionView: UICollectionView {
         backgroundColor = .clear
         translatesAutoresizingMaskIntoConstraints = false
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func registerCells() {
         register(UICollectionViewCell.self, forCellWithReuseIdentifier: UICollectionViewCell.cellId)
         register(FormButtonCollectionViewCell.self, forCellWithReuseIdentifier: FormButtonCollectionViewCell.cellId)
@@ -34,4 +34,3 @@ final class FormCollectionView: UICollectionView {
         register(FormLabelCollectionViewCell.self, forCellWithReuseIdentifier: FormLabelCollectionViewCell.cellId)
     }
 }
-

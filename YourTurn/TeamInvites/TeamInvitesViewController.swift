@@ -11,18 +11,17 @@ import Combine
 private let TEAM_INVITE_CELL_REUSE_ID = "teamInviteCell"
 private let TEAM_INVITE_SUB_CELL_REUSE_ID = "teamInviteSubCell"
 
-
 protocol TeamInvitesViewControllerDelegate {
     func modifyLoaderState(shouldShowLoader: Bool)
 }
 
 class TeamInvitesViewController: UITableViewController {
     var subscriptions = Set<AnyCancellable>()
-    
+
     private(set) var requestHomeReload = PassthroughSubject<Bool, Never>()
-    
+
     var viewModel: TeamInvitesVM?
-    
+
     private lazy var teamInvites: [TeamInviteDisplayModel] = [] {
         didSet {
             DispatchQueue.main.async {
@@ -30,17 +29,17 @@ class TeamInvitesViewController: UITableViewController {
             }
         }
     }
-    
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .customBackgroundColor
         title = "Team Invites"
-        
+
         tableView.register(TeamInviteCellView.self, forCellReuseIdentifier: TEAM_INVITE_CELL_REUSE_ID)
         tableView.register(TeamInviteSubCellView.self, forCellReuseIdentifier: TEAM_INVITE_SUB_CELL_REUSE_ID)
         tableView.rowHeight = 60
-        
+
         viewModel?.fetchCurrentInvites()
         configureCombineListeners()
         showLoader(true)
@@ -68,11 +67,11 @@ extension TeamInvitesViewController {
             return 1
         }
     }
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return teamInvites.count
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: TEAM_INVITE_CELL_REUSE_ID, for: indexPath) as! TeamInviteCellView
@@ -82,25 +81,25 @@ extension TeamInvitesViewController {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: TEAM_INVITE_SUB_CELL_REUSE_ID, for: indexPath) as! TeamInviteSubCellView
             let inviteId = teamInvites[indexPath.section].inviteModel.teamInviteId
-            
+
             cell.viewModel = TeamInviteSubCellVM(inviteId: inviteId)
             cell.delegate = self
-            
+
             cell.viewModel?.requestDisplayUIAlert.sink(receiveValue: { uiAlert in
                 DispatchQueue.main.async {
                     self.present(uiAlert, animated: true)
                 }
             }).store(in: &subscriptions)
-            
+
             cell.viewModel?.requestReloadSubject.sink(receiveValue: { _ in
                 self.viewModel?.fetchCurrentInvites()
                 self.requestHomeReload.send(true)
             }).store(in: &subscriptions)
-            
+
             return cell
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if indexPath.row == 0 {
             teamInvites[indexPath.section].areButtonsVisible = !teamInvites[indexPath.section].areButtonsVisible

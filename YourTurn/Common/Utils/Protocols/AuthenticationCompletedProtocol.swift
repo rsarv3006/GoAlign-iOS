@@ -9,8 +9,8 @@ import UIKit
 
 protocol AuthScreenDelegate: AnyObject {
     func authenticationDidComplete(viewController: AuthViewController)
-    
+
     func requestOtherAuthScreen(viewController: AuthViewController)
-    
+
     func requestInputCodeScreen(viewController: AuthViewController, loginRequestModel: LoginRequestModel)
 }

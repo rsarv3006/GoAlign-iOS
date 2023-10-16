@@ -12,7 +12,7 @@ struct TeamAddModalVM {
     let createTeamAndInviteButtonText = "Create Team & Invite Users"
     let modalTitleText = "Create a Team"
     let teamNameFieldPlacholderText = "Team Name"
-    
+
     func createTeam(viewController: TeamAddModal, teamName: String) {
         viewController.showLoader(true)
         viewController.createButton.isEnabled = false
@@ -20,7 +20,7 @@ struct TeamAddModalVM {
             viewController.showLoader(false)
             viewController.createButton.isEnabled = true
         }
-        
+
         Task {
             do {
                 let createTeamDto = CreateTeamDto(teamName: teamName)
@@ -33,7 +33,7 @@ struct TeamAddModalVM {
             }
         }
     }
-    
+
     func createTeamAndGoToInvite(viewController: TeamAddModal, teamName: String) {
         viewController.showLoader(true)
         viewController.createAndInviteButton.isEnabled = false
@@ -41,7 +41,7 @@ struct TeamAddModalVM {
             viewController.showLoader(false)
             viewController.createAndInviteButton.isEnabled = true
         }
-        
+
         Task {
             do {
                 let createTeamDto = CreateTeamDto(teamName: teamName)
@@ -54,11 +54,11 @@ struct TeamAddModalVM {
             }
         }
     }
-    
+
     func createTeamCreateFailErrorMessageString(error: Error) -> String {
         return "Problem encountered creating the team. \(error.localizedDescription)"
     }
-    
+
     private func handleTeamCreateFail(viewController: TeamAddModal, error: Error, teamName: String) {
         Logger.log(logLevel: .Prod, name: Logger.Events.Team.teamCreateFailed, payload: ["error": error, "teamName": teamName])
         viewController.showMessage(withTitle: "Uh Oh", message: createTeamCreateFailErrorMessageString(error: error))

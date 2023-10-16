@@ -9,13 +9,13 @@ import UIKit
 import Combine
 
 class FormTextCollectionViewCell: UICollectionViewCell {
-    
+
     private var subscriptions = Set<AnyCancellable>()
     private var item: TextFormComponent?
     private var indexPath: IndexPath?
     private(set) var subject = PassthroughSubject<(String, IndexPath), Never>()
     private(set) var reload = PassthroughSubject<String, Never>()
-    
+
     lazy var txtField: UITextField = {
         let txtField = UITextField()
         if let editValue = item?.editValue {
@@ -29,7 +29,7 @@ class FormTextCollectionViewCell: UICollectionViewCell {
         txtField.backgroundColor = .clear
         return txtField
     }()
-    
+
     private lazy var errorLbl: UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
@@ -37,7 +37,7 @@ class FormTextCollectionViewCell: UICollectionViewCell {
         lbl.text = ""
         return lbl
     }()
-    
+
     private lazy var contentStackVw: UIStackView = {
         let stackVw = UIStackView()
         stackVw.translatesAutoresizingMaskIntoConstraints = false
@@ -45,7 +45,7 @@ class FormTextCollectionViewCell: UICollectionViewCell {
         stackVw.spacing = 6
         return stackVw
     }()
-    
+
     func bind(_ item: FormComponent,
               at indexPath: IndexPath) {
         guard let item = item as? TextFormComponent else { return }
@@ -53,7 +53,7 @@ class FormTextCollectionViewCell: UICollectionViewCell {
         self.item = item
         setup(item: item)
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         removeViews()
@@ -64,35 +64,34 @@ class FormTextCollectionViewCell: UICollectionViewCell {
 }
 
 private extension FormTextCollectionViewCell {
-    
+
     func setup(item: TextFormComponent) {
-        
+
         txtField.isSecureTextEntry = item.isSecureTextEntryEnabled
-        
+
         NotificationCenter
             .default
             .publisher(for: UITextField.textDidChangeNotification, object: txtField)
             .compactMap { ($0.object as? UITextField)?.text }
             .sink { [weak self] val in
-                
+
                 guard let self = self,
                       let indexPath = self.indexPath else { return }
-                
+
                 self.subject.send((val, indexPath))
-                
+
                 do {
-                    
+
                     for validator in item.validations {
                         try validator.validate(val)
                     }
-                    
+
                     self.txtField.valid()
                     if let errorLabelTextCount = self.errorLbl.text?.count, errorLabelTextCount > 0 {
                         self.manipulateErrorLabel(.hide)
                     }
                     self.errorLbl.text = ""
-                    
-                    
+
                 } catch {
                     self.txtField.invalid()
                     if let validationError = error as? ValidationError {
@@ -106,7 +105,7 @@ private extension FormTextCollectionViewCell {
                 }
             }
             .store(in: &subscriptions)
-        
+
         // Setup
         txtField.delegate = self
         txtField.placeholder = item.placeholder
@@ -114,13 +113,13 @@ private extension FormTextCollectionViewCell {
         txtField.layer.borderColor = UIColor.systemGray5.cgColor
         txtField.layer.borderWidth = 1
         txtField.layer.cornerRadius = 8
-        
+
         // Layout
-        
+
         contentView.addSubview(contentStackVw)
-        
+
         contentStackVw.addArrangedSubview(txtField)
-        
+
         NSLayoutConstraint.activate([
             txtField.heightAnchor.constraint(equalToConstant: 44),
             errorLbl.heightAnchor.constraint(equalToConstant: 22),
@@ -129,10 +128,9 @@ private extension FormTextCollectionViewCell {
             contentStackVw.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             contentStackVw.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
-        
-        
+
     }
-    
+
     func manipulateErrorLabel(_ showHideVariant: ShowHideLabelVariant) {
         if showHideVariant == .hide {
             contentStackVw.removeArrangedSubview(errorLbl)
@@ -141,11 +139,11 @@ private extension FormTextCollectionViewCell {
         }
         self.reload.send("")
     }
-    
+
 }
 
 extension FormTextCollectionViewCell: UITextFieldDelegate {
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

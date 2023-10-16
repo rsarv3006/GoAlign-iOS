@@ -12,40 +12,40 @@ class FormHideableIntervalPickerCollectionViewCell: UICollectionViewCell {
     private var item: HideableIntervalPickerFormComponent?
     private var indexPath: IndexPath?
     private var isIntervalPickerVisible = false
-    
+
     private var subscriptions = Set<AnyCancellable>()
     private(set) var subject = PassthroughSubject<(IntervalObject, IndexPath), Never>()
     private(set) var reload = PassthroughSubject<String, Never>()
-    
+
     private lazy var controlLabel: UILabel = {
         let label = UILabel()
         label.textColor = .customText
         return label
     }()
-    
+
     private lazy var controlButton: BlueButton = {
         let button = BlueButton(type: .custom)
         button.setTitle("  1 - day(s)  ", for: .normal)
         button.layer.cornerRadius = 8
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        
+
         if let editPickerValue = item?.editValue {
             button.setTitle("  \(editPickerValue.toString())  ", for: .normal)
         }
-        
+
         return button
     }()
-    
+
     private lazy var intervalPicker: IntervalPicker = {
         var ip = IntervalPicker(frame: .zero)
-        
+
         if let editPickerValue = item?.editValue {
             ip = IntervalPicker(frame: .zero, interval: editPickerValue)
         }
-        
+
         return ip
     }()
-    
+
     private lazy var errorLbl: UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
@@ -53,7 +53,7 @@ class FormHideableIntervalPickerCollectionViewCell: UICollectionViewCell {
         lbl.text = ""
         return lbl
     }()
-    
+
     private lazy var contentStackVw: UIStackView = {
         let stackVw = UIStackView()
         stackVw.translatesAutoresizingMaskIntoConstraints = false
@@ -61,14 +61,14 @@ class FormHideableIntervalPickerCollectionViewCell: UICollectionViewCell {
         stackVw.spacing = 6
         return stackVw
     }()
-    
+
     private lazy var controlStackView: UIStackView = {
         let stackVw = UIStackView()
         stackVw.translatesAutoresizingMaskIntoConstraints = false
         stackVw.axis = .horizontal
         return stackVw
     }()
-    
+
     func bind(_ item: FormComponent,
               at indexPath: IndexPath) {
         guard let item = item as? HideableIntervalPickerFormComponent else { return }
@@ -76,7 +76,7 @@ class FormHideableIntervalPickerCollectionViewCell: UICollectionViewCell {
         self.item = item
         setup(item: item)
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         removeViews()
@@ -89,22 +89,22 @@ class FormHideableIntervalPickerCollectionViewCell: UICollectionViewCell {
 private extension FormHideableIntervalPickerCollectionViewCell {
     func setup(item: HideableIntervalPickerFormComponent) {
         controlLabel.text = item.title
-        
+
         controlButton.addTarget(self, action: #selector(onControlPress), for: .touchUpInside)
-        
+
         intervalPicker.delegate = self
-        
+
         contentView.addSubview(contentStackVw)
-        
+
         contentStackVw.addArrangedSubview(controlStackView)
-        
+
         controlStackView.addArrangedSubview(controlLabel)
         controlStackView.addArrangedSubview(controlButton)
-        
+
         NSLayoutConstraint.activate([
             controlLabel.heightAnchor.constraint(equalToConstant: 44),
             controlButton.heightAnchor.constraint(equalToConstant: 44),
-            
+
             intervalPicker.heightAnchor.constraint(equalToConstant: 100),
             errorLbl.heightAnchor.constraint(equalToConstant: 22),
             contentStackVw.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -112,13 +112,13 @@ private extension FormHideableIntervalPickerCollectionViewCell {
             contentStackVw.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             contentStackVw.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
-        
+
         if let indexPath = indexPath {
             self.subject.send((IntervalObject(1, .day), indexPath))
         }
-        
+
     }
-    
+
     @objc func onControlPress() {
         if isIntervalPickerVisible == true {
             self.manipulateFieldVisibility(.hide)
@@ -139,7 +139,7 @@ extension FormHideableIntervalPickerCollectionViewCell: FieldVisibilityHandlers 
         }
         self.reload.send("")
     }
-    
+
     func manipulateFieldVisibility(_ showHideVariant: ShowHideLabelVariant) {
         if showHideVariant == .hide {
             intervalPicker.isHidden = true
@@ -164,20 +164,20 @@ extension FormHideableIntervalPickerCollectionViewCell: IntervalPickerDelegate {
 extension FormHideableIntervalPickerCollectionViewCell {
     func sendCombineEvent(for intervalPicker: IntervalPicker, with intervalObj: IntervalObject) {
         guard let indexPath = self.indexPath, let item = self.item else { return }
-        
+
         self.subject.send((intervalObj, indexPath))
-        
+
         do {
             for validator in item.validations {
                 try validator.validate(intervalObj)
             }
-            
+
             self.intervalPicker.valid()
             if let errorLabelTextCount = self.errorLbl.text?.count, errorLabelTextCount > 0 {
                 self.manipulateErrorLabelVisibility(.hide)
             }
             self.errorLbl.text = ""
-            
+
         } catch {
             self.intervalPicker.invalid()
             if let validationError = error as? ValidationError {

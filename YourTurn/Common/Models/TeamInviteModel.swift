@@ -25,7 +25,7 @@ class TeamInviteModel: Codable {
 class TeamInviteDisplayModel {
     let inviteModel: TeamInviteModel
     var areButtonsVisible: Bool = false
-    
+
     init (inviteModel: TeamInviteModel) {
         self.inviteModel = inviteModel
     }
@@ -34,7 +34,7 @@ class TeamInviteDisplayModel {
 class CreateInviteDtoModel: Codable {
     let teamId: UUID
     let email: String
-    
+
     init(teamId: UUID, emailAddressToInvite: String) {
         self.teamId = teamId
         self.email = emailAddressToInvite

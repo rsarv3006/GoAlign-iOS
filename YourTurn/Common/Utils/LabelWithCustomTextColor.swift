@@ -13,9 +13,9 @@ class LabelWithCustomTextColor: UILabel {
         super.init(frame: frame)
         textColor = .customText
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
 }

@@ -12,7 +12,7 @@ final class SwitchControlledTextFormComponent: FormComponent {
     let placeholder: String
     let keyboardType: UIKeyboardType
     let editValue: String?
-    
+
     init(id: FormField,
          placeholder: String,
          switchLabel: String,

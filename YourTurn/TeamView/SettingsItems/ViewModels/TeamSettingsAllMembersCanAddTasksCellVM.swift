@@ -11,19 +11,19 @@ import Combine
 class TeamSettingsAllMembersCanAddTasksCellVM {
     private(set) var settingPassThrough = CurrentValueSubject<Bool, Never>(false)
     private(set) var settingEnabledPassThrough = CurrentValueSubject<Bool, Never>(false)
-    
+
     let switchTitle = "Can all members add tasks:"
     var delegate: TeamSettingsCellsDelegate?
-    
+
     private let team: TeamModel
-    
+
     init(team: TeamModel) {
         self.team = team
-        
+
         fetchCanAllMembersAddTasksSetting()
         canUserChangeSetting()
     }
-    
+
     func fetchCanAllMembersAddTasksSetting() {
         Task {
             do {
@@ -34,7 +34,7 @@ class TeamSettingsAllMembersCanAddTasksCellVM {
             }
         }
     }
-    
+
     func updateSetting(newSettingValue: Bool) {
         Task {
             do {
@@ -46,7 +46,7 @@ class TeamSettingsAllMembersCanAddTasksCellVM {
             }
         }
     }
-    
+
     func canUserChangeSetting() {
         Task {
             let isUserTeamManager = try? await UserService.isUserTeamManager(forTeam: team)

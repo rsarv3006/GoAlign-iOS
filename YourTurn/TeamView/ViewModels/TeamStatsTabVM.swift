@@ -12,15 +12,15 @@ typealias TeamStatsModelResult = Result<Bool, Error>
 
 class TeamStatsTabVM {
     var reloadStats = CurrentValueSubject<TeamStatsModelResult, Never>(.success(true))
-    
+
     let tabTitleString = "Team Stats"
-    
+
     var labelStrings: TeamStatsLabelDefaultStrings = TeamStatsLabelDefaultStrings()
-    
+
     init(teamId: UUID) {
         getTeamStats(teamId: teamId)
     }
-    
+
     private func getTeamStats(teamId: UUID) {
         Task {
             do {
@@ -32,7 +32,7 @@ class TeamStatsTabVM {
             }
         }
     }
-    
+
     private func configureLabelStrings(teamStats: TeamStatsModel) {
         labelStrings.totalNumberOfTasks += String(teamStats.totalNumberOfTasks)
         labelStrings.numberOfCompletedTaskEntries += String(teamStats.numberOfCompletedTaskEntries)

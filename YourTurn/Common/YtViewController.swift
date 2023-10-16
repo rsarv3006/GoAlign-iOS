@@ -12,7 +12,7 @@ class YtViewController: UIViewController {
         super.viewDidLoad()
         configureView()
     }
-    
+
     func configureView() {
 
     }

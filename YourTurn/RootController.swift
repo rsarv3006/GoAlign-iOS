@@ -10,24 +10,24 @@ import UIKit
 import Combine
 
 class RootController: UIViewController {
-    
+
     private var subscriptions = Set<AnyCancellable>()
-    
+
     override func viewDidLoad() {
         view.backgroundColor = .customBackgroundColor
         super.viewDidLoad()
         configureRootView()
     }
-    
+
     func configureRootView() {
         showLoader(true)
         Task {
             defer {
                 showLoader(false)
             }
-            
+
             do {
-                let _ = try await AppState.getInstance().getAccessToken()
+                _ = try await AppState.getInstance().getAccessToken()
                 goHome()
             } catch {
                 goSignUp()
@@ -43,23 +43,23 @@ extension RootController {
         DispatchQueue.main.async {
             let homeScreenController = HomeScreen()
             homeScreenController.viewModel = HomeScreenVM()
-            
+
             homeScreenController.logoutEventSubject.sink { _ in
                 AuthenticationService.signOut()
                 DispatchQueue.main.async {
                     self.dismiss(animated: true)
                     self.goSignUp()
                 }
-                
+
             }.store(in: &self.subscriptions)
-            
+
             self.dismiss(animated: true)
             let nav = UINavigationController(rootViewController: homeScreenController)
             nav.modalPresentationStyle = .fullScreen
             self.navigationController?.present(nav, animated: false, completion: nil)
         }
     }
-    
+
     func goSignUp() {
         DispatchQueue.main.async {
             let controller = SignUpScreen()
@@ -72,7 +72,7 @@ extension RootController {
             self.navigationController?.present(nav, animated: false, completion: nil)
         }
     }
-    
+
     func goSignIn() {
         DispatchQueue.main.async {
             let controller = SignInScreen()
@@ -85,7 +85,7 @@ extension RootController {
             self.navigationController?.present(nav, animated: false, completion: nil)
         }
     }
-    
+
     func goInputCode(viewController: AuthViewController, loginRequestModel: LoginRequestModel) {
         DispatchQueue.main.async {
             let controller = InputCode()
@@ -106,14 +106,14 @@ extension RootController: AuthScreenDelegate {
             goSignUp()
         }
     }
-    
+
     func authenticationDidComplete(viewController: AuthViewController) {
         DispatchQueue.main.async {
             self.dismiss(animated: true)
             self.goHome()
         }
     }
-    
+
     func requestInputCodeScreen(viewController: AuthViewController, loginRequestModel: LoginRequestModel) {
         DispatchQueue.main.async {
             self.goInputCode(viewController: viewController, loginRequestModel: loginRequestModel)

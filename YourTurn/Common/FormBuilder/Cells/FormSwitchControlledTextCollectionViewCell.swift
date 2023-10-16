@@ -9,43 +9,43 @@ import UIKit
 import Combine
 
 class FormSwitchControlledTextCollectionViewCell: UICollectionViewCell {
-    
+
     private var subscriptions = Set<AnyCancellable>()
     private var item: SwitchControlledTextFormComponent?
     private var indexPath: IndexPath?
     private(set) var subject = PassthroughSubject<(String, IndexPath), Never>()
     private(set) var reload = PassthroughSubject<String, Never>()
-    
+
     private lazy var textFieldControlLabel: UILabel = {
         let label = UILabel()
         label.textColor = .customText
         return label
     }()
-    
+
     private lazy var textFieldControl: UISwitch = {
         let sw = UISwitch()
-        
+
         if item?.editValue != nil {
             sw.isOn = true
         }
-        
+
         return sw
     }()
-    
+
     private lazy var txtField: UITextField = {
         let txtField = UITextField()
         txtField.translatesAutoresizingMaskIntoConstraints = false
         txtField.borderStyle = .roundedRect
         txtField.textColor = .customText
         txtField.backgroundColor = .clear
-        
+
         if let editTextValue = item?.editValue {
             txtField.text = editTextValue
         }
-        
+
         return txtField
     }()
-    
+
     private lazy var errorLbl: UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
@@ -53,7 +53,7 @@ class FormSwitchControlledTextCollectionViewCell: UICollectionViewCell {
         lbl.text = ""
         return lbl
     }()
-    
+
     private lazy var contentStackVw: UIStackView = {
         let stackVw = UIStackView()
         stackVw.translatesAutoresizingMaskIntoConstraints = false
@@ -61,14 +61,14 @@ class FormSwitchControlledTextCollectionViewCell: UICollectionViewCell {
         stackVw.spacing = 6
         return stackVw
     }()
-    
+
     private lazy var switchStackView: UIStackView = {
         let stackVw = UIStackView()
         stackVw.translatesAutoresizingMaskIntoConstraints = false
         stackVw.axis = .horizontal
         return stackVw
     }()
-    
+
     func bind(_ item: FormComponent,
               at indexPath: IndexPath) {
         guard let item = item as? SwitchControlledTextFormComponent else { return }
@@ -76,7 +76,7 @@ class FormSwitchControlledTextCollectionViewCell: UICollectionViewCell {
         self.item = item
         setup(item: item)
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         removeViews()
@@ -87,14 +87,14 @@ class FormSwitchControlledTextCollectionViewCell: UICollectionViewCell {
 }
 
 private extension FormSwitchControlledTextCollectionViewCell {
-    
+
     func setup(item: SwitchControlledTextFormComponent) {
         textFieldControlLabel.text = item.switchLabel
-        
+
         textFieldControl.addTarget(self, action: #selector(onTextControlToggle(_:)), for: .valueChanged)
-        
+
         setupCombineSubjects()
-        
+
         // Setup
         txtField.delegate = self
         txtField.placeholder = item.placeholder
@@ -102,20 +102,20 @@ private extension FormSwitchControlledTextCollectionViewCell {
         txtField.layer.borderColor = UIColor.systemGray5.cgColor
         txtField.layer.borderWidth = 1
         txtField.layer.cornerRadius = 8
-        
+
         // Layout
-        
+
         contentView.addSubview(contentStackVw)
-        
+
         contentStackVw.addArrangedSubview(switchStackView)
-        
+
         switchStackView.addArrangedSubview(textFieldControlLabel)
         switchStackView.addArrangedSubview(textFieldControl)
-        
+
         NSLayoutConstraint.activate([
             textFieldControlLabel.heightAnchor.constraint(equalToConstant: 44),
             textFieldControl.heightAnchor.constraint(equalToConstant: 44),
-            
+
             txtField.heightAnchor.constraint(equalToConstant: 44),
             errorLbl.heightAnchor.constraint(equalToConstant: 22),
             contentStackVw.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -123,10 +123,9 @@ private extension FormSwitchControlledTextCollectionViewCell {
             contentStackVw.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             contentStackVw.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
-        
-        
+
     }
-    
+
     func manipulateErrorLabelVisibility(_ showHideVariant: ShowHideLabelVariant) {
         if showHideVariant == .hide {
             contentStackVw.removeArrangedSubview(errorLbl)
@@ -135,7 +134,7 @@ private extension FormSwitchControlledTextCollectionViewCell {
         }
         self.reload.send("")
     }
-    
+
     func manipulateTextFieldVisibility(_ showHideVariant: ShowHideLabelVariant) {
         if showHideVariant == .hide {
             txtField.isHidden = true
@@ -146,7 +145,7 @@ private extension FormSwitchControlledTextCollectionViewCell {
         }
         self.reload.send("")
     }
-    
+
     @objc func onTextControlToggle(_ sender: UISwitch) {
         if sender.isOn {
             manipulateTextFieldVisibility(.show)
@@ -165,31 +164,29 @@ extension FormSwitchControlledTextCollectionViewCell {
             .publisher(for: UITextField.textDidChangeNotification, object: txtField)
             .compactMap { ($0.object as? UITextField)?.text }
             .sink { [weak self] val in
-                
+
                 guard let self = self,
                       let indexPath = self.indexPath, let item = self.item else { return }
-                
+
                 if self.textFieldControl.isOn {
                     self.subject.send((val, indexPath))
                 } else {
                     self.subject.send(("", indexPath))
                 }
-                
-                
+
                 do {
                     for validator in item.validations {
                         try validator.validate(val)
                     }
-                    
+
                     self.txtField.valid()
                     if let errorLabelTextCount = self.errorLbl.text?.count, errorLabelTextCount > 0 {
                         self.manipulateErrorLabelVisibility(.hide)
                     }
                     self.errorLbl.text = ""
-                    
-                    
+
                 } catch {
-                    
+
                     self.txtField.invalid()
                     if let validationError = error as? ValidationError {
                         switch validationError {
@@ -207,7 +204,7 @@ extension FormSwitchControlledTextCollectionViewCell {
 
 // MARK: - UITextFieldDelegate
 extension FormSwitchControlledTextCollectionViewCell: UITextFieldDelegate {
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

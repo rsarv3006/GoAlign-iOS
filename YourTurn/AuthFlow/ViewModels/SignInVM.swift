@@ -11,9 +11,9 @@ import Combine
 class SignInVM {
     let signInLabelTextString = "Sign In"
     let buttonTextGoToSignUp: String = "Don't have an account? \nClick here to Sign Up!"
-    
+
     let signInSubject = PassthroughSubject<Result<LoginRequestModel?, Error>, Never>()
-    
+
     func signIn(form: SignInCompletedForm) {
         Task {
             do {

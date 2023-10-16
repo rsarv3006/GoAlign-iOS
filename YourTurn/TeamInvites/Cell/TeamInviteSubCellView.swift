@@ -17,9 +17,9 @@ class TeamInviteSubCellView: UITableViewCell {
             acceptInviteButton.setTitle(viewModel.acceptButtonLabel, for: .normal)
         }
     }
-    
+
     var delegate: TeamInvitesViewControllerDelegate?
-    
+
     // MARK: - UI Elements
     private lazy var declineInviteButton: StandardButton = {
         let button = StandardButton()
@@ -42,17 +42,17 @@ class TeamInviteSubCellView: UITableViewCell {
         stackView.distribution = .equalCentering
         return stackView
     }()
-    
+
     // MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureView()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func configureView() {
         contentView.backgroundColor = .customBackgroundColor
         contentView.addSubview(buttonsStack)
@@ -60,14 +60,12 @@ class TeamInviteSubCellView: UITableViewCell {
         acceptInviteButton.setWidth(120)
         declineInviteButton.setWidth(120)
     }
-    
+
     @objc func onAcceptPress() {
         viewModel?.acceptInvite(delegate: delegate)
     }
-    
+
     @objc func onDeclinePress() {
         viewModel?.declineInvite(delegate: delegate)
     }
 }
-
-

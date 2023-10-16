@@ -8,13 +8,13 @@
 import UIKit
 
 final class TextFormComponent: FormComponent {
-    
+
     let placeholder: String
     let keyboardType: UIKeyboardType
     let isSecureTextEntryEnabled: Bool
     let autoCorrectionType: UITextAutocorrectionType
     let editValue: String?
-    
+
     init(id: FormField,
          placeholder: String,
          keyboardType: UIKeyboardType = .default,

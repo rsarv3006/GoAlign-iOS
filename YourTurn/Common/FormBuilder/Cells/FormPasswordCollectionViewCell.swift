@@ -9,13 +9,13 @@ import UIKit
 import Combine
 
 class FormPasswordCollectionViewCell: UICollectionViewCell {
-    
+
     private var subscriptions = Set<AnyCancellable>()
     private var item: PasswordFormComponent?
     private var indexPath: IndexPath?
     private(set) var subject = PassthroughSubject<(String, IndexPath), Never>()
     private(set) var reload = PassthroughSubject<String, Never>()
-    
+
     private lazy var passwordField: UITextField = {
         let txtField = UITextField()
         txtField.isSecureTextEntry = true
@@ -24,7 +24,7 @@ class FormPasswordCollectionViewCell: UICollectionViewCell {
         txtField.backgroundColor = .clear
         return txtField
     }()
-    
+
     private lazy var confirmPasswordField: UITextField = {
         let txtField = UITextField()
         txtField.isSecureTextEntry = true
@@ -33,7 +33,7 @@ class FormPasswordCollectionViewCell: UICollectionViewCell {
         txtField.backgroundColor = .clear
         return txtField
     }()
-    
+
     private lazy var errorLbl: UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +41,7 @@ class FormPasswordCollectionViewCell: UICollectionViewCell {
         lbl.text = ""
         return lbl
     }()
-    
+
     private lazy var contentStackVw: UIStackView = {
         let stackVw = UIStackView()
         stackVw.translatesAutoresizingMaskIntoConstraints = false
@@ -49,7 +49,7 @@ class FormPasswordCollectionViewCell: UICollectionViewCell {
         stackVw.spacing = 6
         return stackVw
     }()
-    
+
     func bind(_ item: FormComponent,
               at indexPath: IndexPath) {
         guard let item = item as? PasswordFormComponent else { return }
@@ -57,7 +57,7 @@ class FormPasswordCollectionViewCell: UICollectionViewCell {
         self.item = item
         setup(item: item)
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         removeViews()
@@ -68,30 +68,30 @@ class FormPasswordCollectionViewCell: UICollectionViewCell {
 }
 
 private extension FormPasswordCollectionViewCell {
-    
+
     func setup(item: PasswordFormComponent) {
         setUpListenerOnPasswordField(item: item)
         setUpListenerOnConfirmPasswordField(item: item)
-        
+
         // Setup
         passwordField.delegate = self
         passwordField.placeholder = item.placeholder
         passwordField.layer.borderColor = UIColor.systemGray5.cgColor
         passwordField.layer.borderWidth = 1
         passwordField.layer.cornerRadius = 8
-        
+
         confirmPasswordField.delegate = self
         confirmPasswordField.placeholder = item.confirmPlaceholder
         confirmPasswordField.layer.borderColor = UIColor.systemGray5.cgColor
         confirmPasswordField.layer.borderWidth = 1
         confirmPasswordField.layer.cornerRadius = 8
         // Layout
-        
+
         contentView.addSubview(contentStackVw)
-        
+
         contentStackVw.addArrangedSubview(passwordField)
         contentStackVw.addArrangedSubview(confirmPasswordField)
-        
+
         NSLayoutConstraint.activate([
             passwordField.heightAnchor.constraint(equalToConstant: 44),
             confirmPasswordField.heightAnchor.constraint(equalToConstant: 44),
@@ -101,10 +101,9 @@ private extension FormPasswordCollectionViewCell {
             contentStackVw.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             contentStackVw.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
-        
-        
+
     }
-    
+
     func manipulateErrorLabel(_ showHideVariant: ShowHideLabelVariant) {
         if showHideVariant == .hide {
             contentStackVw.removeArrangedSubview(errorLbl)
@@ -113,11 +112,11 @@ private extension FormPasswordCollectionViewCell {
         }
         self.reload.send("")
     }
-    
+
 }
 
 extension FormPasswordCollectionViewCell: UITextFieldDelegate {
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -131,30 +130,29 @@ private extension FormPasswordCollectionViewCell {
             .publisher(for: UITextField.textDidChangeNotification, object: passwordField)
             .compactMap { ($0.object as? UITextField)?.text }
             .sink { [weak self] val in
-                
+
                 guard let self = self,
                       let indexPath = self.indexPath else { return }
-                
+
                 self.subject.send((val, indexPath))
-                
+
                 do {
                     for validator in item.validations {
                         try validator.validate(val)
                     }
-                    
+
                     if val != self.confirmPasswordField.text {
                         throw ValidationError.custom(message: "Passwords do not match.")
                     }
-                    
+
                     self.passwordField.valid()
                     if let errorLabelTextCount = self.errorLbl.text?.count, errorLabelTextCount > 0 {
                         self.manipulateErrorLabel(.hide)
                     }
                     self.errorLbl.text = ""
-                    
-                    
+
                 } catch {
-                    
+
                     self.passwordField.invalid()
                     if let validationError = error as? ValidationError {
                         switch validationError {
@@ -168,37 +166,36 @@ private extension FormPasswordCollectionViewCell {
             }
             .store(in: &subscriptions)
     }
-    
+
     func setUpListenerOnConfirmPasswordField(item: PasswordFormComponent) {
         NotificationCenter
             .default
             .publisher(for: UITextField.textDidChangeNotification, object: confirmPasswordField)
             .compactMap { ($0.object as? UITextField)?.text }
             .sink { [weak self] val in
-                
+
                 guard let self = self,
                       let indexPath = self.indexPath else { return }
-                
+
                 self.subject.send((val, indexPath))
-                
+
                 do {
                     for validator in item.validations {
                         try validator.validate(val)
                     }
-                    
+
                     if val != self.passwordField.text {
                         throw ValidationError.custom(message: "Passwords do not match.")
                     }
-                    
+
                     self.passwordField.valid()
                     if let errorLabelTextCount = self.errorLbl.text?.count, errorLabelTextCount > 0 {
                         self.manipulateErrorLabel(.hide)
                     }
                     self.errorLbl.text = ""
-                    
-                    
+
                 } catch {
-                    
+
                     self.passwordField.invalid()
                     if let validationError = error as? ValidationError {
                         switch validationError {

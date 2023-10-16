@@ -9,21 +9,21 @@ import Foundation
 import Combine
 
 class EditAssignedTeamMemberModalVM {
-    
+
     private (set) var requestTableReload = PassthroughSubject<Void, Never>()
     private (set) var requestShowError = PassthroughSubject<Error, Never>()
-    
+
     private (set) var team: TeamModel?
     private let assignedUserId: UUID?
-    
+
     private let teamId: UUID
-    
+
     var teamMembers: [UserModel] {
         get {
             team?.users ?? []
         }
     }
-    
+
     var indexOfAssignedUser: Int? {
         get {
             guard let assignedUserId = assignedUserId else { return nil }
@@ -33,12 +33,11 @@ class EditAssignedTeamMemberModalVM {
         }
     }
 
-    
     init(teamId: UUID, currentlyAssignedUserId: UUID?) {
         self.teamId = teamId
         self.assignedUserId = currentlyAssignedUserId
     }
-    
+
     func fetchTeamMembers() {
         Task {
             do {

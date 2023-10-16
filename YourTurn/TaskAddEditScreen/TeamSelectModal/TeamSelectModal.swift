@@ -11,7 +11,7 @@ private let TEAM_SELECT = 1020
 private let TEAM_MEMBER_SELECT = 1030
 
 class TeamSelectModal: ModalViewController {
-    
+
     private var teams = [TeamModel]() {
         didSet {
             DispatchQueue.main.async {
@@ -20,7 +20,7 @@ class TeamSelectModal: ModalViewController {
             }
         }
     }
-    
+
     private var selectedTeamIndex: Int = 0 {
         didSet {
             DispatchQueue.main.async {
@@ -28,7 +28,7 @@ class TeamSelectModal: ModalViewController {
             }
         }
     }
-    
+
     // MARK: - UI Elements
     private lazy var closeButton: BlueButton = {
         let button = BlueButton()
@@ -36,7 +36,7 @@ class TeamSelectModal: ModalViewController {
         button.setTitleColor(.customBackgroundColor, for: .normal)
         return button
     }()
-    
+
     private lazy var teamTitleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -45,7 +45,7 @@ class TeamSelectModal: ModalViewController {
         label.font = .systemFont(ofSize: 20)
         return label
     }()
-    
+
     private lazy var teamMemberTitleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -54,21 +54,21 @@ class TeamSelectModal: ModalViewController {
         label.font = .systemFont(ofSize: 20)
         return label
     }()
-    
+
     private let teamSelectTableView: UITableView = {
         let tv = UITableView()
         tv.tag = TEAM_SELECT
         tv.backgroundColor = .customBackgroundColor
         return tv
     }()
-    
+
     private let teamMemberSelectTableView: UITableView = {
         let tv = UITableView()
         tv.tag = TEAM_MEMBER_SELECT
         tv.backgroundColor = .customBackgroundColor
         return tv
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         showLoader(true)
@@ -77,11 +77,11 @@ class TeamSelectModal: ModalViewController {
         configureView()
         loadTeamsAndMembers()
     }
-    
+
     @objc func onClosePressed() {
         self.dismiss(animated: true)
     }
-    
+
     func loadTeamsAndMembers() {
         defer {
             self.showLoader(false)
@@ -123,12 +123,12 @@ extension TeamSelectModal: UITableViewDataSource {
             } else {
                 return 0
             }
-             
+
         } else {
             return 0
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView.tag == TEAM_SELECT {
             let cell = tableView.dequeueReusableCell(withIdentifier: "thing", for: indexPath) as! TeamSelectModalCellView
@@ -150,46 +150,46 @@ extension TeamSelectModal {
         subView.addSubview(closeButton)
         closeButton.centerX(inView: subView)
         closeButton.anchor(left: subView.leftAnchor, bottom: subView.bottomAnchor, right: subView.rightAnchor, paddingLeft: 12, paddingBottom: 12, paddingRight: 12)
-        
+
         closeButton.addTarget(self, action: #selector(onClosePressed), for: .touchUpInside)
-        
+
         subView.addSubview(teamTitleLabel)
         teamTitleLabel.centerX(inView: subView)
         teamTitleLabel.anchor(top: subView.topAnchor, left: subView.leftAnchor, right: subView.rightAnchor, height: 44)
-        
+
         teamSelectTableView.register(TeamSelectModalCellView.self, forCellReuseIdentifier: "thing")
         teamMemberSelectTableView.register(TeamSelectModalCellView.self, forCellReuseIdentifier: "otherThing")
-        
+
         subView.addSubview(teamSelectTableView)
         teamSelectTableView.anchor(top: teamTitleLabel.bottomAnchor, left: subView.leftAnchor, right: subView.rightAnchor, height: 120)
 
         subView.addSubview(teamMemberTitleLabel)
         teamMemberTitleLabel.centerX(inView: subView)
         teamMemberTitleLabel.anchor(top: teamSelectTableView.bottomAnchor, left: subView.leftAnchor, right: subView.rightAnchor, height: 44)
-        
+
         subView.addSubview(teamMemberSelectTableView)
         teamMemberSelectTableView.anchor(top: teamMemberTitleLabel.bottomAnchor, left: subView.leftAnchor, right: subView.rightAnchor, height: 120)
     }
-    
+
     func setupTables() {
         teamSelectTableView.delegate = self
         teamSelectTableView.dataSource = self
         teamSelectTableView.rowHeight = 40
-        
+
         teamMemberSelectTableView.delegate = self
         teamMemberSelectTableView.dataSource = self
         teamMemberSelectTableView.rowHeight = 40
     }
-    
+
     func configureModal() {
         view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        
+
         view.addSubview(subView)
         subView.center(inView: view)
-        
+
         let screenHeight = UIScreen.main.bounds.size.height
         let screenWidth = UIScreen.main.bounds.size.width
-        
+
         subView.setWidth(screenWidth * 0.75)
         subView.setHeight(screenHeight * 0.6)
     }

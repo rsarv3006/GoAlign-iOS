@@ -10,7 +10,7 @@ import XCTest
 final class AuthenticationServiceTest: XCTestCase {
 
     let sut = AuthenticationService.self
-    
+
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -24,7 +24,7 @@ final class AuthenticationServiceTest: XCTestCase {
             let errorString = sut.checkForStandardErrors(error: ServiceErrors.custom(message: "garbage garbage \(errorToTest.keyword) garbage garbage"))
             XCTAssert(errorString == errorToTest.userFacingErrorString)
         }
-        
+
         let errorString = sut.checkForStandardErrors(error: ServiceErrors.custom(message: "garbage garbage garbage garbage"))
         XCTAssert(errorString == sut.AuthErrorHandling.UserFacingErrorStrings.unknownError)
     }

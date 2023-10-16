@@ -9,7 +9,7 @@ import Foundation
 
 enum ValidationError: Error, LocalizedError {
     case custom(message: String)
-    
+
     public var errorDescription: String? {
         switch self {
         case .custom(let message):

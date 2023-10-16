@@ -17,9 +17,9 @@ final class TokenService {
             throw TokenService.TokenServiceError.expirationDateNotFound
         }
     }
-    
+
     static func refreshTokens(currentAccessToken: String?, currentRefreshToken: String?) async throws -> RefreshTokensReturnDto {
-        
+
         //        if let refreshToken = self.refreshToken {
         //            let refreshTokenRequest = RefreshTokenRequest(refreshToken: refreshToken)
         //            let refreshTokenTask = Task {
@@ -50,4 +50,3 @@ extension TokenService {
         case failedToLoadTokensFromKeychain
     }
 }
-

@@ -9,13 +9,13 @@ import UIKit
 import Combine
 
 class FormDateCollectionViewCell: UICollectionViewCell {
-    
+
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .customText
         return label
     }()
-    
+
     private lazy var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.translatesAutoresizingMaskIntoConstraints = false
@@ -24,10 +24,10 @@ class FormDateCollectionViewCell: UICollectionViewCell {
         if let editDateValue = item?.editValue {
             datePicker.date = editDateValue
         }
-        
+
         return datePicker
     }()
-    
+
     private lazy var errorLbl: UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
@@ -35,14 +35,14 @@ class FormDateCollectionViewCell: UICollectionViewCell {
         lbl.text = " "
         return lbl
     }()
-    
+
     private lazy var titleDateStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         return stackView
     }()
-    
+
     private lazy var contentStackVw: UIStackView = {
         let stackVw = UIStackView()
         stackVw.translatesAutoresizingMaskIntoConstraints = false
@@ -50,13 +50,13 @@ class FormDateCollectionViewCell: UICollectionViewCell {
         stackVw.spacing = 8
         return stackVw
     }()
-    
+
     private(set) var subject = PassthroughSubject<(Date, IndexPath), Never>()
     private(set) var reload = PassthroughSubject<String, Never>()
-    
+
     private var item: DateFormComponent?
     private var indexPath: IndexPath?
-    
+
     func bind(_ item: FormComponent,
               at indexPath: IndexPath) {
         guard let item = item as? DateFormComponent else { return }
@@ -64,7 +64,7 @@ class FormDateCollectionViewCell: UICollectionViewCell {
         self.indexPath = indexPath
         setup(item: item)
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         removeViews()
@@ -74,19 +74,19 @@ class FormDateCollectionViewCell: UICollectionViewCell {
 }
 
 private extension FormDateCollectionViewCell {
-    
+
     func setup(item: DateFormComponent) {
         titleLabel.text = item.title
-        
+
         datePicker.addTarget(self, action: #selector(datePickerChanged(picker:)), for: .valueChanged)
 
         datePicker.datePickerMode = item.mode
-        
+
         contentView.addSubview(contentStackVw)
-        
+
         titleDateStackView.addArrangedSubview(titleLabel)
         titleDateStackView.addArrangedSubview(datePicker)
-        
+
         contentStackVw.addArrangedSubview(titleDateStackView)
 
         NSLayoutConstraint.activate([
@@ -95,14 +95,13 @@ private extension FormDateCollectionViewCell {
             contentStackVw.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             contentStackVw.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
-        
-        
-        if let indexPath = indexPath  {
+
+        if let indexPath = indexPath {
             self.subject.send((datePicker.date, indexPath))
         }
-        
+
     }
-    
+
     @objc func datePickerChanged(picker: UIDatePicker) {
 
         guard let indexPath = indexPath,
@@ -120,7 +119,6 @@ private extension FormDateCollectionViewCell {
                 manipulateErrorLabel(.hide)
             }
             self.errorLbl.text = ""
-            
 
         } catch {
             self.manipulateErrorLabel(.show)

@@ -10,7 +10,7 @@ import Foundation
 class ChangeTeamManagerUserCellVM {
     let teamMemberName: String
     let teamMemberEmail: String
-    
+
     init(teamMember: UserModel) {
         teamMemberName = teamMember.username
         teamMemberEmail = teamMember.email

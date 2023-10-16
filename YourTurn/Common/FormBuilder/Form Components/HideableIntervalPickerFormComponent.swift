@@ -10,7 +10,7 @@ import Foundation
 final class HideableIntervalPickerFormComponent: FormComponent {
     let title: String
     let editValue: IntervalObject?
-    
+
     init(id: FormField,
          title: String,
          validations: [ValidationManager] = [],

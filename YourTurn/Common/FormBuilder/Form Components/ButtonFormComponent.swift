@@ -14,7 +14,7 @@ enum FormButtonType {
 final class ButtonFormComponent: FormComponent {
     let title: String
     let buttonType: FormButtonType
-    
+
     init(id: FormField,
          title: String,
          buttonType: FormButtonType = .standard

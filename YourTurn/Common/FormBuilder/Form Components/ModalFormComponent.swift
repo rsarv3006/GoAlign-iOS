@@ -11,12 +11,12 @@ import UIKit
 final class ModalFormComponent: FormComponent {
     let buttonTitle: String
     let viewControllerToOpen: ModalViewController
-    
+
     init(id: FormField,
          buttonTitle: String,
          viewControllerToOpen: ModalViewController,
          validations: [ValidationManager] = [],
-         editValue: Dictionary<String, String?>? = nil
+         editValue: [String: String?]? = nil
     ) {
         self.buttonTitle = buttonTitle
         self.viewControllerToOpen = viewControllerToOpen

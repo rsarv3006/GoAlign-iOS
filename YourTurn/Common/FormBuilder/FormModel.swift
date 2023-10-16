@@ -29,35 +29,35 @@ enum FormField: String, CaseIterable {
     case windowLength
     case intervalBetweenWindows
     case taskTeamPicker
-    
+
     case signUpUserName
     case signUpEmailAddress
     case signUpPassword
     case signUpSubmit
-    
+
     case signInEmailAddress
     case signInPassword
     case signInSubmit
-    
+
     case termsButton
-    
+
     case taskEditCancel
     case taskEditTitle
 }
 
 final class FormSectionComponent: FormSectionItem, Hashable {
-    
+
     let id: UUID = UUID()
     var items: [FormComponent]
-    
+
     required init(items: [FormComponent]) {
         self.items = items
     }
-    
+
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
-    
+
     static func == (lhs: FormSectionComponent, rhs: FormSectionComponent) -> Bool {
         lhs.id == rhs.id
     }

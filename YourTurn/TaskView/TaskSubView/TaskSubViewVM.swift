@@ -9,27 +9,27 @@ import UIKit
 import Combine
 
 class TaskSubViewVM {
-    
+
     var delegate: TaskSubViewVMDelegate?
     var subscriptions = Set<AnyCancellable>()
     private(set) var teamNameSubject = PassthroughSubject<Result<String, Error>, Never>()
-    
+
     // Static Values
     let taskHistoryTitleLabelText: NSAttributedString = NSAttributedString(string: "Task History",
                                                                            attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
     let taskInformationButtonString: String = "See More"
     let taskCompleteButtonString: String = "Mark Task Complete"
     let taskIsCompleteLabelString: String = "Task has been Completed!"
-    
+
     // Dynamic Values
     let contentTitle: String
     let assignedUserString: String
     let assignedTeamString: String
     let taskEntries: [TaskEntryModel]
     let isTaskCompleted: Bool
-    
+
     let task: TaskModel
-    
+
     init(task: TaskModel) {
         self.contentTitle = task.taskName
         self.assignedUserString = TaskSubViewVM.buildAssignedUserString(task.findCurrentTaskEntry()?.assignedUser.username)
@@ -38,30 +38,30 @@ class TaskSubViewVM {
         self.taskEntries = task.taskEntries?.filter({ taskEntry in
             taskEntry.status == TaskEntryStatus.completed.rawValue
         }) ?? []
-        
+
         self.task = task
-        
+
         getTeamName(teamId: task.teamId)
     }
-    
+
     private static func buildAssignedUserString(_ username: String?) -> String {
         if let username = username, !username.isEmpty {
             return "Currently Assigned to: \(username)"
         }
-        
+
         return ""
     }
-    
+
     func checkIfMarkTaskCompleteButtonShouldShow(completionHandler: @escaping((Bool) -> Void)) {
         task.checkIfCurrentUserIsAssignedUser(completionHandler: completionHandler)
     }
-    
+
     func onRequestMarkTaskComplete() {
         Task {
             do {
                 guard let taskEntryId = task.findCurrentTaskEntry()?.taskEntryId else { throw ServiceErrors.custom(message: "Unable to locate task entry.")}
-                let _ = try await TaskService.markTaskComplete(taskEntryId: taskEntryId)
-                
+                _ = try await TaskService.markTaskComplete(taskEntryId: taskEntryId)
+
                 delegate?.requestPopView()
                 delegate?.requestHomeReloadFromSubView()
             } catch {
@@ -69,7 +69,7 @@ class TaskSubViewVM {
             }
         }
     }
-    
+
     func getTeamName(teamId: UUID) {
         Task {
             do {
@@ -81,4 +81,3 @@ class TaskSubViewVM {
         }
     }
 }
-

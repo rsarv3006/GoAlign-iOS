@@ -12,9 +12,9 @@ import Combine
 class SignUpVM {
     let welcomeLabelText: String = "Sign Up"
     let buttonTextGoToSignIn: String = "Already have an Account? \nClick here to Sign In!"
-    
+
     let signUpSubject = PassthroughSubject<Result<LoginRequestModel?, Error>, Never>()
-    
+
     func signUp(form: SignUpCompletedForm) {
         Task {
             do {

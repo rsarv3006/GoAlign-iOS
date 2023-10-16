@@ -9,13 +9,13 @@ import UIKit
 
 final class SwitchControlledDateFormComponent: FormComponent {
     let switchLabel: String
-    
+
     let mode: UIDatePicker.Mode
-    
+
     let title: String
-    
+
     let editValue: Date?
-    
+
     init(id: FormField,
          mode: UIDatePicker.Mode,
          switchLabel: String,

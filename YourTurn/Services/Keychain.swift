@@ -154,38 +154,38 @@ class KeychainService {
             throw KeychainWrapperError(status: status, type: .servicesError)
         }
     }
-    
+
     private static func storeRefreshToken(_ refreshToken: String) throws {
         try storeGenericPasswordFor(
             account: KeychainAccounts.refreshToken,
             service: KeychainAccounts.refreshToken,
             password: refreshToken)
     }
-    
+
     private static func storeAccessToken(_ accessToken: String) throws {
         try storeGenericPasswordFor(
             account: KeychainAccounts.accessToken,
             service: KeychainAccounts.accessToken,
             password: accessToken)
     }
-    
+
     static func storeTokens(_ accessToken: String, _ refreshToken: String, _ expiration: Date) throws {
         try storeRefreshToken(refreshToken)
         try storeAccessToken(accessToken)
     }
-    
+
     static func getRefreshToken() throws -> String {
         return try getGenericPasswordFor(
             account: KeychainAccounts.refreshToken,
             service: KeychainAccounts.refreshToken)
     }
-    
+
     static func getAccessToken() throws -> String {
         return try getGenericPasswordFor(
             account: KeychainAccounts.accessToken,
             service: KeychainAccounts.accessToken)
     }
-    
+
     static func reset() {
         try? deleteGenericPasswordFor(
             account: KeychainAccounts.refreshToken,
@@ -195,5 +195,3 @@ class KeychainService {
             service: KeychainAccounts.accessToken)
     }
 }
-
-

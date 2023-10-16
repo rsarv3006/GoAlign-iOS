@@ -14,7 +14,7 @@ class UserModel: Codable {
     let email: String
     let isActive: Bool
     let isEmailVerified: Bool
-    
+
     init(userId: UUID, createdAt: Date, username: String, email: String, isActive: Bool, isEmailVerified: Bool) {
         self.userId = userId
         self.createdAt = createdAt
@@ -23,7 +23,7 @@ class UserModel: Codable {
         self.isActive = isActive
         self.isEmailVerified = isEmailVerified
     }
-    
+
     func toString() {
         print("userId: \(userId), createdAt: \(createdAt), username: \(username), email: \(email), isActive: \(isActive), isEmailVerified: \(isEmailVerified)")
     }
@@ -32,13 +32,13 @@ class UserModel: Codable {
 class CreateUserDto: Codable {
     let username: String
     let email: String
-    
+
     init(username: String, email: String) {
         self.username = username
         self.email = email
     }
-    
-    func toDict() -> [String : String] {
+
+    func toDict() -> [String: String] {
         var dict = [String: String]()
         dict["username"] = self.username
         dict["email"] = self.email
@@ -50,7 +50,7 @@ class CreateUserDto: Codable {
 class RemoveUserFromTeamDto: Codable {
     let userToRemove: String
     let teamId: String
-    
+
     init(userToRemove: String, teamId: String) {
         self.userToRemove = userToRemove
         self.teamId = teamId

@@ -12,26 +12,26 @@ class TeamTaskModalVM {
     var requestRefreshTeam = PassthroughSubject<Bool, Never>()
     private(set) var isUserTeamManager = CurrentValueSubject<Bool, Never>(false)
     private(set) var resetView = PassthroughSubject<Error?, Never>()
-    
+
     var contentTitle: String {
         get {
             task.taskName
         }
     }
     private(set) var task: TaskModel
-    
+
     var isTaskComplete: Bool {
         get {
             task.status == "completed"
         }
     }
-    
+
     init(task: TaskModel) {
         self.task = task
-        
+
         checkIsUserTeamManager()
     }
-    
+
     func checkIsUserTeamManager() {
         Task {
             do {
@@ -42,7 +42,7 @@ class TeamTaskModalVM {
             }
         }
     }
-    
+
     func refetchTeam() {
         Task {
             do {
@@ -53,9 +53,9 @@ class TeamTaskModalVM {
             }
         }
     }
-    
+
     func deleteTask() async throws {
         try await TaskService.deleteTask(taskId: task.taskId)
     }
-    
+
 }

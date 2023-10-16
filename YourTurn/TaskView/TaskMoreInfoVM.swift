@@ -19,12 +19,12 @@ struct TaskMoreInfoVM {
     let notesLabel: String
     let windowLengthLabel: String
     let intervalBetweenWindowsLabel: String
-    
+
     // MARK: - Field Visibility Flags
     let isEndDateLabelVisible: Bool
     let isRequiredCompletionsLabelVisible: Bool
     let isNotesLabelVisible: Bool
-    
+
     // MARK: - Lifecycle
     init(task: TaskModel) {
         self.creatorLabel = "Created By: \(task.creator.username)"
@@ -33,7 +33,7 @@ struct TaskMoreInfoVM {
         self.completionsCountLabel = "Completions: \(task.completionCount)"
         self.windowLengthLabel = "Time to Complete Task: \(task.windowDuration.toString())"
         self.intervalBetweenWindowsLabel = "Time Between Tasks: \(task.intervalBetweenWindows.toString())"
-        
+
         if let endDate = task.endDate {
             self.endDateLabel = "End Date: \(endDate.formatted())"
             self.isEndDateLabelVisible = true

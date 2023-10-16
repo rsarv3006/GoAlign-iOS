@@ -9,20 +9,20 @@ import Foundation
 import UIKit
 
 class TeamSelectModalCellView: UITableViewCell {
-    
+
     var nameLabelString: String? {
         didSet {
             nameLabel.text = nameLabelString
         }
     }
-    
+
     let nameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20)
         label.textColor = .teamMemberSelectModalText
         return label
     }()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureView()
@@ -31,7 +31,7 @@ class TeamSelectModalCellView: UITableViewCell {
         bgColorView.backgroundColor = UIColor.customAccentColor
         selectedBackgroundView = bgColorView
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -39,6 +39,6 @@ class TeamSelectModalCellView: UITableViewCell {
     private func configureView() {
         addSubview(nameLabel)
         nameLabel.centerY(inView: self, leftAnchor: leftAnchor, paddingLeft: 12)
-        
+
     }
 }

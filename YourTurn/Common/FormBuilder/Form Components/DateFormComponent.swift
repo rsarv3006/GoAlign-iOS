@@ -8,13 +8,13 @@
 import UIKit
 
 final class DateFormComponent: FormComponent {
-    
+
     let mode: UIDatePicker.Mode
-    
+
     let title: String
-    
+
     let editValue: Date?
-    
+
     init(id: FormField,
          mode: UIDatePicker.Mode,
          validations: [ValidationManager] = [],

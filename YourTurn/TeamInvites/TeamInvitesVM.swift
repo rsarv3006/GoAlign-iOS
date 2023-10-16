@@ -10,9 +10,9 @@ import Combine
 
 class TeamInvitesVM {
     private var subscriptions = Set<AnyCancellable>()
-    
+
     var teamInvitesSubject = PassthroughSubject<Result<[TeamInviteDisplayModel], Error>, Never>()
-    
+
     func fetchCurrentInvites() {
         Task {
             do {

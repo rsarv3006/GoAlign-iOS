@@ -18,7 +18,7 @@ class TeamModel: Codable {
 
 class CreateTeamDto: Codable {
     let teamName: String
-    
+
     init(teamName: String) {
         self.teamName = teamName
     }
@@ -27,7 +27,7 @@ class CreateTeamDto: Codable {
 class UpdateTeamManagerDto: Codable {
     let teamId: String
     let newManagerId: String
-    
+
     init(teamId: String, newManagerId: String) {
         self.teamId = teamId
         self.newManagerId = newManagerId
@@ -46,7 +46,7 @@ class TeamSettingsReturnModel: Codable {
 
 class UpdateTeamSettings: Codable {
     let canAllMembersAddTasks: Bool?
-    
+
     init (canAllMembersAddTasks: Bool?) {
         self.canAllMembersAddTasks = canAllMembersAddTasks
     }
@@ -61,4 +61,3 @@ class TeamsCreateReturnModel: Codable {
     let team: TeamModel
     let message: String
 }
-

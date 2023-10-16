@@ -12,14 +12,14 @@ class InputCodeVM {
    let inputCodeLabelTextString = "Input Code"
     let inputCodeSubtitleString = "Please check your email for your login code. \nIf you don't see it, please check your spam folder."
     let submitButtonString = "Submit"
-    
+
     let inputCodeSubject = PassthroughSubject<Result<Bool, Error>, Never>()
-    
+
     let loginRequestModel: LoginRequestModel
-    
+
     func requestJwtFromServer(code: String) {
         let jwtRequestDto = FetchJwtDtoModel(loginCodeRequestId: loginRequestModel.loginRequestId, userId: loginRequestModel.userId, loginRequestToken: code)
-        
+
         Task {
             do {
                 let returnBody = try await AuthenticationService.fetchJwtWithCode(dto: jwtRequestDto)
@@ -32,7 +32,7 @@ class InputCodeVM {
             }
         }
     }
-    
+
     init(loginRequestModel: LoginRequestModel) {
         self.loginRequestModel = loginRequestModel
     }

@@ -10,7 +10,7 @@ import Foundation
 final class PasswordFormComponent: FormComponent {
     let placeholder: String
     let confirmPlaceholder: String
-    
+
     init(
         id: FormField,
         placeholder: String,

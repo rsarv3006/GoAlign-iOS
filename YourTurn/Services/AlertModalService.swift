@@ -15,7 +15,7 @@ struct AlertModalService {
                 alert.removeFromParent()
             }
             alert.addAction(alertAction)
-            
+
             viewController.present(alert, animated: true)
         }
     }

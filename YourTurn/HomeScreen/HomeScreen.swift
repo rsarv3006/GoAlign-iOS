@@ -17,51 +17,51 @@ private let TEAM_TABLE_TAG = 1002
 class HomeScreen: YtViewController {
     // MARK: - Properties
     private var subscriptions = Set<AnyCancellable>()
-    
+
     private let taskRefreshControl = UIRefreshControl()
     private let teamRefreshControl = UIRefreshControl()
-    
+
     var logoutEventSubject = PassthroughSubject<Bool, Never>()
-    
+
     var viewModel: HomeScreenVM? {
         didSet {
             guard let viewModel = viewModel else { return }
             taskTitleLabel.attributedText = viewModel.taskTitleLabel
             teamTitleLabel.attributedText = viewModel.teamTitleLabel
-            
+
             viewModel.loadViewControllerSubject.sink { viewController in
                 self.navigationController?.present(viewController, animated: true)
             }.store(in: &subscriptions)
-            
+
         }
     }
-    
+
     private var tasks = [TaskModel]() {
         didSet {
             taskTableView.reloadData()
         }
     }
-    
+
     private var teams = [TeamModel]() {
         didSet {
             teamTableView.reloadData()
         }
     }
-    
+
     private lazy var taskTitleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 24)
         label.textColor = .customTitleText
         return label
     }()
-    
+
     private lazy var teamTitleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 24)
         label.textColor = .customTitleText
         return label
     }()
-    
+
     private lazy var addTaskButton: UIButton = {
         let button = UIButton()
         let configuration = UIImage.SymbolConfiguration(textStyle: .title2)
@@ -69,7 +69,7 @@ class HomeScreen: YtViewController {
         button.setImage(addImage, for: .normal)
         return button
     }()
-    
+
     private lazy var addTeamButton: UIButton = {
         let button = UIButton()
         let configuration = UIImage.SymbolConfiguration(textStyle: .title2)
@@ -77,7 +77,7 @@ class HomeScreen: YtViewController {
         button.setImage(addImage, for: .normal)
         return button
     }()
-    
+
     private let drawerButton: UIButton = {
         let button = UIButton()
         let configuration = UIImage.SymbolConfiguration(textStyle: .title2)
@@ -85,21 +85,21 @@ class HomeScreen: YtViewController {
         button.setImage(drawerImage, for: .normal)
         return button
     }()
-    
+
     private let taskTableView: UITableView = {
         let tv = UITableView()
         tv.tag = TASK_TABLE_TAG
         tv.backgroundColor = .customBackgroundColor
         return tv
     }()
-    
+
     private let teamTableView: UITableView = {
         let tv = UITableView()
         tv.tag = TEAM_TABLE_TAG
         tv.backgroundColor = .customBackgroundColor
         return tv
     }()
-    
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,70 +108,70 @@ class HomeScreen: YtViewController {
         configureTableViews()
         configureCombine()
         configureRefreshControl()
-        
+
         viewModel?.checkAndDisplayPendingInviteBaner(viewController: self)
     }
-    
+
     // MARK: - Helpers
     override func configureView() {
         let topSafeAnchor = view.safeAreaLayoutGuide.topAnchor
         let leftSafeAnchor = view.safeAreaLayoutGuide.leftAnchor
         let rightSafeAnchor = view.safeAreaLayoutGuide.rightAnchor
         let bottomSafeAnchor = view.safeAreaLayoutGuide.bottomAnchor
-        
+
         view.addSubview(taskTitleLabel)
         taskTitleLabel.centerX(inView: view, topAnchor: topSafeAnchor)
-        
+
         view.addSubview(addTaskButton)
         addTaskButton.anchor(top: topSafeAnchor, right: rightSafeAnchor, paddingRight: 8)
-        
+
         view.addSubview(drawerButton)
         drawerButton.anchor(top: topSafeAnchor, left: leftSafeAnchor, paddingLeft: 8)
-        
+
         view.addSubview(teamTitleLabel)
         teamTitleLabel.center(inView: view)
-        
+
         view.addSubview(addTeamButton)
         addTeamButton.centerY(inView: view)
         addTeamButton.anchor(right: rightSafeAnchor, paddingRight: 12)
-        
+
         view.addSubview(taskTableView)
         taskTableView.anchor(top: taskTitleLabel.bottomAnchor, left: leftSafeAnchor, bottom: teamTitleLabel.topAnchor, right: rightSafeAnchor, paddingLeft: 8, paddingRight: 8)
-        
+
         view.addSubview(teamTableView)
         teamTableView.anchor(top: teamTitleLabel.bottomAnchor, left: leftSafeAnchor, bottom: bottomSafeAnchor, right: rightSafeAnchor, paddingLeft: 8, paddingRight: 8)
-        
+
     }
-    
+
     private func configureRefreshControl() {
         taskRefreshControl.addTarget(self, action: #selector(onTaskReloadRequested), for: .valueChanged)
         taskTableView.refreshControl = taskRefreshControl
-        
+
         teamRefreshControl.addTarget(self, action: #selector(onTeamReloadRequested), for: .valueChanged)
         teamTableView.refreshControl = teamRefreshControl
     }
-    
+
     @objc func onTaskReloadRequested() {
         viewModel?.loadTasks()
     }
-    
+
     @objc func onTeamReloadRequested() {
         viewModel?.loadTeams()
     }
-    
+
     private func configureInteractables() {
         addTaskButton.addTarget(self, action: #selector(onAddTaskPressed), for: .touchUpInside)
         drawerButton.addTarget(self, action: #selector(onDrawerButtonPress), for: .touchUpInside)
         addTeamButton.addTarget(self, action: #selector(onAddTeamPressed), for: .touchUpInside)
     }
-    
+
     private func configureCombine() {
         viewModel?.tasksSubject.receive(on: DispatchQueue.main).sink(receiveValue: { [weak self] tasksResult in
             self?.showLoader(false)
             self?.taskRefreshControl.endRefreshing()
             guard let self = self else { return }
-            
-            switch (tasksResult) {
+
+            switch tasksResult {
             case .failure(let error):
                 _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { _ in
                     self.showMessage(withTitle: "Uh Oh", message: "Error encountered retrieving tasks. \(error.localizedDescription)")
@@ -179,14 +179,14 @@ class HomeScreen: YtViewController {
             case .success(let incomingTasks):
                 self.tasks = incomingTasks
             }
-            
+
         }).store(in: &subscriptions)
-        
+
         viewModel?.teamsSubject.receive(on: DispatchQueue.main).sink(receiveValue: { [weak self] teamsResult in
             self?.showLoader(false)
             self?.teamRefreshControl.endRefreshing()
             guard let self = self else { return }
-            switch (teamsResult) {
+            switch teamsResult {
             case .failure(let error):
                 _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { _ in
                     self.showMessage(withTitle: "Uh Oh", message: "Error encountered retrieving teams. \(error.localizedDescription)")
@@ -194,21 +194,21 @@ class HomeScreen: YtViewController {
             case .success(let incomingTeams):
                 self.teams = incomingTeams
             }
-            
+
         }).store(in: &subscriptions)
-        
+
         viewModel?.loadTeamsAndTasks()
     }
-    
+
     // MARK: - Actions
     @objc func onAddTaskPressed() {
         onAddTaskPress()
     }
-    
+
     @objc func onAddTeamPressed() {
         onAddTeamPress()
     }
-    
+
     @objc func onDrawerButtonPress() {
         let drawerController = DrawerMenuViewController()
         drawerController.delegate = self
@@ -230,18 +230,18 @@ extension HomeScreen: UITableViewDelegate {
                 self.navigationController?.pushViewController(taskVC, animated: true)
             } else if tableView.tag == TEAM_TABLE_TAG {
                 let groupTabVM = TeamTabBarControllerVM(team: self.teams[indexPath.row])
-                
+
                 groupTabVM.requestHomeReload.sink { _ in
                     self.viewModel?.loadTeams()
                     self.viewModel?.loadTasks()
                 }.store(in: &self.subscriptions)
-                
+
                 let groupTabVC = TeamTabBarController()
                 groupTabVC.viewModel = groupTabVM
                 self.navigationController?.pushViewController(groupTabVC, animated: true)
             }
         }
-        
+
         return nil
     }
 }
@@ -257,7 +257,7 @@ extension HomeScreen: UITableViewDataSource {
             return 0
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView.tag == TASK_TABLE_TAG {
             let cell = tableView.dequeueReusableCell(withIdentifier: TASK_REUSE_ID, for: indexPath) as! HomeScreenTaskCell
@@ -271,19 +271,19 @@ extension HomeScreen: UITableViewDataSource {
             return UITableViewCell(style: .default, reuseIdentifier: "crash baby")
         }
     }
-    
+
     func configureTableViews() {
         taskTableView.register(HomeScreenTaskCell.self, forCellReuseIdentifier: TASK_REUSE_ID)
         taskTableView.rowHeight = 60
         taskTableView.delegate = self
         taskTableView.dataSource = self
-        
+
         teamTableView.register(HomeScreenTeamCell.self, forCellReuseIdentifier: TEAM_REUSE_ID)
         teamTableView.rowHeight = 60
         teamTableView.delegate = self
         teamTableView.dataSource = self
     }
-    
+
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         if tableView.tag == TASK_TABLE_TAG {
             let task = tasks[indexPath.row]
@@ -293,7 +293,7 @@ extension HomeScreen: UITableViewDataSource {
                     image: UIImage(systemName: "checkmark.circle")) { _ in
                         if let taskEntryId = task.findCurrentTaskEntry()?.taskEntryId {
                             self.viewModel?.onMarkTaskComplete(viewController: self, taskEntryId: taskEntryId)
-                            
+
                         } else {
                             self.showMessage(withTitle: "Uh Oh", message: "Task Entry Not found.")
                         }
@@ -311,10 +311,10 @@ extension HomeScreen: UITableViewDataSource {
                 return UIMenu(title: "", children: [completeTask])
             }
         }
-        
+
         return nil
     }
-    
+
 }
 
 // MARK: - Navigation Handling
@@ -325,7 +325,7 @@ extension HomeScreen {
         newVC.delegate = self
         navigationController?.pushViewController(newVC, animated: true)
     }
-    
+
     func onAddTeamPress() {
         let newVC = TeamAddModal()
         newVC.viewModel = TeamAddModalVM()
@@ -339,10 +339,10 @@ extension HomeScreen: TeamAddModalDelegate {
     func onTeamAddScreenComplete(viewController: UIViewController) {
         viewModel?.loadTeamsAndTasks()
     }
-    
+
     func onTeamAddGoToInvite(viewController: UIViewController, teamId: UUID) {
         viewModel?.loadTeamsAndTasks()
-        
+
         DispatchQueue.main.async {
             let newVC = TeamInviteUserModal()
             newVC.viewModel = TeamInviteUserModalVM(teamId: teamId)
@@ -364,19 +364,19 @@ extension HomeScreen: DrawerMenuViewControllerDelegate {
         DispatchQueue.main.async {
             let newVc = SettingsScreenView()
             newVc.viewModel = SettingsScreenVM()
-            
+
             newVc.deleteAccountReturnToSignIn.sink { val in
                 self.logoutEventSubject.send(val)
             }.store(in: &self.subscriptions)
-            
+
             self.navigationController?.pushViewController(newVc, animated: true)
         }
     }
-    
+
     func onLogOutPressed(viewController: UIViewController) {
         logoutEventSubject.send(true)
     }
-    
+
     func onViewTeamInvitesPressed(viewController: UIViewController) {
         DispatchQueue.main.async {
             let newVc = TeamInvitesViewController()
@@ -387,7 +387,7 @@ extension HomeScreen: DrawerMenuViewControllerDelegate {
             self.navigationController?.pushViewController(newVc, animated: true)
         }
     }
-    
+
     func onViewLegalScreenPressed(viewController: UIViewController) {
         DispatchQueue.main.async {
             let newVc = LegalScreen()

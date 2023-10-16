@@ -11,17 +11,17 @@ import Combine
 struct TeamInviteSubCellVM {
     let acceptButtonLabel: String = "Accept"
     let declineButtonLabel: String = "Decline"
-    
+
     let inviteId: UUID
-    
+
     init(inviteId: UUID) {
         self.inviteId = inviteId
     }
-    
+
     private(set) var requestReloadSubject = PassthroughSubject<Bool, Never>()
-    
+
     private(set) var requestDisplayUIAlert = PassthroughSubject<UIAlertController, Never>()
-    
+
     func acceptInvite(delegate: TeamInvitesViewControllerDelegate?) {
         delegate?.modifyLoaderState(shouldShowLoader: true)
         defer {
@@ -39,13 +39,13 @@ struct TeamInviteSubCellVM {
             }
         }
     }
-    
+
     func declineInvite(delegate: TeamInvitesViewControllerDelegate?) {
         delegate?.modifyLoaderState(shouldShowLoader: true)
         defer {
             delegate?.modifyLoaderState(shouldShowLoader: false)
         }
-        
+
         Task {
             do {
                 let status = try await TeamInviteService.declineInvite(inviteId: inviteId)
@@ -58,7 +58,7 @@ struct TeamInviteSubCellVM {
             }
         }
     }
-    
+
     private func displayUIAlert(error: Error) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Uh Oh", message: error.localizedDescription, preferredStyle: .alert)
@@ -66,7 +66,7 @@ struct TeamInviteSubCellVM {
                 alert.removeFromParent()
             }
             alert.addAction(alertAction)
-            
+
             requestDisplayUIAlert.send(alert)
         }
     }

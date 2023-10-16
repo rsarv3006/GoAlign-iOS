@@ -10,10 +10,10 @@ import UIKit
 
 class StandardButton: UIButton {
     private var touchUpTimer = Timer()
-    
+
     private var onHightLightColor = UIColor.systemGray6
     private var onNormalColor = UIColor.systemGray5
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         layer.cornerRadius = 8
@@ -24,21 +24,21 @@ class StandardButton: UIButton {
         addTarget(self, action: #selector(onNormal), for: .touchUpOutside)
         self.setTitleColor(.lightButtonText, for: .normal)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func setButtonColors(backgroundColor: UIColor, onTouchColor: UIColor) {
         onNormalColor = backgroundColor
         onHightLightColor = onTouchColor
         self.backgroundColor = backgroundColor
     }
-    
+
     @objc func onHighLight() {
         backgroundColor = onHightLightColor
     }
-    
+
     @objc func onNormal() {
         touchUpTimer.invalidate()
         touchUpTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false, block: { _ in
@@ -46,7 +46,7 @@ class StandardButton: UIButton {
                 self.backgroundColor = self.onNormalColor
             }
         })
-        
+
     }
 
 }
@@ -57,7 +57,7 @@ class AlertButton: StandardButton {
         self.setButtonColors(backgroundColor: .systemRed, onTouchColor: .systemGray)
         self.setTitleColor(.timberwolf, for: .normal)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -68,7 +68,7 @@ class BlueButton: StandardButton {
         super.init(frame: frame)
         self.setButtonColors(backgroundColor: .customAccentColor ?? .systemBlue, onTouchColor: .systemGray)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

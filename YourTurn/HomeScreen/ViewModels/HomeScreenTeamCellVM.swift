@@ -9,9 +9,9 @@ import Foundation
 
 struct HomeScreenTeamCellVM {
     let teamNameLabelString: String
-    
+
     let numberOfTeamTasksLabelString: String
-    
+
     init(withTeam team: TeamModel) {
         teamNameLabelString = team.teamName
         numberOfTeamTasksLabelString = "Tasks: \(team.tasks.count)"

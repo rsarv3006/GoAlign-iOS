@@ -10,30 +10,30 @@ import Combine
 
 class ChangeTeamManagerModalVM {
     private(set) var requestReload = PassthroughSubject<Void, Never>()
-    
+
     let modalTitleString = "Change Team Manager"
     let confirmButtonString = "Confirm"
     let cancelButtonString = "Cancel"
-    
+
     private let team: TeamModel
-    
+
     var teamMembers: [UserModel] {
         get {
             team.users
         }
     }
-    
+
     var selectedUser: UserModel?
-    
+
     init(team: TeamModel) {
         self.team = team
     }
-    
+
     func createConfirmChangeAlertString() -> String {
         guard let selectedUser = selectedUser else { return ""}
         return "Are you sure you want to give control of the \(team.teamName) to \(selectedUser.username)?"
     }
-    
+
     func changeTeamManager(viewController: UIViewController) {
         viewController.showLoader(true)
         defer {

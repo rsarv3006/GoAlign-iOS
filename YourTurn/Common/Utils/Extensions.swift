@@ -10,7 +10,7 @@ import JGProgressHUD
 
 extension UIViewController {
     static let hud = JGProgressHUD(style: .dark)
-    
+
     func configureGradientLayer() {
         let gradient = CAGradientLayer()
         gradient.colors = [UIColor.systemPurple.cgColor, UIColor.systemBlue.cgColor]
@@ -18,7 +18,7 @@ extension UIViewController {
         view.layer.addSublayer(gradient)
         gradient.frame = view.frame
     }
-    
+
     func showLoader(_ show: Bool) {
         DispatchQueue.main.async {
             self.view.endEditing(true)
@@ -29,7 +29,7 @@ extension UIViewController {
             }
         }
     }
-    
+
     func showMessage(withTitle title: String, message: String, completion: (() -> Void)? = nil) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -43,10 +43,10 @@ extension UIButton {
     func attributedTitle(firstPart: String, secondPart: String) {
         let atts: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(white: 1, alpha: 0.87), .font: UIFont.systemFont(ofSize: 16)]
         let attributedTitle = NSMutableAttributedString(string: "\(firstPart) ", attributes: atts)
-        
+
         let boldAtts: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(white: 1, alpha: 0.87), .font: UIFont.boldSystemFont(ofSize: 16)]
         attributedTitle.append(NSAttributedString(string: secondPart, attributes: boldAtts))
-        
+
         setAttributedTitle(attributedTitle, for: .normal)
     }
 }
@@ -62,76 +62,76 @@ extension UIView {
                 paddingRight: CGFloat = 0,
                 width: CGFloat? = nil,
                 height: CGFloat? = nil) {
-        
+
         translatesAutoresizingMaskIntoConstraints = false
-        
+
         if let top = top {
             topAnchor.constraint(equalTo: top, constant: paddingTop).isActive = true
         }
-        
+
         if let left = left {
             leftAnchor.constraint(equalTo: left, constant: paddingLeft).isActive = true
         }
-        
+
         if let bottom = bottom {
             bottomAnchor.constraint(equalTo: bottom, constant: -paddingBottom).isActive = true
         }
-        
+
         if let right = right {
             rightAnchor.constraint(equalTo: right, constant: -paddingRight).isActive = true
         }
-        
+
         if let width = width {
             widthAnchor.constraint(equalToConstant: width).isActive = true
         }
-        
+
         if let height = height {
             heightAnchor.constraint(equalToConstant: height).isActive = true
         }
     }
-    
+
     func center(inView view: UIView, yConstant: CGFloat? = 0) {
         translatesAutoresizingMaskIntoConstraints = false
         centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: yConstant!).isActive = true
     }
-    
+
     func centerX(inView view: UIView, topAnchor: NSLayoutYAxisAnchor? = nil, paddingTop: CGFloat? = 0) {
         translatesAutoresizingMaskIntoConstraints = false
         centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
+
         if let topAnchor = topAnchor {
             self.topAnchor.constraint(equalTo: topAnchor, constant: paddingTop!).isActive = true
         }
     }
-    
+
     func centerY(inView view: UIView, leftAnchor: NSLayoutXAxisAnchor? = nil,
                  paddingLeft: CGFloat = 0, constant: CGFloat = 0) {
-        
+
         translatesAutoresizingMaskIntoConstraints = false
         centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: constant).isActive = true
-        
+
         if let left = leftAnchor {
             anchor(left: left, paddingLeft: paddingLeft)
         }
     }
-    
+
     func setDimensions(height: CGFloat, width: CGFloat) {
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalToConstant: height).isActive = true
         widthAnchor.constraint(equalToConstant: width).isActive = true
     }
-    
+
     func setHeight(_ height: CGFloat) {
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalToConstant: height).isActive = true
     }
-    
+
     func setWidth(_ width: CGFloat) {
         translatesAutoresizingMaskIntoConstraints = false
         widthAnchor.constraint(equalToConstant: width).isActive = true
     }
-    
+
     func fillSuperview() {
         translatesAutoresizingMaskIntoConstraints = false
         guard let view = superview else { return }
@@ -146,13 +146,13 @@ extension UITextView {
         topCorrect = topCorrect < 0.0 ? 0.0 : topCorrect
         self.contentInset.top = topCorrect
     }
-    
+
     func bottomAlignVerticalText() {
         var topCorrect = (self.bounds.size.height - self.contentSize.height * self.zoomScale)
         topCorrect = topCorrect < 0.0 ? 0.0 : topCorrect
         self.contentInset.top = topCorrect
     }
-    
+
     func topAlignVerticalText() {
         self.contentInset.top = 0
     }
@@ -160,15 +160,14 @@ extension UITextView {
 
 extension UIColor {
     static let tomato = UIColor(red: 1.00, green: 0.39, blue: 0.28, alpha: 1.00)
-    
-}
 
+}
 
 extension UICollectionViewCell {
     static var cellId: String {
         String(describing: self)
     }
-    
+
     func removeViews() {
         contentView.subviews.forEach { $0.removeFromSuperview() }
     }
@@ -178,7 +177,7 @@ extension UITextField: FieldValidInvalidHandlers {
     func valid() {
         self.layer.borderColor = UIColor.systemGreen.cgColor
     }
-    
+
     func invalid() {
         self.layer.borderColor = UIColor.systemRed.cgColor
     }
@@ -188,7 +187,7 @@ extension InputTextView: FieldValidInvalidHandlers {
     func valid() {
         self.layer.borderColor = UIColor.systemGreen.cgColor
     }
-    
+
     func invalid() {
         self.layer.borderColor = UIColor.systemRed.cgColor
     }

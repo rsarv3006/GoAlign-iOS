@@ -10,10 +10,10 @@ import Foundation
 struct TaskViewScreenVM {
     let contentTitle: String
     let task: TaskModel
-    
+
     init(task: TaskModel) {
         self.contentTitle = task.taskName
         self.task = task
     }
-    
+
 }

@@ -11,18 +11,18 @@ import Combine
 class FormModalCollectionViewCell: UICollectionViewCell {
     private var item: ModalFormComponent?
     private var indexPath: IndexPath?
-    
+
     private var subscriptions = Set<AnyCancellable>()
     private(set) var subject = PassthroughSubject<(Any, IndexPath), Never>()
     private(set) var reload = PassthroughSubject<String, Never>()
     private(set) var openModal = PassthroughSubject<UIViewController, Never>()
-    
+
     // MARK: - UIElements
     private lazy var openModalButton: BlueButton = {
         let button = BlueButton()
         return button
     }()
-    
+
     private lazy var errorLbl: UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
@@ -30,7 +30,7 @@ class FormModalCollectionViewCell: UICollectionViewCell {
         lbl.text = ""
         return lbl
     }()
-    
+
     private lazy var contentStackVw: UIStackView = {
         let stackVw = UIStackView()
         stackVw.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +38,7 @@ class FormModalCollectionViewCell: UICollectionViewCell {
         stackVw.spacing = 6
         return stackVw
     }()
-    
+
     // MARK: - Lifecycle
     func bind(_ item: FormComponent,
               at indexPath: IndexPath) {
@@ -47,7 +47,7 @@ class FormModalCollectionViewCell: UICollectionViewCell {
         self.item = item
         configureViews()
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         removeViews()
@@ -61,12 +61,12 @@ class FormModalCollectionViewCell: UICollectionViewCell {
 private extension FormModalCollectionViewCell {
     func configureViews() {
         openModalButton.setTitle(item?.buttonTitle, for: .normal)
-        
+
         contentView.addSubview(contentStackVw)
         contentStackVw.addArrangedSubview(openModalButton)
-        
+
         openModalButton.addTarget(self, action: #selector(onOpenModalPressed), for: .touchUpInside)
-        
+
         NSLayoutConstraint.activate([
             openModalButton.heightAnchor.constraint(equalToConstant: 44),
             errorLbl.heightAnchor.constraint(equalToConstant: 22),
@@ -76,7 +76,7 @@ private extension FormModalCollectionViewCell {
             contentStackVw.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
     }
-    
+
     @objc func onOpenModalPressed() {
         guard let modal = item?.viewControllerToOpen else { return }
         modal.delegate = self
@@ -87,7 +87,7 @@ private extension FormModalCollectionViewCell {
 // MARK: Combine Configuration
 extension FormModalCollectionViewCell {
     func configureCombineEvents() {}
-    
+
 }
 
 extension FormModalCollectionViewCell: ModalDelegate {

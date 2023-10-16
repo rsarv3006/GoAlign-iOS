@@ -9,14 +9,14 @@ import Foundation
 
 struct RegexValidationManagerImpl: ValidationManager {
     private let items: [RegexFormItem]
-    
+
     init(_ items: [RegexFormItem]) {
         self.items = items
     }
-    
+
     func validate(_ val: Any) throws {
         let val = (val as? String) ?? ""
-        
+
         try items.forEach({ regexItem in
             let regex = try? NSRegularExpression(pattern: regexItem.pattern)
             let range = NSRange(location: 0, length: val.count)

@@ -9,9 +9,9 @@ import UIKit
 
 class ModalViewController: UIViewController {
     var delegate: ModalDelegate?
-    
-    var editValue: Dictionary<String, String?>?
-    
+
+    var editValue: [String: String?]?
+
     lazy var subView: UIView = {
        let subView = UIView()
        subView.backgroundColor = .systemGray4
