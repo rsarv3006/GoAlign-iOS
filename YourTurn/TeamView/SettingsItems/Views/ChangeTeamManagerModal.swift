@@ -64,13 +64,31 @@ class ChangeTeamManagerModal: YtViewController {
         titleLabel.centerX(inView: modalView, topAnchor: modalView.topAnchor, paddingTop: 8)
 
         view.addSubview(cancelButton)
-        cancelButton.anchor(left: modalView.leftAnchor, bottom: modalView.bottomAnchor, paddingTop: 12, paddingLeft: 12, paddingBottom: 8, paddingRight: 12, width: modalWidth / 2 - 12)
+        cancelButton.anchor(
+            left: modalView.leftAnchor,
+            bottom: modalView.bottomAnchor,
+            paddingTop: 12,
+            paddingLeft: 12,
+            paddingBottom: 8,
+            paddingRight: 12,
+            width: modalWidth / 2 - 12)
 
         view.addSubview(confirmButton)
-        confirmButton.anchor(left: cancelButton.rightAnchor, bottom: modalView.bottomAnchor, right: modalView.rightAnchor, paddingTop: 12, paddingLeft: 12, paddingBottom: 8, paddingRight: 12)
+        confirmButton.anchor(
+            left: cancelButton.rightAnchor,
+            bottom: modalView.bottomAnchor,
+            right: modalView.rightAnchor,
+            paddingTop: 12,
+            paddingLeft: 12,
+            paddingBottom: 8,
+            paddingRight: 12)
 
         modalView.addSubview(membersTableView)
-        membersTableView.anchor(top: titleLabel.bottomAnchor, left: modalView.leftAnchor, bottom: cancelButton.topAnchor, right: modalView.rightAnchor)
+        membersTableView.anchor(
+            top: titleLabel.bottomAnchor,
+            left: modalView.leftAnchor,
+            bottom: cancelButton.topAnchor,
+            right: modalView.rightAnchor)
 
         membersTableView.delegate = self
         membersTableView.dataSource = self
@@ -130,9 +148,12 @@ extension ChangeTeamManagerModal: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: teamMemberReuseIdentifier, for: indexPath) as! ChangeTeamManagerUserCell
-        if let teamMember = viewModel?.teamMembers[indexPath.row] {
-            cell.viewModel = ChangeTeamManagerUserCellVM(teamMember: teamMember)
+        let cell = tableView.dequeueReusableCell(withIdentifier: teamMemberReuseIdentifier, for: indexPath)
+
+        if let changeTeamCell = cell as? ChangeTeamManagerUserCell,
+           let teamMember = viewModel?.teamMembers[indexPath.row] {
+            changeTeamCell.viewModel = ChangeTeamManagerUserCellVM(teamMember: teamMember)
+            return changeTeamCell
         }
 
         return cell
