@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// swiftlint:disable line_length
 struct LegalScreenVM {
     let title = "Legal"
     let eulaTitle = "End User License Agreement"
@@ -104,4 +104,5 @@ Changes to this Policy:
 We may modify this Privacy Policy from time to time. We will notify you of any material changes by posting the new Privacy Policy in the App. Your continued use of the App indicates your acceptance of the modified terms.
 """
 
+// swiftlint:enable line_length
 }
