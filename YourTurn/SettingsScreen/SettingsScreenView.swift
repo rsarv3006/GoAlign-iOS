@@ -38,22 +38,25 @@ class SettingsScreenView: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.DeleteUserCell, for: indexPath) as! DeleteUserCell
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: CellIdentifiers.DeleteUserCell,
+            for: indexPath)
 
-        cell.requestDisplayUIAlert.sink { alert in
-            self.present(alert, animated: true)
-        }.store(in: &subscriptions)
+        if let cell = cell as? DeleteUserCell {
+            cell.requestDisplayUIAlert.sink { alert in
+                self.present(alert, animated: true)
+            }.store(in: &subscriptions)
 
-        cell.deleteAccountReturnToSignIn.sink { deleteResponse in
-            switch deleteResponse {
-            case .failure(let error):
-                self.showMessage(withTitle: "Uh Oh", message: error.localizedDescription)
-            case .success:
-                self.deleteAccountReturnToSignIn.send(true)
-            }
-
-        }.store(in: &subscriptions)
-
+            cell.deleteAccountReturnToSignIn.sink { deleteResponse in
+                switch deleteResponse {
+                case .failure(let error):
+                    self.showMessage(withTitle: "Uh Oh", message: error.localizedDescription)
+                case .success:
+                    self.deleteAccountReturnToSignIn.send(true)
+                }
+            }.store(in: &subscriptions)
+            return cell
+        }
         return cell
     }
 
