@@ -16,7 +16,13 @@ enum IntervalVariant: String {
     case year = "year(s)"
 }
 
-let INTERVALS_ARRAY = [IntervalVariant.minute, IntervalVariant.hour, IntervalVariant.day, IntervalVariant.week, IntervalVariant.month, IntervalVariant.year]
+let INTERVALSARRAY = [
+    IntervalVariant.minute,
+    IntervalVariant.hour,
+    IntervalVariant.day,
+    IntervalVariant.week,
+    IntervalVariant.month,
+    IntervalVariant.year]
 
 class IntervalObject: Codable, Equatable {
     static func == (lhs: IntervalObject, rhs: IntervalObject) -> Bool {
@@ -30,7 +36,7 @@ class IntervalObject: Codable, Equatable {
     var intervalCount: Int = 1
     var intervalUnit: IntervalVariant = .day
 
-    init(_ intervalCount: Int, _ intervalUnit: IntervalVariant){
+    init(_ intervalCount: Int, _ intervalUnit: IntervalVariant) {
         self.intervalCount = intervalCount
         self.intervalUnit = intervalUnit
     }
@@ -38,19 +44,19 @@ class IntervalObject: Codable, Equatable {
     func toString() -> String {
         return "\(intervalCount) - \(intervalUnit.rawValue)"
     }
-    
+
     private enum CodingKeys: String, CodingKey {
         case intervalCount
         case intervalUnit
     }
-    
+
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.intervalCount = try container.decode(Int.self, forKey: .intervalCount)
         let typeString = try container.decode(String.self, forKey: .intervalUnit)
         self.intervalUnit = IntervalVariant(rawValue: typeString)!
     }
-    
+
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(intervalCount, forKey: .intervalCount)
