@@ -9,9 +9,9 @@ import UIKit
 import Combine
 
 enum AuthScreenIdVariant {
-    case SignIn
-    case SignUp
-    case ForgotPassword
+    case signIn
+    case signUp
+    case forgotPassword
 }
 
 class AuthViewController: YtViewController {

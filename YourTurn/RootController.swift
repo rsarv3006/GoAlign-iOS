@@ -66,7 +66,7 @@ extension RootController {
             let signUpVM = SignUpVM()
             controller.viewModel = signUpVM
             controller.delegate = self
-            controller.setScreenId(screenId: .SignUp)
+            controller.setScreenId(screenId: .signUp)
             let nav = UINavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .fullScreen
             self.navigationController?.present(nav, animated: false, completion: nil)
@@ -79,7 +79,7 @@ extension RootController {
             let signInVM = SignInVM()
             controller.viewModel = signInVM
             controller.delegate = self
-            controller.setScreenId(screenId: .SignIn)
+            controller.setScreenId(screenId: .signIn)
             let nav = UINavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .fullScreen
             self.navigationController?.present(nav, animated: false, completion: nil)
@@ -100,9 +100,9 @@ extension RootController {
 extension RootController: AuthScreenDelegate {
     func requestOtherAuthScreen(viewController: AuthViewController) {
         self.dismiss(animated: true)
-        if viewController.screenId == .SignUp {
+        if viewController.screenId == .signUp {
             goSignIn()
-        } else if viewController.screenId == .SignIn {
+        } else if viewController.screenId == .signIn {
             goSignUp()
         }
     }
