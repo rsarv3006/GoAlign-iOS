@@ -98,10 +98,15 @@ class TeamInviteUserModal: YtViewController {
         configureModal()
         configureInteractables()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(onTextDidChange), name: UITextField.textDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onTextDidChange),
+            name: UITextField.textDidChangeNotification,
+            object: nil)
     }
 
     // MARK: Helpers
+    // swiftlint:disable:next function_body_length
     func configureModal() {
         invitedTeamMembersTableView.register(UITableViewCell.self, forCellReuseIdentifier: INVITEDTEAMMEMBERCELLID)
         invitedTeamMembersTableView.rowHeight = 44
@@ -124,19 +129,51 @@ class TeamInviteUserModal: YtViewController {
         modalTitle.anchor(top: subView.topAnchor, left: subView.leftAnchor, right: subView.rightAnchor, height: 44)
 
         subView.addSubview(emailAddressToInvite)
-        emailAddressToInvite.anchor(top: modalTitle.bottomAnchor, left: subView.leftAnchor, paddingLeft: 16, width: subViewWidth * 0.9, height: 32)
+        emailAddressToInvite.anchor(
+            top: modalTitle.bottomAnchor,
+            left: subView.leftAnchor,
+            paddingLeft: 16,
+            width: subViewWidth * 0.9,
+            height: 32)
 
         subView.addSubview(inviteButton)
-        inviteButton.anchor(top: modalTitle.bottomAnchor, left: emailAddressToInvite.rightAnchor, right: subView.rightAnchor, paddingRight: 12, width: subViewWidth * 0.1, height: 32)
+        inviteButton.anchor(
+            top: modalTitle.bottomAnchor,
+            left: emailAddressToInvite.rightAnchor,
+            right: subView.rightAnchor,
+            paddingRight: 12,
+            width: subViewWidth * 0.1,
+            height: 32)
 
         subView.addSubview(errorLbl)
-        errorLbl.anchor(top: inviteButton.bottomAnchor, left: subView.leftAnchor, right: subView.rightAnchor, paddingLeft: 16, paddingRight: 16, height: 24)
+        errorLbl.anchor(
+            top: inviteButton.bottomAnchor,
+            left: subView.leftAnchor,
+            right: subView.rightAnchor,
+            paddingLeft: 16,
+            paddingRight: 16,
+            height: 24)
 
         subView.addSubview(closeModalButton)
-        closeModalButton.anchor(left: subView.leftAnchor, bottom: subView.bottomAnchor, right: subView.rightAnchor, paddingLeft: 16, paddingBottom: 8, paddingRight: 16, height: 44)
+        closeModalButton.anchor(
+            left: subView.leftAnchor,
+            bottom: subView.bottomAnchor,
+            right: subView.rightAnchor,
+            paddingLeft: 16,
+            paddingBottom: 8,
+            paddingRight: 16,
+            height: 44)
 
         subView.addSubview(invitedTeamMembersTableView)
-        invitedTeamMembersTableView.anchor(top: errorLbl.bottomAnchor, left: subView.leftAnchor, bottom: closeModalButton.topAnchor, right: subView.rightAnchor, paddingTop: 12, paddingLeft: 16, paddingBottom: 8, paddingRight: 16)
+        invitedTeamMembersTableView.anchor(
+            top: errorLbl.bottomAnchor,
+            left: subView.leftAnchor,
+            bottom: closeModalButton.topAnchor,
+            right: subView.rightAnchor,
+            paddingTop: 12,
+            paddingLeft: 16,
+            paddingBottom: 8,
+            paddingRight: 16)
 
     }
 
@@ -146,7 +183,9 @@ class TeamInviteUserModal: YtViewController {
     }
 
     @objc func onInviteButtonPressed() {
-        if let emailAddressToInviteText = emailAddressToInvite.text, emailAddressToInviteText.count > 0, emailAddressToInviteText.contains("@") {
+        if let emailAddressToInviteText = emailAddressToInvite.text,
+            emailAddressToInviteText.count > 0,
+            emailAddressToInviteText.contains("@") {
             showLoader(true)
             viewModel?.createTeamInvite(emailAddressToInvite: emailAddressToInviteText)
         } else {
@@ -165,7 +204,10 @@ class TeamInviteUserModal: YtViewController {
 
     private func confirmCloseModal() {
         DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Confirm", message: "No users have been invited, are you sure you want to leave?", preferredStyle: .alert)
+            let alert = UIAlertController(
+                title: "Confirm",
+                message: "No users have been invited, are you sure you want to leave?",
+                preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
                 alert.removeFromParent()
             }
