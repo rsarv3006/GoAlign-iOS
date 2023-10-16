@@ -19,7 +19,7 @@ class TeamTasksTabView: YtViewController {
             viewModel?.delegate = self
         }
     }
-    
+
     // MARK: UIElements
     private lazy var tasksTableView: UITableView = {
         let tableView = UITableView()
@@ -28,7 +28,7 @@ class TeamTasksTabView: YtViewController {
         tableView.backgroundColor = .customBackgroundColor
         return tableView
     }()
-    
+
     private lazy var taskTitle: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -36,27 +36,30 @@ class TeamTasksTabView: YtViewController {
         label.font = .systemFont(ofSize: 20)
         return label
     }()
-    
+
     // MARK: LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .customBackgroundColor
         navigationController?.isNavigationBarHidden = true
     }
-    
+
     // MARK: Helpers
     override func configureView() {
         tasksTableView.delegate = self
         tasksTableView.dataSource = self
-        
+
         view.addSubview(taskTitle)
         taskTitle.anchor(top: view.safeAreaLayoutGuide.topAnchor)
         taskTitle.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor, paddingTop: 8)
-        
+
         view.addSubview(tasksTableView)
-        tasksTableView.anchor(top: taskTitle.bottomAnchor, left: view.safeAreaLayoutGuide.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.safeAreaLayoutGuide.rightAnchor)
+        tasksTableView.anchor(
+            top: taskTitle.bottomAnchor,
+            left: view.safeAreaLayoutGuide.leftAnchor,
+            bottom: view.safeAreaLayoutGuide.bottomAnchor,
+            right: view.safeAreaLayoutGuide.rightAnchor)
     }
-    
 }
 
 extension TeamTasksTabView: UITableViewDelegate {}
@@ -65,15 +68,18 @@ extension TeamTasksTabView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel?.tasks.count ?? 0
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! TeamTasksTabViewTableCell
-        if let task = viewModel?.tasks[indexPath.row] {
-            cell.viewModel = TeamTasksTabViewCellVM(task: task)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
+
+        if let taskTabViewCell = cell as? TeamTasksTabViewTableCell,
+           let task = viewModel?.tasks[indexPath.row] {
+            taskTabViewCell.viewModel = TeamTasksTabViewCellVM(task: task)
+            return taskTabViewCell
         }
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if let task = viewModel?.team.tasks[indexPath.row] {
             let taskViewVm = TeamTaskModalVM(task: task)
@@ -81,7 +87,7 @@ extension TeamTasksTabView: UITableViewDataSource {
                 self.viewModel?.refreshTeam()
                 self.viewModel?.requestHomeReload.send(true)
             }.store(in: &subscriptions)
-            
+
             let taskView = TeamTaskModal()
             taskView.viewModel = taskViewVm
             self.present(taskView, animated: true)
