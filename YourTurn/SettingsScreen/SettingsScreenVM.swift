@@ -8,13 +8,13 @@
 import Foundation
 
 enum SettingsVariant {
-    case DeleteUser
+    case deleteUser
 }
 
 struct SettingsItem {
     let id: SettingsVariant
     let title: String
-    
+
     init(id: SettingsVariant, title: String) {
         self.id = id
         self.title = title
@@ -24,7 +24,6 @@ struct SettingsItem {
 class SettingsScreenVM {
     let screenTitle = "Settings"
     let settingsItems: [SettingsVariant] = [
-        .DeleteUser
+        .deleteUser
     ]
-    
 }

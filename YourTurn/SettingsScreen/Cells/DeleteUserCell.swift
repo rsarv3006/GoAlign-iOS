@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 class DeleteUserCell: UITableViewCell {
-    let id: SettingsVariant = .DeleteUser
+    let id: SettingsVariant = .deleteUser
 
     private(set) var requestDisplayUIAlert = PassthroughSubject<UIAlertController, Never>()
     private(set) var deleteAccountReturnToSignIn = PassthroughSubject<Result<Bool, Error>, Never>()
