@@ -33,13 +33,13 @@ class TeamAddModal: YtViewController {
         return button
     }()
     
-    lazy var createButton: StandardButton = {
-        let button = StandardButton()
+    lazy var createButton: BlueButton = {
+        let button = BlueButton()
         return button
     }()
     
-    lazy var createAndInviteButton: StandardButton = {
-        let button = StandardButton()
+    lazy var createAndInviteButton: BlueButton = {
+        let button = BlueButton()
         return button
     }()
     
