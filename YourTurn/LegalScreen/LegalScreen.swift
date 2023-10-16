@@ -10,7 +10,7 @@ import UIKit
 class LegalScreen: UIViewController {
 
     private let viewModel = LegalScreenVM()
-    
+
     // MARK: - UI Components
     private lazy var eulaTitleLabel: UILabel = {
         let label = UILabel()
@@ -19,7 +19,7 @@ class LegalScreen: UIViewController {
         label.textColor = .customText
         return label
     }()
-    
+
     private lazy var privacyPolicyTitleLabel: UILabel = {
         let label = UILabel()
         label.text = viewModel.privacyPolicyTitle
@@ -27,7 +27,7 @@ class LegalScreen: UIViewController {
         label.textColor = .customText
         return label
     }()
-    
+
     private lazy var eulaTextView: UITextView = {
         let textView = UITextView()
         textView.text = viewModel.eulaText
@@ -38,7 +38,7 @@ class LegalScreen: UIViewController {
         textView.backgroundColor = .customBackgroundColor
         return textView
     }()
-    
+
     private lazy var privacyPolicyTextView: UITextView = {
         let textView = UITextView()
         textView.text = viewModel.privacyPolicyText
@@ -49,8 +49,7 @@ class LegalScreen: UIViewController {
         textView.backgroundColor = .customBackgroundColor
         return textView
     }()
-    
-    
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,23 +57,32 @@ class LegalScreen: UIViewController {
         self.title = viewModel.title
         configureView()
     }
-    
+
     private func configureView() {
         let screenHeight = UIScreen.main.bounds.height
-        
+
         view.addSubview(eulaTitleLabel)
         eulaTitleLabel.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor, paddingTop: 16)
-        
+
         view.addSubview(eulaTextView)
-        eulaTextView.anchor(top: eulaTitleLabel.bottomAnchor, left: view.safeAreaLayoutGuide.leftAnchor, right: view.safeAreaLayoutGuide.rightAnchor, paddingLeft: 8, paddingRight: 8, height: screenHeight * 0.35)
-        
+        eulaTextView.anchor(
+            top: eulaTitleLabel.bottomAnchor,
+            left: view.safeAreaLayoutGuide.leftAnchor,
+            right: view.safeAreaLayoutGuide.rightAnchor,
+            paddingLeft: 8,
+            paddingRight: 8,
+            height: screenHeight * 0.35)
+
         view.addSubview(privacyPolicyTitleLabel)
         privacyPolicyTitleLabel.centerX(inView: view, topAnchor: eulaTextView.bottomAnchor, paddingTop: 16)
-        
+
         view.addSubview(privacyPolicyTextView)
-        privacyPolicyTextView.anchor(top: privacyPolicyTitleLabel.bottomAnchor, left: view.safeAreaLayoutGuide.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.safeAreaLayoutGuide.rightAnchor, paddingLeft: 8, paddingRight: 8)
+        privacyPolicyTextView.anchor(
+            top: privacyPolicyTitleLabel.bottomAnchor,
+            left: view.safeAreaLayoutGuide.leftAnchor,
+            bottom: view.safeAreaLayoutGuide.bottomAnchor,
+            right: view.safeAreaLayoutGuide.rightAnchor,
+            paddingLeft: 8,
+            paddingRight: 8)
     }
-
-
-
 }
