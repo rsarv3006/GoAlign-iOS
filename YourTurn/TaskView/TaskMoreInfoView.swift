@@ -92,7 +92,17 @@ class TaskMoreInfoView: YtViewController {
         let screenHeight = UIScreen.main.bounds.size.height
         let screenWidth = UIScreen.main.bounds.size.width
 
-        stackView = UIStackView(arrangedSubviews: [creatorLabel, createdDateLabel, startDateLabel, endDateLabel, requiredCompletions, completionsCount, notesLabel, windowLengthLabel, intervalBetweenWindows])
+        stackView = UIStackView(
+            arrangedSubviews: [
+                creatorLabel,
+                createdDateLabel,
+                startDateLabel,
+                endDateLabel,
+                requiredCompletions,
+                completionsCount,
+                notesLabel,
+                windowLengthLabel,
+                intervalBetweenWindows])
 
         guard let stackView = stackView else { return }
         stackView.axis = .vertical
@@ -112,7 +122,13 @@ class TaskMoreInfoView: YtViewController {
         titleLabel.textAlignment = .center
 
         modalView.addSubview(stackView)
-        stackView.anchor(top: titleLabel.bottomAnchor, left: modalView.leftAnchor, right: modalView.rightAnchor, paddingTop: 12, paddingLeft: 8, paddingRight: 8)
+        stackView.anchor(
+            top: titleLabel.bottomAnchor,
+            left: modalView.leftAnchor,
+            right: modalView.rightAnchor,
+            paddingTop: 12,
+            paddingLeft: 8,
+            paddingRight: 8)
 
         modalView.addSubview(closeButton)
         closeButton.anchor(top: modalView.topAnchor, left: modalView.leftAnchor)
