@@ -16,10 +16,10 @@ struct TaskService {
         
         if let response = response as? HTTPURLResponse, response.statusCode == 200 {
             
-            let taskItemsReturn = try GlobalDecoder.decode(TasksReturnModel.self, from: data)
+            let taskItemsReturn = try globalDecoder.decode(TasksReturnModel.self, from: data)
             return taskItemsReturn.tasks
         } else {
-            let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
+            let serverError = try globalDecoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)
         }
     }
@@ -30,10 +30,10 @@ struct TaskService {
         let (data, response) = try await Networking.get(url: url)
         
         if let response = response as? HTTPURLResponse, response.statusCode == 200 {
-            let taskItem = try GlobalDecoder.decode(TaskReturnModel.self, from: data)
+            let taskItem = try globalDecoder.decode(TaskReturnModel.self, from: data)
             return taskItem.task
         } else {
-            let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
+            let serverError = try globalDecoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)
         }
     }
@@ -51,10 +51,10 @@ struct TaskService {
         let (data, response) = try await Networking.post(url: url, body: taskData)
         
         if let response = response as? HTTPURLResponse, response.statusCode == 201 {
-            let taskCreateReturn = try GlobalDecoder.decode(TaskCreateReturnModel.self, from: data)
+            let taskCreateReturn = try globalDecoder.decode(TaskCreateReturnModel.self, from: data)
             return taskCreateReturn.task
         } else {
-            let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
+            let serverError = try globalDecoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)
         }
         
@@ -69,7 +69,7 @@ struct TaskService {
             return
             
         } else {
-            let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
+            let serverError = try globalDecoder.decode(ServerErrorMessage.self, from: data)
             Logger.log(logLevel: .Verbose, name: Logger.Events.Task.markCompleteFailed, payload: ["error": serverError])
             throw ServiceErrors.custom(message: serverError.message)
         }
@@ -88,7 +88,7 @@ struct TaskService {
         let (data, response) = try await Networking.put(url: url, body: updateTaskData)
         
         if let response = response as? HTTPURLResponse, response.statusCode != 201 {
-            let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
+            let serverError = try globalDecoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)
         }
     }
@@ -99,7 +99,7 @@ struct TaskService {
         let (data, response) = try await Networking.delete(url: url)
         
         if let response = response as? HTTPURLResponse, response.statusCode != 204 {
-            let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
+            let serverError = try globalDecoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)
         }
     }

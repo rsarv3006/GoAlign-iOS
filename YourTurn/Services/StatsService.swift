@@ -14,10 +14,10 @@ struct StatsService {
         let (data, response) = try await Networking.get(url: url)
         
         if let response = response as? HTTPURLResponse, response.statusCode == 200 {
-            let teamStatsReturn = try GlobalDecoder.decode(TeamStatsReturnModel.self, from: data)
+            let teamStatsReturn = try globalDecoder.decode(TeamStatsReturnModel.self, from: data)
             return teamStatsReturn.stats
         } else {
-            let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
+            let serverError = try globalDecoder.decode(ServerErrorMessage.self, from: data)
             throw ServiceErrors.custom(message: serverError.message)
         }
         

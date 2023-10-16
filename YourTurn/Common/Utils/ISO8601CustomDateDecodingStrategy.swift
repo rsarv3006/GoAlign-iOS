@@ -11,12 +11,12 @@ enum DateError: String, Error {
     case invalidDate
 }
 
-let CUSTOM_ISO_DECODE: JSONDecoder.DateDecodingStrategy = .custom({ (decoder) -> Date in
+let CUSTOMISODECODE: JSONDecoder.DateDecodingStrategy = .custom({ (decoder) -> Date in
     let formatter = DateFormatter()
     formatter.calendar = Calendar(identifier: .iso8601)
     formatter.locale = Locale(identifier: "en_US_POSIX")
     formatter.timeZone = TimeZone(secondsFromGMT: 0)
-    
+
     let container = try decoder.singleValueContainer()
     let dateStr = try container.decode(String.self)
 
@@ -36,12 +36,12 @@ func decodeISO8601DateFromString(dateString: String) throws -> Date {
     formatter.calendar = Calendar(identifier: .iso8601)
     formatter.locale = Locale(identifier: "en_US_POSIX")
     formatter.timeZone = TimeZone(secondsFromGMT: 0)
-    
+
     formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
     if let date = formatter.date(from: dateString) {
         return date
     }
-    
+
     formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssXXXXX"
     if let date = formatter.date(from: dateString) {
         return date
@@ -51,9 +51,9 @@ func decodeISO8601DateFromString(dateString: String) throws -> Date {
 
 func createGlobalDecoder() -> JSONDecoder {
     let decoder = JSONDecoder()
-    decoder.dateDecodingStrategy = CUSTOM_ISO_DECODE
+    decoder.dateDecodingStrategy = CUSTOMISODECODE
     decoder.keyDecodingStrategy = .convertFromSnakeCase
     return decoder
 }
 
-let GlobalDecoder = createGlobalDecoder()
+let globalDecoder = createGlobalDecoder()

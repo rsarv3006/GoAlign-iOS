@@ -19,9 +19,9 @@ struct AuthenticationService {
             let (data, response) = try await Networking.post(url: url, body: encodedBody, noAuth: true)
             
             if let response = response as? HTTPURLResponse, response.statusCode == 201 {
-                return try GlobalDecoder.decode(FetchJwtDtoReturnModel.self, from: data)
+                return try globalDecoder.decode(FetchJwtDtoReturnModel.self, from: data)
             } else {
-                let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
+                let serverError = try globalDecoder.decode(ServerErrorMessage.self, from: data)
                 throw ServiceErrors.custom(message: serverError.message)
             }
         } catch {
@@ -45,13 +45,13 @@ struct AuthenticationService {
             let (data, response) = try await Networking.post(url: url, body: createUserBody, noAuth: true)
             
             if let response = response as? HTTPURLResponse, response.statusCode == 201 {
-                let userModel = try GlobalDecoder.decode(LoginRequestModel.self, from: data)
+                let userModel = try globalDecoder.decode(LoginRequestModel.self, from: data)
                 return userModel
             } else if let response = response as? HTTPURLResponse, response.statusCode == 400 {
-                let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
+                let serverError = try globalDecoder.decode(ServerErrorMessage.self, from: data)
                 throw ServiceErrors.custom(message: serverError.message)
             } else {
-                let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
+                let serverError = try globalDecoder.decode(ServerErrorMessage.self, from: data)
                 throw ServiceErrors.custom(message: serverError.message)
             }
         } catch {
@@ -72,13 +72,13 @@ struct AuthenticationService {
             let (data, response) = try await Networking.post(url: url, body: signInBody, noAuth: true)
             
             if let response = response as? HTTPURLResponse, response.statusCode == 201 {
-                let userModel = try GlobalDecoder.decode(LoginRequestModel.self, from: data)
+                let userModel = try globalDecoder.decode(LoginRequestModel.self, from: data)
                 return userModel
             } else if let response = response as? HTTPURLResponse, response.statusCode == 400 {
-                let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
+                let serverError = try globalDecoder.decode(ServerErrorMessage.self, from: data)
                 throw ServiceErrors.custom(message: serverError.message)
             } else {
-                let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
+                let serverError = try globalDecoder.decode(ServerErrorMessage.self, from: data)
                 throw ServiceErrors.custom(message: serverError.message)
             }
         } catch {
