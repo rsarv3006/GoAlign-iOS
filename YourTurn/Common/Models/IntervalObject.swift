@@ -23,18 +23,18 @@ class IntervalObject: Codable, Equatable {
         if lhs.intervalCount == rhs.intervalCount && lhs.intervalUnit == rhs.intervalUnit {
             return true
         }
-        
+
         return false
     }
-    
+
     var intervalCount: Int = 1
     var intervalUnit: IntervalVariant = .day
-    
+
     init(_ intervalCount: Int, _ intervalUnit: IntervalVariant){
         self.intervalCount = intervalCount
         self.intervalUnit = intervalUnit
     }
-    
+
     func toString() -> String {
         return "\(intervalCount) - \(intervalUnit.rawValue)"
     }
