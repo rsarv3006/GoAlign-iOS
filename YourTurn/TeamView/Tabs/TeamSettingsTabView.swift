@@ -68,25 +68,25 @@ extension TeamSettingsTabView: UITableViewDataSource {
         guard let settingsVariant = settingsVariant, let team = viewModel?.team else { fatalError("Settings load problem")}
 
         switch settingsVariant {
-        case .DeleteTeam:
+        case .deleteTeam:
             let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.DeleteTeam, for: indexPath) as! TeamSettingsDeleteTeamCell
             let cellVM = TeamSettingsDeleteTeamCellVM(team: team)
             cellVM.delegate = viewModel
             cell.viewModel = cellVM
             return cell
-        case .LeaveTeam:
+        case .leaveTeam:
             let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.LeaveTeam, for: indexPath) as! TeamSettingsLeaveTeamCell
             let cellVM = TeamSettingsLeaveTeamCellVM(team: team)
             cellVM.delegate = viewModel
             cell.viewModel = cellVM
             return cell
-        case .ChangeTeamManager:
+        case .changeTeamManager:
             let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.ChangeTeamManager, for: indexPath) as! TeamSettingsChangeTeamManagerCell
             let cellVM = TeamSettingsChangeTeamManagerCellVM(withTeam: team)
             cellVM.delegate = viewModel
             cell.viewModel = cellVM
             return cell
-        case .AllMembersCanAddTasks:
+        case .allMembersCanAddTasks:
             let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.AllMembersCanAddTasks, for: indexPath) as! TeamSettingsAllMembersCanAddTasksCell
             let cellVM = TeamSettingsAllMembersCanAddTasksCellVM(team: team)
             cellVM.delegate = viewModel

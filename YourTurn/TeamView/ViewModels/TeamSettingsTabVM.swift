@@ -9,18 +9,18 @@ import UIKit
 import Combine
 
 enum TeamSettingsVariant {
-    case DeleteTeam
-    case LeaveTeam
-    case ChangeTeamManager
-    case AllMembersCanAddTasks
+    case deleteTeam
+    case leaveTeam
+    case changeTeamManager
+    case allMembersCanAddTasks
 }
 
 class TeamSettingsTabVM {
 
     private(set) var settingsItems: [TeamSettingsVariant] = [
-        .AllMembersCanAddTasks,
-        .LeaveTeam,
-        .DeleteTeam
+        .allMembersCanAddTasks,
+        .leaveTeam,
+        .deleteTeam
     ]
 
     private var subscriptions = Set<AnyCancellable>()
@@ -48,7 +48,7 @@ class TeamSettingsTabVM {
             let isUserTeamManager = try? await UserService.isUserTeamManager(forTeam: team)
 
             if isUserTeamManager == true {
-                settingsItems.insert(.ChangeTeamManager, at: 1)
+                settingsItems.insert(.changeTeamManager, at: 1)
                 reloadTeamSettingsTable.send(Void())
             }
         }
