@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 class TeamTaskModal: YtViewController {
-
+    
     var subscriptions = Set<AnyCancellable>()
     
     var viewModel: TeamTaskModalVM? {
@@ -20,17 +20,19 @@ class TeamTaskModal: YtViewController {
             
             viewModel.isUserTeamManager.sink { isUserTeamManager in
                 DispatchQueue.main.async {
-                    if isUserTeamManager {
+                    if isUserTeamManager && !viewModel.isTaskComplete {
                         self.editButton.isHidden = false
+                        self.deleteButton.isHidden = false
                     } else {
                         self.editButton.isHidden = true
+                        self.deleteButton.isHidden = true
                     }
                 }
             }.store(in: &subscriptions)
             
             viewModel.resetView.sink { error in
                 if let error = error {
-                    self.showMessage(withTitle: "Uh Oh resetView.sink", message: error.localizedDescription)
+                    self.showMessage(withTitle: "Uh Oh", message: error.localizedDescription)
                 } else {
                     DispatchQueue.main.async {
                         self.configureTaskSubViewVM(modalViewModel: viewModel)
@@ -50,8 +52,17 @@ class TeamTaskModal: YtViewController {
     private lazy var editButton: UIButton = {
         let button = UIButton()
         button.isHidden = true
-        let configuration = UIImage.SymbolConfiguration(textStyle: .title1)
+        let configuration = UIImage.SymbolConfiguration(textStyle: .title2)
         let addImage = UIImage(systemName: "pencil.circle", withConfiguration: configuration)
+        button.setImage(addImage, for: .normal)
+        return button
+    }()
+    
+    private lazy var deleteButton: UIButton = {
+        let button = UIButton()
+        button.isHidden = true
+        let configuration = UIImage.SymbolConfiguration(textStyle: .title2)
+        let addImage = UIImage(systemName: "trash.circle", withConfiguration: configuration)
         button.setImage(addImage, for: .normal)
         return button
     }()
@@ -82,8 +93,12 @@ class TeamTaskModal: YtViewController {
         closeButton.addTarget(self, action: #selector(onCloseButtonPressed), for: .touchUpInside)
         
         view.addSubview(editButton)
-        editButton.anchor(top: topSafeAnchor, right: view.rightAnchor, paddingTop: 12, paddingRight: 12)
+        editButton.anchor(top: topSafeAnchor, right: view.rightAnchor, paddingTop: 12, paddingRight: 48)
         editButton.addTarget(self, action: #selector(onEditButtonPressed), for: .touchUpInside)
+        
+        view.addSubview(deleteButton)
+        deleteButton.anchor(top: topSafeAnchor, right: view.rightAnchor, paddingTop: 12, paddingRight: 12)
+        deleteButton.addTarget(self, action: #selector(onDeleteButtonPressed), for: .touchUpInside)
         
         view.addSubview(taskSubView)
         taskSubView.anchor(top: closeButton.bottomAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor)
@@ -106,6 +121,34 @@ class TeamTaskModal: YtViewController {
         
         taskAddEditScreen.viewModel = taskAddEditScreenVm
         self.present(taskAddEditScreen, animated: true)
+    }
+    
+    @objc func onDeleteButtonPressed() {
+        guard let task = viewModel?.task else { return }
+        
+        let alert = UIAlertController(title: "Delete Task", message: "Are you sure you want to delete this task?", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { _ in
+            Task {
+                do {
+                    self.showLoader(true)
+                    try await self.viewModel?.deleteTask()
+                    self.viewModel?.requestRefreshTeam.send(true)
+                    self.requestPopView()
+                    self.requestHomeReloadFromSubView()
+                    self.showLoader(false)
+                } catch {
+                    self.showLoader(false)
+                    self.showMessage(withTitle: "Uh Oh", message: error.localizedDescription)
+                    
+                }
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        
+        present(alert, animated: true)
+        
     }
     
     private func configureTaskSubViewVM(modalViewModel: TeamTaskModalVM) {

@@ -20,6 +20,12 @@ class TeamTaskModalVM {
     }
     private(set) var task: TaskModel
     
+    var isTaskComplete: Bool {
+        get {
+            task.status == "completed"
+        }
+    }
+    
     init(task: TaskModel) {
         self.task = task
         
@@ -47,4 +53,9 @@ class TeamTaskModalVM {
             }
         }
     }
+    
+    func deleteTask() async throws {
+        try await TaskService.deleteTask(taskId: task.taskId)
+    }
+    
 }

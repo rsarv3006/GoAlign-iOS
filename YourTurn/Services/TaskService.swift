@@ -92,5 +92,17 @@ struct TaskService {
             throw ServiceErrors.custom(message: serverError.message)
         }
     }
+    
+    static func deleteTask(taskId: UUID) async throws {
+        let url = try Networking.createUrl(endPoint: "v1/task/\(taskId)")
+        
+        let (data, response) = try await Networking.delete(url: url)
+        
+        if let response = response as? HTTPURLResponse, response.statusCode != 204 {
+            let serverError = try GlobalDecoder.decode(ServerErrorMessage.self, from: data)
+            throw ServiceErrors.custom(message: serverError.message)
+        }
+    }
+    
 }
 

@@ -60,7 +60,6 @@ extension TaskViewScreen: TaskSubViewVMDelegate {
         DispatchQueue.main.async {
             self.navigationController?.popViewController(animated: true)
         }
-        
     }
     
     func requestShowMessage(withTitle: String, message: String) {
