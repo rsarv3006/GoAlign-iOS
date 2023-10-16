@@ -21,6 +21,7 @@ final class TaskAddEditFormContentBuilderImpl {
         taskAddEditType = .add
     }
 
+    // swiftlint:disable:next function_body_length
     init(fromTask taskToEdit: TaskModel) {
         self.taskToEdit = taskToEdit
         taskAddEditType = .edit
@@ -33,7 +34,9 @@ final class TaskAddEditFormContentBuilderImpl {
             assignedUserId = taskEntry.assignedUser.userId
         }
 
-        let editAssignedTeamMemberModalVM = EditAssignedTeamMemberModalVM(teamId: taskToEdit.teamId, currentlyAssignedUserId: assignedUserId)
+        let editAssignedTeamMemberModalVM = EditAssignedTeamMemberModalVM(
+            teamId: taskToEdit.teamId,
+            currentlyAssignedUserId: assignedUserId)
         let editAssignedTeamMemberModal = EditAssignedTeamMemberModal()
         editAssignedTeamMemberModal.viewModel = editAssignedTeamMemberModalVM
 
@@ -48,15 +51,40 @@ final class TaskAddEditFormContentBuilderImpl {
                                                             error: .custom(message: "Invalid task name entered"))
                                           ]
                                       ),
-                                      StringMaxLengthValidationManagerImpl(maxLength: 32, errorMessage: "Task Name is too long")
+                                      StringMaxLengthValidationManagerImpl(
+                                        maxLength: 32,
+                                        errorMessage: "Task Name is too long")
                                   ],
                                   editValue: taskToEdit.taskName
                                  ),
-                SwitchControlledDateFormComponent(id: .endDate, mode: .date, switchLabel: "End Date", validations: [DateInFutureValidationManagerImpl()], title: "", editValue: taskToEdit.endDate),
-                SwitchControlledTextFormComponent(id: .requiredCompletionsNeeded, placeholder: "Number of Completions Needed To Close Task", switchLabel: "Completions Needed:", keyboardType: .numberPad, validations: [], editValue: requiredCompletionsString),
-                HideableIntervalPickerFormComponent(id: .windowLength, title: "Task Window:", validations: [], editValue: taskToEdit.windowDuration),
-                HideableIntervalPickerFormComponent(id: .intervalBetweenWindows, title: "Time Between Tasks:", validations: [], editValue: taskToEdit.intervalBetweenWindows),
-                ModalFormComponent(id: .taskTeamPicker, buttonTitle: "Select Team", viewControllerToOpen: editAssignedTeamMemberModal),
+                SwitchControlledDateFormComponent(
+                    id: .endDate,
+                    mode: .date,
+                    switchLabel: "End Date",
+                    validations: [DateInFutureValidationManagerImpl()],
+                    title: "",
+                    editValue: taskToEdit.endDate),
+                SwitchControlledTextFormComponent(
+                    id: .requiredCompletionsNeeded,
+                    placeholder: "Number of Completions Needed To Close Task",
+                    switchLabel: "Completions Needed:",
+                    keyboardType: .numberPad,
+                    validations: [],
+                    editValue: requiredCompletionsString),
+                HideableIntervalPickerFormComponent(
+                    id: .windowLength,
+                    title: "Task Window:",
+                    validations: [],
+                    editValue: taskToEdit.windowDuration),
+                HideableIntervalPickerFormComponent(
+                    id: .intervalBetweenWindows,
+                    title: "Time Between Tasks:",
+                    validations: [],
+                    editValue: taskToEdit.intervalBetweenWindows),
+                ModalFormComponent(
+                    id: .taskTeamPicker,
+                    buttonTitle: "Select Team",
+                    viewControllerToOpen: editAssignedTeamMemberModal),
                 TextBoxFormComponent(id: .notes, placeholder: "Notes", editValue: taskToEdit.notes),
                 ButtonFormComponent(id: .taskCreationSubmit, title: "Update")
             ])
@@ -83,7 +111,9 @@ final class TaskAddEditFormContentBuilderImpl {
                                                         error: .custom(message: "Invalid task name entered"))
                                       ]
                                   ),
-                                  StringMaxLengthValidationManagerImpl(maxLength: 32, errorMessage: "Task Name is too long")
+                                  StringMaxLengthValidationManagerImpl(
+                                    maxLength: 32,
+                                    errorMessage: "Task Name is too long")
                               ]),
             DateFormComponent(id: .startDate,
                               mode: .date,
@@ -91,11 +121,26 @@ final class TaskAddEditFormContentBuilderImpl {
                                   DateInFutureValidationManagerImpl()
                               ],
                               title: "Start Date:"),
-            SwitchControlledDateFormComponent(id: .endDate, mode: .date, switchLabel: "End Date", validations: [DateInFutureValidationManagerImpl()], title: ""),
-            SwitchControlledTextFormComponent(id: .requiredCompletionsNeeded, placeholder: "Number of Completions Needed To Close Task", switchLabel: "Completions Needed:", keyboardType: .numberPad, validations: []),
+            SwitchControlledDateFormComponent(
+                id: .endDate,
+                mode: .date,
+                switchLabel: "End Date",
+                validations: [DateInFutureValidationManagerImpl()], title: ""),
+            SwitchControlledTextFormComponent(
+                id: .requiredCompletionsNeeded,
+                placeholder: "Number of Completions Needed To Close Task",
+                switchLabel: "Completions Needed:",
+                keyboardType: .numberPad,
+                validations: []),
             HideableIntervalPickerFormComponent(id: .windowLength, title: "Task Window:", validations: []),
-            HideableIntervalPickerFormComponent(id: .intervalBetweenWindows, title: "Time Between Tasks:", validations: []),
-            ModalFormComponent(id: .taskTeamPicker, buttonTitle: "Select Team", viewControllerToOpen: TeamSelectModal()),
+            HideableIntervalPickerFormComponent(
+                id: .intervalBetweenWindows,
+                title: "Time Between Tasks:",
+                validations: []),
+            ModalFormComponent(
+                id: .taskTeamPicker,
+                buttonTitle: "Select Team",
+                viewControllerToOpen: TeamSelectModal()),
             TextBoxFormComponent(id: .notes, placeholder: "Notes"),
             ButtonFormComponent(id: .taskCreationSubmit, title: "Create")
         ])
@@ -134,10 +179,18 @@ final class TaskAddEditFormContentBuilderImpl {
 
                 do {
                     guard let taskToEdit = taskToEdit else { throw ServiceErrors.custom(message: "No Task to edit.")}
-                    try formSubmissionUpdate.send(.success(UpdateTaskDto(from: validDict, uid: uid, taskToUpdate: taskToEdit, assignedUser: assignedUserId)))
+                    try formSubmissionUpdate.send(.success(
+                        UpdateTaskDto(
+                            from: validDict,
+                            uid: uid,
+                            taskToUpdate: taskToEdit,
+                            assignedUser: assignedUserId)))
                 } catch {
                     formSubmissionUpdate.send(.failure(error))
-                    Logger.log(logLevel: .Prod, name: Logger.Events.Task.creationValidationFailed, payload: ["error": error])
+                    Logger.log(
+                        logLevel: .Prod,
+                        name: Logger.Events.Task.creationValidationFailed,
+                        payload: ["error": error])
                 }
 
             } catch {
@@ -165,12 +218,14 @@ final class TaskAddEditFormContentBuilderImpl {
             let appState = AppState.getInstance()
             let uid = appState.currentUser?.userId
 
-            print("CURENT USER ID: \(AppState.getInstance().currentUser.debugDescription)")
             do {
                 try formSubmission.send(.success(CreateTaskDto(from: validDict, uid: uid)))
             } catch {
                 formSubmission.send(.failure(error))
-                Logger.log(logLevel: .Prod, name: Logger.Events.Task.creationValidationFailed, payload: ["error": error])
+                Logger.log(
+                    logLevel: .Prod,
+                    name: Logger.Events.Task.creationValidationFailed,
+                    payload: ["error": error])
             }
 
         } catch {
