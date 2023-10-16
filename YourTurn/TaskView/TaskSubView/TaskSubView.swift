@@ -46,8 +46,9 @@ class TaskSubView: UIView {
         return tableView
     }()
     
-    private lazy var taskInformationButton: UIButton = {
-        let button = UIButton(type: .system)
+    private lazy var taskInformationButton: BlueButton = {
+        let button = BlueButton()
+        
         return button
     }()
     
@@ -101,7 +102,7 @@ class TaskSubView: UIView {
         assignedTeamLabel.anchor(top: assignedUserLabel.bottomAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor, paddingLeft: 8)
         
         self.addSubview(taskInformationButton)
-        taskInformationButton.anchor(top: assignedTeamLabel.bottomAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor)
+        taskInformationButton.anchor(top: assignedTeamLabel.bottomAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor, paddingTop: 12, paddingLeft: 56, paddingRight: 56)
         
         self.addSubview(taskHistoryTitleLabel)
         taskHistoryTitleLabel.centerX(inView: self, topAnchor: taskInformationButton.bottomAnchor, paddingTop: 24)
