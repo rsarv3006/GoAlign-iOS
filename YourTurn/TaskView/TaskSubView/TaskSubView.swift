@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-let TaskEntryCellReuseIdentifier = "TaskEntryCellReuseIdentifier"
+let taskEntryCellReuseIdentifier = "TaskEntryCellReuseIdentifier"
 
 class TaskSubView: UIView {
 
@@ -90,25 +90,53 @@ class TaskSubView: UIView {
 
         self.backgroundColor = .customBackgroundColor
 
-        taskInformationButton.addTarget(self, action: #selector(onTouchUpInsideTaskInformatioButton), for: .touchUpInside)
+        taskInformationButton.addTarget(
+            self,
+            action: #selector(onTouchUpInsideTaskInformatioButton),
+            for: .touchUpInside)
 
         self.addSubview(subViewTaskCompletionBox)
-        subViewTaskCompletionBox.anchor(top: safeAreaTopAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor, height: 44)
+        subViewTaskCompletionBox.anchor(
+            top: safeAreaTopAnchor,
+            left: safeAreaLeftAnchor,
+            right: safeAreaRightAnchor,
+            height: 44)
 
         self.addSubview(assignedUserLabel)
-        assignedUserLabel.anchor(top: subViewTaskCompletionBox.bottomAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor, paddingTop: 8, paddingLeft: 8)
+        assignedUserLabel.anchor(
+            top: subViewTaskCompletionBox.bottomAnchor,
+            left: safeAreaLeftAnchor,
+            right: safeAreaRightAnchor,
+            paddingTop: 8,
+            paddingLeft: 8)
 
         self.addSubview(assignedTeamLabel)
-        assignedTeamLabel.anchor(top: assignedUserLabel.bottomAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor, paddingLeft: 8)
+        assignedTeamLabel.anchor(
+            top: assignedUserLabel.bottomAnchor,
+            left: safeAreaLeftAnchor,
+            right: safeAreaRightAnchor,
+            paddingLeft: 8)
 
         self.addSubview(taskInformationButton)
-        taskInformationButton.anchor(top: assignedTeamLabel.bottomAnchor, left: safeAreaLeftAnchor, right: safeAreaRightAnchor, paddingTop: 12, paddingLeft: 56, paddingRight: 56)
+        taskInformationButton.anchor(
+            top: assignedTeamLabel.bottomAnchor,
+            left: safeAreaLeftAnchor,
+            right: safeAreaRightAnchor,
+            paddingTop: 12,
+            paddingLeft: 56,
+            paddingRight: 56)
 
         self.addSubview(taskHistoryTitleLabel)
         taskHistoryTitleLabel.centerX(inView: self, topAnchor: taskInformationButton.bottomAnchor, paddingTop: 24)
 
         self.addSubview(taskHistoryTable)
-        taskHistoryTable.anchor(top: taskHistoryTitleLabel.bottomAnchor, left: safeAreaLeftAnchor, bottom: safeAreaBottomAnchor, right: safeAreaRightAnchor, paddingLeft: 8, paddingRight: 8)
+        taskHistoryTable.anchor(
+            top: taskHistoryTitleLabel.bottomAnchor,
+            left: safeAreaLeftAnchor,
+            bottom: safeAreaBottomAnchor,
+            right: safeAreaRightAnchor,
+            paddingLeft: 8,
+            paddingRight: 8)
 
         configureTaskCompletionBox()
     }
@@ -144,7 +172,9 @@ class TaskSubView: UIView {
         viewModel.teamNameSubject.sink { [weak self] teamNameResult in
             switch teamNameResult {
             case .failure(let error):
-                viewModel.delegate?.requestShowMessage(withTitle: "Uh Oh", message: "Error fetching teamname. \(error.localizedDescription)")
+                viewModel.delegate?.requestShowMessage(
+                    withTitle: "Uh Oh",
+                    message: "Error fetching teamname. \(error.localizedDescription)")
             case .success(let teamName):
                 DispatchQueue.main.async {
                     self?.assignedTeamLabel.text = teamName
@@ -155,7 +185,7 @@ class TaskSubView: UIView {
     }
 
     private func configureTaskHistoryTableView() {
-        taskHistoryTable.register(TaskViewEntryCell.self, forCellReuseIdentifier: TaskEntryCellReuseIdentifier)
+        taskHistoryTable.register(TaskViewEntryCell.self, forCellReuseIdentifier: taskEntryCellReuseIdentifier)
         taskHistoryTable.rowHeight = 60
         taskHistoryTable.delegate = self
         taskHistoryTable.dataSource = self
@@ -191,9 +221,11 @@ extension TaskSubView: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TaskEntryCellReuseIdentifier, for: indexPath) as! TaskViewEntryCell
-        if let taskHistoryItem = viewModel?.taskEntries[indexPath.row] {
+        let cell = tableView.dequeueReusableCell(withIdentifier: taskEntryCellReuseIdentifier, for: indexPath)
+
+        if let cell = cell as? TaskViewEntryCell, let taskHistoryItem = viewModel?.taskEntries[indexPath.row] {
             cell.viewModel = TaskViewEntryCellVM(taskEntry: taskHistoryItem)
+            return cell
         }
         return cell
     }
