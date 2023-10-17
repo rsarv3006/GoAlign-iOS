@@ -24,7 +24,9 @@ class DrawerPresentationController: UIPresentationController {
         presentedViewController.dismiss(animated: true)
     }
 
-    override func size(forChildContentContainer container: UIContentContainer, withParentContainerSize parentSize: CGSize) -> CGSize {
+    override func size(
+        forChildContentContainer container: UIContentContainer,
+        withParentContainerSize parentSize: CGSize) -> CGSize {
         return CGSize(width: parentSize.width * 0.6, height: parentSize.height)
     }
 
@@ -33,7 +35,9 @@ class DrawerPresentationController: UIPresentationController {
 
         guard let containerView = containerView else { return frame }
 
-        frame.size = size(forChildContentContainer: presentedViewController, withParentContainerSize: containerView.bounds.size)
+        frame.size = size(
+            forChildContentContainer: presentedViewController,
+            withParentContainerSize: containerView.bounds.size)
 
         return frame
     }

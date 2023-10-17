@@ -101,7 +101,11 @@ class TeamTaskModal: YtViewController {
         deleteButton.addTarget(self, action: #selector(onDeleteButtonPressed), for: .touchUpInside)
 
         view.addSubview(taskSubView)
-        taskSubView.anchor(top: closeButton.bottomAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor)
+        taskSubView.anchor(
+            top: closeButton.bottomAnchor,
+            left: view.leftAnchor,
+            bottom: view.safeAreaLayoutGuide.bottomAnchor,
+            right: view.rightAnchor)
     }
 
     // MARK: - Helpers
@@ -124,9 +128,12 @@ class TeamTaskModal: YtViewController {
     }
 
     @objc func onDeleteButtonPressed() {
-        guard let task = viewModel?.task else { return }
+        guard (viewModel?.task) != nil else { return }
 
-        let alert = UIAlertController(title: "Delete Task", message: "Are you sure you want to delete this task?", preferredStyle: .alert)
+        let alert = UIAlertController(
+            title: "Delete Task",
+            message: "Are you sure you want to delete this task?",
+            preferredStyle: .alert)
 
         alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { _ in
             Task {
