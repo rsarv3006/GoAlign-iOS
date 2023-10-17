@@ -70,7 +70,7 @@ struct TaskService {
 
         } else {
             let serverError = try globalDecoder.decode(ServerErrorMessage.self, from: data)
-            Logger.log(logLevel: .Verbose, name: Logger.Events.Task.markCompleteFailed, payload: ["error": serverError])
+            Logger.log(logLevel: .verbose, name: Logger.Events.Task.markCompleteFailed, payload: ["error": serverError])
             throw ServiceErrors.custom(message: serverError.message)
         }
 

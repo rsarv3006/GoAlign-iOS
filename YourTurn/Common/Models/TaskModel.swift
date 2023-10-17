@@ -18,7 +18,6 @@ enum TaskModelError: Error, LocalizedError {
             return NSLocalizedString(message, comment: "An unexpected error occurred.")
         }
     }
-
 }
 
 enum TaskStatusVariant: String, Codable {

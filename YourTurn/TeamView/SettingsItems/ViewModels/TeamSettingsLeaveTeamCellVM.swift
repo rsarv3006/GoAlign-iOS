@@ -27,7 +27,7 @@ class TeamSettingsLeaveTeamCellVM {
             let confirmAction = UIAlertAction(title: "Yes I'm Sure", style: .destructive) { _ in
                 alert.removeFromParent()
                 self.leaveTeam()
-                Logger.log(logLevel: .Prod, name: Logger.Events.Team.leaveAttempt, payload: ["teamId": self.team.teamId])
+                Logger.log(logLevel: .prod, name: Logger.Events.Team.leaveAttempt, payload: ["teamId": self.team.teamId])
             }
 
             alert.addAction(cancelAction)
@@ -48,7 +48,7 @@ class TeamSettingsLeaveTeamCellVM {
                 if let currentUser = AppState.getInstance().currentUser {
                     try await TeamService.removeUserFromTeam(teamId: team.teamId, userToRemove: currentUser.userId)
 
-                    Logger.log(logLevel: .Prod, name: Logger.Events.Team.leaveSuccess, payload: ["teamId": team.teamId, "userId": currentUser.userId])
+                    Logger.log(logLevel: .prod, name: Logger.Events.Team.leaveSuccess, payload: ["teamId": team.teamId, "userId": currentUser.userId])
                     delegate?.requestHomeReloadFromCell()
                     delegate?.requestRemoveTabViewFromCell()
                 } else {

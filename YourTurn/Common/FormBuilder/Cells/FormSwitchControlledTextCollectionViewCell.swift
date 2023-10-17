@@ -195,7 +195,7 @@ extension FormSwitchControlledTextCollectionViewCell {
                             self.errorLbl.text = message
                         }
                     }
-                    Logger.log(logLevel: .Prod, name: Logger.Events.Form.Field.validationFailed, payload: ["error": error, "field": "switch_controlled_text"])
+                    Logger.log(logLevel: .prod, name: Logger.Events.Form.Field.validationFailed, payload: ["error": error, "field": "switch_controlled_text"])
                 }
             }
             .store(in: &subscriptions)

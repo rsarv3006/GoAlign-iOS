@@ -161,7 +161,7 @@ private extension FormPasswordCollectionViewCell {
                             self.errorLbl.text = message
                         }
                     }
-                    Logger.log(logLevel: .Prod, name: Logger.Events.Form.Field.validationFailed, payload: ["error": error, "field": "password"])
+                    Logger.log(logLevel: .prod, name: Logger.Events.Form.Field.validationFailed, payload: ["error": error, "field": "password"])
                 }
             }
             .store(in: &subscriptions)
@@ -204,7 +204,7 @@ private extension FormPasswordCollectionViewCell {
                             self.errorLbl.text = message
                         }
                     }
-                    Logger.log(logLevel: .Prod, name: Logger.Events.Form.Field.validationFailed, payload: ["error": error, "field": "password"])
+                    Logger.log(logLevel: .prod, name: Logger.Events.Form.Field.validationFailed, payload: ["error": error, "field": "password"])
                 }
             }
             .store(in: &subscriptions)

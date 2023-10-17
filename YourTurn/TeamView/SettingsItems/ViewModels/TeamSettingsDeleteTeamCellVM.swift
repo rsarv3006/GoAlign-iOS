@@ -27,7 +27,7 @@ class TeamSettingsDeleteTeamCellVM {
             let confirmAction = UIAlertAction(title: "Yes I'm Sure", style: .destructive) { _ in
                 alert.removeFromParent()
                 self.deleteTeam()
-                Logger.log(logLevel: .Prod, name: Logger.Events.Team.deleteAttempt, payload: ["teamId": self.team.teamId])
+                Logger.log(logLevel: .prod, name: Logger.Events.Team.deleteAttempt, payload: ["teamId": self.team.teamId])
             }
 
             alert.addAction(cancelAction)

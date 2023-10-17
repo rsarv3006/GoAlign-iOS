@@ -187,7 +187,7 @@ extension FormHideableIntervalPickerCollectionViewCell {
                     self.errorLbl.text = message
                 }
             }
-            Logger.log(logLevel: .Prod, name: Logger.Events.Form.Field.validationFailed, payload: ["error": error, "field": "hideable_interval_picker"])
+            Logger.log(logLevel: .prod, name: Logger.Events.Form.Field.validationFailed, payload: ["error": error, "field": "hideable_interval_picker"])
         }
     }
 }

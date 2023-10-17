@@ -145,7 +145,7 @@ extension DrawerMenuViewController {
             let confirmAction = UIAlertAction(title: "Confirm", style: .destructive) { _ in
                 alert.removeFromParent()
                 self.delegate?.onLogOutPressed(viewController: self)
-                Logger.log(logLevel: .Verbose, name: Logger.Events.User.userRequestedLogout, payload: [:])
+                Logger.log(logLevel: .verbose, name: Logger.Events.User.userRequestedLogout, payload: [:])
             }
 
             alert.addAction(cancelAction)

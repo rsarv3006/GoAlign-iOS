@@ -65,7 +65,7 @@ class DeleteUserCell: UITableViewCell {
             let confirmAction = UIAlertAction(title: "Yes I'm Sure", style: .destructive) { _ in
                 alert.removeFromParent()
                 self.deleteAccount()
-                Logger.log(logLevel: .Prod, name: Logger.Events.User.deleteAttempt, payload: [:])
+                Logger.log(logLevel: .prod, name: Logger.Events.User.deleteAttempt, payload: [:])
             }
 
             alert.addAction(cancelAction)

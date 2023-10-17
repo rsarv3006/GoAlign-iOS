@@ -45,7 +45,7 @@ final class SignInFormContentBuilderImpl {
             try formSubmission.send(SignInCompletedForm(fromDict: validDict ))
 
         } catch {
-            Logger.log(logLevel: .Prod, name: Logger.Events.Auth.signInValidationFailed, payload: ["error": error, "message": "Something is wrong with the signIn form"])
+            Logger.log(logLevel: .prod, name: Logger.Events.Auth.signInValidationFailed, payload: ["error": error, "message": "Something is wrong with the signIn form"])
         }
     }
 }

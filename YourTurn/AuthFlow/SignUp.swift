@@ -136,7 +136,7 @@ private extension SignUpScreen {
             self.showLoader(false)
             switch result {
             case .failure(let error):
-                Logger.log(logLevel: .Verbose, name: Logger.Events.Auth.signInFailed, payload: ["error": error])
+                Logger.log(logLevel: .verbose, name: Logger.Events.Auth.signInFailed, payload: ["error": error])
                 let errorStringToDisplay = AuthenticationService.checkForStandardErrors(error: error)
                 AlertModalService.openAlert(viewController: self, modalMessage: errorStringToDisplay)
             case .success(let createAccountReturnModel):

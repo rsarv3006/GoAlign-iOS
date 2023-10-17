@@ -22,7 +22,7 @@ class TeamInvitesVM {
                 }
                 teamInvitesSubject.send(.success(teamInvitesDisplayModels))
             } catch {
-                Logger.log(logLevel: .Verbose, name: Logger.Events.Team.Invite.fetchFailed, payload: ["error": error.localizedDescription])
+                Logger.log(logLevel: .verbose, name: Logger.Events.Team.Invite.fetchFailed, payload: ["error": error.localizedDescription])
                 teamInvitesSubject.send(.failure(error))
             }
         }

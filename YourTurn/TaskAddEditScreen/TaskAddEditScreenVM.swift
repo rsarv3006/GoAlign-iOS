@@ -53,7 +53,7 @@ class TaskAddEditScreenVM {
                     withTitle: "Uh Oh",
                     message: "Unexpected error creating task. \(error.localizedDescription)")
                 Logger.log(
-                    logLevel: .Prod,
+                    logLevel: .prod,
                     name: Logger.Events.Task.creationFailed,
                     payload: ["error": error.localizedDescription])
             }

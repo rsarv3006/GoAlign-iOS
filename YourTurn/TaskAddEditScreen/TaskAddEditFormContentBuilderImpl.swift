@@ -188,14 +188,14 @@ final class TaskAddEditFormContentBuilderImpl {
                 } catch {
                     formSubmissionUpdate.send(.failure(error))
                     Logger.log(
-                        logLevel: .Prod,
+                        logLevel: .prod,
                         name: Logger.Events.Task.creationValidationFailed,
                         payload: ["error": error])
                 }
 
             } catch {
                 formSubmissionUpdate.send(.failure(error))
-                Logger.log(logLevel: .Prod, name: Logger.Events.Task.updateValidationFailed, payload: ["error": error])
+                Logger.log(logLevel: .prod, name: Logger.Events.Task.updateValidationFailed, payload: ["error": error])
             }
         }
     }
@@ -223,14 +223,14 @@ final class TaskAddEditFormContentBuilderImpl {
             } catch {
                 formSubmission.send(.failure(error))
                 Logger.log(
-                    logLevel: .Prod,
+                    logLevel: .prod,
                     name: Logger.Events.Task.creationValidationFailed,
                     payload: ["error": error])
             }
 
         } catch {
             formSubmission.send(.failure(error))
-            Logger.log(logLevel: .Prod, name: Logger.Events.Task.creationValidationFailed, payload: ["error": error])
+            Logger.log(logLevel: .prod, name: Logger.Events.Task.creationValidationFailed, payload: ["error": error])
         }
     }
 }

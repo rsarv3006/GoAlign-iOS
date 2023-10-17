@@ -92,7 +92,7 @@ class HomeScreenVM {
                 }
 
             } catch {
-                Logger.log(logLevel: .Verbose, name: Logger.Events.Team.Invite.fetchFailed, payload: ["message": error.localizedDescription])
+                Logger.log(logLevel: .verbose, name: Logger.Events.Team.Invite.fetchFailed, payload: ["message": error.localizedDescription])
             }
         }
 

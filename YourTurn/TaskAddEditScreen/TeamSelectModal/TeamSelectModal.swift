@@ -91,7 +91,7 @@ class TeamSelectModal: ModalViewController {
                 let teams = try await TeamService.getTeamsByCurrentUser()
                 self.teams = teams
             } catch {
-                Logger.log(logLevel: .Prod, name: Logger.Events.Team.fetchFailed, payload: ["error": error])
+                Logger.log(logLevel: .prod, name: Logger.Events.Team.fetchFailed, payload: ["error": error])
                 self.showMessage(
                     withTitle: "Uh Oh",
                     message: "Unexpected error encountered loading teams. \(error.localizedDescription)")

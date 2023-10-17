@@ -9,17 +9,17 @@ import Foundation
 import FirebaseAnalytics
 
 enum LogLevel: String {
-    case Verbose = "verbose"
-    case Prod = "prod"
+    case verbose
+    case prod
 }
 
 struct Logger {
     static func log(logLevel: LogLevel, name: String, payload: [String: Any]) {
-        let LOG_LEVEL = getLogLevel()
-        let IS_ANALYTICS_ENABLED = getAnalyticsEnabled()
+        let LOGLEVEL = getLogLevel()
+        let ISANALYTICSENABLED = getAnalyticsEnabled()
         let shouldPrintLogs = getPrintLogs()
 
-        guard logLevelMatches(logLevel, setLogLevel: LOG_LEVEL) else { return }
+        guard logLevelMatches(logLevel, setLogLevel: LOGLEVEL) else { return }
 
         let logString = "\(Date.now.ISO8601Format()) - \(logLevel.rawValue) - \(name) - \(payload)"
 
@@ -30,15 +30,15 @@ struct Logger {
         var mutablePayload = payload
         mutablePayload["originator"] = "iosMobile"
 
-        if IS_ANALYTICS_ENABLED {
+        if ISANALYTICSENABLED {
             Analytics.logEvent(name, parameters: mutablePayload)
         }
     }
 
-    private static func logLevelMatches(_ logLevel: LogLevel, setLogLevel LOG_LEVEL: LogLevel) -> Bool {
-        if logLevel == LOG_LEVEL {
+    private static func logLevelMatches(_ logLevel: LogLevel, setLogLevel LOGLEVEL: LogLevel) -> Bool {
+        if logLevel == LOGLEVEL {
             return true
-        } else if logLevel == .Prod && LOG_LEVEL == .Verbose {
+        } else if logLevel == .prod && LOGLEVEL == .verbose {
             return true
         }
 
@@ -48,10 +48,10 @@ struct Logger {
     private static func getLogLevel() -> LogLevel {
 
         if remoteConfig.configValue(forKey: "LOG_LEVEL").stringValue != "verbose" {
-            return .Prod
+            return .prod
         }
 
-        return .Verbose
+        return .verbose
     }
 
     private static func getAnalyticsEnabled() -> Bool {
@@ -62,6 +62,7 @@ struct Logger {
         return remoteConfig.configValue(forKey: "PRINT_LOGS").boolValue
     }
 
+    // swiftlint:disable nesting
     struct Events {
         struct User {
             static let fetchFailed = "user_fetch_fail"
@@ -114,5 +115,6 @@ struct Logger {
         struct Networking {
             static let callFailed = "networking_call_failed"
         }
+        // swiftlint:enable nesting
     }
 }
