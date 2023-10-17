@@ -9,14 +9,14 @@ import Foundation
 import UIKit
 import Combine
 
-private let TASK_REUSE_ID = "TASK_REUSE_ID"
-private let TEAM_REUSE_ID = "TEAM_REUSE_ID"
-private let TASK_TABLE_TAG = 1001
-private let TEAM_TABLE_TAG = 1002
+let TASKREUSEID = "TASK_REUSE_ID"
+let TEAMREUSEID = "TEAM_REUSE_ID"
+let TASKTABLETAG = 1001
+let TEAMTABLETAG = 1002
 
 class HomeScreen: YtViewController {
     // MARK: - Properties
-    private var subscriptions = Set<AnyCancellable>()
+    var subscriptions = Set<AnyCancellable>()
 
     private let taskRefreshControl = UIRefreshControl()
     private let teamRefreshControl = UIRefreshControl()
@@ -36,13 +36,13 @@ class HomeScreen: YtViewController {
         }
     }
 
-    private var tasks = [TaskModel]() {
+    var tasks = [TaskModel]() {
         didSet {
             taskTableView.reloadData()
         }
     }
 
-    private var teams = [TeamModel]() {
+    var teams = [TeamModel]() {
         didSet {
             teamTableView.reloadData()
         }
@@ -86,18 +86,18 @@ class HomeScreen: YtViewController {
         return button
     }()
 
-    private let taskTableView: UITableView = {
-        let tv = UITableView()
-        tv.tag = TASK_TABLE_TAG
-        tv.backgroundColor = .customBackgroundColor
-        return tv
+    let taskTableView: UITableView = {
+        let tvw = UITableView()
+        tvw.tag = TASKTABLETAG
+        tvw.backgroundColor = .customBackgroundColor
+        return tvw
     }()
 
-    private let teamTableView: UITableView = {
-        let tv = UITableView()
-        tv.tag = TEAM_TABLE_TAG
-        tv.backgroundColor = .customBackgroundColor
-        return tv
+    let teamTableView: UITableView = {
+        let tvw = UITableView()
+        tvw.tag = TEAMTABLETAG
+        tvw.backgroundColor = .customBackgroundColor
+        return tvw
     }()
 
     // MARK: - Lifecycle
@@ -136,10 +136,22 @@ class HomeScreen: YtViewController {
         addTeamButton.anchor(right: rightSafeAnchor, paddingRight: 12)
 
         view.addSubview(taskTableView)
-        taskTableView.anchor(top: taskTitleLabel.bottomAnchor, left: leftSafeAnchor, bottom: teamTitleLabel.topAnchor, right: rightSafeAnchor, paddingLeft: 8, paddingRight: 8)
+        taskTableView.anchor(
+            top: taskTitleLabel.bottomAnchor,
+            left: leftSafeAnchor,
+            bottom: teamTitleLabel.topAnchor,
+            right: rightSafeAnchor,
+            paddingLeft: 8,
+            paddingRight: 8)
 
         view.addSubview(teamTableView)
-        teamTableView.anchor(top: teamTitleLabel.bottomAnchor, left: leftSafeAnchor, bottom: bottomSafeAnchor, right: rightSafeAnchor, paddingLeft: 8, paddingRight: 8)
+        teamTableView.anchor(
+            top: teamTitleLabel.bottomAnchor,
+            left: leftSafeAnchor,
+            bottom: bottomSafeAnchor,
+            right: rightSafeAnchor,
+            paddingLeft: 8,
+            paddingRight: 8)
 
     }
 
@@ -174,7 +186,9 @@ class HomeScreen: YtViewController {
             switch tasksResult {
             case .failure(let error):
                 _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { _ in
-                    self.showMessage(withTitle: "Uh Oh", message: "Error encountered retrieving tasks. \(error.localizedDescription)")
+                    self.showMessage(
+                        withTitle: "Uh Oh",
+                        message: "Error encountered retrieving tasks. \(error.localizedDescription)")
                 }
             case .success(let incomingTasks):
                 self.tasks = incomingTasks
@@ -189,7 +203,9 @@ class HomeScreen: YtViewController {
             switch teamsResult {
             case .failure(let error):
                 _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { _ in
-                    self.showMessage(withTitle: "Uh Oh", message: "Error encountered retrieving teams. \(error.localizedDescription)")
+                    self.showMessage(
+                        withTitle: "Uh Oh",
+                        message: "Error encountered retrieving teams. \(error.localizedDescription)")
                 }
             case .success(let incomingTeams):
                 self.teams = incomingTeams
@@ -214,107 +230,6 @@ class HomeScreen: YtViewController {
         drawerController.delegate = self
         present(drawerController, animated: true)
     }
-}
-
-// MARK: - UITableViewDelegate
-extension HomeScreen: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        DispatchQueue.main.async {
-            if tableView.tag == TASK_TABLE_TAG {
-                let taskVC = TaskViewScreen()
-                taskVC.viewModel = TaskViewScreenVM(task: self.tasks[indexPath.row])
-                taskVC.requestHomeReload.sink { _ in
-                    self.viewModel?.loadTeams()
-                    self.viewModel?.loadTasks()
-                }.store(in: &self.subscriptions)
-                self.navigationController?.pushViewController(taskVC, animated: true)
-            } else if tableView.tag == TEAM_TABLE_TAG {
-                let groupTabVM = TeamTabBarControllerVM(team: self.teams[indexPath.row])
-
-                groupTabVM.requestHomeReload.sink { _ in
-                    self.viewModel?.loadTeams()
-                    self.viewModel?.loadTasks()
-                }.store(in: &self.subscriptions)
-
-                let groupTabVC = TeamTabBarController()
-                groupTabVC.viewModel = groupTabVM
-                self.navigationController?.pushViewController(groupTabVC, animated: true)
-            }
-        }
-
-        return nil
-    }
-}
-
-// MARK: - UITableViewDataSource
-extension HomeScreen: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView.tag == TASK_TABLE_TAG {
-            return tasks.count
-        } else if tableView.tag == TEAM_TABLE_TAG {
-            return teams.count
-        } else {
-            return 0
-        }
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView.tag == TASK_TABLE_TAG {
-            let cell = tableView.dequeueReusableCell(withIdentifier: TASK_REUSE_ID, for: indexPath) as! HomeScreenTaskCell
-            cell.viewModel = HomeScreenTaskCellVM(withTask: tasks[indexPath.row])
-            return cell
-        } else if tableView.tag == TEAM_TABLE_TAG {
-            let cell = tableView.dequeueReusableCell(withIdentifier: TEAM_REUSE_ID, for: indexPath) as! HomeScreenTeamCell
-            cell.viewModel = HomeScreenTeamCellVM(withTeam: teams[indexPath.row])
-            return cell
-        } else {
-            return UITableViewCell(style: .default, reuseIdentifier: "crash baby")
-        }
-    }
-
-    func configureTableViews() {
-        taskTableView.register(HomeScreenTaskCell.self, forCellReuseIdentifier: TASK_REUSE_ID)
-        taskTableView.rowHeight = 60
-        taskTableView.delegate = self
-        taskTableView.dataSource = self
-
-        teamTableView.register(HomeScreenTeamCell.self, forCellReuseIdentifier: TEAM_REUSE_ID)
-        teamTableView.rowHeight = 60
-        teamTableView.delegate = self
-        teamTableView.dataSource = self
-    }
-
-    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        if tableView.tag == TASK_TABLE_TAG {
-            let task = tasks[indexPath.row]
-            return UIContextMenuConfiguration(identifier: task.taskId.uuidString as NSString, previewProvider: nil) { _ in
-                let completeTask = UIAction(
-                    title: "Complete Task",
-                    image: UIImage(systemName: "checkmark.circle")) { _ in
-                        if let taskEntryId = task.findCurrentTaskEntry()?.taskEntryId {
-                            self.viewModel?.onMarkTaskComplete(viewController: self, taskEntryId: taskEntryId)
-
-                        } else {
-                            self.showMessage(withTitle: "Uh Oh", message: "Task Entry Not found.")
-                        }
-                    }
-                return UIMenu(title: "", children: [completeTask])
-            }
-        } else if tableView.tag == TEAM_TABLE_TAG {
-            let team = teams[indexPath.row]
-            return UIContextMenuConfiguration(identifier: team.teamId.uuidString as NSString, previewProvider: nil) { _ in
-                let completeTask = UIAction(
-                    title: "Team Thing",
-                    image: UIImage(systemName: "checkmark.circle")) { _ in
-                        // share the task
-                    }
-                return UIMenu(title: "", children: [completeTask])
-            }
-        }
-
-        return nil
-    }
-
 }
 
 // MARK: - Navigation Handling

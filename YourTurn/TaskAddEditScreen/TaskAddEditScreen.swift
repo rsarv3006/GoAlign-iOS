@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-protocol TaskAddEditScreenDelegate {
+protocol TaskAddEditScreenDelegate: AnyObject {
     func onTaskScreenComplet(viewController: UIViewController)
 }
 
@@ -57,35 +57,69 @@ private extension TaskAddEditScreen {
         collectionView.dataSource = dataSource
 
         view.addSubview(collectionView)
-        collectionView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.safeAreaLayoutGuide.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.safeAreaLayoutGuide.rightAnchor)
+        collectionView.anchor(
+            top: view.safeAreaLayoutGuide.topAnchor,
+            left: view.safeAreaLayoutGuide.leftAnchor,
+            bottom: view.safeAreaLayoutGuide.bottomAnchor,
+            right: view.safeAreaLayoutGuide.rightAnchor)
     }
 
     func makeDataSource() -> UICollectionViewDiffableDataSource<FormSectionComponent, FormComponent> {
-        return UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self] collectionView, indexPath, item in
+        return UICollectionViewDiffableDataSource(
+            collectionView: collectionView) { [weak self] collectionView, indexPath, item in
             guard let self = self else {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewCell.cellId, for: indexPath)
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: UICollectionViewCell.cellId,
+                    for: indexPath)
                 return cell
             }
 
             switch item {
             case is TextFormComponent:
-                return self.buildFormTextCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
+                return self.buildFormTextCollectionViewCell(
+                    collectionView: collectionView,
+                    indexPath: indexPath,
+                    item: item)
             case is DateFormComponent:
-                return self.buildFormDateCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
+                return self.buildFormDateCollectionViewCell(
+                    collectionView: collectionView,
+                    indexPath: indexPath,
+                    item: item)
             case is ButtonFormComponent:
-                return self.buildFormButtonCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
+                return self.buildFormButtonCollectionViewCell(
+                    collectionView: collectionView,
+                    indexPath: indexPath,
+                    item: item)
             case is SwitchControlledTextFormComponent:
-                return self.buildFormSwitchControlledTextCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
+                return self.buildFormSwitchControlledTextCollectionViewCell(
+                    collectionView: collectionView,
+                    indexPath: indexPath,
+                    item: item)
             case is SwitchControlledDateFormComponent:
-                return self.buildFormSwitchControlledDateCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
+                return self.buildFormSwitchControlledDateCollectionViewCell(
+                    collectionView: collectionView,
+                    indexPath: indexPath,
+                    item: item)
             case is HideableIntervalPickerFormComponent:
-                return self.buildFormHideableIntervalPickerCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
+                return self.buildFormHideableIntervalPickerCollectionViewCell(
+                    collectionView: collectionView,
+                    indexPath: indexPath,
+                    item: item)
             case is ModalFormComponent:
-                return self.buildFormModalCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
+                return self.buildFormModalCollectionViewCell(
+                    collectionView: collectionView,
+                    indexPath: indexPath,
+                    item: item)
             case is TextBoxFormComponent:
-                return self.buildFormTextBoxCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
+                return self.buildFormTextBoxCollectionViewCell(
+                    collectionView: collectionView,
+                    indexPath: indexPath,
+                    item: item)
             case is LabelFormComponent:
-                return self.buildFormLabelCollectionViewCell(collectionView: collectionView, indexPath: indexPath, item: item)
+                return self.buildFormLabelCollectionViewCell(
+                    collectionView: collectionView,
+                    indexPath: indexPath,
+                    item: item)
             default:
                 return self.buildDefaultCollectionViewCell(collectionView: collectionView, indexPath: indexPath)
             }
@@ -139,13 +173,21 @@ private extension TaskAddEditScreen {
 
 // MARK: - UICollectionViewCell builders
 private extension TaskAddEditScreen {
-    func buildDefaultCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+    func buildDefaultCollectionViewCell(
+        collectionView: UICollectionView,
+        indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewCell.cellId, for: indexPath)
         return cell
     }
 
-    func buildFormTextCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, item: FormComponent) -> FormTextCollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormTextCollectionViewCell.cellId, for: indexPath) as! FormTextCollectionViewCell
+    func buildFormTextCollectionViewCell(
+        collectionView: UICollectionView,
+        indexPath: IndexPath,
+        item: FormComponent) -> FormTextCollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: FormTextCollectionViewCell.cellId,
+            // swiftlint:disable:next force_cast
+            for: indexPath) as! FormTextCollectionViewCell
 
         cell
             .subject
@@ -162,8 +204,14 @@ private extension TaskAddEditScreen {
         return cell
     }
 
-    func buildFormTextBoxCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, item: FormComponent) -> FormTextBoxCollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormTextBoxCollectionViewCell.cellId, for: indexPath) as! FormTextBoxCollectionViewCell
+    func buildFormTextBoxCollectionViewCell(
+        collectionView: UICollectionView,
+        indexPath: IndexPath,
+        item: FormComponent) -> FormTextBoxCollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: FormTextBoxCollectionViewCell.cellId,
+            // swiftlint:disable:next force_cast
+            for: indexPath) as! FormTextBoxCollectionViewCell
 
         cell
             .subject
@@ -182,14 +230,23 @@ private extension TaskAddEditScreen {
 
     func buildFormLabelCollectionViewCell(collectionView: UICollectionView,
                                           indexPath: IndexPath, item: FormComponent) -> FormLabelCollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormLabelCollectionViewCell.cellId, for: indexPath) as! FormLabelCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: FormLabelCollectionViewCell.cellId,
+            // swiftlint:disable:next force_cast
+            for: indexPath) as! FormLabelCollectionViewCell
         cell.bind(item, at: indexPath)
 
         return cell
     }
 
-    func buildFormDateCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, item: FormComponent) -> FormDateCollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormDateCollectionViewCell.cellId, for: indexPath) as! FormDateCollectionViewCell
+    func buildFormDateCollectionViewCell(
+        collectionView: UICollectionView,
+        indexPath: IndexPath,
+        item: FormComponent) -> FormDateCollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: FormDateCollectionViewCell.cellId,
+            // swiftlint:disable:next force_cast
+            for: indexPath) as! FormDateCollectionViewCell
 
         cell
             .subject
@@ -206,8 +263,14 @@ private extension TaskAddEditScreen {
         return cell
     }
 
-    func buildFormButtonCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, item: FormComponent) -> FormButtonCollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormButtonCollectionViewCell.cellId, for: indexPath) as! FormButtonCollectionViewCell
+    func buildFormButtonCollectionViewCell(
+        collectionView: UICollectionView,
+        indexPath: IndexPath,
+        item: FormComponent) -> FormButtonCollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: FormButtonCollectionViewCell.cellId,
+            // swiftlint:disable:next force_cast
+            for: indexPath) as! FormButtonCollectionViewCell
 
         cell
             .subject
@@ -223,8 +286,14 @@ private extension TaskAddEditScreen {
         return cell
     }
 
-    func buildFormSwitchControlledTextCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, item: FormComponent) -> FormSwitchControlledTextCollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormSwitchControlledTextCollectionViewCell.cellId, for: indexPath) as! FormSwitchControlledTextCollectionViewCell
+    func buildFormSwitchControlledTextCollectionViewCell(
+        collectionView: UICollectionView,
+        indexPath: IndexPath,
+        item: FormComponent) -> FormSwitchControlledTextCollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: FormSwitchControlledTextCollectionViewCell.cellId,
+            // swiftlint:disable:next force_cast
+            for: indexPath) as! FormSwitchControlledTextCollectionViewCell
 
         cell
             .subject
@@ -241,8 +310,14 @@ private extension TaskAddEditScreen {
         return cell
     }
 
-    func buildFormSwitchControlledDateCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, item: FormComponent) -> FormSwitchControlledDateCollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormSwitchControlledDateCollectionViewCell.cellId, for: indexPath) as! FormSwitchControlledDateCollectionViewCell
+    func buildFormSwitchControlledDateCollectionViewCell(
+        collectionView: UICollectionView,
+        indexPath: IndexPath,
+        item: FormComponent) -> FormSwitchControlledDateCollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: FormSwitchControlledDateCollectionViewCell.cellId,
+            // swiftlint:disable:next force_cast
+            for: indexPath) as! FormSwitchControlledDateCollectionViewCell
 
         cell
             .subject
@@ -259,8 +334,14 @@ private extension TaskAddEditScreen {
         return cell
     }
 
-    func buildFormHideableIntervalPickerCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, item: FormComponent) -> FormHideableIntervalPickerCollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormHideableIntervalPickerCollectionViewCell.cellId, for: indexPath) as! FormHideableIntervalPickerCollectionViewCell
+    func buildFormHideableIntervalPickerCollectionViewCell(
+        collectionView: UICollectionView,
+        indexPath: IndexPath,
+        item: FormComponent) -> FormHideableIntervalPickerCollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: FormHideableIntervalPickerCollectionViewCell.cellId,
+            // swiftlint:disable:next force_cast
+            for: indexPath) as! FormHideableIntervalPickerCollectionViewCell
 
         cell
             .subject
@@ -277,8 +358,14 @@ private extension TaskAddEditScreen {
         return cell
     }
 
-    func buildFormModalCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, item: FormComponent) -> FormModalCollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FormModalCollectionViewCell.cellId, for: indexPath) as! FormModalCollectionViewCell
+    func buildFormModalCollectionViewCell(
+        collectionView: UICollectionView,
+        indexPath: IndexPath,
+        item: FormComponent) -> FormModalCollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: FormModalCollectionViewCell.cellId,
+            // swiftlint:disable:next force_cast
+            for: indexPath) as! FormModalCollectionViewCell
 
         cell
             .subject
