@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol IntervalPickerDelegate {
+protocol IntervalPickerDelegate: AnyObject {
     func onIntervalChange(intervalPicker: IntervalPicker, intervalObj: IntervalObject)
 }
 

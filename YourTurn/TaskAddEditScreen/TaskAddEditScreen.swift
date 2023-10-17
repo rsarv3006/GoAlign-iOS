@@ -337,11 +337,11 @@ private extension TaskAddEditScreen {
     func buildFormHideableIntervalPickerCollectionViewCell(
         collectionView: UICollectionView,
         indexPath: IndexPath,
-        item: FormComponent) -> FormHideableIntervalPickerCollectionViewCell {
+        item: FormComponent) -> FormHideableIntervalPickerCVC {
         let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: FormHideableIntervalPickerCollectionViewCell.cellId,
+            withReuseIdentifier: FormHideableIntervalPickerCVC.cellId,
             // swiftlint:disable:next force_cast
-            for: indexPath) as! FormHideableIntervalPickerCollectionViewCell
+            for: indexPath) as! FormHideableIntervalPickerCVC
 
         cell
             .subject

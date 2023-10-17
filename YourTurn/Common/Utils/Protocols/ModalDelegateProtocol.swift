@@ -8,6 +8,6 @@
 import Foundation
 import UIKit
 
-protocol ModalDelegate {
+protocol ModalDelegate: AnyObject {
     func modalSentValue(viewController: ModalViewController, value: Any)
 }

@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class FormHideableIntervalPickerCollectionViewCell: UICollectionViewCell {
+class FormHideableIntervalPickerCVC: UICollectionViewCell {
     private var item: HideableIntervalPickerFormComponent?
     private var indexPath: IndexPath?
     private var isIntervalPickerVisible = false
@@ -37,13 +37,13 @@ class FormHideableIntervalPickerCollectionViewCell: UICollectionViewCell {
     }()
 
     private lazy var intervalPicker: IntervalPicker = {
-        var ip = IntervalPicker(frame: .zero)
+        var intervalPicker = IntervalPicker(frame: .zero)
 
         if let editPickerValue = item?.editValue {
-            ip = IntervalPicker(frame: .zero, interval: editPickerValue)
+            intervalPicker = IntervalPicker(frame: .zero, interval: editPickerValue)
         }
 
-        return ip
+        return intervalPicker
     }()
 
     private lazy var errorLbl: UILabel = {
@@ -86,7 +86,7 @@ class FormHideableIntervalPickerCollectionViewCell: UICollectionViewCell {
     }
 }
 
-private extension FormHideableIntervalPickerCollectionViewCell {
+private extension FormHideableIntervalPickerCVC {
     func setup(item: HideableIntervalPickerFormComponent) {
         controlLabel.text = item.title
 
@@ -130,7 +130,7 @@ private extension FormHideableIntervalPickerCollectionViewCell {
     }
 }
 
-extension FormHideableIntervalPickerCollectionViewCell: FieldVisibilityHandlers {
+extension FormHideableIntervalPickerCVC: FieldVisibilityHandlers {
     func manipulateErrorLabelVisibility(_ showHideVariant: ShowHideLabelVariant) {
         if showHideVariant == .hide {
             contentStackVw.removeArrangedSubview(errorLbl)
@@ -153,7 +153,7 @@ extension FormHideableIntervalPickerCollectionViewCell: FieldVisibilityHandlers 
 }
 
 // MARK: - IntervalPickerDelegate
-extension FormHideableIntervalPickerCollectionViewCell: IntervalPickerDelegate {
+extension FormHideableIntervalPickerCVC: IntervalPickerDelegate {
     func onIntervalChange(intervalPicker: IntervalPicker, intervalObj: IntervalObject) {
         sendCombineEvent(for: intervalPicker, with: intervalObj)
         controlButton.setTitle("  \(intervalObj.toString())  ", for: .normal)
@@ -161,7 +161,7 @@ extension FormHideableIntervalPickerCollectionViewCell: IntervalPickerDelegate {
 }
 
 // MARK: - Combine
-extension FormHideableIntervalPickerCollectionViewCell {
+extension FormHideableIntervalPickerCVC {
     func sendCombineEvent(for intervalPicker: IntervalPicker, with intervalObj: IntervalObject) {
         guard let indexPath = self.indexPath, let item = self.item else { return }
 
@@ -187,7 +187,10 @@ extension FormHideableIntervalPickerCollectionViewCell {
                     self.errorLbl.text = message
                 }
             }
-            Logger.log(logLevel: .prod, name: Logger.Events.Form.Field.validationFailed, payload: ["error": error, "field": "hideable_interval_picker"])
+            Logger.log(
+                logLevel: .prod,
+                name: Logger.Events.Form.Field.validationFailed,
+                payload: ["error": error, "field": "hideable_interval_picker"])
         }
     }
 }

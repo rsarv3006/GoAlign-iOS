@@ -27,7 +27,7 @@ final class FormCollectionView: UICollectionView {
         register(FormDateCollectionViewCell.self, forCellWithReuseIdentifier: FormDateCollectionViewCell.cellId)
         register(FormSwitchControlledTextCollectionViewCell.self, forCellWithReuseIdentifier: FormSwitchControlledTextCollectionViewCell.cellId)
         register(FormSwitchControlledDateCollectionViewCell.self, forCellWithReuseIdentifier: FormSwitchControlledDateCollectionViewCell.cellId)
-        register(FormHideableIntervalPickerCollectionViewCell.self, forCellWithReuseIdentifier: FormHideableIntervalPickerCollectionViewCell.cellId)
+        register(FormHideableIntervalPickerCVC.self, forCellWithReuseIdentifier: FormHideableIntervalPickerCVC.cellId)
         register(FormPasswordCollectionViewCell.self, forCellWithReuseIdentifier: FormPasswordCollectionViewCell.cellId)
         register(FormModalCollectionViewCell.self, forCellWithReuseIdentifier: FormModalCollectionViewCell.cellId)
         register(FormTextBoxCollectionViewCell.self, forCellWithReuseIdentifier: FormTextBoxCollectionViewCell.cellId)

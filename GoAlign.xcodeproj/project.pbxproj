@@ -163,7 +163,7 @@
 		78B687882887A6B2006B6CAB /* SwitchControlledTextFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B687872887A6B2006B6CAB /* SwitchControlledTextFormComponent.swift */; };
 		78B6878A2887A6D2006B6CAB /* SwitchControlledDateFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B687892887A6D2006B6CAB /* SwitchControlledDateFormComponent.swift */; };
 		78B6878C2887A9CE006B6CAB /* HideableIntervalPickerFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6878B2887A9CE006B6CAB /* HideableIntervalPickerFormComponent.swift */; };
-		78B6878E2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6878D2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift */; };
+		78B6878E2887AAD4006B6CAB /* FormHideableIntervalPickerCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6878D2887AAD4006B6CAB /* FormHideableIntervalPickerCVC.swift */; };
 		78B687902887AE29006B6CAB /* FieldVisibilityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6878F2887AE29006B6CAB /* FieldVisibilityProtocol.swift */; };
 		78B68792288829F0006B6CAB /* FieldValidInvalidProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B68791288829F0006B6CAB /* FieldValidInvalidProtocol.swift */; };
 		78B90EB62939C47B00E6CBA8 /* StatsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B90EB52939C47B00E6CBA8 /* StatsService.swift */; };
@@ -372,7 +372,7 @@
 		78B687872887A6B2006B6CAB /* SwitchControlledTextFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchControlledTextFormComponent.swift; sourceTree = "<group>"; };
 		78B687892887A6D2006B6CAB /* SwitchControlledDateFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchControlledDateFormComponent.swift; sourceTree = "<group>"; };
 		78B6878B2887A9CE006B6CAB /* HideableIntervalPickerFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideableIntervalPickerFormComponent.swift; sourceTree = "<group>"; };
-		78B6878D2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormHideableIntervalPickerCollectionViewCell.swift; sourceTree = "<group>"; };
+		78B6878D2887AAD4006B6CAB /* FormHideableIntervalPickerCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormHideableIntervalPickerCVC.swift; sourceTree = "<group>"; };
 		78B6878F2887AE29006B6CAB /* FieldVisibilityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldVisibilityProtocol.swift; sourceTree = "<group>"; };
 		78B68791288829F0006B6CAB /* FieldValidInvalidProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldValidInvalidProtocol.swift; sourceTree = "<group>"; };
 		78B90EB52939C47B00E6CBA8 /* StatsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsService.swift; sourceTree = "<group>"; };
@@ -813,7 +813,7 @@
 				7802E19C288DC9DC00F7D501 /* FormPasswordCollectionViewCell.swift */,
 				78BFFA9D2887784600A767AB /* FormSwitchControlledTextCollectionViewCell.swift */,
 				78BFFAA328879A3F00A767AB /* FormSwitchControlledDateCollectionViewCell.swift */,
-				78B6878D2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift */,
+				78B6878D2887AAD4006B6CAB /* FormHideableIntervalPickerCVC.swift */,
 				78FAB72328AB5973009B8D50 /* FormModalCollectionViewCell.swift */,
 				78331446291547A3009DDD3F /* FormTextBoxCollectionViewCell.swift */,
 				782F5EC62AC3E90300E77B1D /* FormLabelCollectionViewCell.swift */,
@@ -1250,7 +1250,7 @@
 				780F197828A492E500371B91 /* SwitchAuthScreenProtocol.swift in Sources */,
 				7802E189288B9EB000F7D501 /* SignIn.swift in Sources */,
 				788CFF9C29554131002650F7 /* ChangeTeamManagerUserCell.swift in Sources */,
-				78B6878E2887AAD4006B6CAB /* FormHideableIntervalPickerCollectionViewCell.swift in Sources */,
+				78B6878E2887AAD4006B6CAB /* FormHideableIntervalPickerCVC.swift in Sources */,
 				78332CE529549EF800073F14 /* ChangeTeamManagerModalVM.swift in Sources */,
 				D55E671F28F5177100EBE205 /* TaskMoreInfoVM.swift in Sources */,
 				782F5EC72AC3E90300E77B1D /* FormLabelCollectionViewCell.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol DrawerMenuViewControllerDelegate {
+protocol DrawerMenuViewControllerDelegate: AnyObject {
     func onLogOutPressed(viewController: UIViewController)
     func onViewTeamInvitesPressed(viewController: UIViewController)
     func onViewSettingsPressed(viewController: UIViewController)
@@ -137,7 +137,10 @@ extension DrawerMenuViewController {
 
     @objc func onLogoutButtonPressed() {
         DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Logout", message: "Are you sure you want to logout?", preferredStyle: .alert)
+            let alert = UIAlertController(
+                title: "Logout",
+                message: "Are you sure you want to logout?",
+                preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
                 alert.removeFromParent()
             }
