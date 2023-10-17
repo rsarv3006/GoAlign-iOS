@@ -22,9 +22,9 @@ enum TaskModelError: Error, LocalizedError {
 }
 
 enum TaskStatusVariant: String, Codable {
-    case active = "active"
-    case completed = "completed"
-    case overdue = "overdue"
+    case active
+    case completed
+    case overdue
 }
 
 struct TaskReturnModel: Codable {
@@ -86,7 +86,7 @@ class CreateTaskDto: Codable {
     let creatorUserId: UUID
 
     init(from formDict: [String: Any], uid: UUID?) throws {
-        if let taskName = formDict[CreateTaskDictKeys.TASK_NAME] as? String {
+        if let taskName = formDict[CreateTaskDictKeys.TASKNAME] as? String {
             self.taskName = taskName
         } else {
             throw TaskModelError.custom(message: "Create TaskModel: invalid value given for Task Name")
@@ -98,31 +98,32 @@ class CreateTaskDto: Codable {
             self.notes = nil
         }
 
-        if let startDate = formDict[CreateTaskDictKeys.START_DATE] as? Date {
+        if let startDate = formDict[CreateTaskDictKeys.STARTDATE] as? Date {
             self.startDate = startDate
         } else {
             throw TaskModelError.custom(message: "Create TaskModel: invalid value given for Start Date")
         }
 
-        if let endDate = formDict[CreateTaskDictKeys.END_DATE] as? Date {
+        if let endDate = formDict[CreateTaskDictKeys.ENDDATE] as? Date {
             self.endDate = endDate
         } else {
             self.endDate = nil
         }
 
-        if let requiredCompletionsNeededString = formDict[CreateTaskDictKeys.REQUIRED_COMPLETIONS_NEEDED] as? String, let requiredCompletionsNeeded = Int(requiredCompletionsNeededString) {
+        if let requiredCompletionsNeededString = formDict[CreateTaskDictKeys.REQUIREDCOMPLETIONSNEEDED] as? String,
+            let requiredCompletionsNeeded = Int(requiredCompletionsNeededString) {
             self.requiredCompletionsNeeded = requiredCompletionsNeeded
         } else {
             self.requiredCompletionsNeeded = nil
         }
 
-        if let intervalBetweenWindows = formDict[CreateTaskDictKeys.INTERVAL_BETWEEN_WINDOWS] as? IntervalObject {
+        if let intervalBetweenWindows = formDict[CreateTaskDictKeys.INTERVALBETWEENWINDOWS] as? IntervalObject {
             self.intervalBetweenWindows = intervalBetweenWindows
         } else {
             throw TaskModelError.custom(message: "Create TaskModel: invalid value given for Interval Between Windows")
         }
 
-        if let windowLength = formDict[CreateTaskDictKeys.WINDOW_LENGTH] as? IntervalObject {
+        if let windowLength = formDict[CreateTaskDictKeys.WINDOWLENGTH] as? IntervalObject {
             self.windowDuration = windowLength
         } else {
             throw TaskModelError.custom(message: "Create TaskModel: invalid value given for Window Length")
@@ -143,21 +144,22 @@ class CreateTaskDto: Codable {
     }
 
     func toString() -> String {
+        // swiftlint:disable:next line_length
         return "taskName: \(taskName) - notes: \(String(describing: notes)) - startDate: \(startDate) - endDate: \(String(describing: endDate))"
     }
 }
 
 struct CreateTaskDictKeys {
-    static let TASK_NAME = "taskName"
+    static let TASKNAME = "taskName"
     static let NOTES = "notes"
-    static let START_DATE = "startDate"
-    static let END_DATE = "endDate"
-    static let REQUIRED_COMPLETIONS_NEEDED = "requiredCompletionsNeeded"
-    static let INTERVAL_BETWEEN_WINDOWS = "intervalBetweenWindows"
-    static let WINDOW_LENGTH = "windowLength"
-    static let TEAM_ID = "teamId"
-    static let CREATOR_USER_ID = "creatorUserId"
-    static let ASSIGNED_USER_ID = "assignedUserId"
+    static let STARTDATE = "startDate"
+    static let ENDDATE = "endDate"
+    static let REQUIREDCOMPLETIONSNEEDED = "requiredCompletionsNeeded"
+    static let INTERVALBETWEENWINDOWS = "intervalBetweenWindows"
+    static let WINDOWLENGTH = "windowLength"
+    static let TEAMID = "teamId"
+    static let CREATORUSERID = "creatorUserId"
+    static let ASSIGNEDUSERID = "assignedUserId"
 
 }
 
@@ -172,8 +174,12 @@ class UpdateTaskDto: Codable {
     let windowLength: IntervalObject?
     let assignedUserId: UUID?
 
-    init(from formDict: [String: Any], uid: UUID?, taskToUpdate: TaskModel, assignedUser currentAssignedUser: UUID? = nil) throws {
-        if let taskName = formDict[CreateTaskDictKeys.TASK_NAME] as? String, taskName != taskToUpdate.taskName {
+    init(
+        from formDict: [String: Any],
+        uid: UUID?,
+        taskToUpdate: TaskModel,
+        assignedUser currentAssignedUser: UUID? = nil) throws {
+        if let taskName = formDict[CreateTaskDictKeys.TASKNAME] as? String, taskName != taskToUpdate.taskName {
             self.taskName = taskName
         } else {
             self.taskName = nil
@@ -185,37 +191,42 @@ class UpdateTaskDto: Codable {
             self.notes = nil
         }
 
-        if let startDate = formDict[CreateTaskDictKeys.START_DATE] as? Date, startDate != taskToUpdate.startDate {
+        if let startDate = formDict[CreateTaskDictKeys.STARTDATE] as? Date, startDate != taskToUpdate.startDate {
             self.startDate = startDate
         } else {
             self.startDate = nil
         }
 
-        if let endDate = formDict[CreateTaskDictKeys.END_DATE] as? Date, endDate != taskToUpdate.endDate {
+        if let endDate = formDict[CreateTaskDictKeys.ENDDATE] as? Date, endDate != taskToUpdate.endDate {
             self.endDate = endDate
         } else {
             self.endDate = nil
         }
 
-        if let requiredCompletionsNeededString = formDict[CreateTaskDictKeys.REQUIRED_COMPLETIONS_NEEDED] as? String, let requiredCompletionsNeeded = Int(requiredCompletionsNeededString), requiredCompletionsNeeded != taskToUpdate.requiredCompletionsNeeded {
+        if let requiredCompletionsNeededString = formDict[CreateTaskDictKeys.REQUIREDCOMPLETIONSNEEDED] as? String,
+            let requiredCompletionsNeeded = Int(requiredCompletionsNeededString),
+           requiredCompletionsNeeded != taskToUpdate.requiredCompletionsNeeded {
             self.requiredCompletionsNeeded = requiredCompletionsNeeded
         } else {
             self.requiredCompletionsNeeded = nil
         }
 
-        if let intervalBetweenWindows = formDict[CreateTaskDictKeys.INTERVAL_BETWEEN_WINDOWS] as? IntervalObject, intervalBetweenWindows != taskToUpdate.intervalBetweenWindows {
+        if let intervalBetweenWindows = formDict[CreateTaskDictKeys.INTERVALBETWEENWINDOWS] as? IntervalObject,
+            intervalBetweenWindows != taskToUpdate.intervalBetweenWindows {
             self.intervalBetweenWindows = intervalBetweenWindows
         } else {
             self.intervalBetweenWindows = nil
         }
 
-        if let windowLength = formDict[CreateTaskDictKeys.WINDOW_LENGTH] as? IntervalObject, windowLength != taskToUpdate.windowDuration {
+        if let windowLength = formDict[CreateTaskDictKeys.WINDOWLENGTH] as? IntervalObject,
+            windowLength != taskToUpdate.windowDuration {
             self.windowLength = windowLength
         } else {
             self.windowLength = nil
         }
 
-        if let assignedUserId = formDict[CreateTaskDictKeys.ASSIGNED_USER_ID] as? UUID, assignedUserId != currentAssignedUser {
+        if let assignedUserId = formDict[CreateTaskDictKeys.ASSIGNEDUSERID] as? UUID,
+            assignedUserId != currentAssignedUser {
             self.assignedUserId = assignedUserId
         } else {
             self.assignedUserId = nil
@@ -227,6 +238,7 @@ class UpdateTaskDto: Codable {
     }
 
     func toString() -> String {
+        // swiftlint:disable:next line_length
         return "taskName: \(String(describing: taskName)) - notes: \(String(describing: notes)) - startDate: \(String(describing: startDate)) - endDate: \(String(describing: endDate))"
     }
 }
