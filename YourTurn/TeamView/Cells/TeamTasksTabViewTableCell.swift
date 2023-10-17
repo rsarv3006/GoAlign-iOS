@@ -37,7 +37,12 @@ class TeamTasksTabViewTableCell: UITableViewCell {
     // MARK: Helpers
     private func configureView() {
         contentView.addSubview(taskNameLabel)
-        taskNameLabel.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 12)
+        taskNameLabel.anchor(
+            top: contentView.topAnchor,
+            left: contentView.leftAnchor,
+            bottom: contentView.bottomAnchor,
+            right: contentView.rightAnchor,
+            paddingLeft: 12)
         taskNameLabel.centerY(inView: contentView)
     }
 
