@@ -27,9 +27,9 @@ class TeamSettingsTabView: YtViewController {
 
     // MARK: UI Elements
     private lazy var settingsTableView: UITableView = {
-        let tv = UITableView()
-        tv.backgroundColor = .customBackgroundColor
-        return tv
+        let tvw = UITableView()
+        tvw.backgroundColor = .customBackgroundColor
+        return tvw
     }()
 
     // MARK: LIFECYCLE
@@ -43,8 +43,12 @@ class TeamSettingsTabView: YtViewController {
     override func configureView() {
         settingsTableView.register(TeamSettingsDeleteTeamCell.self, forCellReuseIdentifier: ReuseIdentifiers.DeleteTeam)
         settingsTableView.register(TeamSettingsLeaveTeamCell.self, forCellReuseIdentifier: ReuseIdentifiers.LeaveTeam)
-        settingsTableView.register(TeamSettingsChangeTeamManagerCell.self, forCellReuseIdentifier: ReuseIdentifiers.ChangeTeamManager)
-        settingsTableView.register(TeamSettingsAllMembersCanAddTasksCell.self, forCellReuseIdentifier: ReuseIdentifiers.AllMembersCanAddTasks)
+        settingsTableView.register(
+            TeamSettingsChangeTeamManagerCell.self,
+            forCellReuseIdentifier: ReuseIdentifiers.ChangeTeamManager)
+        settingsTableView.register(
+            TeamSettingsAllMembersCanAddTasksCell.self,
+            forCellReuseIdentifier: ReuseIdentifiers.AllMembersCanAddTasks)
 
         settingsTableView.rowHeight = 48
 
@@ -65,29 +69,42 @@ extension TeamSettingsTabView: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let settingsVariant = viewModel?.settingsItems[indexPath.row]
-        guard let settingsVariant = settingsVariant, let team = viewModel?.team else { fatalError("Settings load problem")}
+        guard let settingsVariant = settingsVariant,
+              let team = viewModel?.team else { fatalError("Settings load problem")}
 
         switch settingsVariant {
         case .deleteTeam:
-            let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.DeleteTeam, for: indexPath) as! TeamSettingsDeleteTeamCell
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: ReuseIdentifiers.DeleteTeam,
+                // swiftlint:disable:next force_cast
+                for: indexPath) as! TeamSettingsDeleteTeamCell
             let cellVM = TeamSettingsDeleteTeamCellVM(team: team)
             cellVM.delegate = viewModel
             cell.viewModel = cellVM
             return cell
         case .leaveTeam:
-            let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.LeaveTeam, for: indexPath) as! TeamSettingsLeaveTeamCell
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: ReuseIdentifiers.LeaveTeam,
+                // swiftlint:disable:next force_cast
+                for: indexPath) as! TeamSettingsLeaveTeamCell
             let cellVM = TeamSettingsLeaveTeamCellVM(team: team)
             cellVM.delegate = viewModel
             cell.viewModel = cellVM
             return cell
         case .changeTeamManager:
-            let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.ChangeTeamManager, for: indexPath) as! TeamSettingsChangeTeamManagerCell
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: ReuseIdentifiers.ChangeTeamManager,
+                // swiftlint:disable:next force_cast
+                for: indexPath) as! TeamSettingsChangeTeamManagerCell
             let cellVM = TeamSettingsChangeTeamManagerCellVM(withTeam: team)
             cellVM.delegate = viewModel
             cell.viewModel = cellVM
             return cell
         case .allMembersCanAddTasks:
-            let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.AllMembersCanAddTasks, for: indexPath) as! TeamSettingsAllMembersCanAddTasksCell
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: ReuseIdentifiers.AllMembersCanAddTasks,
+                // swiftlint:disable:next force_cast
+                for: indexPath) as! TeamSettingsAllMembersCanAddTasksCell
             let cellVM = TeamSettingsAllMembersCanAddTasksCellVM(team: team)
             cellVM.delegate = viewModel
             cell.viewModel = cellVM
