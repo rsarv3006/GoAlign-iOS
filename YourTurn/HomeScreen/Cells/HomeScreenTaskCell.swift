@@ -46,7 +46,11 @@ class HomeScreenTaskCell: UITableViewCell {
         taskNameLabel.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor, height: 30)
 
         addSubview(timeUntilStartOrEndLabel)
-        timeUntilStartOrEndLabel.anchor(top: taskNameLabel.bottomAnchor, left: leftAnchor, right: rightAnchor, height: 20)
+        timeUntilStartOrEndLabel.anchor(
+            top: taskNameLabel.bottomAnchor,
+            left: leftAnchor,
+            right: rightAnchor,
+            height: 20)
     }
 
     private func onViewModelSet() {
