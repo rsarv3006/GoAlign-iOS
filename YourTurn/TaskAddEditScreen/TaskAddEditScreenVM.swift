@@ -16,9 +16,9 @@ enum TaskMutationStatus {
 class TaskAddEditScreenVM {
     let screenTitleLabelString: String = "Add Task"
 
-    struct LABEL_KEYS {
-        static let INTERVAL_BETWEEN_WINDOWS = "INTERVAL_BETWEEN_WINDOWS"
-        static let WINDOW_LENGTH = "WINDOW_LENGTH"
+    struct LABELKEYS {
+        static let INTERVALBETWEENWINDOWS = "INTERVAL_BETWEEN_WINDOWS"
+        static let WINDOWLENGTH = "WINDOW_LENGTH"
     }
 
     let taskMutationStatus: TaskMutationStatus
@@ -49,8 +49,13 @@ class TaskAddEditScreenVM {
                 }
 
             } catch {
-                await viewController.showMessage(withTitle: "Uh Oh", message: "Unexpected error creating task. \(error.localizedDescription)")
-                Logger.log(logLevel: .Prod, name: Logger.Events.Task.creationFailed, payload: ["error": error.localizedDescription])
+                await viewController.showMessage(
+                    withTitle: "Uh Oh",
+                    message: "Unexpected error creating task. \(error.localizedDescription)")
+                Logger.log(
+                    logLevel: .Prod,
+                    name: Logger.Events.Task.creationFailed,
+                    payload: ["error": error.localizedDescription])
             }
         }
     }
@@ -61,7 +66,9 @@ class TaskAddEditScreenVM {
         }
         Task {
             do {
-                guard let taskId = taskToEdit?.taskId else { throw ServiceErrors.custom(message: "No task id when trying to edit a task.")}
+                guard let taskId = taskToEdit?.taskId else {
+                    throw ServiceErrors.custom(
+                        message: "No task id when trying to edit a task.")}
                 taskForm.insertTaskId(taskId: taskId)
                 try await TaskService.updateTask(updateTaskDto: taskForm)
 
