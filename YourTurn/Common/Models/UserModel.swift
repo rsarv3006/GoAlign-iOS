@@ -25,6 +25,7 @@ class UserModel: Codable {
     }
 
     func toString() {
+        // swiftlint:disable:next line_length
         print("userId: \(userId), createdAt: \(createdAt), username: \(username), email: \(email), isActive: \(isActive), isEmailVerified: \(isEmailVerified)")
     }
 }

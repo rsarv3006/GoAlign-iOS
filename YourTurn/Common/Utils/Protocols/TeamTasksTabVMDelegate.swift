@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol TeamTasksTabVMDelegate {
+protocol TeamTasksTabVMDelegate: AnyObject {
     func requestTableReload()
     func showMessage(withTitle: String, message: String, completion: (() -> Void)?)
 }

@@ -45,7 +45,11 @@ class ChangeTeamManagerUserCell: UITableViewCell {
         userNameLabel.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, right: contentView.rightAnchor)
 
         contentView.addSubview(emailLabel)
-        emailLabel.anchor(left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 8)
+        emailLabel.anchor(
+            left: contentView.leftAnchor,
+            bottom: contentView.bottomAnchor,
+            right: contentView.rightAnchor,
+            paddingLeft: 8)
     }
 
     private func onViewModelSet(viewModel: ChangeTeamManagerUserCellVM) {

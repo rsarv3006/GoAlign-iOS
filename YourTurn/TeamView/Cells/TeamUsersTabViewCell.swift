@@ -38,7 +38,12 @@ class TeamUsersTabViewCell: UITableViewCell {
     private func configureView() {
         contentView.backgroundColor = .customBackgroundColor
         contentView.addSubview(userNameLabel)
-        userNameLabel.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 12)
+        userNameLabel.anchor(
+            top: contentView.topAnchor,
+            left: contentView.leftAnchor,
+            bottom: contentView.bottomAnchor,
+            right: contentView.rightAnchor,
+            paddingLeft: 12)
         userNameLabel.centerY(inView: contentView)
 
     }

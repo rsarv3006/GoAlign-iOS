@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol TeamUsersReloadDelegate {
+protocol TeamUsersReloadDelegate: AnyObject {
     func requestInvitesReload()
 }

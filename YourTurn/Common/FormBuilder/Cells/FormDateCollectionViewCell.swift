@@ -128,7 +128,10 @@ private extension FormDateCollectionViewCell {
                     self.errorLbl.text = message
                 }
             }
-            Logger.log(logLevel: .prod, name: Logger.Events.Form.Field.validationFailed, payload: ["error": error, "field": "date"])
+            Logger.log(
+                logLevel: .prod,
+                name: Logger.Events.Form.Field.validationFailed,
+                payload: ["error": error, "field": "date"])
         }
     }
 }

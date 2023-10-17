@@ -15,7 +15,11 @@ struct DateAgeLimitValidationManagerImpl: ValidationManager {
             throw ValidationError.custom(message: "Invald Value of \(val) passed")
         }
 
-        if let calculatedYear = Calendar.current.dateComponents([.year], from: date, to: Date()).year, calculatedYear < ageLimit {
+        if let calculatedYear = Calendar.current.dateComponents(
+            [.year],
+            from: date,
+            to: Date()).year,
+           calculatedYear < ageLimit {
             throw ValidationError.custom(message: "User is below the age of 18")
         }
     }

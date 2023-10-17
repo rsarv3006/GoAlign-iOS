@@ -48,7 +48,11 @@ class TeamInviteCellView: UITableViewCell {
         teamNameLabel.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, right: contentView.rightAnchor)
 
         contentView.addSubview(invitedByLabel)
-        invitedByLabel.anchor(top: teamNameLabel.bottomAnchor, left: contentView.leftAnchor, right: contentView.rightAnchor, paddingLeft: 8)
+        invitedByLabel.anchor(
+            top: teamNameLabel.bottomAnchor,
+            left: contentView.leftAnchor,
+            right: contentView.rightAnchor,
+            paddingLeft: 8)
     }
 
 }

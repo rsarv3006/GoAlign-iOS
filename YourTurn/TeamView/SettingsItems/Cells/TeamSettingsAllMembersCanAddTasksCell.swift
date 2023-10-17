@@ -38,9 +38,9 @@ class TeamSettingsAllMembersCanAddTasksCell: UITableViewCell {
     }()
 
     private lazy var settingSwitch: UISwitch = {
-        let sw = UISwitch()
-        sw.addTarget(self, action: #selector(onSettingToggle(_:)), for: .valueChanged)
-        return sw
+        let settingSwitch = UISwitch()
+        settingSwitch.addTarget(self, action: #selector(onSettingToggle(_:)), for: .valueChanged)
+        return settingSwitch
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
