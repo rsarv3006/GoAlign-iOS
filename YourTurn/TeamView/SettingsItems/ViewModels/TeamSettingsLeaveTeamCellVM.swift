@@ -19,7 +19,10 @@ class TeamSettingsLeaveTeamCellVM {
 
     func displayRemoveSelfFromTeamModal() {
         DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Leave Team", message: "Are you sure you want to leave this team?", preferredStyle: .alert)
+            let alert = UIAlertController(
+                title: "Leave Team",
+                message: "Are you sure you want to leave this team?",
+                preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
                 alert.removeFromParent()
             }
@@ -27,7 +30,10 @@ class TeamSettingsLeaveTeamCellVM {
             let confirmAction = UIAlertAction(title: "Yes I'm Sure", style: .destructive) { _ in
                 alert.removeFromParent()
                 self.leaveTeam()
-                Logger.log(logLevel: .prod, name: Logger.Events.Team.leaveAttempt, payload: ["teamId": self.team.teamId])
+                Logger.log(
+                    logLevel: .prod,
+                    name: Logger.Events.Team.leaveAttempt,
+                    payload: ["teamId": self.team.teamId])
             }
 
             alert.addAction(cancelAction)
@@ -48,11 +54,16 @@ class TeamSettingsLeaveTeamCellVM {
                 if let currentUser = AppState.getInstance().currentUser {
                     try await TeamService.removeUserFromTeam(teamId: team.teamId, userToRemove: currentUser.userId)
 
-                    Logger.log(logLevel: .prod, name: Logger.Events.Team.leaveSuccess, payload: ["teamId": team.teamId, "userId": currentUser.userId])
+                    Logger.log(
+                        logLevel: .prod,
+                        name: Logger.Events.Team.leaveSuccess,
+                        payload: ["teamId": team.teamId, "userId": currentUser.userId])
                     delegate?.requestHomeReloadFromCell()
                     delegate?.requestRemoveTabViewFromCell()
                 } else {
-                    delegate?.requestShowMessageFromCell(withTitle: "Uh Oh", message: "We couldn't find your user account. Please try logging out and back in.")
+                    delegate?.requestShowMessageFromCell(
+                        withTitle: "Uh Oh",
+                        message: "We couldn't find your account. Please log out and back in.")
                 }
             } catch {
                 delegate?.requestShowMessageFromCell(withTitle: "Uh Oh", message: error.localizedDescription)

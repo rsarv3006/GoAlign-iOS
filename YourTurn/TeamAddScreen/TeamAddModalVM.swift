@@ -25,7 +25,10 @@ struct TeamAddModalVM {
             do {
                 let createTeamDto = CreateTeamDto(teamName: teamName)
                 let team = try await TeamService.createTeam(teamDto: createTeamDto)
-                Logger.log(logLevel: .verbose, name: Logger.Events.Team.teamCreated, payload: ["teamId": team.teamId, "teamName": teamName])
+                Logger.log(
+                    logLevel: .verbose,
+                    name: Logger.Events.Team.teamCreated,
+                    payload: ["teamId": team.teamId, "teamName": teamName])
                 await viewController.closeModal()
                 await viewController.delegate?.onTeamAddScreenComplete(viewController: viewController)
             } catch {
@@ -46,7 +49,10 @@ struct TeamAddModalVM {
             do {
                 let createTeamDto = CreateTeamDto(teamName: teamName)
                 let team = try await TeamService.createTeam(teamDto: createTeamDto)
-                Logger.log(logLevel: .verbose, name: Logger.Events.Team.teamCreated, payload: ["teamId": team.teamId, "teamName": teamName])
+                Logger.log(
+                    logLevel: .verbose,
+                    name: Logger.Events.Team.teamCreated,
+                    payload: ["teamId": team.teamId, "teamName": teamName])
                 await viewController.closeModal()
                 await viewController.delegate?.onTeamAddGoToInvite(viewController: viewController, teamId: team.teamId)
             } catch {
@@ -60,7 +66,10 @@ struct TeamAddModalVM {
     }
 
     private func handleTeamCreateFail(viewController: TeamAddModal, error: Error, teamName: String) {
-        Logger.log(logLevel: .prod, name: Logger.Events.Team.teamCreateFailed, payload: ["error": error, "teamName": teamName])
+        Logger.log(
+            logLevel: .prod,
+            name: Logger.Events.Team.teamCreateFailed,
+            payload: ["error": error, "teamName": teamName])
         viewController.showMessage(withTitle: "Uh Oh", message: createTeamCreateFailErrorMessageString(error: error))
     }
 }

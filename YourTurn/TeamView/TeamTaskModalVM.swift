@@ -14,16 +14,13 @@ class TeamTaskModalVM {
     private(set) var resetView = PassthroughSubject<Error?, Never>()
 
     var contentTitle: String {
-        get {
-            task.taskName
-        }
+        return task.taskName
     }
+
     private(set) var task: TaskModel
 
     var isTaskComplete: Bool {
-        get {
-            task.status == "completed"
-        }
+        return task.status == "completed"
     }
 
     init(task: TaskModel) {

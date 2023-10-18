@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-protocol TeamAddModalDelegate {
+protocol TeamAddModalDelegate: AnyObject {
     func onTeamAddScreenComplete(viewController: UIViewController)
     func onTeamAddGoToInvite(viewController: UIViewController, teamId: UUID)
 }
@@ -97,14 +97,32 @@ class TeamAddModal: YtViewController {
 
         subView.addSubview(createButton)
         createButton.centerX(inView: subView)
-        createButton.anchor(left: subView.leftAnchor, bottom: subView.bottomAnchor, right: subView.rightAnchor, paddingLeft: 12, paddingBottom: 12, paddingRight: 12)
+        createButton.anchor(
+            left: subView.leftAnchor,
+            bottom: subView.bottomAnchor,
+            right: subView.rightAnchor,
+            paddingLeft: 12,
+            paddingBottom: 12,
+            paddingRight: 12)
 
         subView.addSubview(errorLbl)
         errorLbl.centerX(inView: subView)
-        errorLbl.anchor(top: teamNameField.bottomAnchor, left: subView.leftAnchor, right: subView.rightAnchor, paddingTop: 12, paddingLeft: 12, paddingRight: 12)
+        errorLbl.anchor(
+            top: teamNameField.bottomAnchor,
+            left: subView.leftAnchor,
+            right: subView.rightAnchor,
+            paddingTop: 12,
+            paddingLeft: 12,
+            paddingRight: 12)
 
         subView.addSubview(createAndInviteButton)
-        createAndInviteButton.anchor(left: subView.leftAnchor, bottom: createButton.topAnchor, right: subView.rightAnchor, paddingLeft: 12, paddingBottom: 12, paddingRight: 12)
+        createAndInviteButton.anchor(
+            left: subView.leftAnchor,
+            bottom: createButton.topAnchor,
+            right: subView.rightAnchor,
+            paddingLeft: 12,
+            paddingBottom: 12,
+            paddingRight: 12)
 
         subView.addSubview(closeButton)
         closeButton.anchor(top: subView.topAnchor, left: subView.leftAnchor, paddingTop: 6, paddingLeft: 6)

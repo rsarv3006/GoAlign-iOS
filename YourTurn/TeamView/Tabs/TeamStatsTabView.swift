@@ -71,8 +71,13 @@ class TeamStatsTabView: YtViewController {
             case .success:
                 self.setLabelTitlesFromTeamStats(viewModel: viewModel)
             case .failure(let error):
-                Logger.log(logLevel: .prod, name: Logger.Events.Team.Stats.fetchFailed, payload: ["error": error.localizedDescription])
-                self.showMessage(withTitle: "Uh Oh", message: "Unexpected error fetching stats. \(error.localizedDescription)")
+                Logger.log(
+                    logLevel: .prod,
+                    name: Logger.Events.Team.Stats.fetchFailed,
+                    payload: ["error": error.localizedDescription])
+                self.showMessage(
+                    withTitle: "Uh Oh",
+                    message: "Unexpected error fetching stats. \(error.localizedDescription)")
             }
         }.store(in: &subscriptions)
     }
@@ -89,16 +94,28 @@ class TeamStatsTabView: YtViewController {
         totalNumberOfTasksLabel.anchor(top: tabTitle.bottomAnchor, left: leftSafeAnchor, right: rightSafeAnchor)
 
         view.addSubview(numberOfCompletedTaskEntriesLabel)
-        numberOfCompletedTaskEntriesLabel.anchor(top: totalNumberOfTasksLabel.bottomAnchor, left: leftSafeAnchor, right: rightSafeAnchor)
+        numberOfCompletedTaskEntriesLabel.anchor(
+            top: totalNumberOfTasksLabel.bottomAnchor,
+            left: leftSafeAnchor,
+            right: rightSafeAnchor)
 
         view.addSubview(numberOfCompletedTasksLabel)
-        numberOfCompletedTasksLabel.anchor(top: numberOfCompletedTaskEntriesLabel.bottomAnchor, left: leftSafeAnchor, right: rightSafeAnchor)
+        numberOfCompletedTasksLabel.anchor(
+            top: numberOfCompletedTaskEntriesLabel.bottomAnchor,
+            left: leftSafeAnchor,
+            right: rightSafeAnchor)
 
         view.addSubview(averageTasksPerUserLabel)
-        averageTasksPerUserLabel.anchor(top: numberOfCompletedTasksLabel.bottomAnchor, left: leftSafeAnchor, right: rightSafeAnchor)
+        averageTasksPerUserLabel.anchor(
+            top: numberOfCompletedTasksLabel.bottomAnchor,
+            left: leftSafeAnchor,
+            right: rightSafeAnchor)
 
         view.addSubview(numberOfTaskEntriesLabel)
-        numberOfTaskEntriesLabel.anchor(top: averageTasksPerUserLabel.bottomAnchor, left: leftSafeAnchor, right: rightSafeAnchor)
+        numberOfTaskEntriesLabel.anchor(
+            top: averageTasksPerUserLabel.bottomAnchor,
+            left: leftSafeAnchor,
+            right: rightSafeAnchor)
     }
 
     // MARK: Helpers

@@ -48,11 +48,11 @@ class InputCode: AuthViewController {
     }()
 
     let codeInputField: UITextField = {
-        let tf = UITextField()
-        tf.borderStyle = .roundedRect
-        tf.backgroundColor = .customBackgroundColor
+        let codeInputField = UITextField()
+        codeInputField.borderStyle = .roundedRect
+        codeInputField.backgroundColor = .customBackgroundColor
 
-        return tf
+        return codeInputField
     }()
 
     let submitButton: UIButton = {
@@ -78,16 +78,23 @@ class InputCode: AuthViewController {
 
         view.addSubview(codeInputField)
         codeInputField.centerX(inView: view, topAnchor: subtitleLabel.safeAreaLayoutGuide.bottomAnchor, paddingTop: 16)
-        codeInputField.anchor(left: view.safeAreaLayoutGuide.leftAnchor, right: view.safeAreaLayoutGuide.rightAnchor, paddingLeft: 8, paddingRight: 8)
+        codeInputField.anchor(
+            left: view.safeAreaLayoutGuide.leftAnchor,
+            right: view.safeAreaLayoutGuide.rightAnchor,
+            paddingLeft: 8,
+            paddingRight: 8)
 
         view.addSubview(submitButton)
         submitButton.centerX(inView: view, topAnchor: codeInputField.bottomAnchor, paddingTop: 16)
-        submitButton.anchor(left: view.safeAreaLayoutGuide.leftAnchor, right: view.safeAreaLayoutGuide.rightAnchor, paddingLeft: 8, paddingRight: 8)
+        submitButton.anchor(
+            left: view.safeAreaLayoutGuide.leftAnchor,
+            right: view.safeAreaLayoutGuide.rightAnchor,
+            paddingLeft: 8,
+            paddingRight: 8)
         submitButton.addTarget(self, action: #selector(onSubmitPressed), for: .touchUpInside)
     }
 
     @objc func onSubmitPressed() {
-        // TODO: client side validation for code
         guard let textFieldInput = codeInputField.text else {
             print("bad bad bad")
             return
