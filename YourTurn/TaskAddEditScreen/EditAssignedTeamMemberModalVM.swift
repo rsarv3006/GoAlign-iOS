@@ -19,18 +19,13 @@ class EditAssignedTeamMemberModalVM {
     private let teamId: UUID
 
     var teamMembers: [UserModel] {
-        get {
-            team?.users ?? []
-        }
+        return team?.users ?? []
     }
 
     var indexOfAssignedUser: Int? {
-        get {
-            guard let assignedUserId = assignedUserId else { return nil }
-            return team?.users.firstIndex(where: { user in
-                user.userId == assignedUserId
-            })
-        }
+        return team?.users.firstIndex(where: { user in
+            user.userId == assignedUserId
+        })
     }
 
     init(teamId: UUID, currentlyAssignedUserId: UUID?) {

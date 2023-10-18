@@ -101,6 +101,7 @@ struct AuthenticationService {
         return returnErrorString
     }
 
+    // swiftlint:disable nesting
     struct AuthErrorHandling {
         struct StandardErrorKeywords {
             static let userNotFound = "ERROR_USER_NOT_FOUND"
@@ -114,12 +115,21 @@ struct AuthenticationService {
             static let emailAlreadyInuse = "This email already has an account. Please sign in instead."
             static let unknownError = "Unknown Error"
         }
+        // swiftlint:enable nesting
 
         static let errors: [AuthStandardErrorReference] = [
-            AuthStandardErrorReference(keyword: StandardErrorKeywords.userNotFound, userFacingErrorString: UserFacingErrorStrings.emailOrPasswordIncorrect),
-            AuthStandardErrorReference(keyword: StandardErrorKeywords.incorrectPassword, userFacingErrorString: UserFacingErrorStrings.emailOrPasswordIncorrect),
-            AuthStandardErrorReference(keyword: StandardErrorKeywords.emailAlreadyInUse, userFacingErrorString: UserFacingErrorStrings.emailAlreadyInuse),
-            AuthStandardErrorReference(keyword: StandardErrorKeywords.invalidEmail, userFacingErrorString: UserFacingErrorStrings.emailOrPasswordIncorrect)
+            AuthStandardErrorReference(
+                keyword: StandardErrorKeywords.userNotFound,
+                userFacingErrorString: UserFacingErrorStrings.emailOrPasswordIncorrect),
+            AuthStandardErrorReference(
+                keyword: StandardErrorKeywords.incorrectPassword,
+                userFacingErrorString: UserFacingErrorStrings.emailOrPasswordIncorrect),
+            AuthStandardErrorReference(
+                keyword: StandardErrorKeywords.emailAlreadyInUse,
+                userFacingErrorString: UserFacingErrorStrings.emailAlreadyInuse),
+            AuthStandardErrorReference(
+                keyword: StandardErrorKeywords.invalidEmail,
+                userFacingErrorString: UserFacingErrorStrings.emailOrPasswordIncorrect)
         ]
     }
 }

@@ -8,9 +8,9 @@
 import Foundation
 
 enum TaskEntryStatus: String, Codable {
-  case active = "active"
-  case completed = "completed"
-  case overdue = "overdue"
+  case active
+  case completed
+  case overdue
 }
 
 struct TaskEntryModel: Codable {

@@ -15,8 +15,9 @@ class TaskSubViewVM {
     private(set) var teamNameSubject = PassthroughSubject<Result<String, Error>, Never>()
 
     // Static Values
-    let taskHistoryTitleLabelText: NSAttributedString = NSAttributedString(string: "Task History",
-                                                                           attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
+    let taskHistoryTitleLabelText: NSAttributedString = NSAttributedString(
+        string: "Task History",
+        attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
     let taskInformationButtonString: String = "See More"
     let taskCompleteButtonString: String = "Mark Task Complete"
     let taskIsCompleteLabelString: String = "Task has been Completed!"
@@ -32,7 +33,8 @@ class TaskSubViewVM {
 
     init(task: TaskModel) {
         self.contentTitle = task.taskName
-        self.assignedUserString = TaskSubViewVM.buildAssignedUserString(task.findCurrentTaskEntry()?.assignedUser.username)
+        self.assignedUserString = TaskSubViewVM.buildAssignedUserString(
+            task.findCurrentTaskEntry()?.assignedUser.username)
         self.isTaskCompleted = task.status == TaskStatusVariant.completed.rawValue ? true : false
         self.assignedTeamString = task.teamId.uuidString
         self.taskEntries = task.taskEntries?.filter({ taskEntry in
@@ -59,13 +61,17 @@ class TaskSubViewVM {
     func onRequestMarkTaskComplete() {
         Task {
             do {
-                guard let taskEntryId = task.findCurrentTaskEntry()?.taskEntryId else { throw ServiceErrors.custom(message: "Unable to locate task entry.")}
+                guard let taskEntryId = task.findCurrentTaskEntry()?.taskEntryId
+                else { throw ServiceErrors.custom(
+                    message: "Unable to locate task entry.")}
                 _ = try await TaskService.markTaskComplete(taskEntryId: taskEntryId)
 
                 delegate?.requestPopView()
                 delegate?.requestHomeReloadFromSubView()
             } catch {
-                delegate?.requestShowMessage(withTitle: "Uh Oh", message: "Error Marking Task Complete: \(error.localizedDescription)")
+                delegate?.requestShowMessage(
+                    withTitle: "Uh Oh",
+                    message: "Error Marking Task Complete: \(error.localizedDescription)")
             }
         }
     }
