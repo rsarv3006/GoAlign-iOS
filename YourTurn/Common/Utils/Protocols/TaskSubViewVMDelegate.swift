@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol TaskSubViewVMDelegate {
+protocol TaskSubViewVMDelegate: AnyObject {
     func requestHomeReloadFromSubView()
     func requestPopView()
     func requestShowMessage(withTitle: String, message: String)

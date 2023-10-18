@@ -13,13 +13,21 @@ final class SignInFormContentBuilderImpl {
 
     private(set) var formContent = [
         FormSectionComponent(items: [
-            TextFormComponent(id: .signInEmailAddress, placeholder: "Email Address", keyboardType: .emailAddress, autoCorrectionType: .no, validations: [
+            TextFormComponent(
+                id: .signInEmailAddress,
+                placeholder: "Email Address",
+                keyboardType: .emailAddress,
+                autoCorrectionType: .no,
+                validations: [
                 RegexValidationManagerImpl([
                     RegexFormItem(pattern: RegexPatterns.emailChars, error: .custom(message: "Not a valid email"))
                 ])
             ]),
             ButtonFormComponent(id: .signInSubmit, title: "Sign In!"),
-            ButtonFormComponent(id: .termsButton, title: "Continuing indicates acceptance of the Terms And Conditions.", buttonType: .text)
+            ButtonFormComponent(
+                id: .termsButton,
+                title: "Continuing indicates acceptance of the Terms And Conditions.",
+                buttonType: .text)
         ])
     ]
 
@@ -45,7 +53,10 @@ final class SignInFormContentBuilderImpl {
             try formSubmission.send(SignInCompletedForm(fromDict: validDict ))
 
         } catch {
-            Logger.log(logLevel: .prod, name: Logger.Events.Auth.signInValidationFailed, payload: ["error": error, "message": "Something is wrong with the signIn form"])
+            Logger.log(
+                logLevel: .prod,
+                name: Logger.Events.Auth.signInValidationFailed,
+                payload: ["error": error, "message": "Something is wrong with the signIn form"])
         }
     }
 }

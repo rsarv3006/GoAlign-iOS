@@ -10,7 +10,8 @@ import Combine
 
 class InputCodeVM {
    let inputCodeLabelTextString = "Input Code"
-    let inputCodeSubtitleString = "Please check your email for your login code. \nIf you don't see it, please check your spam folder."
+    let inputCodeSubtitleString =
+    "Please check your email for your login code. \nIf you don't see it, please check your spam folder."
     let submitButtonString = "Submit"
 
     let inputCodeSubject = PassthroughSubject<Result<Bool, Error>, Never>()
@@ -18,7 +19,10 @@ class InputCodeVM {
     let loginRequestModel: LoginRequestModel
 
     func requestJwtFromServer(code: String) {
-        let jwtRequestDto = FetchJwtDtoModel(loginCodeRequestId: loginRequestModel.loginRequestId, userId: loginRequestModel.userId, loginRequestToken: code)
+        let jwtRequestDto = FetchJwtDtoModel(
+            loginCodeRequestId: loginRequestModel.loginRequestId,
+            userId: loginRequestModel.userId,
+            loginRequestToken: code)
 
         Task {
             do {

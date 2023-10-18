@@ -17,9 +17,7 @@ class TeamTasksTabVM {
 
     private(set) var team: TeamModel
     var tasks: [TaskModel] {
-        get {
-            team.tasks
-        }
+        return team.tasks
     }
 
     init(team: TeamModel) {

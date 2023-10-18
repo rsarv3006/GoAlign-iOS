@@ -19,7 +19,10 @@ enum HttpMethod: String {
 struct Networking {
     private static let baseUrlString: String? = remoteConfig.configValue(forKey: "API_URL").stringValue
 
-    private static func apiCall(httpMethod: HttpMethod, url: URL, body: Data? = nil) async throws -> (Data, URLResponse) {
+    private static func apiCall(
+        httpMethod: HttpMethod,
+        url: URL,
+        body: Data? = nil) async throws -> (Data, URLResponse) {
         let token = try await AppState.getInstance().getAccessToken()
 
         var request = URLRequest(url: url)
@@ -46,7 +49,6 @@ struct Networking {
         }
 
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        // TODO - implement anon token
 //        request.setValue("Bearer \(anonToken)", forHTTPHeaderField: "Authorization")
 
         let response = try await URLSession.shared.data(for: request)

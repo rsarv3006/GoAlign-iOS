@@ -18,9 +18,7 @@ class TeamUsersTabVM {
 
     private(set) var team: TeamModel
     var users: [UserModel] {
-        get {
-            team.users
-        }
+        return team.users
     }
 
     init(team: TeamModel) {
@@ -53,7 +51,10 @@ class TeamUsersTabVM {
         let (id, userDescriptionString) = getInformationOnObjectToDelete(index: index, type: type)
 
         DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Remove User", message: "Are you sure you want to delete \(userDescriptionString)?", preferredStyle: .alert)
+            let alert = UIAlertController(
+                title: "Remove User",
+                message: "Are you sure you want to delete \(String(describing: userDescriptionString))?",
+                preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
                 alert.removeFromParent()
             }

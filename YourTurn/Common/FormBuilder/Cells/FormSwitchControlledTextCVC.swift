@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class FormSwitchControlledTextCollectionViewCell: UICollectionViewCell {
+class FormSwitchControlledTextCVC: UICollectionViewCell {
 
     private var subscriptions = Set<AnyCancellable>()
     private var item: SwitchControlledTextFormComponent?
@@ -23,13 +23,13 @@ class FormSwitchControlledTextCollectionViewCell: UICollectionViewCell {
     }()
 
     private lazy var textFieldControl: UISwitch = {
-        let sw = UISwitch()
+        let tfSwitch = UISwitch()
 
         if item?.editValue != nil {
-            sw.isOn = true
+            tfSwitch.isOn = true
         }
 
-        return sw
+        return tfSwitch
     }()
 
     private lazy var txtField: UITextField = {
@@ -86,7 +86,7 @@ class FormSwitchControlledTextCollectionViewCell: UICollectionViewCell {
     }
 }
 
-private extension FormSwitchControlledTextCollectionViewCell {
+private extension FormSwitchControlledTextCVC {
 
     func setup(item: SwitchControlledTextFormComponent) {
         textFieldControlLabel.text = item.switchLabel
@@ -157,7 +157,7 @@ private extension FormSwitchControlledTextCollectionViewCell {
 }
 
 // MARK: - Combine
-extension FormSwitchControlledTextCollectionViewCell {
+extension FormSwitchControlledTextCVC {
     func setupCombineSubjects() {
         NotificationCenter
             .default
@@ -195,7 +195,10 @@ extension FormSwitchControlledTextCollectionViewCell {
                             self.errorLbl.text = message
                         }
                     }
-                    Logger.log(logLevel: .prod, name: Logger.Events.Form.Field.validationFailed, payload: ["error": error, "field": "switch_controlled_text"])
+                    Logger.log(
+                        logLevel: .prod,
+                        name: Logger.Events.Form.Field.validationFailed,
+                        payload: ["error": error, "field": "switch_controlled_text"])
                 }
             }
             .store(in: &subscriptions)
@@ -203,7 +206,7 @@ extension FormSwitchControlledTextCollectionViewCell {
 }
 
 // MARK: - UITextFieldDelegate
-extension FormSwitchControlledTextCollectionViewCell: UITextFieldDelegate {
+extension FormSwitchControlledTextCVC: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

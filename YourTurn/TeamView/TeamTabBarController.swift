@@ -33,12 +33,20 @@ class TeamTabBarController: UITabBarController {
         let teamStatsTabViewController = configureStatsTab(viewModel: viewModel)
         let teamSettingsTabViewController = configureSettingsTab(viewModel: viewModel)
 
-        viewControllers = [teamTasksTabViewController, teamUsersTabViewController, teamStatsTabViewController, teamSettingsTabViewController]
+        viewControllers = [
+            teamTasksTabViewController,
+            teamUsersTabViewController,
+            teamStatsTabViewController,
+            teamSettingsTabViewController]
         tabBar.tintColor = .customAccentColor
         tabBar.backgroundColor = .customBackgroundColor
     }
 
-    func templateNavigationController(unSelectedImage: UIImage, selectedImage: UIImage, rootViewController: UIViewController, title: String? = nil) -> UINavigationController {
+    func templateNavigationController(
+        unSelectedImage: UIImage,
+        selectedImage: UIImage,
+        rootViewController: UIViewController,
+        title: String? = nil) -> UINavigationController {
         let nav = UINavigationController(rootViewController: rootViewController)
         nav.tabBarItem.image = unSelectedImage
         nav.tabBarItem.selectedImage = selectedImage

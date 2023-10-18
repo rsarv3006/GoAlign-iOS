@@ -38,7 +38,12 @@ class TeamInvitesTabViewCell: UITableViewCell {
     private func configureView() {
         contentView.backgroundColor = .customBackgroundColor
         contentView.addSubview(inviteeEmailLabel)
-        inviteeEmailLabel.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 12)
+        inviteeEmailLabel.anchor(
+            top: contentView.topAnchor,
+            left: contentView.leftAnchor,
+            bottom: contentView.bottomAnchor,
+            right: contentView.rightAnchor,
+            paddingLeft: 12)
         inviteeEmailLabel.centerY(inView: contentView)
     }
 

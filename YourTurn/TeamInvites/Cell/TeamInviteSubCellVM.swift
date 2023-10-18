@@ -34,7 +34,10 @@ struct TeamInviteSubCellVM {
                     requestReloadSubject.send(true)
                 }
             } catch {
-                Logger.log(logLevel: .verbose, name: Logger.Events.Team.Invite.acceptFailed, payload: ["error": error.localizedDescription])
+                Logger.log(
+                    logLevel: .verbose,
+                    name: Logger.Events.Team.Invite.acceptFailed,
+                    payload: ["error": error.localizedDescription])
                 displayUIAlert(error: error)
             }
         }
@@ -53,7 +56,10 @@ struct TeamInviteSubCellVM {
                     requestReloadSubject.send(true)
                 }
             } catch {
-                Logger.log(logLevel: .verbose, name: Logger.Events.Team.Invite.declineFailed, payload: ["error": error.localizedDescription])
+                Logger.log(
+                    logLevel: .verbose,
+                    name: Logger.Events.Team.Invite.declineFailed,
+                    payload: ["error": error.localizedDescription])
                 displayUIAlert(error: error)
             }
         }

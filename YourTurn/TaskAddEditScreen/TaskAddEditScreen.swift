@@ -289,11 +289,11 @@ private extension TaskAddEditScreen {
     func buildFormSwitchControlledTextCollectionViewCell(
         collectionView: UICollectionView,
         indexPath: IndexPath,
-        item: FormComponent) -> FormSwitchControlledTextCollectionViewCell {
+        item: FormComponent) -> FormSwitchControlledTextCVC {
         let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: FormSwitchControlledTextCollectionViewCell.cellId,
+            withReuseIdentifier: FormSwitchControlledTextCVC.cellId,
             // swiftlint:disable:next force_cast
-            for: indexPath) as! FormSwitchControlledTextCollectionViewCell
+            for: indexPath) as! FormSwitchControlledTextCVC
 
         cell
             .subject
@@ -313,11 +313,11 @@ private extension TaskAddEditScreen {
     func buildFormSwitchControlledDateCollectionViewCell(
         collectionView: UICollectionView,
         indexPath: IndexPath,
-        item: FormComponent) -> FormSwitchControlledDateCollectionViewCell {
+        item: FormComponent) -> FormSwitchControlledDateCVC {
         let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: FormSwitchControlledDateCollectionViewCell.cellId,
+            withReuseIdentifier: FormSwitchControlledDateCVC.cellId,
             // swiftlint:disable:next force_cast
-            for: indexPath) as! FormSwitchControlledDateCollectionViewCell
+            for: indexPath) as! FormSwitchControlledDateCVC
 
         cell
             .subject

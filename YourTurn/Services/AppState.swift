@@ -9,8 +9,6 @@ import Foundation
 import JWTDecode
 
 class AppState {
-    // TODO: passthrough on accessToken update
-
     private static var shared: AppState?
 
     private init(accessToken: String? = nil, refreshToken: String? = nil) {
@@ -18,7 +16,6 @@ class AppState {
             if let accessToken, let refreshToken {
                 self.accessToken = accessToken
                 self.refreshToken = refreshToken
-                // TODO: fix this after server implements refresh tokens
                 try KeychainService.storeTokens(accessToken, "refreshToken", Date())
             } else {
                 self.accessToken = try KeychainService.getAccessToken()
@@ -77,9 +74,20 @@ class AppState {
 
         let createAtDate = try decodeISO8601DateFromString(dateString: createdAtString)
 
-        if let userIdString, let userId = UUID(uuidString: userIdString), let username, let email, let isActive, let isEmailVerified {
+        if let userIdString,
+            let userId = UUID(uuidString: userIdString),
+            let username,
+            let email,
+            let isActive,
+            let isEmailVerified {
 
-            currentUser = UserModel(userId: userId, createdAt: createAtDate, username: username, email: email, isActive: isActive, isEmailVerified: isEmailVerified)
+            currentUser = UserModel(
+                userId: userId,
+                createdAt: createAtDate,
+                username: username,
+                email: email,
+                isActive: isActive,
+                isEmailVerified: isEmailVerified)
         } else {
             currentUser = nil
             throw ServiceErrors.custom(message: "user is unparseable")
@@ -91,11 +99,15 @@ class AppState {
             try self.loadTokensFromKeychain()
         }
 
-        guard let accessToken = self.accessToken, !accessToken.isEmpty else { throw TokenService.TokenServiceError.accessTokenNotFound }
+        guard let accessToken = self.accessToken,
+                !accessToken.isEmpty
+        else { throw TokenService.TokenServiceError.accessTokenNotFound }
         let jwt = try decode(jwt: accessToken)
 
         if jwt.expired {
-            let result = try await TokenService.refreshTokens(currentAccessToken: self.accessToken, currentRefreshToken: self.refreshToken)
+            let result = try await TokenService.refreshTokens(
+                currentAccessToken: self.accessToken,
+                currentRefreshToken: self.refreshToken)
             self.accessToken = result.accessToken
             self.refreshToken = result.refreshToken
             try self.updateUserFromToken(accessToken: self.accessToken)

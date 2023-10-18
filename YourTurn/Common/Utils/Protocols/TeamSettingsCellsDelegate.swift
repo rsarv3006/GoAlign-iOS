@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol TeamSettingsCellsDelegate {
+protocol TeamSettingsCellsDelegate: AnyObject {
     func requestHomeReloadFromCell()
     func requestRemoveTabViewFromCell()
     func requestShowLoaderFromCell(isVisible: Bool)

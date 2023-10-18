@@ -14,10 +14,14 @@ class HomeScreenVM {
 
     var loadViewControllerSubject = PassthroughSubject<UIViewController, Never>()
 
-    let taskTitleLabel: NSAttributedString = NSAttributedString(string: "My Tasks",
-                                                                attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
-    let teamTitleLabel: NSAttributedString = NSAttributedString(string: "My Groups",
-                                                                attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
+    let taskTitleLabel: NSAttributedString = NSAttributedString(
+        string: "My Tasks",
+
+        attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
+    let teamTitleLabel: NSAttributedString = NSAttributedString(
+        string: "My Groups",
+
+        attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
 
     var tasksSubject = PassthroughSubject<Result<TaskModelArray, Error>, Never>()
 
@@ -88,11 +92,21 @@ class HomeScreenVM {
 
                     let banner = await FloatingNotificationBanner(title: title, subtitle: subTitle)
 
-                    await banner.show(on: viewController, cornerRadius: 12, shadowEdgeInsets: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8))
+                    await banner.show(
+                        on: viewController,
+                        cornerRadius: 12,
+                        shadowEdgeInsets: UIEdgeInsets(
+                            top: 8,
+                            left: 8,
+                            bottom: 8,
+                            right: 8))
                 }
 
             } catch {
-                Logger.log(logLevel: .verbose, name: Logger.Events.Team.Invite.fetchFailed, payload: ["message": error.localizedDescription])
+                Logger.log(
+                    logLevel: .verbose,
+                    name: Logger.Events.Team.Invite.fetchFailed,
+                    payload: ["message": error.localizedDescription])
             }
         }
 

@@ -18,9 +18,7 @@ class ChangeTeamManagerModalVM {
     private let team: TeamModel
 
     var teamMembers: [UserModel] {
-        get {
-            team.users
-        }
+        return team.users
     }
 
     var selectedUser: UserModel?

@@ -19,7 +19,10 @@ class TeamSettingsDeleteTeamCellVM {
 
     func displayConfirmDeleteTeamModal() {
         DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Delete Team", message: "Are you sure you want to delete this team?", preferredStyle: .alert)
+            let alert = UIAlertController(
+                title: "Delete Team",
+                message: "Are you sure you want to delete this team?",
+                preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
                 alert.removeFromParent()
             }
@@ -27,7 +30,10 @@ class TeamSettingsDeleteTeamCellVM {
             let confirmAction = UIAlertAction(title: "Yes I'm Sure", style: .destructive) { _ in
                 alert.removeFromParent()
                 self.deleteTeam()
-                Logger.log(logLevel: .prod, name: Logger.Events.Team.deleteAttempt, payload: ["teamId": self.team.teamId])
+                Logger.log(
+                    logLevel: .prod,
+                    name: Logger.Events.Team.deleteAttempt,
+                    payload: ["teamId": self.team.teamId])
             }
 
             alert.addAction(cancelAction)

@@ -20,7 +20,9 @@ enum ServiceErrors: Error, LocalizedError {
         case .unknownUrl:
             return NSLocalizedString("An error occurred connecting.", comment: "Unable to connect.")
         case .dataSerializationFailed(let dataObjectName):
-            return NSLocalizedString("An error occurred parsing serialized data. Unable to serialize \(dataObjectName)", comment: "")
+            return NSLocalizedString(
+                "An error occurred parsing serialized data. Unable to serialize \(dataObjectName)",
+                comment: "")
         case .baseUrlNotConfigured:
             return NSLocalizedString("An unexpected error occurred.", comment: "Base URL not configured.")
         }

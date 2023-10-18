@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class FormSwitchControlledDateCollectionViewCell: UICollectionViewCell {
+class FormSwitchControlledDateCVC: UICollectionViewCell {
 
     private lazy var dateControlLabel: UILabel = {
         let label = UILabel()
@@ -17,13 +17,13 @@ class FormSwitchControlledDateCollectionViewCell: UICollectionViewCell {
     }()
 
     private lazy var dateControl: UISwitch = {
-        let sw = UISwitch()
+        let dateControlSwitch = UISwitch()
 
         if item?.editValue != nil {
-            sw.isOn = true
+            dateControlSwitch.isOn = true
         }
 
-        return sw
+        return dateControlSwitch
     }()
 
     private lazy var titleLabel: UILabel = {
@@ -96,7 +96,7 @@ class FormSwitchControlledDateCollectionViewCell: UICollectionViewCell {
     }
 }
 
-private extension FormSwitchControlledDateCollectionViewCell {
+private extension FormSwitchControlledDateCVC {
 
     func setup(item: SwitchControlledDateFormComponent) {
         dateControlLabel.text = item.switchLabel
@@ -147,7 +147,7 @@ private extension FormSwitchControlledDateCollectionViewCell {
 
     @objc func onControlToggle(_ sender: UISwitch) {
         guard let indexPath = indexPath,
-              let _ = item else { return }
+              item != nil else { return }
 
         if sender.isOn {
             manipulateDateFieldVisibility(.show)
@@ -189,13 +189,16 @@ private extension FormSwitchControlledDateCollectionViewCell {
                     self.errorLbl.text = message
                 }
             }
-            Logger.log(logLevel: .prod, name: Logger.Events.Form.Field.validationFailed, payload: ["error": error, "field": "switch_controlled_date"])
+            Logger.log(
+                logLevel: .prod,
+                name: Logger.Events.Form.Field.validationFailed,
+                payload: ["error": error, "field": "switch_controlled_date"])
         }
     }
 }
 
 // MARK: Dynamic Reload
-extension FormSwitchControlledDateCollectionViewCell {
+extension FormSwitchControlledDateCVC {
     func manipulateErrorLabel(_ showHideVariant: ShowHideLabelVariant) {
         if showHideVariant == .hide {
             contentStackVw.removeArrangedSubview(errorLbl)

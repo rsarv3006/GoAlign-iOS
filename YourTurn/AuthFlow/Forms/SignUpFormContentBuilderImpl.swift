@@ -15,17 +15,27 @@ final class SignUpFormContentBuilderImpl {
         FormSectionComponent(items: [
             TextFormComponent(id: .signUpUserName, placeholder: "Username", autoCorrectionType: .no, validations: [
                 RegexValidationManagerImpl([
-                    RegexFormItem(pattern: RegexPatterns.higherThanSixChars, error: .custom(message: "Username is too short"))
+                    RegexFormItem(
+                        pattern: RegexPatterns.higherThanSixChars,
+                        error: .custom(message: "Username is too short"))
                 ]),
                 StringMaxLengthValidationManagerImpl(maxLength: 18, errorMessage: "Username is too long")
             ]),
-            TextFormComponent(id: .signUpEmailAddress, placeholder: "Email Address", keyboardType: .emailAddress, autoCorrectionType: .no, validations: [
+            TextFormComponent(
+                id: .signUpEmailAddress,
+                placeholder: "Email Address",
+                keyboardType: .emailAddress,
+                autoCorrectionType: .no,
+                validations: [
                 RegexValidationManagerImpl([
                     RegexFormItem(pattern: RegexPatterns.emailChars, error: .custom(message: "Not a valid email"))
                 ])
             ]),
             ButtonFormComponent(id: .signUpSubmit, title: "Sign Up!"),
-            ButtonFormComponent(id: .termsButton, title: "Continuing indicates acceptance of the Terms And Conditions.", buttonType: .text)
+            ButtonFormComponent(
+                id: .termsButton,
+                title: "Continuing indicates acceptance of the Terms And Conditions.",
+                buttonType: .text)
         ])
     ]
 
@@ -51,7 +61,10 @@ final class SignUpFormContentBuilderImpl {
             try formSubmission.send(SignUpCompletedForm(fromDict: validDict ))
 
         } catch {
-            Logger.log(logLevel: .prod, name: Logger.Events.Auth.signUpValidationFailed, payload: ["error": error, "message": "Something is wrong with the SignUp form"])
+            Logger.log(
+                logLevel: .prod,
+                name: Logger.Events.Auth.signUpValidationFailed,
+                payload: ["error": error, "message": "Something is wrong with the SignUp form"])
         }
     }
 }

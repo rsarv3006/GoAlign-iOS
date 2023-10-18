@@ -55,10 +55,20 @@ class InputTextView: UITextView {
 
         addSubview(placeholderLabel)
 
-        placeholderLabel.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 6, paddingLeft: 8)
+        placeholderLabel.anchor(
+            top: topAnchor,
+            left: leftAnchor,
+            bottom: bottomAnchor,
+            right: rightAnchor,
+            paddingTop: 6,
+            paddingLeft: 8)
         placeholderLabel.centerX(inView: self)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(handleTextDidChange), name: UITextView.textDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleTextDidChange),
+            name: UITextView.textDidChangeNotification,
+            object: nil)
     }
 
     required init?(coder: NSCoder) {
