@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class InputCodeVM {
-   let inputCodeLabelTextString = "Input Code"
+    let inputCodeLabelTextString = "Input Code"
     let inputCodeSubtitleString =
     "Please check your email for your login code. \nIf you don't see it, please check your spam folder."
     let submitButtonString = "Submit"
@@ -27,11 +27,10 @@ class InputCodeVM {
         Task {
             do {
                 let returnBody = try await AuthenticationService.fetchJwtWithCode(dto: jwtRequestDto)
-                print(returnBody.token)
                 AppState.getInstance(accessToken: returnBody.token, refreshToken: "")
                 inputCodeSubject.send(.success(true))
             } catch {
-                    inputCodeSubject.send(.failure(error))
+                inputCodeSubject.send(.failure(error))
                 print(error.localizedDescription)
             }
         }
@@ -39,5 +38,18 @@ class InputCodeVM {
 
     init(loginRequestModel: LoginRequestModel) {
         self.loginRequestModel = loginRequestModel
+    }
+
+    func validateTokenInputFromUser(code: String) -> (Bool, String) {
+        if code.count != 6 {
+            return (false, "Code length is incorrect.")
+        }
+
+        let alphanumericRegEx = "^[a-zA-Z0-9]*$"
+        if code.range(of: alphanumericRegEx, options: .regularExpression) != nil {
+            return (true, "")
+        }
+
+        return (false, "Code should only contain alpha numeric characters")
     }
 }

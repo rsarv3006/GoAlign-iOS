@@ -95,10 +95,17 @@ class InputCode: AuthViewController {
     }
 
     @objc func onSubmitPressed() {
-        guard let textFieldInput = codeInputField.text else {
-            print("bad bad bad")
+        guard let textFieldInput = codeInputField.text, let viewModel else {
+            self.showMessage(withTitle: "Uh Oh", message: "Code required.")
             return
         }
-        viewModel?.requestJwtFromServer(code: textFieldInput)
+
+        let (isValid, error) = viewModel.validateTokenInputFromUser(code: textFieldInput)
+
+        if !isValid {
+            self.showMessage(withTitle: "Uh Oh", message: error)
+        } else {
+            viewModel.requestJwtFromServer(code: textFieldInput)
+        }
     }
 }
