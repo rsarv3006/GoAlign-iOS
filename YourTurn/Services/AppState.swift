@@ -23,7 +23,7 @@ class AppState {
             }
             try self.updateUserFromToken(accessToken: self.accessToken)
         } catch {
-            print("do something")
+            fatalError("Failed to initialize AppState. \(error.localizedDescription)")
         }
     }
 
