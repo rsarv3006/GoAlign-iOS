@@ -21,7 +21,7 @@ final class TokenService {
     static func refreshTokens(
         currentAccessToken: String?,
         currentRefreshToken: String?) async throws -> RefreshTokensReturnDto {
-
+            throw ServiceErrors.custom(message: "Refresh not configured")
         //        if let refreshToken = self.refreshToken {
         //            let refreshTokenRequest = RefreshTokenRequest(refreshToken: refreshToken)
         //            let refreshTokenTask = Task {

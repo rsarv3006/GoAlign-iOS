@@ -7,8 +7,11 @@
 
 import Foundation
 import JWTDecode
+import Combine
 
 class AppState {
+    static let signOutRequestPublisher = PassthroughSubject<Void, Never>()
+
     private static var shared: AppState?
 
     private init(accessToken: String? = nil, refreshToken: String? = nil) {
@@ -23,7 +26,10 @@ class AppState {
             }
             try self.updateUserFromToken(accessToken: self.accessToken)
         } catch {
-            fatalError("Failed to initialize AppState. \(error.localizedDescription)")
+            Logger.log(
+                logLevel: .prod,
+                name: Logger.Events.Auth.signInFailed,
+                payload: ["error": error.localizedDescription])
         }
     }
 
@@ -101,16 +107,21 @@ class AppState {
 
         guard let accessToken = self.accessToken,
                 !accessToken.isEmpty
-        else { throw TokenService.TokenServiceError.accessTokenNotFound }
+        else {
+            throw TokenService.TokenServiceError.accessTokenNotFound
+        }
+
         let jwt = try decode(jwt: accessToken)
 
         if jwt.expired {
-            let result = try await TokenService.refreshTokens(
-                currentAccessToken: self.accessToken,
-                currentRefreshToken: self.refreshToken)
-            self.accessToken = result.accessToken
-            self.refreshToken = result.refreshToken
-            try self.updateUserFromToken(accessToken: self.accessToken)
+            AppState.resetState()
+            AppState.signOutRequestPublisher.send()
+//            let result = try await TokenService.refreshTokens(
+//                currentAccessToken: self.accessToken,
+//                currentRefreshToken: self.refreshToken)
+//            self.accessToken = result.accessToken
+//            self.refreshToken = result.refreshToken
+//            try self.updateUserFromToken(accessToken: self.accessToken)
         }
 
         if let token = self.accessToken {

@@ -214,6 +214,13 @@ class HomeScreen: YtViewController {
         }).store(in: &subscriptions)
 
         viewModel?.loadTeamsAndTasks()
+
+        AppState.signOutRequestPublisher.receive(on: DispatchQueue.main).sink { [weak self] _ in
+            if let self {
+                self.onLogOutPressed(viewController: self)
+            }
+        }.store(in: &subscriptions)
+
     }
 
     // MARK: - Actions
