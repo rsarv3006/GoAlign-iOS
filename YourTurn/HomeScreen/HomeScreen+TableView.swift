@@ -11,25 +11,32 @@ import UIKit
 extension HomeScreen: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         DispatchQueue.main.async {
-            if tableView.tag == TASKTABLETAG {
-                let taskVC = TaskViewScreen()
-                taskVC.viewModel = TaskViewScreenVM(task: self.tasks[indexPath.row])
-                taskVC.requestHomeReload.sink { _ in
-                    self.viewModel?.loadTeams()
-                    self.viewModel?.loadTasks()
-                }.store(in: &self.subscriptions)
-                self.navigationController?.pushViewController(taskVC, animated: true)
-            } else if tableView.tag == TEAMTABLETAG {
-                let groupTabVM = TeamTabBarControllerVM(team: self.teams[indexPath.row])
+            if indexPath.row < 3 || store.hasPurchasedUnlockAdvancedEquations {
+                if tableView.tag == TASKTABLETAG {
+                    let taskVC = TaskViewScreen()
+                    taskVC.viewModel = TaskViewScreenVM(task: self.tasks[indexPath.row])
+                    taskVC.requestHomeReload.sink { _ in
+                        self.viewModel?.loadTeams()
+                        self.viewModel?.loadTasks()
+                    }.store(in: &self.subscriptions)
+                    self.navigationController?.pushViewController(taskVC, animated: true)
+                } else if tableView.tag == TEAMTABLETAG {
+                    let groupTabVM = TeamTabBarControllerVM(team: self.teams[indexPath.row])
 
-                groupTabVM.requestHomeReload.sink { _ in
-                    self.viewModel?.loadTeams()
-                    self.viewModel?.loadTasks()
-                }.store(in: &self.subscriptions)
+                    groupTabVM.requestHomeReload.sink { _ in
+                        self.viewModel?.loadTeams()
+                        self.viewModel?.loadTasks()
+                    }.store(in: &self.subscriptions)
 
-                let groupTabVC = TeamTabBarController()
-                groupTabVC.viewModel = groupTabVM
-                self.navigationController?.pushViewController(groupTabVC, animated: true)
+                    let groupTabVC = TeamTabBarController()
+                    groupTabVC.viewModel = groupTabVM
+                    self.navigationController?.pushViewController(groupTabVC, animated: true)
+                }
+            } else {
+                self.showMessage(
+                    withTitle: "Subscription Required",
+                    // swiftlint:disable:next line_length
+                    message: "This is a freemium app. Please go to settings and purchase a subscription to unlock the full feature set.")
             }
         }
 

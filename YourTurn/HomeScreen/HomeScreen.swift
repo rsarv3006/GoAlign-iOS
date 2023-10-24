@@ -110,6 +110,13 @@ class HomeScreen: YtViewController {
         configureRefreshControl()
 
         viewModel?.checkAndDisplayPendingInviteBaner(viewController: self)
+
+        store.$hasPurchasedUnlockAdvancedEquations.sink { [weak self] hasPurchased in
+            if hasPurchased {
+                self?.taskTableView.reloadData()
+                self?.teamTableView.reloadData()
+            }
+        }.store(in: &subscriptions)
     }
 
     // MARK: - Helpers

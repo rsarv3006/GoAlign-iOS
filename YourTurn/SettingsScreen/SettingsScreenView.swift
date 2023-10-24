@@ -10,6 +10,7 @@ import Combine
 
 struct CellIdentifiers {
     static let DeleteUserCell = "DeleteUserCell"
+    static let MembershipSubscriptionCell = "MembershipSubscriptionCell"
 }
 
 class SettingsScreenView: UITableViewController {
@@ -34,6 +35,9 @@ class SettingsScreenView: UITableViewController {
     func configureTable() {
         tableView.backgroundColor = .customBackgroundColor
         tableView.register(DeleteUserCell.self, forCellReuseIdentifier: CellIdentifiers.DeleteUserCell)
+        tableView.register(
+            MembershipSubscriptionCell.self,
+            forCellReuseIdentifier: CellIdentifiers.MembershipSubscriptionCell)
         tableView.rowHeight = 32
     }
 
@@ -42,7 +46,11 @@ class SettingsScreenView: UITableViewController {
             withIdentifier: CellIdentifiers.DeleteUserCell,
             for: indexPath)
 
-        if let cell = cell as? DeleteUserCell {
+        let subscribeCell = tableView.dequeueReusableCell(
+            withIdentifier: CellIdentifiers.MembershipSubscriptionCell,
+            for: indexPath)
+
+        if indexPath.row == 1, let cell = cell as? DeleteUserCell {
             cell.requestDisplayUIAlert.sink { alert in
                 self.present(alert, animated: true)
             }.store(in: &subscriptions)
@@ -55,6 +63,8 @@ class SettingsScreenView: UITableViewController {
                     self.deleteAccountReturnToSignIn.send(true)
                 }
             }.store(in: &subscriptions)
+            return cell
+        } else if indexPath.row == 0, let cell = subscribeCell as? MembershipSubscriptionCell {
             return cell
         }
         return cell

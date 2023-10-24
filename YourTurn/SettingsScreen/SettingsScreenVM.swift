@@ -9,6 +9,7 @@ import Foundation
 
 enum SettingsVariant {
     case deleteUser
+    case subscribeMembership
 }
 
 struct SettingsItem {
@@ -24,6 +25,7 @@ struct SettingsItem {
 class SettingsScreenVM {
     let screenTitle = "Settings"
     let settingsItems: [SettingsVariant] = [
+        .subscribeMembership,
         .deleteUser
     ]
 }
