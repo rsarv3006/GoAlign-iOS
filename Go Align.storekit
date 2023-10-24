@@ -1,0 +1,54 @@
+{
+  "identifier" : "FFDAA483",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6466779524",
+    "_developerTeamID" : "4QGR522B9M",
+    "_lastSynchronizedDate" : 719560236.07505405
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "21402190",
+      "localizations" : [
+
+      ],
+      "name" : "Membership",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "1.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "6470107820",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Membership unlocks access to unlimited teams.",
+              "displayName" : "GoAlign Membership",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "goalign.membership",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Membership",
+          "subscriptionGroupID" : "21402190",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 2,
+    "minor" : 0
+  }
+}
