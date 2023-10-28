@@ -2,6 +2,7 @@ import Foundation
 import StoreKit
 
 let goAlignMembershipId = "goalign.membership"
+let goAlignLifetimeUnlockId = "lifetime.unlock"
 
 public enum StoreError: Error {
     case failedVerification
@@ -11,7 +12,9 @@ class Store: ObservableObject {
     var updateListenerTask: Task<Void, Error>?
 
     @Published var goAlignMembershipPurchase: Product?
-    @Published var hasPurchasedUnlockAdvancedEquations: Bool = false
+    @Published var hasPurchasedMembership: Bool = false
+    @Published var goAlignLifetimeUnlock: Product?
+    @Published var hasPurchasedLifetimeUnlock: Bool = false
 
     init() {
         updateListenerTask = listenForTransactions()
@@ -28,11 +31,14 @@ class Store: ObservableObject {
     func requestProducts() async {
         print("Requesting products")
         do {
-            let storeProducts = try await Product.products(for: [goAlignMembershipId])
+            let storeProducts = try await Product.products(for: [goAlignMembershipId, goAlignLifetimeUnlockId])
 
-            if storeProducts.count > 0 {
-                goAlignMembershipPurchase = storeProducts[0]
-                hasPurchasedUnlockAdvancedEquations = true
+            for product in storeProducts {
+                if product.type == .autoRenewable {
+                    goAlignMembershipPurchase = product
+                } else if product.type == .nonConsumable {
+                    goAlignLifetimeUnlock = product
+                }
             }
         } catch {
             print("Failed product request from the App Store server: \(error)")
@@ -54,8 +60,10 @@ class Store: ObservableObject {
             do {
                 let transaction = try checkVerified(result)
 
-                if transaction.productType == .nonConsumable, transaction.productID == goAlignMembershipId {
-                    hasPurchasedUnlockAdvancedEquations = true
+                if transaction.productType == .autoRenewable, transaction.productID == goAlignMembershipId {
+                    hasPurchasedMembership = true
+                } else if transaction.productType == .nonConsumable, transaction.productID == goAlignLifetimeUnlockId {
+                  hasPurchasedLifetimeUnlock = true
                 } else {
                     print("Unknown product type or id")
                 }

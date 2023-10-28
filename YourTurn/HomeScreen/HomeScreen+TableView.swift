@@ -11,7 +11,7 @@ import UIKit
 extension HomeScreen: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         DispatchQueue.main.async {
-            if indexPath.row < 3 || store.hasPurchasedUnlockAdvancedEquations {
+            if indexPath.row < 3 || store.hasPurchasedMembership || store.hasPurchasedLifetimeUnlock {
                 if tableView.tag == TASKTABLETAG {
                     let taskVC = TaskViewScreen()
                     taskVC.viewModel = TaskViewScreenVM(task: self.tasks[indexPath.row])
@@ -34,9 +34,9 @@ extension HomeScreen: UITableViewDelegate {
                 }
             } else {
                 self.showMessage(
-                    withTitle: "Subscription Required",
+                    withTitle: "Locked Feature",
                     // swiftlint:disable:next line_length
-                    message: "This is a freemium app. Please go to settings and purchase a subscription to unlock the full feature set.")
+                    message: "This feature is currently locked as it requires a subscription or one-time purchase to unlock. To gain full access to all current and future features, please visit the settings page and choose between a recurring subscription or permanent unlock. The subscription will allow you to access all features during your subscription period. The permanent unlock will grant you lifetime access to all current and future features.")
             }
         }
 

@@ -12,7 +12,7 @@ class MembershipSubscriptionCell: UITableViewCell {
 
     private lazy var membershipSubscriptionButton: BlueButton = {
         let button = BlueButton()
-        button.setTitle("Membership Subscription", for: .normal)
+        button.setTitle("Membership - $1.99/month", for: .normal)
         return button
     }()
 

@@ -104,6 +104,7 @@ class HomeScreen: YtViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         showLoader(true)
+        checkIfPurchasesHaveBeenMade()
         configureInteractables()
         configureTableViews()
         configureCombine()
@@ -111,7 +112,8 @@ class HomeScreen: YtViewController {
 
         viewModel?.checkAndDisplayPendingInviteBaner(viewController: self)
 
-        store.$hasPurchasedUnlockAdvancedEquations.sink { [weak self] hasPurchased in
+        store.$hasPurchasedMembership.sink { [weak self] hasPurchased in
+            print("HOWDY HOWDY")
             if hasPurchased {
                 self?.taskTableView.reloadData()
                 self?.teamTableView.reloadData()
@@ -243,6 +245,14 @@ class HomeScreen: YtViewController {
         let drawerController = DrawerMenuViewController()
         drawerController.delegate = self
         present(drawerController, animated: true)
+    }
+
+    private func checkIfPurchasesHaveBeenMade() {
+        Task {
+            showLoader(true)
+            await store.updateCustomerProductStatus()
+            showLoader(false)
+        }
     }
 }
 

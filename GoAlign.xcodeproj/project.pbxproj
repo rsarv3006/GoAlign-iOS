@@ -209,6 +209,7 @@
 		78E4F890289389B00075F04F /* IntervalObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F88F289389B00075F04F /* IntervalObject.swift */; };
 		78E4F89228938DE50075F04F /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F89128938DE50075F04F /* UserModel.swift */; };
 		78E4F896289393150075F04F /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4F895289393150075F04F /* Networking.swift */; };
+		78E6B9EC2AECB916008901D3 /* LifetimeUnlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E6B9EB2AECB916008901D3 /* LifetimeUnlockCell.swift */; };
 		78E743C028A595460069E691 /* SignInFormContentBuilderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E743BF28A595460069E691 /* SignInFormContentBuilderImpl.swift */; };
 		78E743C428A599A00069E691 /* SignInCompletedForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E743C328A599A00069E691 /* SignInCompletedForm.swift */; };
 		78E7FAEA28ADE8060041D335 /* TeamSelectModalCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E7FAE928ADE8060041D335 /* TeamSelectModalCellView.swift */; };
@@ -219,6 +220,7 @@
 		78F61EB22AE39BD1002685BE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F61EB12AE39BD1002685BE /* StoreKit.framework */; };
 		78F61EB52AE4753D002685BE /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F61EB42AE4753D002685BE /* Store.swift */; };
 		78F61EB72AE5BEB1002685BE /* MembershipSubscriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F61EB62AE5BEB1002685BE /* MembershipSubscriptionCell.swift */; };
+		78F61EB92AEB80C6002685BE /* RestorePurchasesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F61EB82AEB80C6002685BE /* RestorePurchasesCell.swift */; };
 		78FAB71628AAF9D6009B8D50 /* DrawerMenuVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FAB71528AAF9D6009B8D50 /* DrawerMenuVM.swift */; };
 		78FAB71B28AB16A2009B8D50 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 78FAB71A28AB16A2009B8D50 /* FirebaseAnalytics */; };
 		78FAB71D28AB16A2009B8D50 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 78FAB71C28AB16A2009B8D50 /* FirebaseCrashlytics */; };
@@ -419,6 +421,7 @@
 		78E4F88F289389B00075F04F /* IntervalObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalObject.swift; sourceTree = "<group>"; };
 		78E4F89128938DE50075F04F /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		78E4F895289393150075F04F /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		78E6B9EB2AECB916008901D3 /* LifetimeUnlockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifetimeUnlockCell.swift; sourceTree = "<group>"; };
 		78E743BF28A595460069E691 /* SignInFormContentBuilderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFormContentBuilderImpl.swift; sourceTree = "<group>"; };
 		78E743C328A599A00069E691 /* SignInCompletedForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCompletedForm.swift; sourceTree = "<group>"; };
 		78E7FAE928ADE8060041D335 /* TeamSelectModalCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSelectModalCellView.swift; sourceTree = "<group>"; };
@@ -430,6 +433,7 @@
 		78F61EB32AE39E29002685BE /* Go Align.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Go Align.storekit"; sourceTree = "<group>"; };
 		78F61EB42AE4753D002685BE /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		78F61EB62AE5BEB1002685BE /* MembershipSubscriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipSubscriptionCell.swift; sourceTree = "<group>"; };
+		78F61EB82AEB80C6002685BE /* RestorePurchasesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestorePurchasesCell.swift; sourceTree = "<group>"; };
 		78FAB71528AAF9D6009B8D50 /* DrawerMenuVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerMenuVM.swift; sourceTree = "<group>"; };
 		78FAB71E28AB170B009B8D50 /* LoggerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerService.swift; sourceTree = "<group>"; };
 		78FAB72128AB58AC009B8D50 /* ModalFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalFormComponent.swift; sourceTree = "<group>"; };
@@ -858,6 +862,8 @@
 			children = (
 				78904AEF28D3FA8B00F6EF1F /* DeleteUserCell.swift */,
 				78F61EB62AE5BEB1002685BE /* MembershipSubscriptionCell.swift */,
+				78F61EB82AEB80C6002685BE /* RestorePurchasesCell.swift */,
+				78E6B9EB2AECB916008901D3 /* LifetimeUnlockCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1284,6 +1290,7 @@
 				7833144929154986009DDD3F /* InputTextView.swift in Sources */,
 				7802E195288D9CBF00F7D501 /* SignUpFormContentBuilderImpl.swift in Sources */,
 				D5129C7F28E5475C00AF9EDD /* TaskViewScreen.swift in Sources */,
+				78E6B9EC2AECB916008901D3 /* LifetimeUnlockCell.swift in Sources */,
 				78332CE12954936D00073F14 /* ChangeTeamManagerModal.swift in Sources */,
 				78331466291B4D13009DDD3F /* TeamUsersTabViewCellVM.swift in Sources */,
 				7802E1A6288E399500F7D501 /* Authentication.swift in Sources */,
@@ -1331,6 +1338,7 @@
 				786616E62A9C538D00E88774 /* FetchJwtDtoModel.swift in Sources */,
 				78B687822887A616006B6CAB /* TextFormComponent.swift in Sources */,
 				78E4F88A289386CB0075F04F /* User.swift in Sources */,
+				78F61EB92AEB80C6002685BE /* RestorePurchasesCell.swift in Sources */,
 				7802E1A1288E2FAE00F7D501 /* SignUpVM.swift in Sources */,
 				78DF5AFF28C02FA300C182CF /* TeamInviteSubCellView.swift in Sources */,
 				78DAADED2868D5CF00FEB0DA /* HomeScreenTeamCell.swift in Sources */,

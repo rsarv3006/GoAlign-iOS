@@ -11,6 +11,8 @@ import Combine
 struct CellIdentifiers {
     static let DeleteUserCell = "DeleteUserCell"
     static let MembershipSubscriptionCell = "MembershipSubscriptionCell"
+    static let RestorePurchasesCell = "RestorePurchasesCell"
+    static let LifetimeUnlockCell = "LifetimeUnlockCell"
 }
 
 class SettingsScreenView: UITableViewController {
@@ -38,6 +40,9 @@ class SettingsScreenView: UITableViewController {
         tableView.register(
             MembershipSubscriptionCell.self,
             forCellReuseIdentifier: CellIdentifiers.MembershipSubscriptionCell)
+        tableView.register(
+            RestorePurchasesCell.self, forCellReuseIdentifier: CellIdentifiers.RestorePurchasesCell)
+        tableView.register(LifetimeUnlockCell.self, forCellReuseIdentifier: CellIdentifiers.LifetimeUnlockCell)
         tableView.rowHeight = 32
     }
 
@@ -50,7 +55,15 @@ class SettingsScreenView: UITableViewController {
             withIdentifier: CellIdentifiers.MembershipSubscriptionCell,
             for: indexPath)
 
-        if indexPath.row == 1, let cell = cell as? DeleteUserCell {
+        let restorePurchasesCell = tableView.dequeueReusableCell(
+            withIdentifier: CellIdentifiers.RestorePurchasesCell,
+            for: indexPath)
+
+        let lifetimeUnlockCell = tableView.dequeueReusableCell(
+            withIdentifier: CellIdentifiers.LifetimeUnlockCell,
+            for: indexPath)
+
+        if indexPath.row == 3, let cell = cell as? DeleteUserCell {
             cell.requestDisplayUIAlert.sink { alert in
                 self.present(alert, animated: true)
             }.store(in: &subscriptions)
@@ -66,7 +79,14 @@ class SettingsScreenView: UITableViewController {
             return cell
         } else if indexPath.row == 0, let cell = subscribeCell as? MembershipSubscriptionCell {
             return cell
+        } else if indexPath.row == 2,
+                  let cell = restorePurchasesCell as? RestorePurchasesCell {
+            return cell
+        } else if indexPath.row == 1,
+                  let cell = lifetimeUnlockCell as? LifetimeUnlockCell {
+            return cell
         }
+
         return cell
     }
 
