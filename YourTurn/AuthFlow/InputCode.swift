@@ -64,6 +64,10 @@ class InputCode: AuthViewController {
         return btn
     }()
 
+    override func viewWillAppear(_ animated: Bool) {
+        view.backgroundColor = .customBackgroundColor
+        super.viewWillAppear(animated)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
