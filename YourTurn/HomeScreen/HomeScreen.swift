@@ -113,7 +113,6 @@ class HomeScreen: YtViewController {
         viewModel?.checkAndDisplayPendingInviteBaner(viewController: self)
 
         store.$hasPurchasedMembership.sink { [weak self] hasPurchased in
-            print("HOWDY HOWDY")
             if hasPurchased {
                 self?.taskTableView.reloadData()
                 self?.teamTableView.reloadData()

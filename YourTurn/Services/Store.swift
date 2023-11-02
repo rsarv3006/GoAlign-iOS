@@ -29,7 +29,6 @@ class Store: ObservableObject {
 
     @MainActor
     func requestProducts() async {
-        print("Requesting products")
         do {
             let storeProducts = try await Product.products(for: [goAlignMembershipId, goAlignLifetimeUnlockId])
 
