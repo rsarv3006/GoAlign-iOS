@@ -80,9 +80,9 @@ class TeamAddModal: YtViewController {
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
-        super.viewDidLoad()
         configureModal()
         configureActions()
+        super.viewDidLoad()
     }
 
     // MARK: - Helpers
@@ -92,8 +92,8 @@ class TeamAddModal: YtViewController {
         modalTitle.anchor(top: subView.topAnchor, left: subView.leftAnchor, right: subView.rightAnchor, height: 44)
 
         subView.addSubview(teamNameField)
-        teamNameField.centerY(inView: subView)
-        teamNameField.anchor(left: subView.leftAnchor, right: subView.rightAnchor, paddingLeft: 12, paddingRight: 12)
+        teamNameField.center(inView: subView)
+        teamNameField.setWidth(240)
 
         subView.addSubview(createButton)
         createButton.centerX(inView: subView)
@@ -132,11 +132,8 @@ class TeamAddModal: YtViewController {
         view.addSubview(subView)
         subView.center(inView: view)
 
-        let screenHeight = UIScreen.main.bounds.size.height
-        let screenWidth = UIScreen.main.bounds.size.width
-
-        subView.setWidth(screenWidth * 0.75)
-        subView.setHeight(screenHeight * 0.6)
+        subView.setWidth(310)
+        subView.setHeight(442)
     }
 
     func configureActions() {

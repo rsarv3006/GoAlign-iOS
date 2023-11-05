@@ -49,8 +49,6 @@
 		780F49902934722F006C8456 /* TeamStatsTabVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F498F2934722F006C8456 /* TeamStatsTabVM.swift */; };
 		78209179296361E400853C2C /* TeamUsersReloadDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78209178296361E400853C2C /* TeamUsersReloadDelegate.swift */; };
 		78288CD428B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78288CD328B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift */; };
-		782F5EC32AC3C75600E77B1D /* LegalScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782F5EC22AC3C75600E77B1D /* LegalScreen.swift */; };
-		782F5EC52AC3C88000E77B1D /* LegalScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782F5EC42AC3C88000E77B1D /* LegalScreenVM.swift */; };
 		782F5EC72AC3E90300E77B1D /* FormLabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782F5EC62AC3E90300E77B1D /* FormLabelCollectionViewCell.swift */; };
 		782F5EC92AC3E9F100E77B1D /* LabelFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782F5EC82AC3E9F100E77B1D /* LabelFormComponent.swift */; };
 		7833144529154752009DDD3F /* TextBoxFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7833144429154752009DDD3F /* TextBoxFormComponent.swift */; };
@@ -117,6 +115,7 @@
 		78904AF028D3FA8B00F6EF1F /* DeleteUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78904AEF28D3FA8B00F6EF1F /* DeleteUserCell.swift */; };
 		789377D7295D599C00F6B9A9 /* TeamSettingsAllMembersCanAddTasksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789377D6295D599C00F6B9A9 /* TeamSettingsAllMembersCanAddTasksCell.swift */; };
 		789377D9295D59BB00F6B9A9 /* TeamSettingsAllMembersCanAddTasksCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789377D8295D59BB00F6B9A9 /* TeamSettingsAllMembersCanAddTasksCellVM.swift */; };
+		7896CFC22AF580E100B40370 /* TermsAndPrivacyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7896CFC12AF580E100B40370 /* TermsAndPrivacyCell.swift */; };
 		78A083A02965242400E86DAA /* TaskSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A0839F2965242400E86DAA /* TaskSubView.swift */; };
 		78A083A22965243300E86DAA /* TaskSubViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A083A12965243300E86DAA /* TaskSubViewVM.swift */; };
 		78A083A42965250900E86DAA /* TaskSubViewVMDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A083A32965250900E86DAA /* TaskSubViewVMDelegate.swift */; };
@@ -284,8 +283,6 @@
 		780F498F2934722F006C8456 /* TeamStatsTabVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamStatsTabVM.swift; sourceTree = "<group>"; };
 		78209178296361E400853C2C /* TeamUsersReloadDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamUsersReloadDelegate.swift; sourceTree = "<group>"; };
 		78288CD328B2C14C006AFB69 /* ISO8601CustomDateDecodingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO8601CustomDateDecodingStrategy.swift; sourceTree = "<group>"; };
-		782F5EC22AC3C75600E77B1D /* LegalScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalScreen.swift; sourceTree = "<group>"; };
-		782F5EC42AC3C88000E77B1D /* LegalScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalScreenVM.swift; sourceTree = "<group>"; };
 		782F5EC62AC3E90300E77B1D /* FormLabelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormLabelCollectionViewCell.swift; sourceTree = "<group>"; };
 		782F5EC82AC3E9F100E77B1D /* LabelFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelFormComponent.swift; sourceTree = "<group>"; };
 		7833144429154752009DDD3F /* TextBoxFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBoxFormComponent.swift; sourceTree = "<group>"; };
@@ -354,6 +351,7 @@
 		78904AEF28D3FA8B00F6EF1F /* DeleteUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserCell.swift; sourceTree = "<group>"; };
 		789377D6295D599C00F6B9A9 /* TeamSettingsAllMembersCanAddTasksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsAllMembersCanAddTasksCell.swift; sourceTree = "<group>"; };
 		789377D8295D59BB00F6B9A9 /* TeamSettingsAllMembersCanAddTasksCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsAllMembersCanAddTasksCellVM.swift; sourceTree = "<group>"; };
+		7896CFC12AF580E100B40370 /* TermsAndPrivacyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndPrivacyCell.swift; sourceTree = "<group>"; };
 		78A0839F2965242400E86DAA /* TaskSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskSubView.swift; sourceTree = "<group>"; };
 		78A083A12965243300E86DAA /* TaskSubViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskSubViewVM.swift; sourceTree = "<group>"; };
 		78A083A32965250900E86DAA /* TaskSubViewVMDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskSubViewVMDelegate.swift; sourceTree = "<group>"; };
@@ -537,15 +535,6 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		782F5EC12AC3C72F00E77B1D /* LegalScreen */ = {
-			isa = PBXGroup;
-			children = (
-				782F5EC22AC3C75600E77B1D /* LegalScreen.swift */,
-				782F5EC42AC3C88000E77B1D /* LegalScreenVM.swift */,
-			);
-			path = LegalScreen;
-			sourceTree = "<group>";
-		};
 		7833144A2916DFB8009DDD3F /* TeamView */ = {
 			isa = PBXGroup;
 			children = (
@@ -661,7 +650,6 @@
 		783DECD028617EEB0062343E /* YourTurn */ = {
 			isa = PBXGroup;
 			children = (
-				782F5EC12AC3C72F00E77B1D /* LegalScreen */,
 				78AC28072944314200F53EAB /* remote_config_defaults.plist */,
 				D505315828E529D1006BD807 /* GoogleService-Info.plist */,
 				78439FDF28AD2CE00070D48D /* Common */,
@@ -864,6 +852,7 @@
 				78F61EB62AE5BEB1002685BE /* MembershipSubscriptionCell.swift */,
 				78F61EB82AEB80C6002685BE /* RestorePurchasesCell.swift */,
 				78E6B9EB2AECB916008901D3 /* LifetimeUnlockCell.swift */,
+				7896CFC12AF580E100B40370 /* TermsAndPrivacyCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1326,7 +1315,6 @@
 				783DED03286180470062343E /* HomeScreen.swift in Sources */,
 				78A083A62965AE5D00E86DAA /* TeamTaskModal.swift in Sources */,
 				788CFF9E29554734002650F7 /* ChangeTeamManagerUserCellVM.swift in Sources */,
-				782F5EC52AC3C88000E77B1D /* LegalScreenVM.swift in Sources */,
 				78AC55C22AA6782E00263DAA /* RefreshTokensReturnDto.swift in Sources */,
 				788CFFA629567104002650F7 /* TeamSettingsLeaveTeamCellVM.swift in Sources */,
 				78439FD928AC8EC80070D48D /* TeamSelectModal.swift in Sources */,
@@ -1334,10 +1322,10 @@
 				780F197A28A493FE00371B91 /* AuthViewController.swift in Sources */,
 				786616E42A9C47D200E88774 /* LoginRequestModel.swift in Sources */,
 				783C94302ABFCA9C00B7EFFA /* LabelWithCustomTextColor.swift in Sources */,
-				782F5EC32AC3C75600E77B1D /* LegalScreen.swift in Sources */,
 				786616E62A9C538D00E88774 /* FetchJwtDtoModel.swift in Sources */,
 				78B687822887A616006B6CAB /* TextFormComponent.swift in Sources */,
 				78E4F88A289386CB0075F04F /* User.swift in Sources */,
+				7896CFC22AF580E100B40370 /* TermsAndPrivacyCell.swift in Sources */,
 				78F61EB92AEB80C6002685BE /* RestorePurchasesCell.swift in Sources */,
 				7802E1A1288E2FAE00F7D501 /* SignUpVM.swift in Sources */,
 				78DF5AFF28C02FA300C182CF /* TeamInviteSubCellView.swift in Sources */,

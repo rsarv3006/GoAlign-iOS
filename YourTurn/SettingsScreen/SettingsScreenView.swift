@@ -9,6 +9,7 @@ import UIKit
 import Combine
 
 struct CellIdentifiers {
+    static let TermsAndPrivacyCell = "TermsAndPrivacyCell"
     static let DeleteUserCell = "DeleteUserCell"
     static let MembershipSubscriptionCell = "MembershipSubscriptionCell"
     static let RestorePurchasesCell = "RestorePurchasesCell"
@@ -43,7 +44,8 @@ class SettingsScreenView: UITableViewController {
         tableView.register(
             RestorePurchasesCell.self, forCellReuseIdentifier: CellIdentifiers.RestorePurchasesCell)
         tableView.register(LifetimeUnlockCell.self, forCellReuseIdentifier: CellIdentifiers.LifetimeUnlockCell)
-        tableView.rowHeight = 32
+        tableView.register(TermsAndPrivacyCell.self, forCellReuseIdentifier: CellIdentifiers.TermsAndPrivacyCell)
+        tableView.rowHeight = 48
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,7 +65,11 @@ class SettingsScreenView: UITableViewController {
             withIdentifier: CellIdentifiers.LifetimeUnlockCell,
             for: indexPath)
 
-        if indexPath.row == 3, let cell = cell as? DeleteUserCell {
+        let termsAndPrivacyCell = tableView.dequeueReusableCell(
+            withIdentifier: CellIdentifiers.TermsAndPrivacyCell,
+            for: indexPath)
+
+        if indexPath.row == 4, let cell = cell as? DeleteUserCell {
             cell.requestDisplayUIAlert.sink { alert in
                 self.present(alert, animated: true)
             }.store(in: &subscriptions)
@@ -77,13 +83,13 @@ class SettingsScreenView: UITableViewController {
                 }
             }.store(in: &subscriptions)
             return cell
-        } else if indexPath.row == 0, let cell = subscribeCell as? MembershipSubscriptionCell {
+        } else if indexPath.row == 1, let cell = subscribeCell as? MembershipSubscriptionCell {
             return cell
-        } else if indexPath.row == 2,
-                  let cell = restorePurchasesCell as? RestorePurchasesCell {
+        } else if indexPath.row == 3, let cell = restorePurchasesCell as? RestorePurchasesCell {
             return cell
-        } else if indexPath.row == 1,
-                  let cell = lifetimeUnlockCell as? LifetimeUnlockCell {
+        } else if indexPath.row == 2, let cell = lifetimeUnlockCell as? LifetimeUnlockCell {
+            return cell
+        } else if indexPath.row == 0, let cell = termsAndPrivacyCell as? TermsAndPrivacyCell {
             return cell
         }
 

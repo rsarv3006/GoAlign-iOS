@@ -116,13 +116,8 @@ class TeamInviteUserModal: YtViewController {
         view.addSubview(subView)
         subView.center(inView: view)
 
-        let screenHeight = UIScreen.main.bounds.size.height
-        let screenWidth = UIScreen.main.bounds.size.width
-
-        let subViewWidth = screenWidth * 0.75
-        let subViewHeight = screenHeight * 0.6
-        subView.setWidth(subViewWidth)
-        subView.setHeight(subViewHeight)
+        subView.setWidth(310)
+        subView.setHeight(442)
 
         subView.addSubview(modalTitle)
         modalTitle.centerX(inView: subView)
@@ -133,7 +128,7 @@ class TeamInviteUserModal: YtViewController {
             top: modalTitle.bottomAnchor,
             left: subView.leftAnchor,
             paddingLeft: 16,
-            width: subViewWidth * 0.9,
+            width: 280,
             height: 32)
 
         subView.addSubview(inviteButton)
@@ -142,7 +137,7 @@ class TeamInviteUserModal: YtViewController {
             left: emailAddressToInvite.rightAnchor,
             right: subView.rightAnchor,
             paddingRight: 12,
-            width: subViewWidth * 0.1,
+            width: 32,
             height: 32)
 
         subView.addSubview(errorLbl)

@@ -325,11 +325,4 @@ extension HomeScreen: DrawerMenuViewControllerDelegate {
             self.navigationController?.pushViewController(newVc, animated: true)
         }
     }
-
-    func onViewLegalScreenPressed(viewController: UIViewController) {
-        DispatchQueue.main.async {
-            let newVc = LegalScreen()
-            self.navigationController?.pushViewController(newVc, animated: true)
-        }
-    }
 }

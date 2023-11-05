@@ -15,4 +15,12 @@ struct ExternalLinkService {
             UIApplication.shared.open(url)
         }
     }
+
+    static func openPrivacyPolicyLink () {
+        DispatchQueue.main.async {
+            let url = URL(string: "https://rjsappdev.wixsite.com/goalign/privacy-policy")
+            guard let url = url else { return }
+            UIApplication.shared.open(url)
+        }
+    }
 }
