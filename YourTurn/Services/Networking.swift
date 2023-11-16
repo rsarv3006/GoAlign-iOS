@@ -23,6 +23,10 @@ struct Networking {
         httpMethod: HttpMethod,
         url: URL,
         body: Data? = nil) async throws -> (Data, URLResponse) {
+            guard !isUnderMaintenance else {
+                throw ServiceErrors.custom(message: "GoAlign is under maintenance. Please try again later.")
+            }
+
         let token = try await AppState.getInstance().getAccessToken()
 
         var request = URLRequest(url: url)
@@ -41,6 +45,10 @@ struct Networking {
     }
 
     static func noAuthApiCall(httpMethod: HttpMethod, url: URL, body: Data? = nil) async throws -> (Data, URLResponse) {
+        guard !isUnderMaintenance else {
+            throw ServiceErrors.custom(message: "GoAlign is under maintenance. Please try again later.")
+        }
+
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod.rawValue
         if let body = body {

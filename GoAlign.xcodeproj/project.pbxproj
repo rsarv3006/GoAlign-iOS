@@ -168,6 +168,7 @@
 		78B90EB62939C47B00E6CBA8 /* StatsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B90EB52939C47B00E6CBA8 /* StatsService.swift */; };
 		78B90EB82939C4A600E6CBA8 /* TeamStatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B90EB72939C4A600E6CBA8 /* TeamStatsModel.swift */; };
 		78B90EBA293DB81B00E6CBA8 /* ServiceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B90EB9293DB81B00E6CBA8 /* ServiceErrors.swift */; };
+		78BB455D2B055A55000EA9F5 /* SubscriptionDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BB455C2B055A55000EA9F5 /* SubscriptionDetailsCell.swift */; };
 		78BBB8FC28642207006B3FDC /* HomeScreenTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BBB8FB28642207006B3FDC /* HomeScreenTaskCell.swift */; };
 		78BF0D6528A97F57005C6098 /* DrawerMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BF0D6428A97F57005C6098 /* DrawerMenuViewController.swift */; };
 		78BF0D6828A98052005C6098 /* DrawerTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BF0D6728A98052005C6098 /* DrawerTransitionManager.swift */; };
@@ -381,6 +382,7 @@
 		78B90EB52939C47B00E6CBA8 /* StatsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsService.swift; sourceTree = "<group>"; };
 		78B90EB72939C4A600E6CBA8 /* TeamStatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamStatsModel.swift; sourceTree = "<group>"; };
 		78B90EB9293DB81B00E6CBA8 /* ServiceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceErrors.swift; sourceTree = "<group>"; };
+		78BB455C2B055A55000EA9F5 /* SubscriptionDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionDetailsCell.swift; sourceTree = "<group>"; };
 		78BBB8FB28642207006B3FDC /* HomeScreenTaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenTaskCell.swift; sourceTree = "<group>"; };
 		78BF0D6428A97F57005C6098 /* DrawerMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerMenuViewController.swift; sourceTree = "<group>"; };
 		78BF0D6728A98052005C6098 /* DrawerTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerTransitionManager.swift; sourceTree = "<group>"; };
@@ -853,6 +855,7 @@
 				78F61EB82AEB80C6002685BE /* RestorePurchasesCell.swift */,
 				78E6B9EB2AECB916008901D3 /* LifetimeUnlockCell.swift */,
 				7896CFC12AF580E100B40370 /* TermsAndPrivacyCell.swift */,
+				78BB455C2B055A55000EA9F5 /* SubscriptionDetailsCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1202,6 +1205,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		78F61EAC2ADCE58F002685BE /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -1220,6 +1224,7 @@
 		};
 		78FAB72028AB512F009B8D50 /* Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -1320,6 +1325,7 @@
 				78439FD928AC8EC80070D48D /* TeamSelectModal.swift in Sources */,
 				7802E199288D9FEC00F7D501 /* PasswordFormComponent.swift in Sources */,
 				780F197A28A493FE00371B91 /* AuthViewController.swift in Sources */,
+				78BB455D2B055A55000EA9F5 /* SubscriptionDetailsCell.swift in Sources */,
 				786616E42A9C47D200E88774 /* LoginRequestModel.swift in Sources */,
 				783C94302ABFCA9C00B7EFFA /* LabelWithCustomTextColor.swift in Sources */,
 				786616E62A9C538D00E88774 /* FetchJwtDtoModel.swift in Sources */,
@@ -1641,7 +1647,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rjs.GoAlign;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1669,7 +1675,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rjs.GoAlign;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
